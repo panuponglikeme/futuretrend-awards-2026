@@ -38,7 +38,7 @@ const inputDelay = [];
  */
 export default class Inspector extends Component {
 	constructor() {
-		super( ...arguments );
+		super(...arguments);
 		this.state = {
 			categoriesList: false,
 			categoriesTitleToIdRelationships: false,
@@ -58,9 +58,9 @@ export default class Inspector extends Component {
 		// If this block was just selected by the user, fetch the previously-selected category slugs from the server so we have something to show in the sidebar.
 		if (
 			this.props.isSelected &&
-			! this.state.waitingForApiResponse &&
+			!this.state.waitingForApiResponse &&
 			this.props.attributes.categories &&
-			! this.state.categoriesList &&
+			!this.state.categoriesList &&
 			'post' === this.props.attributes.postType
 		) {
 			this.getCategoriesFromServer(
@@ -74,19 +74,19 @@ export default class Inspector extends Component {
 		// If this block was just selected by the user, fetch the previously-selected page slugs from the server so we have something to show in the sidebar.
 		if (
 			this.props.isSelected &&
-			! this.state.waitingForApiResponse &&
+			!this.state.waitingForApiResponse &&
 			this.props.attributes.selectedPages.length > 0 &&
-			! this.state.pagesList &&
+			!this.state.pagesList &&
 			'page' === this.props.attributes.postType
 		) {
 			const ids = [];
-			for ( const selectedPage in this.props.attributes.selectedPages ) {
+			for (const selectedPage in this.props.attributes.selectedPages) {
 				ids.push(
-					this.props.attributes.selectedPages[ selectedPage ].value
+					this.props.attributes.selectedPages[selectedPage].value
 				);
 			}
 
-			this.getPagesFromServer( ids ? ids : false, true );
+			this.getPagesFromServer(ids ? ids : false, true);
 		}
 	}
 
@@ -94,18 +94,18 @@ export default class Inspector extends Component {
 		this.stillMounted = false;
 	}
 
-	getCategoriesFromServer( userInput, isInitial = false ) {
-		return new Promise( ( resolve ) => {
-			this.setState( {
+	getCategoriesFromServer(userInput, isInitial = false) {
+		return new Promise((resolve) => {
+			this.setState({
 				waitingForApiResponse: true,
 				categoriesList: false,
-			} );
+			});
 
-			if ( ! userInput || userInput.length === 0 ) {
-				if ( ! isInitial ) {
-					this.setState( {
+			if (!userInput || userInput.length === 0) {
+				if (!isInitial) {
+					this.setState({
 						waitingForApiResponse: false,
-					} );
+					});
 				}
 				resolve();
 				return;
@@ -116,17 +116,17 @@ export default class Inspector extends Component {
 				search: userInput,
 			};
 
-			if ( isInitial ) {
+			if (isInitial) {
 				args = {
 					per_page: 99,
 					include: userInput,
 				};
 			}
 
-			this.fetchRequest = apiFetch( {
-				path: addQueryArgs( '/wp/v2/categories', args ),
-			} )
-				.then( ( categoriesList ) => {
+			this.fetchRequest = apiFetch({
+				path: addQueryArgs('/wp/v2/categories', args),
+			})
+				.then((categoriesList) => {
 					// Store arrays for slug-to-id and id-to-slug to make them easy to reference in components and attributes.
 					const categoriesTitleToIdRelationships = this.state
 						.categoriesTitleToIdRelationships
@@ -137,59 +137,57 @@ export default class Inspector extends Component {
 						? this.state.categoriesIdToTitleRelationships
 						: {};
 
-					for ( const category in categoriesList ) {
+					for (const category in categoriesList) {
 						categoriesTitleToIdRelationships[
-							categoriesList[ category ].name +
+							categoriesList[category].name +
 								' (' +
-								categoriesList[ category ].slug +
+								categoriesList[category].slug +
 								')'
-						] = categoriesList[ category ].id;
+						] = categoriesList[category].id;
 						categoriesIdToTitleRelationships[
-							categoriesList[ category ].id
+							categoriesList[category].id
 						] =
-							categoriesList[ category ].name +
+							categoriesList[category].name +
 							' (' +
-							categoriesList[ category ].slug +
+							categoriesList[category].slug +
 							')';
 					}
 
-					this.setState( {
+					this.setState({
 						categoriesList,
 						categoriesTitleToIdRelationships,
 						categoriesIdToTitleRelationships,
 						waitingForApiResponse: false,
-					} );
+					});
 
 					resolve();
-				} )
-				.catch( () => {
-					console.log(
-						`category request failure: ${ error.message }`
-					);
-					if ( this.stillMounted ) {
-						this.setState( {
+				})
+				.catch(() => {
+					console.log(`category request failure: ${error.message}`);
+					if (this.stillMounted) {
+						this.setState({
 							categoriesList: [],
 							waitingForApiResponse: false,
-						} );
+						});
 
 						resolve();
 					}
-				} );
-		} );
+				});
+		});
 	}
 
-	getPagesFromServer( userInput, isInitial = false ) {
-		return new Promise( ( resolve ) => {
-			this.setState( {
+	getPagesFromServer(userInput, isInitial = false) {
+		return new Promise((resolve) => {
+			this.setState({
 				waitingForApiResponse: true,
 				pagesList: false,
-			} );
+			});
 
-			if ( ! userInput || userInput.length === 0 ) {
-				if ( ! isInitial ) {
-					this.setState( {
+			if (!userInput || userInput.length === 0) {
+				if (!isInitial) {
+					this.setState({
 						waitingForApiResponse: false,
-					} );
+					});
 				}
 				resolve();
 				return;
@@ -200,17 +198,17 @@ export default class Inspector extends Component {
 				search: userInput,
 			};
 
-			if ( isInitial ) {
+			if (isInitial) {
 				args = {
 					per_page: -1,
 					include: userInput,
 				};
 			}
 
-			this.fetchRequest = apiFetch( {
-				path: addQueryArgs( '/wp/v2/pages', args ),
-			} )
-				.then( ( pagesList ) => {
+			this.fetchRequest = apiFetch({
+				path: addQueryArgs('/wp/v2/pages', args),
+			})
+				.then((pagesList) => {
 					// Store arrays for slug-to-id and id-to-slug to make them easy to reference in components and attributes.
 					const pagesTitleToIdRelationships = this.state
 						.pagesTitleToIdRelationships
@@ -221,52 +219,52 @@ export default class Inspector extends Component {
 						? this.state.pagesIdToTitleRelationships
 						: {};
 
-					for ( const page in pagesList ) {
+					for (const page in pagesList) {
 						pagesTitleToIdRelationships[
-							pagesList[ page ].title.rendered +
+							pagesList[page].title.rendered +
 								' (' +
-								pagesList[ page ].slug +
+								pagesList[page].slug +
 								')'
-						] = pagesList[ page ].id;
-						pagesIdToTitleRelationships[ pagesList[ page ].id ] =
-							pagesList[ page ].title.rendered +
+						] = pagesList[page].id;
+						pagesIdToTitleRelationships[pagesList[page].id] =
+							pagesList[page].title.rendered +
 							' (' +
-							pagesList[ page ].slug +
+							pagesList[page].slug +
 							')';
 					}
 
-					this.setState( {
+					this.setState({
 						pagesList,
 						pagesTitleToIdRelationships,
 						pagesIdToTitleRelationships,
 						waitingForApiResponse: false,
-					} );
+					});
 
 					resolve();
-				} )
-				.catch( () => {
-					if ( this.stillMounted ) {
-						this.setState( {
+				})
+				.catch(() => {
+					if (this.stillMounted) {
+						this.setState({
 							pagesList: [],
 							waitingForApiResponse: false,
-						} );
+						});
 						resolve();
 					}
-				} );
-		} );
+				});
+		});
 	}
 
 	/* Get the available image sizes */
 	imageSizeSelect() {
-		const getSettings = wp.data.select( 'core/block-editor' ).getSettings();
+		const getSettings = wp.data.select('core/block-editor').getSettings();
 
 		return compact(
-			map( getSettings.imageSizes, ( { name, slug } ) => {
+			map(getSettings.imageSizes, ({ name, slug }) => {
 				return {
 					value: slug,
 					label: name,
 				};
-			} )
+			})
 		);
 	}
 
@@ -287,32 +285,32 @@ export default class Inspector extends Component {
 
 		// Post type options
 		const postTypeOptions = [
-			{ value: 'post', label: __( 'Post', 'genesis-blocks' ) },
-			{ value: 'page', label: __( 'Page', 'genesis-blocks' ) },
+			{ value: 'post', label: __('Post', 'genesis-blocks') },
+			{ value: 'page', label: __('Page', 'genesis-blocks') },
 		];
 
 		// Section title tags
 		const sectionTags = [
-			{ value: 'div', label: __( 'div', 'genesis-blocks' ) },
-			{ value: 'header', label: __( 'header', 'genesis-blocks' ) },
-			{ value: 'section', label: __( 'section', 'genesis-blocks' ) },
-			{ value: 'article', label: __( 'article', 'genesis-blocks' ) },
-			{ value: 'main', label: __( 'main', 'genesis-blocks' ) },
-			{ value: 'aside', label: __( 'aside', 'genesis-blocks' ) },
-			{ value: 'footer', label: __( 'footer', 'genesis-blocks' ) },
+			{ value: 'div', label: __('div', 'genesis-blocks') },
+			{ value: 'header', label: __('header', 'genesis-blocks') },
+			{ value: 'section', label: __('section', 'genesis-blocks') },
+			{ value: 'article', label: __('article', 'genesis-blocks') },
+			{ value: 'main', label: __('main', 'genesis-blocks') },
+			{ value: 'aside', label: __('aside', 'genesis-blocks') },
+			{ value: 'footer', label: __('footer', 'genesis-blocks') },
 		];
 
 		// Section title tags
 		const sectionTitleTags = [
-			{ value: 'h2', label: __( 'H2', 'genesis-blocks' ) },
-			{ value: 'h3', label: __( 'H3', 'genesis-blocks' ) },
-			{ value: 'h4', label: __( 'H4', 'genesis-blocks' ) },
-			{ value: 'h5', label: __( 'H5', 'genesis-blocks' ) },
-			{ value: 'h6', label: __( 'H6', 'genesis-blocks' ) },
+			{ value: 'h2', label: __('H2', 'genesis-blocks') },
+			{ value: 'h3', label: __('H3', 'genesis-blocks') },
+			{ value: 'h4', label: __('H4', 'genesis-blocks') },
+			{ value: 'h5', label: __('H5', 'genesis-blocks') },
+			{ value: 'h6', label: __('H6', 'genesis-blocks') },
 		];
 
 		// Check for posts
-		const hasPosts = Array.isArray( latestPosts ) && latestPosts.length;
+		const hasPosts = Array.isArray(latestPosts) && latestPosts.length;
 
 		// Check the post type
 		const isPost = 'post' === attributes.postType;
@@ -320,31 +318,31 @@ export default class Inspector extends Component {
 		// Add instruction text to the select
 		const abImageSizeSelect = {
 			value: 'selectimage',
-			label: __( 'Select image size', 'genesis-blocks' ),
+			label: __('Select image size', 'genesis-blocks'),
 		};
 
 		// Add the landscape image size to the select
 		const abImageSizeLandscape = {
 			value: 'gb-block-post-grid-landscape',
-			label: __( 'GB Grid Landscape', 'genesis-blocks' ),
+			label: __('GB Grid Landscape', 'genesis-blocks'),
 		};
 
 		// Add the square image size to the select
 		const abImageSizeSquare = {
 			value: 'gb-block-post-grid-square',
-			label: __( 'GB Grid Square', 'genesis-blocks' ),
+			label: __('GB Grid Square', 'genesis-blocks'),
 		};
 
 		// Get the image size options
 		const imageSizeOptions = this.imageSizeSelect();
 
 		// Combine the objects
-		imageSizeOptions.push( abImageSizeSquare, abImageSizeLandscape );
-		imageSizeOptions.unshift( abImageSizeSelect );
+		imageSizeOptions.push(abImageSizeSquare, abImageSizeLandscape);
+		imageSizeOptions.unshift(abImageSizeSelect);
 
 		const imageSizeValue = () => {
-			for ( let i = 0; i < imageSizeOptions.length; i++ ) {
-				if ( imageSizeOptions[ i ].value === attributes.imageSize ) {
+			for (let i = 0; i < imageSizeOptions.length; i++) {
+				if (imageSizeOptions[i].value === attributes.imageSize) {
 					return attributes.imageSize;
 				}
 			}
@@ -354,34 +352,31 @@ export default class Inspector extends Component {
 		return (
 			<InspectorControls>
 				<PanelBody
-					title={ __(
-						'Post and Page Grid Settings',
-						'genesis-blocks'
-					) }
-					className={ isPost ? null : 'genesis-blocks-hide-query' }
+					title={__('Post and Page Grid Settings', 'genesis-blocks')}
+					className={isPost ? null : 'genesis-blocks-hide-query'}
 				>
 					<RenderSettingControl id="gb_postgrid_postType">
 						<SelectControl
-							label={ __( 'Content Type', 'genesis-blocks' ) }
-							options={ postTypeOptions }
-							value={ attributes.postType }
-							onChange={ ( value ) =>
-								this.props.setAttributes( { postType: value } )
+							label={__('Content Type', 'genesis-blocks')}
+							options={postTypeOptions}
+							value={attributes.postType}
+							onChange={(value) =>
+								this.props.setAttributes({ postType: value })
 							}
 						/>
 					</RenderSettingControl>
-					{ 'page' === attributes.postType && (
+					{'page' === attributes.postType && (
 						<RenderSettingControl id="gb_postgrid_selectedPages">
 							<div className="components-base-control">
 								<div
 									className="components-base-control__field"
-									style={ { position: 'relative' } }
+									style={{ position: 'relative' }}
 								>
 									<FormTokenField
-										suggestions={ compact(
+										suggestions={compact(
 											map(
 												pagesList,
-												( { title, slug } ) => {
+												({ title, slug }) => {
 													return (
 														title.rendered +
 														' (' +
@@ -390,35 +385,35 @@ export default class Inspector extends Component {
 													);
 												}
 											)
-										) }
+										)}
 										label={
 											<>
-												{ __(
+												{__(
 													'Enter page names to display',
 													'genesis-blocks'
-												) }
-												{ this.state
+												)}
+												{this.state
 													.waitingForApiResponse ? (
 													<div
-														style={ {
+														style={{
 															position:
 																'absolute',
 															bottom: '30px',
 															right: '0px',
-														} }
+														}}
 													>
 														<Spinner />
 													</div>
-												) : null }
+												) : null}
 											</>
 										}
-										placeholder={ __(
+										placeholder={__(
 											'Start typing page name…',
 											'genesis-blocks'
-										) }
-										value={ ( () => {
+										)}
+										value={(() => {
 											if (
-												! this.props.attributes
+												!this.props.attributes
 													.selectedPages
 											) {
 												return [];
@@ -426,9 +421,9 @@ export default class Inspector extends Component {
 
 											const values = [];
 
-											for ( const selectedPage in this
+											for (const selectedPage in this
 												.props.attributes
-												.selectedPages ) {
+												.selectedPages) {
 												const pageId =
 													this.props.attributes
 														.selectedPages[
@@ -453,103 +448,105 @@ export default class Inspector extends Component {
 											}
 
 											return values;
-										} )() }
-										onInputChange={ ( userInput ) => {
+										})()}
+										onInputChange={(userInput) => {
 											const delayName =
 												'getPagesFromServer';
 
 											// Set up a delay which waits to search the api until the user takes a .5 second break from typing.
-											if ( inputDelay[ delayName ] ) {
+											if (inputDelay[delayName]) {
 												// Clear the keypress delay if the user just typed
 												clearTimeout(
-													inputDelay[ delayName ]
+													inputDelay[delayName]
 												);
-												inputDelay[ delayName ] = null;
+												inputDelay[delayName] = null;
 											}
 
 											// (Re)-Set up the save to fire in 500ms
-											inputDelay[ delayName ] =
-												setTimeout( () => {
+											inputDelay[delayName] = setTimeout(
+												() => {
 													clearTimeout(
-														inputDelay[ delayName ]
+														inputDelay[delayName]
 													);
 
 													// When the user types in the field, search the API for matching categories.
 													this.getPagesFromServer(
 														userInput
 													);
-												}, 500 );
-										} }
-										onChange={ ( newPagesSlugs ) => {
+												},
+												500
+											);
+										}}
+										onChange={(newPagesSlugs) => {
 											let selectedPages = [];
 
 											// Loop through each category slug chosen by the user, and populate the selectedPages attribute.
-											for ( const page in newPagesSlugs ) {
-												selectedPages.push( {
+											for (const page in newPagesSlugs) {
+												selectedPages.push({
 													value: pagesTitleToIdRelationships[
-														newPagesSlugs[ page ]
+														newPagesSlugs[page]
 													],
-												} );
+												});
 											}
 
-											if ( ! selectedPages ) {
+											if (!selectedPages) {
 												selectedPages = undefined;
 											}
 
-											setAttributes( { selectedPages } );
-										} }
+											setAttributes({ selectedPages });
+										}}
 									/>
 								</div>
 							</div>
 						</RenderSettingControl>
-					) }
+					)}
 
-					{ 'post' === attributes.postType && (
+					{'post' === attributes.postType && (
 						<RenderSettingControl id="gb_postgrid_categories">
 							<div className="components-base-control">
 								<div
 									className="components-base-control__field"
-									style={ { position: 'relative' } }
+									style={{ position: 'relative' }}
 								>
 									<FormTokenField
-										suggestions={ compact(
+										suggestions={compact(
 											map(
 												categoriesList,
-												( { name, slug } ) => {
+												({ name, slug }) => {
 													return (
 														name + ' (' + slug + ')'
 													);
 												}
 											)
-										) }
+										)}
 										label={
 											<>
-												{ __(
+												{__(
 													'Enter category names to display',
 													'genesis-blocks'
-												) }
-												{ this.state
+												)}
+												{this.state
 													.waitingForApiResponse ? (
 													<div
-														style={ {
+														style={{
 															position:
 																'absolute',
 															bottom: '30px',
 															right: '0px',
-														} }
+														}}
 													>
 														<Spinner />
 													</div>
-												) : null }
+												) : null}
 											</>
 										}
-										placeholder={ __(
+										placeholder={__(
 											'Start typing category name…',
 											'genesis-blocks'
-										) }
-										value={ ( () => {
+										)}
+										value={(() => {
 											if (
-												! this.props.attributes
+												!this.props.attributes
 													.categories
 											) {
 												return [];
@@ -564,7 +561,7 @@ export default class Inspector extends Component {
 											const values = [];
 
 											// Convert each ID to its slug.
-											for ( const categoryId in categoryIdArray ) {
+											for (const categoryId in categoryIdArray) {
 												if (
 													categoriesIdToTitleRelationships[
 														categoryIdArray[
@@ -583,38 +580,40 @@ export default class Inspector extends Component {
 											}
 
 											return values;
-										} )() }
-										onInputChange={ ( userInput ) => {
+										})()}
+										onInputChange={(userInput) => {
 											const delayName =
 												'getCategoriesFromServer';
 
 											// Set up a delay which waits to search the api until the user takes a .5 second break from typing.
-											if ( inputDelay[ delayName ] ) {
+											if (inputDelay[delayName]) {
 												// Clear the keypress delay if the user just typed
 												clearTimeout(
-													inputDelay[ delayName ]
+													inputDelay[delayName]
 												);
-												inputDelay[ delayName ] = null;
+												inputDelay[delayName] = null;
 											}
 
 											// (Re)-Set up the save to fire in 500ms
-											inputDelay[ delayName ] =
-												setTimeout( () => {
+											inputDelay[delayName] = setTimeout(
+												() => {
 													clearTimeout(
-														inputDelay[ delayName ]
+														inputDelay[delayName]
 													);
 
 													// When the user types in the field, search the API for matching categories.
 													this.getCategoriesFromServer(
 														userInput
 													);
-												}, 500 );
-										} }
-										onChange={ ( newCategorySlugs ) => {
+												},
+												500
+											);
+										}}
+										onChange={(newCategorySlugs) => {
 											let chosenCatIdString = '';
 
 											// Loop through each category slug chosen by the user, and build a comma-separated string with each corresponding ID.
-											for ( const category in newCategorySlugs ) {
+											for (const category in newCategorySlugs) {
 												if (
 													categoriesTitleToIdRelationships[
 														newCategorySlugs[
@@ -640,321 +639,306 @@ export default class Inspector extends Component {
 													''
 												);
 
-											if ( ! chosenCatIdString ) {
+											if (!chosenCatIdString) {
 												chosenCatIdString = undefined;
 											}
 
 											// Note that we parse the category id to be a string, as the attribute was originally defined as a string for this block.
-											setAttributes( {
+											setAttributes({
 												categories:
 													undefined !==
 													chosenCatIdString
 														? chosenCatIdString
 														: '',
-											} );
-										} }
+											});
+										}}
 									/>
 								</div>
 							</div>
 						</RenderSettingControl>
-					) }
+					)}
 
-					{ 'post' === attributes.postType && (
+					{'post' === attributes.postType && (
 						<>
 							<RenderSettingControl id="gb_postgrid_queryControls">
 								<QueryControls
-									{ ...{ order, orderBy } }
-									numberOfItems={ attributes.postsToShow }
-									onOrderChange={ ( value ) =>
-										setAttributes( { order: value } )
+									{...{ order, orderBy }}
+									numberOfItems={attributes.postsToShow}
+									onOrderChange={(value) =>
+										setAttributes({ order: value })
 									}
-									onOrderByChange={ ( value ) =>
-										setAttributes( { orderBy: value } )
+									onOrderByChange={(value) =>
+										setAttributes({ orderBy: value })
 									}
-									onNumberOfItemsChange={ ( value ) =>
-										setAttributes( { postsToShow: value } )
+									onNumberOfItemsChange={(value) =>
+										setAttributes({ postsToShow: value })
 									}
 								/>
 							</RenderSettingControl>
 							<RenderSettingControl id="gb_postgrid_offset">
 								<RangeControl
-									label={ __(
+									label={__(
 										'Number of items to offset',
 										'genesis-blocks'
-									) }
-									value={ attributes.offset }
-									onChange={ ( value ) =>
-										setAttributes( { offset: value } )
+									)}
+									value={attributes.offset}
+									onChange={(value) =>
+										setAttributes({ offset: value })
 									}
-									min={ 0 }
-									max={ 20 }
+									min={0}
+									max={20}
 								/>
 							</RenderSettingControl>
 						</>
-					) }
+					)}
 
-					{ 'grid' === attributes.postLayout && (
+					{'grid' === attributes.postLayout && (
 						<RenderSettingControl id="gb_postgrid_columns">
 							<RangeControl
-								label={ __( 'Columns', 'genesis-blocks' ) }
-								value={ attributes.columns }
-								onChange={ ( value ) =>
-									setAttributes( { columns: value } )
+								label={__('Columns', 'genesis-blocks')}
+								value={attributes.columns}
+								onChange={(value) =>
+									setAttributes({ columns: value })
 								}
-								min={ 1 }
+								min={1}
 								max={
-									! hasPosts
+									!hasPosts
 										? MAX_POSTS_COLUMNS
 										: Math.min(
 												MAX_POSTS_COLUMNS,
 												latestPosts.length
-										  )
+											)
 								}
 							/>
 						</RenderSettingControl>
-					) }
+					)}
 				</PanelBody>
 				<PanelBody
-					title={ __(
-						'Post and Page Grid Content',
-						'genesis-blocks'
-					) }
-					initialOpen={ false }
+					title={__('Post and Page Grid Content', 'genesis-blocks')}
+					initialOpen={false}
 				>
 					<RenderSettingControl id="gb_postgrid_displaySectionTitle">
 						<ToggleControl
-							label={ __(
+							label={__(
 								'Display Section Title',
 								'genesis-blocks'
-							) }
-							checked={ attributes.displaySectionTitle }
-							onChange={ () =>
-								this.props.setAttributes( {
+							)}
+							checked={attributes.displaySectionTitle}
+							onChange={() =>
+								this.props.setAttributes({
 									displaySectionTitle:
-										! attributes.displaySectionTitle,
-								} )
+										!attributes.displaySectionTitle,
+								})
 							}
 						/>
 					</RenderSettingControl>
-					{ attributes.displaySectionTitle && (
+					{attributes.displaySectionTitle && (
 						<RenderSettingControl id="gb_postgrid_sectionTitle">
 							<TextControl
-								label={ __(
-									'Section Title',
-									'genesis-blocks'
-								) }
+								label={__('Section Title', 'genesis-blocks')}
 								type="text"
-								value={ attributes.sectionTitle }
-								onChange={ ( value ) =>
-									this.props.setAttributes( {
+								value={attributes.sectionTitle}
+								onChange={(value) =>
+									this.props.setAttributes({
 										sectionTitle: value,
-									} )
+									})
 								}
 							/>
 						</RenderSettingControl>
-					) }
+					)}
 					<RenderSettingControl id="gb_postgrid_displayPostImage">
 						<ToggleControl
-							label={ __(
+							label={__(
 								'Display Featured Image',
 								'genesis-blocks'
-							) }
-							checked={ attributes.displayPostImage }
-							onChange={ () =>
-								this.props.setAttributes( {
+							)}
+							checked={attributes.displayPostImage}
+							onChange={() =>
+								this.props.setAttributes({
 									displayPostImage:
-										! attributes.displayPostImage,
-								} )
+										!attributes.displayPostImage,
+								})
 							}
 						/>
 					</RenderSettingControl>
-					{ attributes.displayPostImage && (
+					{attributes.displayPostImage && (
 						<RenderSettingControl id="gb_postgrid_imageSizeValue">
 							<SelectControl
-								label={ __( 'Image Size', 'genesis-blocks' ) }
-								value={ imageSizeValue() }
-								options={ imageSizeOptions }
-								onChange={ ( value ) =>
-									this.props.setAttributes( {
+								label={__('Image Size', 'genesis-blocks')}
+								value={imageSizeValue()}
+								options={imageSizeOptions}
+								onChange={(value) =>
+									this.props.setAttributes({
 										imageSize: value,
-									} )
+									})
 								}
 							/>
 						</RenderSettingControl>
-					) }
+					)}
 					<RenderSettingControl id="gb_postgrid_displayPostTitle">
 						<ToggleControl
-							label={ __( 'Display Title', 'genesis-blocks' ) }
-							checked={ attributes.displayPostTitle }
-							onChange={ () =>
-								this.props.setAttributes( {
+							label={__('Display Title', 'genesis-blocks')}
+							checked={attributes.displayPostTitle}
+							onChange={() =>
+								this.props.setAttributes({
 									displayPostTitle:
-										! attributes.displayPostTitle,
-								} )
+										!attributes.displayPostTitle,
+								})
 							}
 						/>
 					</RenderSettingControl>
-					{ isPost && (
+					{isPost && (
 						<RenderSettingControl id="gb_postgrid_displayPostAuthor">
 							<ToggleControl
-								label={ __(
-									'Display Author',
-									'genesis-blocks'
-								) }
-								checked={ attributes.displayPostAuthor }
-								onChange={ () =>
-									this.props.setAttributes( {
+								label={__('Display Author', 'genesis-blocks')}
+								checked={attributes.displayPostAuthor}
+								onChange={() =>
+									this.props.setAttributes({
 										displayPostAuthor:
-											! attributes.displayPostAuthor,
-									} )
+											!attributes.displayPostAuthor,
+									})
 								}
 							/>
 						</RenderSettingControl>
-					) }
-					{ isPost && (
+					)}
+					{isPost && (
 						<RenderSettingControl id="gb_postgrid_displayPostDate">
 							<ToggleControl
-								label={ __( 'Display Date', 'genesis-blocks' ) }
-								checked={ attributes.displayPostDate }
-								onChange={ () =>
-									this.props.setAttributes( {
+								label={__('Display Date', 'genesis-blocks')}
+								checked={attributes.displayPostDate}
+								onChange={() =>
+									this.props.setAttributes({
 										displayPostDate:
-											! attributes.displayPostDate,
-									} )
+											!attributes.displayPostDate,
+									})
 								}
 							/>
 						</RenderSettingControl>
-					) }
+					)}
 					<RenderSettingControl id="gb_postgrid_displayPostExcerpt">
 						<ToggleControl
-							label={ __( 'Display Excerpt', 'genesis-blocks' ) }
-							checked={ attributes.displayPostExcerpt }
-							onChange={ () =>
-								this.props.setAttributes( {
+							label={__('Display Excerpt', 'genesis-blocks')}
+							checked={attributes.displayPostExcerpt}
+							onChange={() =>
+								this.props.setAttributes({
 									displayPostExcerpt:
-										! attributes.displayPostExcerpt,
-								} )
+										!attributes.displayPostExcerpt,
+								})
 							}
 						/>
 					</RenderSettingControl>
-					{ attributes.displayPostExcerpt && (
+					{attributes.displayPostExcerpt && (
 						<RenderSettingControl id="gb_postgrid_excerptLength">
 							<RangeControl
-								label={ __(
-									'Excerpt Length',
-									'genesis-blocks'
-								) }
-								value={ attributes.excerptLength }
-								onChange={ ( value ) =>
-									setAttributes( { excerptLength: value } )
+								label={__('Excerpt Length', 'genesis-blocks')}
+								value={attributes.excerptLength}
+								onChange={(value) =>
+									setAttributes({ excerptLength: value })
 								}
-								min={ 0 }
-								max={ 150 }
+								min={0}
+								max={150}
 							/>
 						</RenderSettingControl>
-					) }
+					)}
 					<RenderSettingControl id="gb_postgrid_displayPostLink">
 						<ToggleControl
-							label={ __(
+							label={__(
 								'Display Continue Reading Link',
 								'genesis-blocks'
-							) }
-							checked={ attributes.displayPostLink }
-							onChange={ () =>
-								this.props.setAttributes( {
+							)}
+							checked={attributes.displayPostLink}
+							onChange={() =>
+								this.props.setAttributes({
 									displayPostLink:
-										! attributes.displayPostLink,
-								} )
+										!attributes.displayPostLink,
+								})
 							}
 						/>
 					</RenderSettingControl>
-					{ attributes.displayPostLink && (
+					{attributes.displayPostLink && (
 						<RenderSettingControl id="gb_postgrid_readMoreText">
 							<TextControl
-								label={ __(
+								label={__(
 									'Customize Continue Reading Text',
 									'genesis-blocks'
-								) }
+								)}
 								type="text"
-								value={ attributes.readMoreText }
-								onChange={ ( value ) =>
-									this.props.setAttributes( {
+								value={attributes.readMoreText}
+								onChange={(value) =>
+									this.props.setAttributes({
 										readMoreText: value,
-									} )
+									})
 								}
 							/>
 						</RenderSettingControl>
-					) }
+					)}
 				</PanelBody>
 				<PanelBody
-					title={ __(
-						'Post and Page Grid Markup',
-						'genesis-blocks'
-					) }
-					initialOpen={ false }
+					title={__('Post and Page Grid Markup', 'genesis-blocks')}
+					initialOpen={false}
 					className="gb-block-post-grid-markup-settings"
 				>
 					<RenderSettingControl id="gb_postgrid_sectionTag">
 						<SelectControl
-							label={ __(
+							label={__(
 								'Post Grid Section Tag',
 								'genesis-blocks'
-							) }
-							options={ sectionTags }
-							value={ attributes.sectionTag }
-							onChange={ ( value ) =>
-								this.props.setAttributes( {
+							)}
+							options={sectionTags}
+							value={attributes.sectionTag}
+							onChange={(value) =>
+								this.props.setAttributes({
 									sectionTag: value,
-								} )
+								})
 							}
-							help={ __(
+							help={__(
 								'Change the post grid section tag to match your content hierarchy.',
 								'genesis-blocks'
-							) }
+							)}
 						/>
 					</RenderSettingControl>
-					{ attributes.sectionTitle && (
+					{attributes.sectionTitle && (
 						<RenderSettingControl id="gb_postgrid_sectionTitleTag">
 							<SelectControl
-								label={ __(
+								label={__(
 									'Section Title Heading Tag',
 									'genesis-blocks'
-								) }
-								options={ sectionTitleTags }
-								value={ attributes.sectionTitleTag }
-								onChange={ ( value ) =>
-									this.props.setAttributes( {
+								)}
+								options={sectionTitleTags}
+								value={attributes.sectionTitleTag}
+								onChange={(value) =>
+									this.props.setAttributes({
 										sectionTitleTag: value,
-									} )
+									})
 								}
-								help={ __(
+								help={__(
 									'Change the post/page section title tag to match your content hierarchy.',
 									'genesis-blocks'
-								) }
+								)}
 							/>
 						</RenderSettingControl>
-					) }
-					{ attributes.displayPostTitle && (
+					)}
+					{attributes.displayPostTitle && (
 						<RenderSettingControl id="gb_postgrid_postTitleTag">
 							<SelectControl
-								label={ __(
+								label={__(
 									'Post Title Heading Tag',
 									'genesis-blocks'
-								) }
-								options={ sectionTitleTags }
-								value={ attributes.postTitleTag }
-								onChange={ ( value ) =>
-									this.props.setAttributes( {
+								)}
+								options={sectionTitleTags}
+								value={attributes.postTitleTag}
+								onChange={(value) =>
+									this.props.setAttributes({
 										postTitleTag: value,
-									} )
+									})
 								}
-								help={ __(
+								help={__(
 									'Change the post/page title tag to match your content hierarchy.',
 									'genesis-blocks'
-								) }
+								)}
 							/>
 						</RenderSettingControl>
-					) }
+					)}
 				</PanelBody>
 			</InspectorControls>
 		);

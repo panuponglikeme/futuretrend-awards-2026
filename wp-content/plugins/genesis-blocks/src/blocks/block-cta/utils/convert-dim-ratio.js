@@ -9,6 +9,6 @@
  * @param {string} dimRatio The opacity.
  * @return {string} The dimRatio that Core uses.
  */
-export default function convertDimRatio( dimRatio ) {
+export default function convertDimRatio(dimRatio) {
 	return 100 - dimRatio;
 }

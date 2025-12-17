@@ -17,7 +17,7 @@
 	<div id="gb-admin-plugin-admin">
 		<div class="gb-admin-plugin-admin-header gb-admin-plugin-grid-2">
 			<div class="gb-admin-plugin-header-title-area">
-				<h1><img class="gb-plugin-common-logo" src="<?php echo esc_url( $this->context['url'] . 'lib/Settings/assets/images/genesis-planet-icon.svg' ); ?>" alt="<?php esc_html_e( 'Genesis Blocks', 'genesis-blocks' ); ?>" /><?php echo esc_html( $this->page_title ); ?></h1>
+				<h1><img class="gb-plugin-common-logo" src="<?php echo esc_url( $this->context['url'] . 'lib/Settings/assets/images/genesis-planet-icon.svg' ); ?>" alt="<?php esc_html_e( 'Genesis Blocks', 'genesis-blocks' ); ?>" /><?php esc_html_e( 'Genesis', 'genesis-blocks' ); ?></h1>
 			</div>
 			<div class="gb-admin-plugin-header-controls-area">
 				<a class="gb-header-button" href="//wordpress.org/support/plugin/genesis-blocks/reviews/" target="_blank" rel="noopener noreferrer">

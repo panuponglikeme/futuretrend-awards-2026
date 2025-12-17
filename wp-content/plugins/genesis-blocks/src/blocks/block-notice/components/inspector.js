@@ -24,10 +24,10 @@ export default class Inspector extends Component {
 	render() {
 		// Notice dismiss options
 		const noticeDismissOptions = [
-			{ value: null, label: __( 'Always Show', 'genesis-blocks' ) },
+			{ value: null, label: __('Always Show', 'genesis-blocks') },
 			{
 				value: 'gb-dismissable',
-				label: __( 'Dismissible', 'genesis-blocks' ),
+				label: __('Dismissible', 'genesis-blocks'),
 			},
 		];
 
@@ -56,86 +56,86 @@ export default class Inspector extends Component {
 		const { setAttributes } = this.props;
 
 		// Update color values
-		const onChangeBackgroundColor = ( value ) =>
-			setAttributes( { noticeBackgroundColor: value } );
-		const onChangeTextColor = ( value ) =>
-			setAttributes( { noticeTextColor: value } );
-		const onChangeTitleColor = ( value ) =>
-			setAttributes( { noticeTitleColor: value } );
+		const onChangeBackgroundColor = (value) =>
+			setAttributes({ noticeBackgroundColor: value });
+		const onChangeTextColor = (value) =>
+			setAttributes({ noticeTextColor: value });
+		const onChangeTitleColor = (value) =>
+			setAttributes({ noticeTitleColor: value });
 
 		return (
 			<InspectorControls key="inspector">
 				<PanelBody>
 					<RenderSettingControl id="gb_notice_noticeFontSize">
 						<RangeControl
-							label={ __( 'Font Size', 'genesis-blocks' ) }
-							value={ noticeFontSize }
-							onChange={ ( value ) =>
-								this.props.setAttributes( {
+							label={__('Font Size', 'genesis-blocks')}
+							value={noticeFontSize}
+							onChange={(value) =>
+								this.props.setAttributes({
 									noticeFontSize: value,
-								} )
+								})
 							}
-							min={ 14 }
-							max={ 24 }
-							step={ 1 }
+							min={14}
+							max={24}
+							step={1}
 						/>
 					</RenderSettingControl>
 
 					<RenderSettingControl id="gb_notice_noticeDismiss">
 						<SelectControl
-							label={ __( 'Notice Display', 'genesis-blocks' ) }
-							description={ __(
+							label={__('Notice Display', 'genesis-blocks')}
+							description={__(
 								'Do you want the message to always show or dismissible?',
 								'genesis-blocks'
-							) }
-							options={ noticeDismissOptions }
-							value={ noticeDismiss }
-							onChange={ ( value ) =>
-								this.props.setAttributes( {
+							)}
+							options={noticeDismissOptions}
+							value={noticeDismiss}
+							onChange={(value) =>
+								this.props.setAttributes({
 									noticeDismiss: value,
-								} )
+								})
 							}
 						/>
 					</RenderSettingControl>
 				</PanelBody>
 				<RenderSettingControl id="gb_notice_colorSettings">
 					<PanelColorSettings
-						title={ __( 'Notice Color', 'genesis-blocks' ) }
-						colorValue={ noticeBackgroundColor }
-						initialOpen={ false }
-						colorSettings={ [
+						title={__('Notice Color', 'genesis-blocks')}
+						colorValue={noticeBackgroundColor}
+						initialOpen={false}
+						colorSettings={[
 							{
 								value: noticeBackgroundColor,
 								onChange: onChangeBackgroundColor,
 								colors: noticeColors,
-								label: __( 'Notice Color', 'genesis-blocks' ),
+								label: __('Notice Color', 'genesis-blocks'),
 							},
-						] }
+						]}
 					></PanelColorSettings>
 
 					<PanelColorSettings
-						title={ __( 'Title Color', 'genesis-blocks' ) }
-						initialOpen={ false }
-						colorSettings={ [
+						title={__('Title Color', 'genesis-blocks')}
+						initialOpen={false}
+						colorSettings={[
 							{
 								value: noticeTitleColor,
 								onChange: onChangeTitleColor,
-								label: __( 'Title Color', 'genesis-blocks' ),
+								label: __('Title Color', 'genesis-blocks'),
 							},
-						] }
+						]}
 					></PanelColorSettings>
 
 					<PanelColorSettings
-						title={ __( 'Text Color', 'genesis-blocks' ) }
-						colorValue={ noticeTextColor }
-						initialOpen={ false }
-						colorSettings={ [
+						title={__('Text Color', 'genesis-blocks')}
+						colorValue={noticeTextColor}
+						initialOpen={false}
+						colorSettings={[
 							{
 								value: noticeTextColor,
 								onChange: onChangeTextColor,
-								label: __( 'Text Color', 'genesis-blocks' ),
+								label: __('Text Color', 'genesis-blocks'),
 							},
-						] }
+						]}
 					></PanelColorSettings>
 				</RenderSettingControl>
 			</InspectorControls>

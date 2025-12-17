@@ -17,8 +17,8 @@ import {
  * @param {string} name     The name of the block.
  * @return {Object} settings Modified settings.
  */
-export const addResponsiveAttributes = ( settings, name ) => {
-	if ( ! BLOCKS_WITH_RESPONSIVE_SETTINGS.includes( name ) ) {
+export const addResponsiveAttributes = (settings, name) => {
+	if (!BLOCKS_WITH_RESPONSIVE_SETTINGS.includes(name)) {
 		return settings;
 	}
 
@@ -26,7 +26,7 @@ export const addResponsiveAttributes = ( settings, name ) => {
 		...settings,
 		attributes: {
 			...settings?.attributes,
-			[ RESPONSIVE_SETTINGS_ATTRIBUTE ]: {
+			[RESPONSIVE_SETTINGS_ATTRIBUTE]: {
 				type: 'object',
 				default: {},
 			},
@@ -40,9 +40,9 @@ export const addResponsiveAttributes = ( settings, name ) => {
  * @param {string} camelCase A camelCase string.
  * @return {string} A kebab-case string.
  */
-export const camelToKebabCase = ( camelCase ) =>
+export const camelToKebabCase = (camelCase) =>
 	camelCase
-		.replace( /([a-z])([A-Z1-9])/g, ( match, p1, p2 ) => p1 + '-' + p2 )
+		.replace(/([a-z])([A-Z1-9])/g, (match, p1, p2) => p1 + '-' + p2)
 		.toLowerCase();
 
 /**
@@ -54,12 +54,12 @@ export const camelToKebabCase = ( camelCase ) =>
  * @param {string|undefined} size The size, either with or without a unit like px or rem, like 24px.
  * @return {string|undefined} The size with px if it didn't already have one.
  */
-export const conditionallyAddPxUnit = ( size ) => {
-	if ( 'string' !== typeof size ) {
+export const conditionallyAddPxUnit = (size) => {
+	if ('string' !== typeof size) {
 		return size;
 	}
 
-	return size.match( /[A-Za-z]+$/ ) ? size : `${ size }px`;
+	return size.match(/[A-Za-z]+$/) ? size : `${size}px`;
 };
 
 /**
@@ -69,8 +69,8 @@ export const conditionallyAddPxUnit = ( size ) => {
  * @param {Object[]} fontSizes All of the possible font sizes.
  * @return {string|undefined} The font as a slug, like 'large'.
  */
-export const getFontSlug = ( fontSize, fontSizes ) =>
-	fontSizes.find( ( font ) => fontSize === font.size )?.slug;
+export const getFontSlug = (fontSize, fontSizes) =>
+	fontSizes.find((font) => fontSize === font.size)?.slug;
 
 /**
  * Gets the font size in px, em, or rem.
@@ -79,8 +79,8 @@ export const getFontSlug = ( fontSize, fontSizes ) =>
  * @param {Object[]} fontSizes All of the possible font sizes.
  * @return {string|undefined} The font size in px, em, rem.
  */
-export const getFontSize = ( fontSlug, fontSizes ) =>
-	fontSizes.find( ( font ) => fontSlug === font.slug )?.size;
+export const getFontSize = (fontSlug, fontSizes) =>
+	fontSizes.find((font) => fontSlug === font.slug)?.size;
 
 /**
  * Removes falsy values from nested object.
@@ -90,17 +90,17 @@ export const getFontSize = ( fontSlug, fontSizes ) =>
  * @param {*} object
  * @return {*} Object cleaned from falsy values
  */
-export const cleanEmptyObject = ( object ) => {
+export const cleanEmptyObject = (object) => {
 	if (
 		object === null ||
 		typeof object !== 'object' ||
-		Array.isArray( object )
+		Array.isArray(object)
 	) {
 		return object;
 	}
 	const cleanedNestedObjects = pickBy(
-		mapValues( object, cleanEmptyObject ),
+		mapValues(object, cleanEmptyObject),
 		Boolean
 	);
-	return isEmpty( cleanedNestedObjects ) ? undefined : cleanedNestedObjects;
+	return isEmpty(cleanedNestedObjects) ? undefined : cleanedNestedObjects;
 };

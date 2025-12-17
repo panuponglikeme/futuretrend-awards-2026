@@ -23,18 +23,18 @@ export default class Spacer extends Component {
 
 		return (
 			<div
-				style={ {
+				style={{
 					color: spacerDividerColor,
-				} }
-				className={ classnames(
+				}}
+				className={classnames(
 					this.props.className,
 					'gb-block-spacer',
 					spacerDividerStyle,
 					{ 'gb-spacer-divider': spacerDivider },
 					'gb-divider-size-' + spacerDividerHeight
-				) }
+				)}
 			>
-				{ this.props.children }
+				{this.props.children}
 			</div>
 		);
 	}

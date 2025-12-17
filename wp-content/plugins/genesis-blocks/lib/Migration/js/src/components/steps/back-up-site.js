@@ -39,20 +39,20 @@ import { FIRST_STEP_NUMBER } from '../../constants';
  * @param {BackUpSiteProps} Props The component props.
  * @return {React.ReactElement} The component to prompt to back up the site.
  */
-const BackUpSite = ( {
+const BackUpSite = ({
 	isStepActive,
 	isStepComplete,
 	goToNext,
 	goToPrevious,
 	stepIndex,
-} ) => {
+}) => {
 	const isFirstStep = FIRST_STEP_NUMBER === stepIndex;
 
 	let backupIntroText = __(
 		'Migrating from Atomic Blocks to Genesis Blocks is a one-way action. It can’t be undone. Please back up your site before you begin.',
 		'genesis-blocks'
 	);
-	if ( genesisBlocksMigration.isPro ) {
+	if (genesisBlocksMigration.isPro) {
 		backupIntroText = __(
 			'Migrating your Genesis Blocks content is a one-way action. It can’t be undone. Please back up your site before you begin.',
 			'genesis-blocks'
@@ -60,24 +60,22 @@ const BackUpSite = ( {
 	}
 
 	return (
-		<Step isActive={ isStepActive } isComplete={ isStepComplete }>
-			<StepIcon index={ stepIndex } isComplete={ isStepComplete } />
+		<Step isActive={isStepActive} isComplete={isStepComplete}>
+			<StepIcon index={stepIndex} isComplete={isStepComplete} />
 			<StepContent
-				heading={ __( 'Back Up Your Site', 'genesis-blocks' ) }
-				isStepActive={ isStepActive }
+				heading={__('Back Up Your Site', 'genesis-blocks')}
+				isStepActive={isStepActive}
 			>
-				<p>{ backupIntroText }</p>
+				<p>{backupIntroText}</p>
 				<StepFooter>
-					{ ! isFirstStep && (
-						<ButtonPrevious onClick={ goToPrevious } />
-					) }
+					{!isFirstStep && <ButtonPrevious onClick={goToPrevious} />}
 					<ButtonNext
-						checkboxLabel={ __(
+						checkboxLabel={__(
 							'I have backed up my site.',
 							'genesis-blocks'
-						) }
-						onClick={ goToNext }
-						stepIndex={ stepIndex }
+						)}
+						onClick={goToNext}
+						stepIndex={stepIndex}
 					/>
 				</StepFooter>
 			</StepContent>

@@ -23,7 +23,7 @@ export default class NewsletterContainer extends Component {
 		/* Setup button background color class */
 		let backgroundColorClass;
 
-		if ( attributes.customBackgroundColor ) {
+		if (attributes.customBackgroundColor) {
 			backgroundColorClass = 'gb-has-custom-background-color';
 		} else {
 			backgroundColorClass = attributes.backgroundColor
@@ -34,7 +34,7 @@ export default class NewsletterContainer extends Component {
 		/* Setup button text color class */
 		let textColorClass;
 
-		if ( attributes.customTextColor ) {
+		if (attributes.customTextColor) {
 			textColorClass = 'gb-has-custom-text-color';
 		} else {
 			textColorClass = attributes.textColor
@@ -44,7 +44,7 @@ export default class NewsletterContainer extends Component {
 
 		return (
 			<div
-				style={ {
+				style={{
 					backgroundColor: backgroundColor.color,
 					padding: attributes.containerPadding
 						? attributes.containerPadding
@@ -56,18 +56,18 @@ export default class NewsletterContainer extends Component {
 						? attributes.containerMarginBottom
 						: undefined,
 					color: textColor.color,
-				} }
-				className={ classnames( [ this.props.className ], {
+				}}
+				className={classnames([this.props.className], {
 					'gb-block-newsletter': true,
 					'gb-form-styles': true,
 					'has-background':
 						attributes.backgroundColor ||
 						attributes.customBackgroundColor,
-					[ backgroundColorClass ]: backgroundColorClass,
-					[ textColorClass ]: textColorClass,
-				} ) }
+					[backgroundColorClass]: backgroundColorClass,
+					[textColorClass]: textColorClass,
+				})}
 			>
-				{ this.props.children }
+				{this.props.children}
 			</div>
 		);
 	}

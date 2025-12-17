@@ -12,7 +12,7 @@ import deprecated from './deprecated/deprecated';
 import getCoverAttributes from './utils/get-cover-attributes';
 import removeParagraph from '../../utils/helpers/remove-paragraph';
 
-function Edit( {
+function Edit({
 	attributes: {
 		buttonAlignment = 'center',
 		buttonBackgroundColor,
@@ -24,7 +24,7 @@ function Edit( {
 		buttonUrl,
 		className,
 		ctaBackgroundColor = '#f2f2f2',
-		ctaText = [ '' ],
+		ctaText = [''],
 		ctaTextColor,
 		ctaTextFontSize,
 		ctaTitle,
@@ -36,19 +36,19 @@ function Edit( {
 		titleFontSize = 32,
 	},
 	clientId,
-} ) {
+}) {
 	const { replaceBlocks, replaceInnerBlocks } =
-		useDispatch( 'core/block-editor' );
-	const { getBlock, getBlockParents } = useSelect( ( select ) =>
-		select( 'core/block-editor' )
+		useDispatch('core/block-editor');
+	const { getBlock, getBlockParents } = useSelect((select) =>
+		select('core/block-editor')
 	);
 
-	useEffect( () => {
-		const parentId = getBlockParents( clientId, true )?.[ 0 ];
-		const hasParent = !! parentId;
+	useEffect(() => {
+		const parentId = getBlockParents(clientId, true)?.[0];
+		const hasParent = !!parentId;
 		const newBlock = createBlock(
 			'core/cover',
-			getCoverAttributes( {
+			getCoverAttributes({
 				buttonAlignment,
 				className,
 				ctaBackgroundColor,
@@ -57,12 +57,12 @@ function Edit( {
 				imgAlt,
 				imgID,
 				imgURL,
-			} ),
+			}),
 			[
-				createBlock( 'core/heading', {
-					content: renderToString( ctaTitle ),
+				createBlock('core/heading', {
+					content: renderToString(ctaTitle),
 					level: 2,
-					placeholder: __( 'Call-To-Action Title', 'genesis-blocks' ),
+					placeholder: __('Call-To-Action Title', 'genesis-blocks'),
 					style: {
 						color: { text: ctaTextColor },
 						typography: {
@@ -71,11 +71,11 @@ function Edit( {
 						},
 					},
 					textAlign: buttonAlignment,
-				} ),
-				...ctaText.map( ( text ) => {
-					return createBlock( 'core/paragraph', {
+				}),
+				...ctaText.map((text) => {
+					return createBlock('core/paragraph', {
 						align: buttonAlignment,
-						content: renderToString( removeParagraph( text ) ),
+						content: renderToString(removeParagraph(text)),
 						placeholder: __(
 							'Call To Action Text',
 							'genesis-blocks'
@@ -83,15 +83,15 @@ function Edit( {
 						style: {
 							color: { text: ctaTextColor },
 							typography: {
-								...( ctaTextFontSize
+								...(ctaTextFontSize
 									? { fontSize: ctaTextFontSize }
-									: {} ),
+									: {}),
 								lineHeight: 1,
 							},
 						},
-					} );
-				} ),
-				createButton( {
+					});
+				}),
+				createButton({
 					buttonAlignment,
 					buttonBackgroundColor,
 					buttonShape,
@@ -100,28 +100,28 @@ function Edit( {
 					buttonText,
 					buttonTextColor,
 					buttonUrl,
-				} ),
+				}),
 			]
 		);
 
 		// Replace this block with Core blocks.
-		if ( hasParent ) {
+		if (hasParent) {
 			replaceInnerBlocks(
 				parentId,
-				getBlock( parentId ).innerBlocks?.map( ( block ) => {
+				getBlock(parentId).innerBlocks?.map((block) => {
 					return block.clientId === clientId ? newBlock : block;
-				} )
+				})
 			);
 		} else {
-			replaceBlocks( clientId, newBlock );
+			replaceBlocks(clientId, newBlock);
 		}
-	}, [ clientId ] ); // eslint-disable-line react-hooks/exhaustive-deps
+	}, [clientId]); // eslint-disable-line react-hooks/exhaustive-deps
 
 	return null;
 }
 
-registerBlockType( 'genesis-blocks/gb-cta', {
-	title: __( 'Call To Action', 'genesis-blocks' ),
+registerBlockType('genesis-blocks/gb-cta', {
+	title: __('Call To Action', 'genesis-blocks'),
 	description: __(
 		'Add a call to action section with a title, text, and a button.',
 		'genesis-blocks'
@@ -129,11 +129,11 @@ registerBlockType( 'genesis-blocks/gb-cta', {
 	icon: 'megaphone',
 	category: 'genesis-blocks',
 	keywords: [
-		__( 'call to action', 'genesis-blocks' ),
-		__( 'cta', 'genesis-blocks' ),
-		__( 'atomic', 'genesis-blocks' ),
+		__('call to action', 'genesis-blocks'),
+		__('cta', 'genesis-blocks'),
+		__('atomic', 'genesis-blocks'),
 	],
 	edit: Edit,
 	save: () => null,
 	deprecated,
-} );
+});

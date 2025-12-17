@@ -5,13 +5,13 @@ import { dimRatioToClass } from './shared';
  *
  * @param {Object} attributes
  */
-function BackgroundImageClasses( attributes ) {
+function BackgroundImageClasses(attributes) {
 	return [
 		attributes.backgroundDimRatio !== undefined &&
 		100 !== attributes.backgroundDimRatio
 			? 'gb-has-background-dim'
 			: null,
-		dimRatioToClass( attributes.backgroundDimRatio ),
+		dimRatioToClass(attributes.backgroundDimRatio),
 		attributes.backgroundImgURL &&
 		attributes.backgroundSize &&
 		'no-repeat' === attributes.backgroundRepeat

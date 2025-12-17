@@ -10,7 +10,7 @@ import { addResponsiveAttributes } from './utils';
 import { withResponsiveSettings } from './components/with-responsive-settings';
 
 if (
-	genesis_blocks_globals.featuresEnabled?.includes( 'responsiveFontSettings' )
+	genesis_blocks_globals.featuresEnabled?.includes('responsiveFontSettings')
 ) {
 	addFilter(
 		'blocks.registerBlockType',

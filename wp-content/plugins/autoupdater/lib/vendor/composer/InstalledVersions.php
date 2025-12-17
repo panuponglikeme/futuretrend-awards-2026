@@ -32,7 +32,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '625f8bf6494dc107e2a24f492e0957435565b2a9',
+    'reference' => '8e69ea6c526a658708aa9ea2be8d314ae5f2072d',
     'name' => 'wpengine/autoupdater',
   ),
   'versions' => 
@@ -62,7 +62,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '625f8bf6494dc107e2a24f492e0957435565b2a9',
+      'reference' => '8e69ea6c526a658708aa9ea2be8d314ae5f2072d',
     ),
   ),
 );

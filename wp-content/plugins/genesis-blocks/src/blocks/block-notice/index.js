@@ -46,51 +46,49 @@ class GBNoticeBlock extends Component {
 			// Show the alignment toolbar on focus
 			<BlockControls key="controls">
 				<AlignmentToolbar
-					value={ noticeAlignment }
-					onChange={ ( value ) =>
-						setAttributes( { noticeAlignment: value } )
+					value={noticeAlignment}
+					onChange={(value) =>
+						setAttributes({ noticeAlignment: value })
 					}
 				/>
 			</BlockControls>,
 
 			// Show the block controls on focus
 			<Inspector
-				key={ 'gb-notice-inspector-' + this.props.clientId }
-				{ ...{ setAttributes, ...this.props } }
+				key={'gb-notice-inspector-' + this.props.clientId}
+				{...{ setAttributes, ...this.props }}
 			/>,
 
 			// Show the block markup in the editor
 			<NoticeBox
-				key={ 'gb-notice-noticebox-' + this.props.clientId }
-				{ ...this.props }
+				key={'gb-notice-noticebox-' + this.props.clientId}
+				{...this.props}
 			>
 				{
 					// Check if the notice is dismissible and output the button
 					noticeDismiss && 'gb-dismissable' === noticeDismiss && (
-						<DismissButton { ...this.props }>
-							{ icons.dismiss }
+						<DismissButton {...this.props}>
+							{icons.dismiss}
 						</DismissButton>
 					)
 				}
 
 				<RichText
 					tagName="p"
-					placeholder={ __( 'Notice Title', 'genesis-blocks' ) }
-					value={ noticeTitle }
-					className={ classnames( 'gb-notice-title' ) }
-					style={ {
+					placeholder={__('Notice Title', 'genesis-blocks')}
+					value={noticeTitle}
+					className={classnames('gb-notice-title')}
+					style={{
 						color: noticeTitleColor,
-					} }
-					onChange={ ( value ) =>
-						setAttributes( { noticeTitle: value } )
-					}
+					}}
+					onChange={(value) => setAttributes({ noticeTitle: value })}
 				/>
 
 				<div
 					className="gb-notice-text"
-					style={ {
+					style={{
 						borderColor: noticeBackgroundColor,
-					} }
+					}}
 				>
 					<InnerBlocks />
 				</div>
@@ -100,15 +98,15 @@ class GBNoticeBlock extends Component {
 }
 
 // Register the block
-registerBlockType( 'genesis-blocks/gb-notice', {
-	title: __( 'Notice', 'genesis-blocks' ),
-	description: __( 'Add a stylized text notice.', 'genesis-blocks' ),
+registerBlockType('genesis-blocks/gb-notice', {
+	title: __('Notice', 'genesis-blocks'),
+	description: __('Add a stylized text notice.', 'genesis-blocks'),
 	icon: 'format-aside',
 	category: 'genesis-blocks',
 	keywords: [
-		__( 'notice', 'genesis-blocks' ),
-		__( 'message', 'genesis-blocks' ),
-		__( 'atomic', 'genesis-blocks' ),
+		__('notice', 'genesis-blocks'),
+		__('message', 'genesis-blocks'),
+		__('atomic', 'genesis-blocks'),
 	],
 	attributes: {
 		noticeTitle: {
@@ -142,13 +140,13 @@ registerBlockType( 'genesis-blocks/gb-notice', {
 
 	gb_settings_data: {
 		gb_notice_noticeFontSize: {
-			title: __( 'Font Size', 'genesis-blocks' ),
+			title: __('Font Size', 'genesis-blocks'),
 		},
 		gb_notice_noticeDismiss: {
-			title: __( 'Notice Display', 'genesis-blocks' ),
+			title: __('Notice Display', 'genesis-blocks'),
 		},
 		gb_notice_colorSettings: {
-			title: __( 'Notice Color', 'genesis-blocks' ),
+			title: __('Notice Color', 'genesis-blocks'),
 		},
 	},
 
@@ -156,7 +154,7 @@ registerBlockType( 'genesis-blocks/gb-notice', {
 	edit: GBNoticeBlock,
 
 	// Save the attributes and markup
-	save( props ) {
+	save(props) {
 		// Setup the attributes
 		const {
 			noticeTitle,
@@ -167,29 +165,27 @@ registerBlockType( 'genesis-blocks/gb-notice', {
 
 		// Save the block markup for the front end
 		return (
-			<NoticeBox { ...props }>
-				{ noticeDismiss && 'gb-dismissable' === noticeDismiss && (
-					<DismissButton { ...props }>
-						{ icons.dismiss }
-					</DismissButton>
-				) }
+			<NoticeBox {...props}>
+				{noticeDismiss && 'gb-dismissable' === noticeDismiss && (
+					<DismissButton {...props}>{icons.dismiss}</DismissButton>
+				)}
 
-				{ noticeTitle && (
+				{noticeTitle && (
 					<div
 						className="gb-notice-title"
-						style={ {
+						style={{
 							color: noticeTitleColor,
-						} }
+						}}
 					>
-						<RichText.Content tagName="p" value={ noticeTitle } />
+						<RichText.Content tagName="p" value={noticeTitle} />
 					</div>
-				) }
+				)}
 
 				<div
 					className="gb-notice-text"
-					style={ {
+					style={{
 						borderColor: noticeBackgroundColor,
-					} }
+					}}
 				>
 					<InnerBlocks.Content />
 				</div>
@@ -197,4 +193,4 @@ registerBlockType( 'genesis-blocks/gb-notice', {
 		);
 	},
 	deprecated,
-} );
+});

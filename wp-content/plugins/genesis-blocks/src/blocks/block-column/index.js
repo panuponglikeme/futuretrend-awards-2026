@@ -18,16 +18,16 @@ const { registerBlockType } = wp.blocks;
 /**
  * Register advanced columns block InnerBlocks.
  */
-registerBlockType( 'genesis-blocks/gb-columns', {
-	title: __( 'Advanced Columns', 'genesis-blocks' ),
-	description: __( 'Add a pre-defined column layout.', 'genesis-blocks' ),
+registerBlockType('genesis-blocks/gb-columns', {
+	title: __('Advanced Columns', 'genesis-blocks'),
+	description: __('Add a pre-defined column layout.', 'genesis-blocks'),
 	supports: { html: false },
 	icon: 'editor-table',
 	category: 'genesis-blocks',
 	keywords: [
-		__( 'column', 'genesis-blocks' ),
-		__( 'grid', 'genesis-blocks' ),
-		__( 'row', 'genesis-blocks' ),
+		__('column', 'genesis-blocks'),
+		__('grid', 'genesis-blocks'),
+		__('row', 'genesis-blocks'),
 	],
 	attributes: {
 		...BackgroundAttributes,
@@ -119,36 +119,36 @@ registerBlockType( 'genesis-blocks/gb-columns', {
 
 	gb_settings_data: {
 		gb_column_columns: {
-			title: __( 'Column Count', 'genesis-blocks' ),
+			title: __('Column Count', 'genesis-blocks'),
 		},
 		gb_column_columnLayouts: {
-			title: __( 'Column Layout', 'genesis-blocks' ),
+			title: __('Column Layout', 'genesis-blocks'),
 		},
 		gb_column_columnsGap: {
-			title: __( 'Column Gap', 'genesis-blocks' ),
+			title: __('Column Gap', 'genesis-blocks'),
 		},
 		gb_column_columnMaxWidth: {
-			title: __( 'Column Inner Max Width', 'genesis-blocks' ),
+			title: __('Column Inner Max Width', 'genesis-blocks'),
 		},
 		gb_column_centerColumns: {
-			title: __( 'Center Columns In Container', 'genesis-blocks' ),
+			title: __('Center Columns In Container', 'genesis-blocks'),
 		},
 		gb_column_responsiveToggle: {
-			title: __( 'Responsive Columns', 'genesis-blocks' ),
+			title: __('Responsive Columns', 'genesis-blocks'),
 		},
 		gb_column_marginPadding: {
-			title: __( 'Margin / Padding', 'genesis-blocks' ),
+			title: __('Margin / Padding', 'genesis-blocks'),
 		},
 		gb_column_colorSettings: {
-			title: __( 'Color Settings', 'genesis-blocks' ),
+			title: __('Color Settings', 'genesis-blocks'),
 		},
 		gb_column_backgroundImagePanel: {
-			title: __( 'Background Settings', 'genesis-blocks' ),
+			title: __('Background Settings', 'genesis-blocks'),
 		},
 	},
 
 	/* Add alignment to block wrapper. */
-	getEditWrapperProps( { align } ) {
+	getEditWrapperProps({ align }) {
 		if (
 			'left' === align ||
 			'right' === align ||
@@ -160,12 +160,12 @@ registerBlockType( 'genesis-blocks/gb-columns', {
 	},
 
 	/* Render the block components. */
-	edit: ( props ) => {
-		return <Edit { ...props } />;
+	edit: (props) => {
+		return <Edit {...props} />;
 	},
 
 	/* Save the block markup. */
-	save: ( props ) => {
-		return <Save { ...props } />;
+	save: (props) => {
+		return <Save {...props} />;
 	},
-} );
+});

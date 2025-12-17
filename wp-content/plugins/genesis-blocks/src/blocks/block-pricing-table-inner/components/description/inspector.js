@@ -30,26 +30,24 @@ const {
 } = wp.components;
 
 // Apply fallback styles
-const applyFallbackStyles = withFallbackStyles( ( node, ownProps ) => {
+const applyFallbackStyles = withFallbackStyles((node, ownProps) => {
 	const { textColor, backgroundColor, fontSize, customFontSize } =
 		ownProps.attributes;
-	const editableNode = node.querySelector( '[contenteditable="true"]' );
-	const computedStyles = editableNode
-		? getComputedStyle( editableNode )
-		: null;
+	const editableNode = node.querySelector('[contenteditable="true"]');
+	const computedStyles = editableNode ? getComputedStyle(editableNode) : null;
 	return {
 		fallbackBackgroundColor:
-			backgroundColor || ! computedStyles
+			backgroundColor || !computedStyles
 				? undefined
 				: computedStyles.backgroundColor,
 		fallbackTextColor:
-			textColor || ! computedStyles ? undefined : computedStyles.color,
+			textColor || !computedStyles ? undefined : computedStyles.color,
 		fallbackFontSize:
-			fontSize || customFontSize || ! computedStyles
+			fontSize || customFontSize || !computedStyles
 				? undefined
-				: parseInt( computedStyles.fontSize ) || undefined,
+				: parseInt(computedStyles.fontSize) || undefined,
 	};
-} );
+});
 
 /**
  * Create an Inspector Controls wrapper Component
@@ -82,136 +80,133 @@ class Inspector extends Component {
 
 		// Border styles
 		const borderStyles = [
-			{ value: 'gb-list-border-none', label: __( 'None' ) },
-			{ value: 'gb-list-border-solid', label: __( 'Solid' ) },
-			{ value: 'gb-list-border-dotted', label: __( 'Dotted' ) },
-			{ value: 'gb-list-border-dashed', label: __( 'Dashed' ) },
+			{ value: 'gb-list-border-none', label: __('None') },
+			{ value: 'gb-list-border-solid', label: __('Solid') },
+			{ value: 'gb-list-border-dotted', label: __('Dotted') },
+			{ value: 'gb-list-border-dashed', label: __('Dashed') },
 		];
 
-		const onChangeBorderColor = ( value ) =>
-			setAttributes( { borderColor: value } );
+		const onChangeBorderColor = (value) =>
+			setAttributes({ borderColor: value });
 
 		return (
 			<InspectorControls key="inspector">
-				<PanelBody title={ __( 'Text Settings', 'genesis-blocks' ) }>
+				<PanelBody title={__('Text Settings', 'genesis-blocks')}>
 					<FontSizePicker
-						fallbackFontSize={ fallbackFontSize }
-						value={ fontSize.size }
-						onChange={ setFontSize }
+						fallbackFontSize={fallbackFontSize}
+						value={fontSize.size}
+						onChange={setFontSize}
 						__nextHasNoMarginBottom
 					/>
 					<SelectControl
-						label={ __( 'List Border Style', 'genesis-blocks' ) }
-						value={ borderStyle }
-						options={ borderStyles.map( ( { value, label } ) => ( {
+						label={__('List Border Style', 'genesis-blocks')}
+						value={borderStyle}
+						options={borderStyles.map(({ value, label }) => ({
 							value,
 							label,
-						} ) ) }
-						onChange={ ( value ) => {
-							this.props.setAttributes( { borderStyle: value } );
-						} }
+						}))}
+						onChange={(value) => {
+							this.props.setAttributes({ borderStyle: value });
+						}}
 					/>
-					{ 'gb-list-border-none' !== borderStyle && (
+					{'gb-list-border-none' !== borderStyle && (
 						<RangeControl
-							label={ __(
-								'List Border Width',
-								'genesis-blocks'
-							) }
-							value={ borderWidth }
-							onChange={ ( value ) =>
-								this.props.setAttributes( {
+							label={__('List Border Width', 'genesis-blocks')}
+							value={borderWidth}
+							onChange={(value) =>
+								this.props.setAttributes({
 									borderWidth: value,
-								} )
+								})
 							}
-							min={ 1 }
-							max={ 5 }
-							step={ 1 }
+							min={1}
+							max={5}
+							step={1}
 						/>
-					) }
-					{ 'gb-list-border-none' !== borderStyle && (
+					)}
+					{'gb-list-border-none' !== borderStyle && (
 						<PanelRow>
 							<BaseControl
-								label={ __(
+								label={__(
 									'List Border Color',
 									'genesis-blocks'
-								) }
+								)}
 								id={
 									'gb-list-border-color-' +
 									this.props.clientId
 								}
 							>
 								<ColorPalette
-									initialOpen={ false }
-									value={ borderColor }
-									onChange={ onChangeBorderColor }
+									initialOpen={false}
+									value={borderColor}
+									onChange={onChangeBorderColor}
 								></ColorPalette>
 							</BaseControl>
 						</PanelRow>
-					) }
+					)}
 				</PanelBody>
 				<PanelBody
-					title={ __( 'Padding Settings', 'genesis-blocks' ) }
-					initialOpen={ false }
+					title={__('Padding Settings', 'genesis-blocks')}
+					initialOpen={false}
 				>
 					<Padding
 						// Top padding
-						paddingEnableTop={ true }
-						paddingTop={ paddingTop }
+						paddingEnableTop={true}
+						paddingTop={paddingTop}
 						paddingTopMin="0"
 						paddingTopMax="100"
-						onChangePaddingTop={ ( paddingTop ) =>
-							setAttributes( { paddingTop } )
+						onChangePaddingTop={(paddingTop) =>
+							setAttributes({ paddingTop })
 						}
 						// Right padding
-						paddingEnableRight={ true }
-						paddingRight={ paddingRight }
+						paddingEnableRight={true}
+						paddingRight={paddingRight}
 						paddingRightMin="0"
 						paddingRightMax="100"
-						onChangePaddingRight={ ( paddingRight ) =>
-							setAttributes( { paddingRight } )
+						onChangePaddingRight={(paddingRight) =>
+							setAttributes({ paddingRight })
 						}
 						// Bottom padding
-						paddingEnableBottom={ true }
-						paddingBottom={ paddingBottom }
+						paddingEnableBottom={true}
+						paddingBottom={paddingBottom}
 						paddingBottomMin="0"
 						paddingBottomMax="100"
-						onChangePaddingBottom={ ( paddingBottom ) =>
-							setAttributes( { paddingBottom } )
+						onChangePaddingBottom={(paddingBottom) =>
+							setAttributes({ paddingBottom })
 						}
 						// Left padding
-						paddingEnableLeft={ true }
-						paddingLeft={ paddingLeft }
+						paddingEnableLeft={true}
+						paddingLeft={paddingLeft}
 						paddingLeftMin="0"
 						paddingLeftMax="100"
-						onChangePaddingLeft={ ( paddingLeft ) =>
-							setAttributes( { paddingLeft } )
+						onChangePaddingLeft={(paddingLeft) =>
+							setAttributes({ paddingLeft })
 						}
 					/>
 				</PanelBody>
 				<PanelColorSettings
-					title={ __( 'Color Settings', 'genesis-blocks' ) }
-					initialOpen={ false }
-					colorSettings={ [
+					title={__('Color Settings', 'genesis-blocks')}
+					initialOpen={false}
+					colorSettings={[
 						{
 							value: backgroundColor.color,
 							onChange: setBackgroundColor,
-							label: __( 'Background Color', 'genesis-blocks' ),
+							label: __('Background Color', 'genesis-blocks'),
 						},
 						{
 							value: textColor.color,
 							onChange: setTextColor,
-							label: __( 'Text Color', 'genesis-blocks' ),
+							label: __('Text Color', 'genesis-blocks'),
 						},
-					] }
+					]}
 				>
 					<ContrastChecker
-						{ ...{
+						{...{
 							textColor: textColor.color,
 							backgroundColor: backgroundColor.color,
 							fallbackTextColor,
 							fallbackBackgroundColor,
-						} }
-						fontSize={ fontSize.size }
+						}}
+						fontSize={fontSize.size}
 					/>
 				</PanelColorSettings>
 			</InspectorControls>
@@ -219,8 +214,8 @@ class Inspector extends Component {
 	}
 }
 
-export default compose( [
+export default compose([
 	applyFallbackStyles,
-	withFontSizes( 'fontSize' ),
-	withColors( 'backgroundColor', { textColor: 'color' } ),
-] )( Inspector );
+	withFontSizes('fontSize'),
+	withColors('backgroundColor', { textColor: 'color' }),
+])(Inspector);

@@ -20,31 +20,29 @@ const { Fragment, Component } = wp.element;
 const { TextControl, withFallbackStyles } = wp.components;
 
 /* Apply fallback styles. */
-const applyFallbackStyles = withFallbackStyles( ( node, ownProps ) => {
+const applyFallbackStyles = withFallbackStyles((node, ownProps) => {
 	const { backgroundColor, textColor, buttonBackgroundColor } =
 		ownProps.attributes;
-	const editableNode = node.querySelector( '[contenteditable="true"]' );
-	const computedStyles = editableNode
-		? getComputedStyle( editableNode )
-		: null;
+	const editableNode = node.querySelector('[contenteditable="true"]');
+	const computedStyles = editableNode ? getComputedStyle(editableNode) : null;
 	return {
 		fallbackBackgroundColor:
-			backgroundColor || ! computedStyles
+			backgroundColor || !computedStyles
 				? undefined
 				: computedStyles.backgroundColor,
 		fallbackTextColor:
-			textColor || ! computedStyles ? undefined : computedStyles.color,
+			textColor || !computedStyles ? undefined : computedStyles.color,
 		fallbackButtonBackgroundColor:
-			buttonBackgroundColor || ! computedStyles
+			buttonBackgroundColor || !computedStyles
 				? undefined
 				: computedStyles.buttonBackgroundColor,
 	};
-} );
+});
 
 class Edit extends Component {
 	constructor() {
-		super( ...arguments );
-		this.props.setAttributes( { instanceId: this.props.instanceId } );
+		super(...arguments);
+		this.props.setAttributes({ instanceId: this.props.instanceId });
 	}
 
 	render() {
@@ -63,18 +61,18 @@ class Edit extends Component {
 		/* Setup button background color class */
 		let buttonBackgroundColorClass;
 
-		if ( attributes.customButtonBackgroundColor ) {
+		if (attributes.customButtonBackgroundColor) {
 			buttonBackgroundColorClass = 'gb-has-custom-background-color';
 		} else {
 			buttonBackgroundColorClass = attributes.buttonBackgroundColor
-				? `has-${ attributes.buttonBackgroundColor }-background-color`
+				? `has-${attributes.buttonBackgroundColor}-background-color`
 				: null;
 		}
 
 		/* Setup button text color class */
 		let buttonTextColorClass;
 
-		if ( attributes.customButtonTextColor ) {
+		if (attributes.customButtonTextColor) {
 			buttonTextColorClass = 'gb-has-custom-text-color';
 		} else {
 			buttonTextColorClass = attributes.buttonTextColor
@@ -84,20 +82,20 @@ class Edit extends Component {
 
 		return [
 			<Inspector
-				key={ 'gb-newsletter-inspector-' + this.props.clientId }
-				{ ...{ setAttributes, ...this.props } }
+				key={'gb-newsletter-inspector-' + this.props.clientId}
+				{...{ setAttributes, ...this.props }}
 			/>,
 			<NewsletterContainer
-				key={ 'gb-newsletter-container-' + this.props.clientId }
-				{ ...this.props }
+				key={'gb-newsletter-container-' + this.props.clientId}
+				{...this.props}
 			>
-				{ ! apiKeyDefined && (
+				{!apiKeyDefined && (
 					<Fragment>
 						<div className="gb-newsletter-notice">
-							{ __(
+							{__(
 								'You must define your newsletter provider API keys to use this block.',
 								'genesis-blocks'
-							) }
+							)}
 							<p>
 								<a
 									href={
@@ -106,42 +104,42 @@ class Edit extends Component {
 									target="_blank"
 									rel="noopener noreferrer"
 								>
-									{ __(
+									{__(
 										'Configure your settings',
 										'genesis-blocks'
-									) }
+									)}
 								</a>
 							</p>
 						</div>
 					</Fragment>
-				) }
-				{ apiKeyDefined && (
+				)}
+				{apiKeyDefined && (
 					<Fragment>
 						<RichText
 							tagName="span"
 							className="gb-block-newsletter-label"
-							allowedFormats={ [] }
-							value={ attributes.emailInputLabel }
-							onChange={ ( value ) =>
-								this.props.setAttributes( {
+							allowedFormats={[]}
+							value={attributes.emailInputLabel}
+							onChange={(value) =>
+								this.props.setAttributes({
 									emailInputLabel: value,
-								} )
+								})
 							}
 						/>
 
 						<TextControl name="gb-newsletter-email-address" />
 
-						<div className={ classnames( 'gb-block-button' ) }>
-							<CustomButton { ...this.props }>
+						<div className={classnames('gb-block-button')}>
+							<CustomButton {...this.props}>
 								<RichText
 									tagName="span"
-									placeholder={ __(
+									placeholder={__(
 										'Button text…',
 										'genesis-blocks'
-									) }
-									value={ attributes.buttonText }
-									allowedFormats={ [] }
-									className={ classnames(
+									)}
+									value={attributes.buttonText}
+									allowedFormats={[]}
+									className={classnames(
 										'gb-button',
 										attributes.buttonClass,
 										attributes.buttonShape,
@@ -156,40 +154,38 @@ class Edit extends Component {
 												attributes.buttonTextColor ||
 												attributes.customButtonTextColor,
 										}
-									) }
-									style={ {
+									)}
+									style={{
 										backgroundColor:
 											buttonBackgroundColor.color,
 										color: buttonTextColor.color,
-									} }
-									onChange={ ( value ) =>
-										this.props.setAttributes( {
+									}}
+									onChange={(value) =>
+										this.props.setAttributes({
 											buttonText: value,
-										} )
+										})
 									}
 								/>
 							</CustomButton>
-							{ isSelected && (
+							{isSelected && (
 								<form
 									key="form-link"
-									className={ `blocks-button__inline-link gb-button-${ attributes.buttonAlignment }` }
-									onSubmit={ ( event ) =>
-										event.preventDefault()
-									}
-									style={ {
+									className={`blocks-button__inline-link gb-button-${attributes.buttonAlignment}`}
+									onSubmit={(event) => event.preventDefault()}
+									style={{
 										textAlign: attributes.buttonAlignment,
-									} }
+									}}
 								></form>
-							) }
+							)}
 						</div>
 					</Fragment>
-				) }
+				)}
 			</NewsletterContainer>,
 		];
 	}
 }
 
-export default compose( [
+export default compose([
 	applyFallbackStyles,
 	withColors(
 		'backgroundColor',
@@ -197,4 +193,4 @@ export default compose( [
 		{ buttonBackgroundColor: 'background-color' },
 		{ buttonTextColor: 'color' }
 	),
-] )( withInstanceId( Edit ) );
+])(withInstanceId(Edit));

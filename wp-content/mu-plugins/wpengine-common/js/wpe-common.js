@@ -96,7 +96,7 @@ jQuery(document).ready(function($) {
 					if( 'function' === typeof wp.updates.installPlugin ) {
 						$element.data('confirmChange', true);
 						if ( $element[0].className.includes('activate-now') ) {
-							window.location.href = $element.attr('href');
+							window.top.location.href = $element.attr('href');
 						} else {
 							$element.click();
 						}

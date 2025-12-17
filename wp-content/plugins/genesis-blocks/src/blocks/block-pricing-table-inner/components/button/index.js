@@ -20,16 +20,16 @@ const {
 } = wp.blockEditor;
 
 // Register the block
-registerBlockType( 'genesis-blocks/gb-pricing-table-button', {
-	title: __( 'Product Button', 'genesis-blocks' ),
-	description: __( 'Adds a product button component.', 'genesis-blocks' ),
+registerBlockType('genesis-blocks/gb-pricing-table-button', {
+	title: __('Product Button', 'genesis-blocks'),
+	description: __('Adds a product button component.', 'genesis-blocks'),
 	icon: 'cart',
 	category: 'genesis-blocks',
-	parent: [ 'genesis-blocks/gb-pricing-table' ],
+	parent: ['genesis-blocks/gb-pricing-table'],
 	keywords: [
-		__( 'pricing table', 'genesis-blocks' ),
-		__( 'subtitle', 'genesis-blocks' ),
-		__( 'shop', 'genesis-blocks' ),
+		__('pricing table', 'genesis-blocks'),
+		__('subtitle', 'genesis-blocks'),
+		__('shop', 'genesis-blocks'),
 	],
 
 	attributes: {
@@ -105,7 +105,7 @@ registerBlockType( 'genesis-blocks/gb-pricing-table-button', {
 	edit: Edit,
 
 	// Save the attributes and markup
-	save( props ) {
+	save(props) {
 		// Setup the attributes
 		const {
 			backgroundColor,
@@ -131,11 +131,11 @@ registerBlockType( 'genesis-blocks/gb-pricing-table-button', {
 		);
 
 		// Setup class names
-		const className = classnames( {
+		const className = classnames({
 			'has-background': backgroundColor || customBackgroundColor,
 			'gb-pricing-table-button': true,
-			[ backgroundClass ]: backgroundClass,
-		} );
+			[backgroundClass]: backgroundClass,
+		});
 
 		// Setup styles
 		const styles = {
@@ -150,31 +150,28 @@ registerBlockType( 'genesis-blocks/gb-pricing-table-button', {
 
 		// Save the block markup for the front end
 		return (
-			<div
-				className={ className ? className : undefined }
-				style={ styles }
-			>
-				<CustomButton { ...props }>
+			<div className={className ? className : undefined} style={styles}>
+				<CustomButton {...props}>
 					{
 						// Check if there is button text and output
 						buttonText && (
 							<a
-								href={ buttonUrl }
-								target={ buttonTarget ? '_blank' : null }
+								href={buttonUrl}
+								target={buttonTarget ? '_blank' : null}
 								rel={
 									buttonTarget ? 'noopener noreferrer' : null
 								}
-								className={ classnames(
+								className={classnames(
 									'gb-button',
 									buttonShape,
 									buttonSize
-								) }
-								style={ {
+								)}
+								style={{
 									color: buttonTextColor,
 									backgroundColor: buttonBackgroundColor,
-								} }
+								}}
 							>
-								<RichText.Content value={ buttonText } />
+								<RichText.Content value={buttonText} />
 							</a>
 						)
 					}
@@ -182,4 +179,4 @@ registerBlockType( 'genesis-blocks/gb-pricing-table-button', {
 			</div>
 		);
 	},
-} );
+});

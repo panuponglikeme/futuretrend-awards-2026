@@ -8,7 +8,7 @@ const { Fragment } = wp.element;
 const { SelectControl, ToggleControl } = wp.components;
 const { PanelColorSettings } = wp.blockEditor;
 
-export default function ButtonSettings( props ) {
+export default function ButtonSettings(props) {
 	const {
 		enableButtonBackgroundColor,
 		buttonBackgroundColor,
@@ -31,19 +31,19 @@ export default function ButtonSettings( props ) {
 	const buttonSizeOptions = [
 		{
 			value: 'gb-button-size-small',
-			label: __( 'Small', 'genesis-blocks' ),
+			label: __('Small', 'genesis-blocks'),
 		},
 		{
 			value: 'gb-button-size-medium',
-			label: __( 'Medium', 'genesis-blocks' ),
+			label: __('Medium', 'genesis-blocks'),
 		},
 		{
 			value: 'gb-button-size-large',
-			label: __( 'Large', 'genesis-blocks' ),
+			label: __('Large', 'genesis-blocks'),
 		},
 		{
 			value: 'gb-button-size-extralarge',
-			label: __( 'Extra Large', 'genesis-blocks' ),
+			label: __('Extra Large', 'genesis-blocks'),
 		},
 	];
 
@@ -51,76 +51,69 @@ export default function ButtonSettings( props ) {
 	const buttonShapeOptions = [
 		{
 			value: 'gb-button-shape-square',
-			label: __( 'Square', 'genesis-blocks' ),
+			label: __('Square', 'genesis-blocks'),
 		},
 		{
 			value: 'gb-button-shape-rounded',
-			label: __( 'Rounded Square', 'genesis-blocks' ),
+			label: __('Rounded Square', 'genesis-blocks'),
 		},
 		{
 			value: 'gb-button-shape-circular',
-			label: __( 'Circular', 'genesis-blocks' ),
+			label: __('Circular', 'genesis-blocks'),
 		},
 	];
 
 	return (
 		<Fragment>
 			<RenderSettingControl id="gb_button_buttonOptions">
-				{ false !== enableButtonTarget && (
+				{false !== enableButtonTarget && (
 					<ToggleControl
-						label={ __(
-							'Open link in new window',
-							'genesis-blocks'
-						) }
-						checked={ buttonTarget }
-						onChange={ onChangeButtonTarget }
+						label={__('Open link in new window', 'genesis-blocks')}
+						checked={buttonTarget}
+						onChange={onChangeButtonTarget}
 					/>
-				) }
-				{ false !== enableButtonSize && (
+				)}
+				{false !== enableButtonSize && (
 					<SelectControl
-						selected={ buttonSize }
-						label={ __( 'Button Size', 'genesis-blocks' ) }
-						value={ buttonSize }
-						options={ buttonSizeOptions.map(
-							( { value, label } ) => ( {
-								value,
-								label,
-							} )
-						) }
-						onChange={ onChangeButtonSize }
+						selected={buttonSize}
+						label={__('Button Size', 'genesis-blocks')}
+						value={buttonSize}
+						options={buttonSizeOptions.map(({ value, label }) => ({
+							value,
+							label,
+						}))}
+						onChange={onChangeButtonSize}
 					/>
-				) }
-				{ false !== enableButtonShape && (
+				)}
+				{false !== enableButtonShape && (
 					<SelectControl
-						label={ __( 'Button Shape', 'genesis-blocks' ) }
-						value={ buttonShape }
-						options={ buttonShapeOptions.map(
-							( { value, label } ) => ( {
-								value,
-								label,
-							} )
-						) }
-						onChange={ onChangeButtonShape }
+						label={__('Button Shape', 'genesis-blocks')}
+						value={buttonShape}
+						options={buttonShapeOptions.map(({ value, label }) => ({
+							value,
+							label,
+						}))}
+						onChange={onChangeButtonShape}
 					/>
-				) }
-				{ false !== enableButtonBackgroundColor && (
+				)}
+				{false !== enableButtonBackgroundColor && (
 					<PanelColorSettings
-						title={ __( 'Button Color', 'genesis-blocks' ) }
-						initialOpen={ false }
-						colorSettings={ [
+						title={__('Button Color', 'genesis-blocks')}
+						initialOpen={false}
+						colorSettings={[
 							{
 								value: buttonBackgroundColor,
 								onChange: onChangeButtonColor,
-								label: __( 'Button Color', 'genesis-blocks' ),
+								label: __('Button Color', 'genesis-blocks'),
 							},
-						] }
+						]}
 					></PanelColorSettings>
-				) }
-				{ false !== enableButtonTextColor && (
+				)}
+				{false !== enableButtonTextColor && (
 					<PanelColorSettings
-						title={ __( 'Button Text Color', 'genesis-blocks' ) }
-						initialOpen={ false }
-						colorSettings={ [
+						title={__('Button Text Color', 'genesis-blocks')}
+						initialOpen={false}
+						colorSettings={[
 							{
 								value: buttonTextColor,
 								onChange: onChangeButtonTextColor,
@@ -129,9 +122,9 @@ export default function ButtonSettings( props ) {
 									'genesis-blocks'
 								),
 							},
-						] }
+						]}
 					></PanelColorSettings>
-				) }
+				)}
 			</RenderSettingControl>
 		</Fragment>
 	);

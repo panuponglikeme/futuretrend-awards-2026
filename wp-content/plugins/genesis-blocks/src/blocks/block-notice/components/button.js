@@ -18,12 +18,12 @@ export default class DismissButton extends Component {
 		return (
 			<div
 				className="gb-notice-dismiss"
-				style={ {
+				style={{
 					fill: noticeTitleColor,
 					color: noticeTitleColor,
-				} }
+				}}
 			>
-				{ this.props.children }
+				{this.props.children}
 			</div>
 		);
 	}

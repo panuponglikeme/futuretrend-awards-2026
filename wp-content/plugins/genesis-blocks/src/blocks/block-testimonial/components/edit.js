@@ -15,7 +15,7 @@ const { RichText, AlignmentToolbar, BlockControls, MediaUpload } =
 	wp.blockEditor;
 const { Button, Dashicon } = wp.components;
 
-const ALLOWED_MEDIA_TYPES = [ 'image' ];
+const ALLOWED_MEDIA_TYPES = ['image'];
 
 export default class Edit extends Component {
 	render() {
@@ -35,54 +35,51 @@ export default class Edit extends Component {
 		} = this.props;
 
 		const onRemoveImage = () => {
-			setAttributes( {
+			setAttributes({
 				testimonialImgURL: null,
 				testimonialImgID: null,
 				testimonialImgAlt: null,
-			} );
+			});
 		};
 
 		return [
 			// Show the alignment toolbar on focus
 			<BlockControls key="controls">
 				<AlignmentToolbar
-					value={ testimonialAlignment }
-					onChange={ ( value ) =>
-						setAttributes( { testimonialAlignment: value } )
+					value={testimonialAlignment}
+					onChange={(value) =>
+						setAttributes({ testimonialAlignment: value })
 					}
 				/>
 			</BlockControls>,
 
 			// Show the block controls on focus
 			<Inspector
-				key={ 'gb-testimonial-inspector-' + this.props.clientId }
-				{ ...{ setAttributes, ...this.props } }
+				key={'gb-testimonial-inspector-' + this.props.clientId}
+				{...{ setAttributes, ...this.props }}
 			/>,
 
 			// Show the block markup in the editor
 			<Testimonial
-				key={ 'gb-testimonial-editor-' + this.props.clientId }
-				{ ...this.props }
+				key={'gb-testimonial-editor-' + this.props.clientId}
+				{...this.props}
 			>
 				<RichText
 					tagName="div"
-					placeholder={ __(
-						'Add testimonial text…',
-						'genesis-blocks'
-					) }
-					value={ testimonialContent }
-					allowedFormats={ [
+					placeholder={__('Add testimonial text…', 'genesis-blocks')}
+					value={testimonialContent}
+					allowedFormats={[
 						'core/bold',
 						'core/italic',
 						'core/strikethrough',
 						'core/link',
-					] }
-					className={ classnames( 'gb-testimonial-text' ) }
-					style={ {
+					]}
+					className={classnames('gb-testimonial-text')}
+					style={{
 						textAlign: testimonialAlignment,
-					} }
-					onChange={ ( value ) =>
-						setAttributes( { testimonialContent: value } )
+					}}
+					onChange={(value) =>
+						setAttributes({ testimonialContent: value })
 					}
 				/>
 
@@ -90,21 +87,21 @@ export default class Edit extends Component {
 					<div className="gb-testimonial-avatar-wrap">
 						<div className="gb-testimonial-image-wrap">
 							<MediaUpload
-								buttonProps={ {
+								buttonProps={{
 									className: 'change-image',
-								} }
-								onSelect={ ( img ) =>
-									setAttributes( {
+								}}
+								onSelect={(img) =>
+									setAttributes({
 										testimonialImgID: img.id,
 										testimonialImgURL:
 											img.sizes.thumbnail.url,
 										testimonialImgAlt: img.alt,
-									} )
+									})
 								}
-								allowed={ ALLOWED_MEDIA_TYPES }
+								allowed={ALLOWED_MEDIA_TYPES}
 								type="image"
-								value={ testimonialImgID }
-								render={ ( { open } ) => (
+								value={testimonialImgID}
+								render={({ open }) => (
 									<Fragment>
 										<Button
 											className={
@@ -112,63 +109,63 @@ export default class Edit extends Component {
 													? 'gb-change-image'
 													: 'gb-add-image'
 											}
-											onClick={ open }
+											onClick={open}
 										>
-											{ ! testimonialImgID ? (
+											{!testimonialImgID ? (
 												icons.upload
 											) : (
 												<img
 													className="gb-testimonial-avatar"
-													src={ testimonialImgURL }
+													src={testimonialImgURL}
 													alt={
 														testimonialImgAlt
 															? testimonialImgAlt
 															: null
 													}
 												/>
-											) }
+											)}
 										</Button>
-										{ testimonialImgID && (
+										{testimonialImgID && (
 											<Button
 												className="gb-remove-image"
-												onClick={ onRemoveImage }
+												onClick={onRemoveImage}
 											>
-												<Dashicon icon={ 'dismiss' } />
+												<Dashicon icon={'dismiss'} />
 											</Button>
-										) }
+										)}
 									</Fragment>
-								) }
+								)}
 							></MediaUpload>
 						</div>
 					</div>
 
 					<RichText
 						tagName="h2"
-						placeholder={ __( 'Add name', 'genesis-blocks' ) }
-						value={ testimonialName }
+						placeholder={__('Add name', 'genesis-blocks')}
+						value={testimonialName}
 						className="gb-testimonial-name"
-						style={ {
+						style={{
 							color: testimonialTextColor,
-						} }
-						onChange={ ( value ) =>
-							this.props.setAttributes( {
+						}}
+						onChange={(value) =>
+							this.props.setAttributes({
 								testimonialName: value,
-							} )
+							})
 						}
 					/>
 
 					<RichText
 						tagName="small"
-						placeholder={ __( 'Add title', 'genesis-blocks' ) }
-						value={ testimonialTitle }
+						placeholder={__('Add title', 'genesis-blocks')}
+						value={testimonialTitle}
 						className="gb-testimonial-title"
-						style={ {
+						style={{
 							color: testimonialTextColor,
-						} }
-						onChange={ ( value ) =>
-							this.props.setAttributes( {
+						}}
+						onChange={(value) =>
+							this.props.setAttributes({
 								testimonialTitle: value,
-							} )
+							})
 						}
 					/>
 				</div>

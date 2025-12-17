@@ -21,10 +21,10 @@ import { __ } from '@wordpress/i18n';
  * @param {ButtonPreviousProps} props The component props.
  * @return {React.ReactElement} The component for the step content.
  */
-const ButtonPrevious = ( { onClick } ) => {
+const ButtonPrevious = ({ onClick }) => {
 	return (
-		<button className="gb-admin-button-secondary" onClick={ onClick }>
-			{ __( 'Previous', 'genesis-blocks' ) }
+		<button className="gb-admin-button-secondary" onClick={onClick}>
+			{__('Previous', 'genesis-blocks')}
 		</button>
 	);
 };

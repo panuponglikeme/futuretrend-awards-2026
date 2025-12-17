@@ -34,13 +34,10 @@ export default class CallToAction extends Component {
 			},
 		} = this.props;
 
-		const className = classnames(
-			[ this.props.className, 'gb-block-cta' ],
-			{
-				[ 'gb-font-size-' + ctaTextFontSize ]: ctaTextFontSize,
-				[ 'align' + ctaWidth ]: ctaWidth,
-			}
-		);
+		const className = classnames([this.props.className, 'gb-block-cta'], {
+			['gb-font-size-' + ctaTextFontSize]: ctaTextFontSize,
+			['align' + ctaWidth]: ctaWidth,
+		});
 
 		const styles = {
 			backgroundColor: ctaBackgroundColor
@@ -50,11 +47,8 @@ export default class CallToAction extends Component {
 		};
 
 		return (
-			<div
-				style={ styles }
-				className={ className ? className : undefined }
-			>
-				{ this.props.children }
+			<div style={styles} className={className ? className : undefined}>
+				{this.props.children}
 			</div>
 		);
 	}

@@ -82,14 +82,14 @@ class GBContainerBlock extends Component {
 		return [
 			// Show the block controls on focus
 			<Inspector
-				key={ 'gb-container-inspector-' + this.props.clientId }
-				{ ...{ setAttributes, ...this.props } }
+				key={'gb-container-inspector-' + this.props.clientId}
+				{...{ setAttributes, ...this.props }}
 			/>,
 
 			// Show the container markup in the editor
 			<Container
-				key={ 'gb-container-' + this.props.clientId }
-				{ ...this.props }
+				key={'gb-container-' + this.props.clientId}
+				{...this.props}
 			>
 				<InnerBlocks />
 			</Container>,
@@ -98,8 +98,8 @@ class GBContainerBlock extends Component {
 }
 
 // Register the block
-registerBlockType( 'genesis-blocks/gb-container', {
-	title: __( 'Container', 'genesis-blocks' ),
+registerBlockType('genesis-blocks/gb-container', {
+	title: __('Container', 'genesis-blocks'),
 	description: __(
 		'Add a container block to wrap several blocks in a parent container.',
 		'genesis-blocks'
@@ -107,13 +107,13 @@ registerBlockType( 'genesis-blocks/gb-container', {
 	icon: 'editor-table',
 	category: 'genesis-blocks',
 	keywords: [
-		__( 'container', 'genesis-blocks' ),
-		__( 'section', 'genesis-blocks' ),
-		__( 'genesis', 'genesis-blocks' ),
+		__('container', 'genesis-blocks'),
+		__('section', 'genesis-blocks'),
+		__('genesis', 'genesis-blocks'),
 	],
 
 	supports: {
-		align: [ 'center', 'wide', 'full' ],
+		align: ['center', 'wide', 'full'],
 		html: false,
 	},
 
@@ -121,10 +121,10 @@ registerBlockType( 'genesis-blocks/gb-container', {
 
 	gb_settings_data: {
 		gb_container_containerOptions: {
-			title: __( 'Container Options', 'genesis-blocks' ),
+			title: __('Container Options', 'genesis-blocks'),
 		},
 		gb_container_backgroundOptions: {
-			title: __( 'Background Options', 'genesis-blocks' ),
+			title: __('Background Options', 'genesis-blocks'),
 		},
 	},
 
@@ -132,15 +132,15 @@ registerBlockType( 'genesis-blocks/gb-container', {
 	edit: GBContainerBlock,
 
 	// Save the attributes and markup
-	save( props ) {
+	save(props) {
 		// Save the block markup for the front end
 		return (
-			<Container { ...props }>
+			<Container {...props}>
 				<InnerBlocks.Content />
 			</Container>
 		);
 	},
-	getEditWrapperProps( { containerWidth } ) {
+	getEditWrapperProps({ containerWidth }) {
 		if (
 			'center' === containerWidth ||
 			'wide' === containerWidth ||
@@ -151,4 +151,4 @@ registerBlockType( 'genesis-blocks/gb-container', {
 	},
 
 	deprecated,
-} );
+});

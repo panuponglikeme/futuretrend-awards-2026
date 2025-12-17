@@ -24,7 +24,7 @@ export default class Column extends Component {
 		/* Setup the margin styles. */
 		let marginStyle;
 
-		if ( attributes.marginSync ) {
+		if (attributes.marginSync) {
 			marginStyle = {
 				marginTop:
 					0 < attributes.margin
@@ -51,7 +51,7 @@ export default class Column extends Component {
 		/* Setup the padding styles. */
 		let paddingStyle;
 
-		if ( attributes.paddingSync ) {
+		if (attributes.paddingSync) {
 			paddingStyle = {
 				padding:
 					0 < attributes.padding
@@ -86,13 +86,13 @@ export default class Column extends Component {
 				: null,
 			color: this.props.textColorValue ? this.props.textColorValue : null,
 			textAlign: attributes.textAlign ? attributes.textAlign : null,
-			...BackgroundImageStyles( attributes ),
+			...BackgroundImageStyles(attributes),
 		};
 
 		/* Setup the background color class. */
 		let backgroundColorClass;
 
-		if ( attributes.customBackgroundColor ) {
+		if (attributes.customBackgroundColor) {
 			backgroundColorClass = 'gb-has-custom-background-color';
 		} else {
 			backgroundColorClass = attributes.backgroundColor
@@ -103,7 +103,7 @@ export default class Column extends Component {
 		/* Setup the text color class. */
 		let textColorClass;
 
-		if ( attributes.customTextColor ) {
+		if (attributes.customTextColor) {
 			textColorClass = 'gb-has-custom-text-color';
 		} else {
 			textColorClass = attributes.textColor
@@ -113,25 +113,25 @@ export default class Column extends Component {
 
 		return (
 			<div
-				className={ classnames(
+				className={classnames(
 					this.props.className,
 					'gb-block-layout-column',
 					attributes.columnVerticalAlignment
 						? 'gb-is-vertically-aligned-' +
 								attributes.columnVerticalAlignment
 						: null
-				) }
+				)}
 			>
 				<div
-					className={ classnames(
+					className={classnames(
 						'gb-block-layout-column-inner',
 						backgroundColorClass,
 						textColorClass,
-						...BackgroundImageClasses( attributes )
-					) }
-					style={ Object.assign( marginStyle, paddingStyle, styles ) }
+						...BackgroundImageClasses(attributes)
+					)}
+					style={Object.assign(marginStyle, paddingStyle, styles)}
 				>
-					{ this.props.children }
+					{this.props.children}
 				</div>
 			</div>
 		);

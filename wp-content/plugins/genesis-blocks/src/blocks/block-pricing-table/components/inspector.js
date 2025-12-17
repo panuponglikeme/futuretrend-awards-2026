@@ -29,30 +29,27 @@ export default class Inspector extends Component {
 				<PanelBody>
 					<RenderSettingControl id="gb_pricing_columns">
 						<RangeControl
-							label={ __( 'Pricing Columns', 'genesis-blocks' ) }
-							value={ columns }
-							onChange={ ( value ) =>
-								this.props.setAttributes( { columns: value } )
+							label={__('Pricing Columns', 'genesis-blocks')}
+							value={columns}
+							onChange={(value) =>
+								this.props.setAttributes({ columns: value })
 							}
-							min={ 1 }
-							max={ 4 }
+							min={1}
+							max={4}
 						/>
 					</RenderSettingControl>
 					<RenderSettingControl id="gb_pricing_columnsGap">
 						<RangeControl
-							label={ __(
-								'Pricing Columns Gap',
-								'genesis-blocks'
-							) }
-							value={ columnsGap }
-							onChange={ ( value ) =>
-								this.props.setAttributes( {
+							label={__('Pricing Columns Gap', 'genesis-blocks')}
+							value={columnsGap}
+							onChange={(value) =>
+								this.props.setAttributes({
 									columnsGap: value,
-								} )
+								})
 							}
-							min={ 0 }
-							max={ 5 }
-							step={ 1 }
+							min={0}
+							max={5}
+							step={1}
 						/>
 					</RenderSettingControl>
 				</PanelBody>

@@ -38,6 +38,13 @@ class UserMeta {
 	const GB_USER_META_KEY = 'genesis_blocks_favorite_layouts';
 
 	/**
+	 * The new user meta namespace.
+	 *
+	 * @var string
+	 */
+	private $new_user_meta_namespace;
+
+	/**
 	 * User_Meta constructor.
 	 *
 	 * @since 1.1.0

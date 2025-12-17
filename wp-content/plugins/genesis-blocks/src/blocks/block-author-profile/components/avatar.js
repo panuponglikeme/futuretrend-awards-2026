@@ -11,7 +11,7 @@ export default class AvatarColumn extends Component {
 		return (
 			<div className="gb-profile-column gb-profile-avatar-wrap">
 				<div className="gb-profile-image-wrap">
-					{ this.props.children }
+					{this.props.children}
 				</div>
 			</div>
 		);

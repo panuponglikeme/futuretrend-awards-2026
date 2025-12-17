@@ -5,7 +5,7 @@
  * Description: A beautiful collection of handy blocks to help you get started with the new WordPress editor.
  * Author: StudioPress
  * Author URI: https://www.studiopress.com/
- * Version: 3.1.6
+ * Version: 3.1.8
  * License: GPL2+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
  *
@@ -52,9 +52,17 @@ function genesis_blocks_is_pro() {
 }
 
 /**
- * Initialize checking of plugin updates from WP Engine.
+ * Set up plugin updates from WP Engine.
+ *
+ * Only if the lib/PluginUpdater.php file exists. This file is not present in
+ * the version released to the WordPress.org repository or in the Pro version,
+ * "Genesis Page Builder" https://github.com/studiopress/genesis-page-builder/.
  */
 function genesis_blocks_check_for_upgrades() {
+	if ( ! file_exists( __DIR__ . '/lib/PluginUpdater.php' ) ) {
+		return;
+	}
+
 	$properties = array(
 		'plugin_slug'     => 'genesis-blocks',
 		'plugin_basename' => plugin_basename( __FILE__ ),

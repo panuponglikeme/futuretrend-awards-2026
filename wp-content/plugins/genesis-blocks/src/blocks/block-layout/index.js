@@ -19,8 +19,8 @@ const { registerBlockType } = wp.blocks;
 /**
  * Register the Layout block
  */
-registerBlockType( 'genesis-blocks/gb-layouts', {
-	title: __( 'Layouts', 'genesis-blocks' ),
+registerBlockType('genesis-blocks/gb-layouts', {
+	title: __('Layouts', 'genesis-blocks'),
 	description: __(
 		'Add a pre-defined section or layout to posts and pages.',
 		'genesis-blocks'
@@ -28,16 +28,16 @@ registerBlockType( 'genesis-blocks/gb-layouts', {
 	icon: 'layout',
 	category: 'genesis-blocks',
 	keywords: [
-		__( 'layout', 'genesis-blocks' ),
-		__( 'column', 'genesis-blocks' ),
-		__( 'section', 'genesis-blocks' ),
+		__('layout', 'genesis-blocks'),
+		__('column', 'genesis-blocks'),
+		__('section', 'genesis-blocks'),
 	],
 
 	/* Render the block components. */
-	edit: ( props ) => {
+	edit: (props) => {
 		return (
 			<LayoutsProvider>
-				<Edit { ...props } />
+				<Edit {...props} />
 			</LayoutsProvider>
 		);
 	},
@@ -46,51 +46,51 @@ registerBlockType( 'genesis-blocks/gb-layouts', {
 	save: () => {
 		return null;
 	},
-} );
+});
 
 /**
  * Add a Layout button to the toolbar.
  */
 let genesisBlocksLayoutButtonAdded = false;
-wp.data.subscribe( () => {
+wp.data.subscribe(() => {
 	appendImportButton();
-} );
+});
 
 /**
  * Build the layout inserter button.
  */
 function appendImportButton() {
-	if ( genesisBlocksLayoutButtonAdded ) {
+	if (genesisBlocksLayoutButtonAdded) {
 		return;
 	}
-	const toolbar = document.querySelector( '.edit-post-header__toolbar' );
-	if ( ! toolbar ) {
+	const toolbar = document.querySelector('.edit-post-header__toolbar');
+	if (!toolbar) {
 		return;
 	}
-	const buttonDiv = document.createElement( 'div' );
+	const buttonDiv = document.createElement('div');
 	let html = '<div class="gb-toolbar-insert-layout">';
-	html += `<button id="gbLayoutInsertButton" class="components-button components-icon-button" aria-label="${ __(
+	html += `<button id="gbLayoutInsertButton" class="components-button components-icon-button" aria-label="${__(
 		'Insert Layout',
 		'genesis-blocks'
-	) }"><i class="dashicons dashicons-layout gb-toolbar-insert-layout-button"></i> ${ __(
+	)}"><i class="dashicons dashicons-layout gb-toolbar-insert-layout-button"></i> ${__(
 		'Layouts',
 		'genesis-blocks'
-	) }</button>`;
+	)}</button>`;
 	html += '</div>';
 	buttonDiv.innerHTML = html;
-	toolbar.appendChild( buttonDiv );
+	toolbar.appendChild(buttonDiv);
 
 	// Remove flex:grow CSS
 	const innerToolbar = document.querySelector(
 		'.components-accessible-toolbar.edit-post-header-toolbar'
 	);
-	if ( innerToolbar ) {
+	if (innerToolbar) {
 		innerToolbar.style.flexGrow = 0;
 	}
 
 	document
-		.getElementById( 'gbLayoutInsertButton' )
-		.addEventListener( 'click', gbInsertLayout );
+		.getElementById('gbLayoutInsertButton')
+		.addEventListener('click', gbInsertLayout);
 
 	genesisBlocksLayoutButtonAdded = true;
 }
@@ -99,6 +99,6 @@ function appendImportButton() {
  * Add the Layout block on click.
  */
 function gbInsertLayout() {
-	const block = wp.blocks.createBlock( 'genesis-blocks/gb-layouts' );
-	wp.data.dispatch( 'core/block-editor' ).insertBlocks( block );
+	const block = wp.blocks.createBlock('genesis-blocks/gb-layouts');
+	wp.data.dispatch('core/block-editor').insertBlocks(block);
 }

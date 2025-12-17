@@ -8,7 +8,7 @@
  */
 const { Button } = wp.components;
 
-export function CollectionCard( props ) {
+export function CollectionCard(props) {
 	return (
 		<>
 			<div className="gb-layout-design">
@@ -17,14 +17,14 @@ export function CollectionCard( props ) {
 						<Button
 							className="gb-layout-insert-button gb-layout-collection-button"
 							isSmall
-							onClick={ () => {
+							onClick={() => {
 								props.collectionsView.setCurrentView(
 									'collection'
 								);
 								props.setCurrentCollection(
 									props.collectionSlug
 								);
-							} }
+							}}
 						>
 							<div className="gb-layout-collection-cover">
 								<img
@@ -34,7 +34,7 @@ export function CollectionCard( props ) {
 										].thumbnail
 											? props.context.collections[
 													props.collectionSlug
-											  ].thumbnail
+												].thumbnail
 											: genesis_blocks_globals.pattern_fallback_image
 									}
 									alt={
@@ -42,10 +42,10 @@ export function CollectionCard( props ) {
 											props.collectionSlug
 										].label
 									}
-									onError={ ( event ) => {
+									onError={(event) => {
 										event.target.src =
 											genesis_blocks_globals.pattern_fallback_image;
-									} }
+									}}
 								/>
 							</div>
 							<div className="gb-layout-design-info">

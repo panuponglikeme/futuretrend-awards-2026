@@ -84,7 +84,7 @@ function genesis_blocks_render_newsletter_block( $attributes ) {
 	if ( ! empty( $wrapper_styles ) ) {
 		$wrapper_style = $wrapper_styles;
 	} else {
-		$wrapper_style = null;
+		$wrapper_style = '';
 	}
 
 	/* Wrapper color classes. */
@@ -125,7 +125,7 @@ function genesis_blocks_render_newsletter_block( $attributes ) {
 	if ( ! empty( $button_styles_custom ) ) {
 		$button_styles = $button_styles_custom;
 	} else {
-		$button_styles = null;
+		$button_styles = '';
 	}
 
 	$form = '

@@ -18,25 +18,25 @@ import { camelToKebabCase } from '../utils';
  * @param {ResponsiveSettingStyleProps} props The component props.
  * @return {Function} The component.
  */
-export const ResponsiveSettingStyle = ( {
+export const ResponsiveSettingStyle = ({
 	clientId,
 	device,
 	selectedDevice,
 	settingName,
 	settingValue,
-} ) => (
+}) => (
 	<>
-		{ !! settingValue
-			? `@media only screen and (max-width: ${ device }) {
-				#block-${ clientId } {
-					${ camelToKebabCase( settingName ) }: ${ settingValue } !important
+		{!!settingValue
+			? `@media only screen and (max-width: ${device}) {
+				#block-${clientId} {
+					${camelToKebabCase(settingName)}: ${settingValue} !important
 				}
 			}`
-			: null }
-		{ selectedDevice === device && !! settingValue
-			? `#block-${ clientId } {
-				${ camelToKebabCase( settingName ) }: ${ settingValue } !important
+			: null}
+		{selectedDevice === device && !!settingValue
+			? `#block-${clientId} {
+				${camelToKebabCase(settingName)}: ${settingValue} !important
 			}`
-			: null }
+			: null}
 	</>
 );

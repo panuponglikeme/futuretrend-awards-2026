@@ -23,11 +23,11 @@ export default class ProfileBox extends Component {
 
 		return (
 			<div
-				style={ {
+				style={{
 					backgroundColor: profileBackgroundColor,
 					color: profileTextColor,
-				} }
-				className={ classnames(
+				}}
+				className={classnames(
 					this.props.className,
 					profileAlignment,
 					profileAvatarShape,
@@ -35,9 +35,9 @@ export default class ProfileBox extends Component {
 					'gb-font-size-' + profileFontSize,
 					'gb-block-profile',
 					'gb-profile-columns'
-				) }
+				)}
 			>
-				{ this.props.children }
+				{this.props.children}
 			</div>
 		);
 	}

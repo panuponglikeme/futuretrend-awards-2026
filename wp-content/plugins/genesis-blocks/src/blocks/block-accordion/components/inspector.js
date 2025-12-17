@@ -33,28 +33,28 @@ export default class Inspector extends Component {
 				<PanelBody>
 					<RenderSettingControl id="gb_accordion_accordionFontSize">
 						<RangeControl
-							label={ __( 'Title Font Size', 'genesis-blocks' ) }
-							value={ this.props.attributes.accordionFontSize }
-							onChange={ ( value ) =>
-								this.props.setAttributes( {
+							label={__('Title Font Size', 'genesis-blocks')}
+							value={this.props.attributes.accordionFontSize}
+							onChange={(value) =>
+								this.props.setAttributes({
 									accordionFontSize: value,
-								} )
+								})
 							}
-							min={ 14 }
-							max={ 24 }
-							step={ 1 }
+							min={14}
+							max={24}
+							step={1}
 						/>
 					</RenderSettingControl>
 
 					<RenderSettingControl id="gb_accordion_accordionOpen">
 						<ToggleControl
-							label={ __( 'Open by default', 'genesis-blocks' ) }
-							checked={ this.props.attributes.accordionOpen }
-							onChange={ () =>
-								this.props.setAttributes( {
+							label={__('Open by default', 'genesis-blocks')}
+							checked={this.props.attributes.accordionOpen}
+							onChange={() =>
+								this.props.setAttributes({
 									accordionOpen:
-										! this.props.attributes.accordionOpen,
-								} )
+										!this.props.attributes.accordionOpen,
+								})
 							}
 						/>
 					</RenderSettingControl>

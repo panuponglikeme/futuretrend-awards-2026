@@ -26,23 +26,23 @@ export default class Testimonial extends Component {
 
 		return (
 			<div
-				style={ {
+				style={{
 					backgroundColor: testimonialBackgroundColor
 						? testimonialBackgroundColor
 						: '#f2f2f2',
 					color: testimonialTextColor
 						? testimonialTextColor
 						: '#32373c',
-				} }
-				className={ classnames(
+				}}
+				className={classnames(
 					this.props.className,
 					testimonialCiteAlign,
 					{ 'gb-has-avatar': testimonialImgURL },
 					'gb-font-size-' + testimonialFontSize,
 					'gb-block-testimonial'
-				) }
+				)}
 			>
-				{ this.props.children }
+				{this.props.children}
 			</div>
 		);
 	}

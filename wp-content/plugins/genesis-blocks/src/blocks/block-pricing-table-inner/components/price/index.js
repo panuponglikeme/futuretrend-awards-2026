@@ -21,19 +21,19 @@ const {
 } = wp.blockEditor;
 
 // Register the block
-registerBlockType( 'genesis-blocks/gb-pricing-table-price', {
-	title: __( 'Product Price', 'genesis-blocks' ),
+registerBlockType('genesis-blocks/gb-pricing-table-price', {
+	title: __('Product Price', 'genesis-blocks'),
 	description: __(
 		'Adds a product price component with schema markup.',
 		'genesis-blocks'
 	),
 	icon: 'cart',
 	category: 'genesis-blocks',
-	parent: [ 'genesis-blocks/gb-pricing-table' ],
+	parent: ['genesis-blocks/gb-pricing-table'],
 	keywords: [
-		__( 'pricing table', 'genesis-blocks' ),
-		__( 'price', 'genesis-blocks' ),
-		__( 'shop', 'genesis-blocks' ),
+		__('pricing table', 'genesis-blocks'),
+		__('price', 'genesis-blocks'),
+		__('shop', 'genesis-blocks'),
 	],
 
 	attributes: {
@@ -95,7 +95,7 @@ registerBlockType( 'genesis-blocks/gb-pricing-table-price', {
 	edit: Edit,
 
 	// Save the attributes and markup
-	save( props ) {
+	save(props) {
 		// Setup the attributes
 		const {
 			price,
@@ -116,29 +116,29 @@ registerBlockType( 'genesis-blocks/gb-pricing-table-price', {
 		} = props.attributes;
 
 		// Retreive the fontSizeClass
-		const fontSizeClass = getFontSizeClass( fontSize );
+		const fontSizeClass = getFontSizeClass(fontSize);
 
 		// Retreive the getColorClassName
-		const textClass = getColorClassName( 'color', textColor );
+		const textClass = getColorClassName('color', textColor);
 		const backgroundClass = getColorClassName(
 			'background-color',
 			backgroundColor
 		);
 
 		// Setup wrapper class names
-		const wrapperClassName = classnames( {
+		const wrapperClassName = classnames({
 			'has-background': backgroundColor || customBackgroundColor,
 			'gb-pricing-table-price-wrap': true,
-			[ textClass ]: textClass,
-			[ backgroundClass ]: backgroundClass,
+			[textClass]: textClass,
+			[backgroundClass]: backgroundClass,
 			'gb-pricing-has-currency': showCurrency && currency,
-		} );
+		});
 
 		// Setup class names
-		const className = classnames( {
+		const className = classnames({
 			'gb-pricing-table-price': true,
-			[ fontSizeClass ]: fontSizeClass,
-		} );
+			[fontSizeClass]: fontSizeClass,
+		});
 
 		// Setup styles
 		const wrapperStyles = {
@@ -159,13 +159,13 @@ registerBlockType( 'genesis-blocks/gb-pricing-table-price', {
 
 		// Setup currency styles
 		const computedFontSize = fontSizeClass ? undefined : customFontSize;
-		const currencySize = Math.floor( computedFontSize / 2.5 );
+		const currencySize = Math.floor(computedFontSize / 2.5);
 		const currencyStyles = {
 			fontSize: computedFontSize ? currencySize + 'px' : undefined,
 		};
 
 		// Setup term styles
-		const termSize = Math.floor( computedFontSize / 2.5 );
+		const termSize = Math.floor(computedFontSize / 2.5);
 		const termStyles = {
 			fontSize: computedFontSize ? termSize + 'px' : undefined,
 		};
@@ -173,42 +173,42 @@ registerBlockType( 'genesis-blocks/gb-pricing-table-price', {
 		// Save the block markup for the front end
 		return (
 			<div
-				className={ wrapperClassName ? wrapperClassName : undefined }
-				style={ wrapperStyles }
+				className={wrapperClassName ? wrapperClassName : undefined}
+				style={wrapperStyles}
 			>
 				<div
 					itemProp="offers"
 					itemScope
 					itemType="http://schema.org/Offer"
 				>
-					{ currency && showCurrency && (
+					{currency && showCurrency && (
 						<RichText.Content
 							tagName="span"
 							itemProp="priceCurrency"
-							value={ currency }
+							value={currency}
 							className="gb-pricing-table-currency"
-							style={ currencyStyles }
+							style={currencyStyles}
 						/>
-					) }
+					)}
 					<RichText.Content
 						tagName="div"
 						itemProp="price"
-						value={ price }
-						className={ className ? className : undefined }
-						style={ styles }
+						value={price}
+						className={className ? className : undefined}
+						style={styles}
 					/>
-					{ term && showTerm && (
+					{term && showTerm && (
 						<RichText.Content
 							tagName="span"
-							value={ term }
+							value={term}
 							className="gb-pricing-table-term"
-							style={ termStyles }
+							style={termStyles}
 						/>
-					) }
+					)}
 				</div>
 			</div>
 		);
 	},
 
 	deprecated,
-} );
+});

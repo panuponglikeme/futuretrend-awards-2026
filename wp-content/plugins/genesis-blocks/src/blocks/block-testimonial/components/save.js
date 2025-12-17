@@ -8,7 +8,7 @@ import Testimonial from './testimonial';
  */
 import { RichText } from '@wordpress/block-editor';
 
-export default function Save( props ) {
+export default function Save(props) {
 	const {
 		testimonialName,
 		testimonialTitle,
@@ -20,48 +20,48 @@ export default function Save( props ) {
 	} = props.attributes;
 
 	return (
-		<Testimonial { ...props }>
+		<Testimonial {...props}>
 			<RichText.Content
 				tagName="div"
 				className="gb-testimonial-text"
-				style={ {
+				style={{
 					textAlign: testimonialAlignment,
-				} }
-				value={ testimonialContent }
+				}}
+				value={testimonialContent}
 			/>
 			<div className="gb-testimonial-info">
-				{ testimonialImgURL && (
+				{testimonialImgURL && (
 					<div className="gb-testimonial-avatar-wrap">
 						<div className="gb-testimonial-image-wrap">
 							<img
 								className="gb-testimonial-avatar"
-								src={ testimonialImgURL }
+								src={testimonialImgURL}
 								alt={
 									testimonialImgAlt ? testimonialImgAlt : null
 								}
 							/>
 						</div>
 					</div>
-				) }
+				)}
 				<RichText.Content
 					tagName="h2"
 					className="gb-testimonial-name"
-					style={ {
+					style={{
 						color: testimonialTextColor
 							? testimonialTextColor
 							: '#32373c',
-					} }
-					value={ testimonialName }
+					}}
+					value={testimonialName}
 				/>
 				<RichText.Content
 					tagName="small"
 					className="gb-testimonial-title"
-					style={ {
+					style={{
 						color: testimonialTextColor
 							? testimonialTextColor
 							: '#32373c',
-					} }
-					value={ testimonialTitle }
+					}}
+					value={testimonialTitle}
 				/>
 			</div>
 		</Testimonial>

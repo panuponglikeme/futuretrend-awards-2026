@@ -38,64 +38,61 @@ export default class Container extends Component {
 				: undefined,
 			textAlign: containerAlignment ? containerAlignment : undefined,
 			paddingLeft: containerPaddingLeft
-				? `${ containerPaddingLeft }%`
+				? `${containerPaddingLeft}%`
 				: undefined,
 			paddingRight: containerPaddingRight
-				? `${ containerPaddingRight }%`
+				? `${containerPaddingRight}%`
 				: undefined,
 			paddingBottom: containerPaddingBottom
-				? `${ containerPaddingBottom }%`
+				? `${containerPaddingBottom}%`
 				: undefined,
 			paddingTop: containerPaddingTop
-				? `${ containerPaddingTop }%`
+				? `${containerPaddingTop}%`
 				: undefined,
 			marginTop: containerMarginTop
-				? `${ containerMarginTop }%`
+				? `${containerMarginTop}%`
 				: undefined,
 			marginBottom: containerMarginBottom
-				? `${ containerMarginBottom }%`
+				? `${containerMarginBottom}%`
 				: undefined,
 		};
 
 		const className = classnames(
-			[ this.props.className, 'gb-block-container' ],
+			[this.props.className, 'gb-block-container'],
 			{
-				[ 'align' + containerWidth ]: containerWidth,
+				['align' + containerWidth]: containerWidth,
 			}
 		);
 
 		return (
-			<div
-				style={ styles }
-				className={ className ? className : undefined }
-			>
+			<div style={styles} className={className ? className : undefined}>
 				<div className="gb-container-inside">
-					{ containerImgURL && !! containerImgURL.length && (
+					{containerImgURL && !!containerImgURL.length && (
 						<div className="gb-container-image-wrap">
 							<img
-								className={ classnames(
+								className={classnames(
 									'gb-container-image',
-									dimRatioToClass( containerDimRatio ),
+									dimRatioToClass(containerDimRatio),
 									{
 										'has-background-dim':
 											0 !== containerDimRatio,
 									}
-								) }
-								src={ containerImgURL }
-								alt={ containerImgAlt }
+								)}
+								src={containerImgURL}
+								alt={containerImgAlt}
 							/>
 						</div>
-					) }
+					)}
 
 					<div
 						className="gb-container-content"
-						style={ {
+						style={{
 							maxWidth: containerMaxWidth
-								? `${ containerMaxWidth }px`
+								? `${containerMaxWidth}px`
 								: undefined,
-						} }
+						}}
 					>
-						{ this.props.children }
+						{this.props.children}
 					</div>
 				</div>
 			</div>
@@ -103,8 +100,8 @@ export default class Container extends Component {
 	}
 }
 
-function dimRatioToClass( ratio ) {
+function dimRatioToClass(ratio) {
 	return 0 === ratio || 50 === ratio
 		? null
-		: `has-background-dim-${ 10 * Math.round( ratio / 10 ) }`;
+		: `has-background-dim-${10 * Math.round(ratio / 10)}`;
 }

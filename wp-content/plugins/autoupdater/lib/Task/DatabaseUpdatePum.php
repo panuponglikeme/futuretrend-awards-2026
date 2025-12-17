@@ -15,22 +15,26 @@ class AutoUpdater_Task_DatabaseUpdatePum extends AutoUpdater_Task_Base
         if (!is_plugin_active('popup-maker/popup-maker.php')) {
             return array(
                 'success' => true,
-                'message' => 'Popup Maker plugin is not active, skipping database update'
+                'message' => 'Popup Maker plugin is not active, skipping database update.',
             );
         }
 
-        if (file_exists(WP_PLUGIN_DIR . '/popup-maker/popup-maker.php')
+        $plugin_file = WP_PLUGIN_DIR . '/popup-maker/popup-maker.php';
+        if (file_exists($plugin_file)
             && file_exists(WP_PLUGIN_DIR . '/popup-maker/includes/admin/class-pum-admin-upgrades.php')
         ) {
-            include_once WP_PLUGIN_DIR . '/popup-maker/popup-maker.php';
+            include_once $plugin_file; // phpcs:ignore
             include_once WP_PLUGIN_DIR . '/popup-maker/includes/admin/class-pum-admin-upgrades.php';
         }
+
+        $data = get_file_data($plugin_file, array('Version' => 'Version'));
+        $version = $data['Version'];
 
         if (!defined('POPMAKE_VERSION')) {
             return array(
                 'success' => true,
                 'needs_refactor' => true,
-                'message' => 'Popup Maker plugin not loaded'
+                'message' => 'Popup Maker ' . $version . ' plugin not loaded. POPMAKE_VERSION not defined.',
             );
         }
 
@@ -41,7 +45,7 @@ class AutoUpdater_Task_DatabaseUpdatePum extends AutoUpdater_Task_Base
             return array(
                 'success' => true,
                 'needs_refactor' => true,
-                'message' => 'Popup Maker plugin upgrade functions not found, check for source code updates',
+                'message' => 'PUM_Admin_Upgrades::process_upgrades method not found. Version ' . $version,
             );
         }
 
@@ -59,7 +63,7 @@ class AutoUpdater_Task_DatabaseUpdatePum extends AutoUpdater_Task_Base
             if ($current_db_ver == $target_db_ver) {
                 return array(
                     'success' => true,
-                    'message' => 'Popup Maker database version is up to date',
+                    'message' => 'Popup Maker ' . $version . ' database version is up to date.',
                 );
             }
 
@@ -81,14 +85,14 @@ class AutoUpdater_Task_DatabaseUpdatePum extends AutoUpdater_Task_Base
             }
 
             $success = true;
-            $message = 'Popup Maker plugin database upgraded successfully';
+            $message = 'Popup Maker ' . $version . ' plugin database upgraded successfully.';
         } catch (Exception $err) {
             $message = $err->getMessage();
         }
 
         return array(
             'success' => $success,
-            'message' => $message
+            'message' => $message,
         );
     }
 }

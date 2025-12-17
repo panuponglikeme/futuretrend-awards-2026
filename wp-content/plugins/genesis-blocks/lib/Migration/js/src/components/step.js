@@ -18,15 +18,15 @@ import * as React from 'react';
  *
  * @param {StepProps} props The component props.
  */
-const Step = ( { isActive, isComplete, children } ) => {
+const Step = ({ isActive, isComplete, children }) => {
 	return (
 		<div
-			className={ classNames( 'step', {
+			className={classNames('step', {
 				'step--active': isActive,
 				'step--complete': isComplete,
-			} ) }
+			})}
 		>
-			{ children }
+			{children}
 		</div>
 	);
 };

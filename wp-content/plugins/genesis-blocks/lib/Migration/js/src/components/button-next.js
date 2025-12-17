@@ -24,39 +24,39 @@ import { useState } from '@wordpress/element';
  * @param {ButtonNextProps} props The component props.
  * @return {React.ReactElement} The component for the step content.
  */
-const ButtonNext = ( { onClick, checkboxLabel, stepIndex } ) => {
-	const [ isCheckboxChecked, setCheckboxChecked ] = useState( false );
+const ButtonNext = ({ onClick, checkboxLabel, stepIndex }) => {
+	const [isCheckboxChecked, setCheckboxChecked] = useState(false);
 
 	// If there's no label for the 'confirmation' checkbox, return a simple button.
-	if ( ! checkboxLabel ) {
+	if (!checkboxLabel) {
 		return (
-			<button className="btn" onClick={ onClick }>
-				{ __( 'Next Step', 'genesis-blocks' ) }
+			<button className="btn" onClick={onClick}>
+				{__('Next Step', 'genesis-blocks')}
 			</button>
 		);
 	}
 
-	const inputId = `gb-migration-check-${ stepIndex }`;
+	const inputId = `gb-migration-check-${stepIndex}`;
 	return (
 		<>
 			<form>
 				<input
-					id={ inputId }
+					id={inputId}
 					type="checkbox"
-					onClick={ () => {
-						setCheckboxChecked( ! isCheckboxChecked );
-					} }
+					onClick={() => {
+						setCheckboxChecked(!isCheckboxChecked);
+					}}
 				/>
-				<label htmlFor={ inputId } className="gb-checkbox-label">
-					{ checkboxLabel }
+				<label htmlFor={inputId} className="gb-checkbox-label">
+					{checkboxLabel}
 				</label>
 			</form>
 			<button
 				className="gb-admin-button-primary"
-				onClick={ onClick }
-				disabled={ ! isCheckboxChecked }
+				onClick={onClick}
+				disabled={!isCheckboxChecked}
 			>
-				{ __( 'Next Step', 'genesis-blocks' ) }
+				{__('Next Step', 'genesis-blocks')}
 			</button>
 		</>
 	);

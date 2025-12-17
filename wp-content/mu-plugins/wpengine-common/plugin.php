@@ -255,6 +255,15 @@ class WpeCommon extends WpePlugin_common {
 	}
 
 	/**
+	 * Gets the capability required to see/use the mu-plugin's admin.
+	 *
+	 * @return
+	 */
+	public static function get_required_admin_capability() {
+		return is_multisite() ? 'manage_network' : 'manage_options';
+	}
+
+	/**
 	 * This handles CDN replacement for srcset images.
 	 *
 	 * @since 2.2.10
@@ -356,7 +365,9 @@ class WpeCommon extends WpePlugin_common {
 		    return;
 
 		$user = wp_get_current_user();
-        $has_manage_options = $user->has_cap( 'manage_options' );
+
+	$has_manage_options = is_multisite() ? $user->has_cap( 'manage_network' ) : $user->has_cap( 'manage_options' ) ;
+
         $cache_plugin_present = wpe\plugin\Wpe_Cache_Adaptor::get_instance()->is_cache_plugin_present();
         $saved_user_roles = get_option('wpe-adminbar-roles', array() );
         array_push($saved_user_roles, 'administrator');
@@ -392,6 +403,18 @@ class WpeCommon extends WpePlugin_common {
 
 	public function get_plugin_admin_url($url='admin.php?page=wpengine-common') {
 		return is_multisite() ? network_admin_url($url) : admin_url($url) ;
+	}
+
+	/**
+	 * Returns true if we are on the WP Engine plugin page.
+	 *
+	 * This uses the URL parameter as it could be used before the current screen API
+	 * is ready.
+	 *
+	 * @return bool
+	 */
+	public static function is_plugin_page() {
+		return isset($_GET['page']) && $_GET['page'] == 'wpengine-common';
 	}
 
 	// Singleton instance
@@ -632,12 +655,12 @@ class WpeCommon extends WpePlugin_common {
     	}
 
     public function wp_hook_admin_menu() {
+        $capability = self::get_required_admin_capability();
+
         // Variations due to type of site
         if ( is_multisite() ) {
-            $capability = 'manage_network';
             $position   = -1;
         } else {
-            $capability = 'manage_options';
             $position   = 0;
         }
 
@@ -671,7 +694,7 @@ class WpeCommon extends WpePlugin_common {
 
 		// Remove all admin notices on the WP Engine settings page. We have to do this here (instead of in admin-ui.php) because admin_notices fires before the page callback function.
 		// sometimes $GET can be empty, check if its null before we continue
-		if (isset($_GET['page']) && strip_tags($_GET['page']) === 'wpengine-common') {
+		if ( self::is_plugin_page() ) {
 			remove_all_actions( 'admin_notices' );
 		}
 
@@ -1221,6 +1244,23 @@ class WpeCommon extends WpePlugin_common {
 	return (bool)$disable_legacy_staging;
     }
 
+	/**
+	 * Get the customer account's preferred source.
+	 *
+	 * Platform may set a plugin_update_source globals containing either "wpengine" or "wordpress".
+	 *
+	 * @return string
+	 */
+	public function get_account_plugin_update_source() {
+		global $plugin_update_source;
+
+		if ( is_string( $plugin_update_source ) && ! empty( $plugin_update_source ) ) {
+			return $plugin_update_source;
+		}
+
+		return '';
+	}
+
     // Returns structured information about the site as we know it
     public function get_site_info() {
         global $wpengine_platform_config;
@@ -1231,7 +1271,7 @@ class WpeCommon extends WpePlugin_common {
             $r->name = PWP_NAME;
             $r->cluster = WPE_CLUSTER_ID;
             $r->is_pod = defined( 'WPE_ISP' ) ? WPE_ISP : FALSE;
-            $r->lbmaster = @constant( "WPE_LBMASTER_IP" ) ?: FALSE;
+            $r->lbmaster = defined( "WPE_LBMASTER_IP" ) ? WPE_LBMASTER_IP : FALSE;
             if( !$r->lbmaster ) {
                 $r->lbmaster = $r->is_pod ? "pod-" . $r->cluster . ".$base" : "lbmaster-" . $r->cluster . ".$base";
             }
@@ -1911,11 +1951,13 @@ class WpeCommon extends WpePlugin_common {
      * @param domain server to hit, e.g. "api.foobar.com"
      * @param port e.g. 80
      * @param hostname string to use for the "Host" header on the target machine (null to copy $domain)
-     * @param url e.g. "/v2/do_thing?apikey=1234"
+     * @param uri e.g. "/v2/do_thing?apikey=1234"
+     * @param extra_headers associative array of headers to add to the request
+     * @param payload data to send with the POST request
      * @param wait_ms time to wait for the request to get going, since it will be destroyed when the connection ends
      * @return true on "success". (No errors detected.)
      */
-    public static function http_request_async( $method, $domain, $port, $hostname, $uri, $extra_headers = array( ), $wait_ms = 100 ) {
+    public static function http_request_async( $method, $domain, $port, $hostname, $uri, $extra_headers = array( ), $wait_ms = 100, $payload = null ) {
         //don't do anything is on staging
         if (is_wpe_snapshot()) {
             return false;
@@ -1941,6 +1983,9 @@ class WpeCommon extends WpePlugin_common {
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        if ($payload) {
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+        }
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 1);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         if ($wait_ms > 0) {

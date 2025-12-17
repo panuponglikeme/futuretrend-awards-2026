@@ -19,15 +19,15 @@ export default class Pricing extends Component {
 		} = this.props;
 
 		const className = classnames(
-			[ this.props.className, 'gb-pricing-columns-' + columns ],
+			[this.props.className, 'gb-pricing-columns-' + columns],
 			{
-				[ 'align' + align ]: align,
+				['align' + align]: align,
 			}
 		);
 
 		return (
-			<div className={ className ? className : undefined }>
-				{ this.props.children }
+			<div className={className ? className : undefined}>
+				{this.props.children}
 			</div>
 		);
 	}

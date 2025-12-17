@@ -24,7 +24,6 @@ return array(
     'Genesis\\Blocks\\Migration\\UserMeta' => $baseDir . '/lib/Migration/UserMeta.php',
     'Genesis\\Blocks\\ModuleLoader' => $baseDir . '/lib/ModuleLoader.php',
     'Genesis\\Blocks\\PluginLoader' => $baseDir . '/lib/PluginLoader.php',
-    'Genesis\\Blocks\\PluginUpdater' => $baseDir . '/lib/PluginUpdater.php',
     'Genesis\\Blocks\\Settings\\AdminPage' => $baseDir . '/lib/Settings/AdminPage.php',
     'Genesis\\Blocks\\Settings\\Module' => $baseDir . '/lib/Settings/Module.php',
     'Genesis\\Blocks\\Settings\\Tests\\AdminPageTest' => $baseDir . '/lib/Settings/Tests/AdminPageTest.php',

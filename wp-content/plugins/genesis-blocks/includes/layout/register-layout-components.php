@@ -7,7 +7,7 @@
 
 namespace Genesis\Blocks\Layouts;
 
-add_action( 'plugins_loaded', __NAMESPACE__ . '\register_components', 11 );
+add_action( 'init', __NAMESPACE__ . '\register_components', 11 );
 /**
  * Registers section and layout components.
  *

@@ -22,35 +22,33 @@ export default class Edit extends Component {
 
 		/* Placeholder with layout modal */
 		return [
-			<Fragment key={ this.props.clientId }>
+			<Fragment key={this.props.clientId}>
 				<BlockControls key="controls">
 					<BlockAlignmentToolbar
-						value={ attributes.align }
-						onChange={ ( align ) => setAttributes( { align } ) }
-						controls={ [] }
+						value={attributes.align}
+						onChange={(align) => setAttributes({ align })}
+						controls={[]}
 					/>
 				</BlockControls>
 				<Placeholder
 					key="placeholder"
-					label={ __( 'Layout Selector', 'genesis-blocks' ) }
-					instructions={ __(
+					label={__('Layout Selector', 'genesis-blocks')}
+					instructions={__(
 						'Launch the layout library to browse pre-designed sections.',
 						'genesis-blocks'
-					) }
-					className={ 'gb-layout-selector-placeholder' }
+					)}
+					className={'gb-layout-selector-placeholder'}
 					icon="layout"
 				>
 					<LayoutsContext.Consumer
-						key={
-							'layouts-context-provider-' + this.props.clientId
-						}
+						key={'layouts-context-provider-' + this.props.clientId}
 					>
-						{ ( context ) => (
+						{(context) => (
 							<LayoutModal
-								clientId={ clientId }
-								context={ context }
+								clientId={clientId}
+								context={context}
 							/>
-						) }
+						)}
 					</LayoutsContext.Consumer>
 				</Placeholder>
 			</Fragment>,

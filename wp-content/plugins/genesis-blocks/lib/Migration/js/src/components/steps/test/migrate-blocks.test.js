@@ -14,14 +14,14 @@ import apiFetch from '@wordpress/api-fetch';
  */
 import { MigrateBlocks } from '../';
 
-jest.mock( '@wordpress/api-fetch' );
+jest.mock('@wordpress/api-fetch');
 global.genesisBlocksMigration = {
 	gbUrl: 'https://example.com',
 };
 
-test( 'migrate blocks step', async () => {
+test('migrate blocks step', async () => {
 	apiFetch.mockImplementation(
-		() => new Promise( ( resolve ) => resolve( { success: true } ) )
+		() => new Promise((resolve) => resolve({ success: true }))
 	);
 	const props = {
 		currentStepIndex: 4,
@@ -31,12 +31,12 @@ test( 'migrate blocks step', async () => {
 		stepIndex: 4,
 	};
 
-	const { getByText } = render( <MigrateBlocks { ...props } /> );
+	const { getByText } = render(<MigrateBlocks {...props} />);
 
-	getByText( /migrate your content/i );
-	getByText( props.stepIndex.toString() );
+	getByText(/migrate your content/i);
+	getByText(props.stepIndex.toString());
 
-	await waitFor( () => user.click( getByText( 'Migrate Now' ) ) );
+	await waitFor(() => user.click(getByText('Migrate Now')));
 
-	expect( getByText( 'The migration was successful!' ) ).toBeInTheDocument();
-} );
+	expect(getByText('The migration was successful!')).toBeInTheDocument();
+});

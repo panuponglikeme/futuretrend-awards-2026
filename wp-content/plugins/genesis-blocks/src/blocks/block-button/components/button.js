@@ -15,15 +15,12 @@ export default class CustomButton extends Component {
 	render() {
 		return (
 			<div
-				style={ {
+				style={{
 					textAlign: this.props.attributes.buttonAlignment,
-				} }
-				className={ classnames(
-					this.props.className,
-					'gb-block-button'
-				) }
+				}}
+				className={classnames(this.props.className, 'gb-block-button')}
 			>
-				{ this.props.children }
+				{this.props.children}
 			</div>
 		);
 	}

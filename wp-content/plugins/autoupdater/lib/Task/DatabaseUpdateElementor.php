@@ -20,37 +20,39 @@ class AutoUpdater_Task_DatabaseUpdateElementor extends AutoUpdater_Task_Base
         if ($plugin_slug != 'elementor-pro/elementor-pro.php' && $plugin_slug != 'elementor/elementor.php') {
             return array(
                 'success' => true,
-                'message' => 'Slug does not match either Elementor or Elementor Pro slugs'
+                'message' => 'Slug does not match either Elementor or Elementor Pro slugs.',
             );
         }
 
-        $plugin_dir = '/' . strtok($plugin_slug, '/');
-        $plugin_name = 'Elementor' . (strpos($plugin_slug, 'pro') !== false ? ' Pro' : '');
-        $plugin_file_name = strpos($plugin_slug, 'pro') !== 'false' ? ' elementor-pro.php' : 'elementor.php';
-
-
-        if (!is_plugin_active($plugin_slug)) {
+        // Elementor is the core plugin that has to be active in order to flush CSS.
+        // Elementor Pro is only an extension of the core plugin.
+        if (!is_plugin_active('elementor/elementor.php')) {
             return array(
                 'success' => true,
-                'message' => $plugin_name . ' plugin is not active, skipping database update'
+                'message' => 'Elementor plugin is not active, skipping database update.',
             );
         }
 
-        if (
-            file_exists(WP_PLUGIN_DIR . $plugin_dir . '/' . $plugin_file_name)
-            && file_exists(WP_PLUGIN_DIR . $plugin_dir .  '/core/upgrade/manager.php')
-        ) {
-            include_once WP_PLUGIN_DIR . $plugin_dir . '/' . $plugin_file_name;
-            include_once WP_PLUGIN_DIR . $plugin_dir . '/core/upgrade/manager.php';
+        /** @see https://plugins.svn.wordpress.org/elementor/trunk/ */
+        $plugin_file = WP_PLUGIN_DIR . '/elementor/elementor.php';
+        $manager_file = WP_PLUGIN_DIR . '/elementor/core/upgrade/manager.php';
+
+        if (file_exists($plugin_file) && file_exists($manager_file)) {
+            include_once $plugin_file; // phpcs:ignore
+            include_once $manager_file; // phpcs:ignore
         }
 
+        $data = get_file_data($plugin_file, array('Version' => 'Version'));
+        $version = $data['Version'];
+
+        /** @since at least 3.0.0 */
         $manager_class = '\Elementor\Core\Upgrade\Manager';
 
         if (!class_exists($manager_class)) {
             return array(
                 'success' => true,
                 'needs_refactor' => true,
-                'message' =>  $plugin_name . ' plugin upgrade manager class not found, check for source code updates',
+                'message' =>  $manager_class . ' class not found. Version ' . $version,
             );
         }
 
@@ -65,15 +67,14 @@ class AutoUpdater_Task_DatabaseUpdateElementor extends AutoUpdater_Task_Base
             return array(
                 'success' => true,
                 'needs_refactor' => true,
-                'message' =>  $plugin_name . ' plugin upgrade manager methods not found, check for source code updates',
+                'message' =>  'One of ' . $manager_class . ' methods not found. Version ' . $version,
             );
         }
-
 
         if (!$manager->should_upgrade()) {
             return array(
                 'success' => true,
-                'message' => 'The DB is already updated. Skipping...'
+                'message' => 'Elementor ' . $version . ' plugin database is up to date.',
             );
         }
 
@@ -87,14 +88,14 @@ class AutoUpdater_Task_DatabaseUpdateElementor extends AutoUpdater_Task_Base
             }
             $manager->on_runner_complete($did_tasks);
             $success = true;
-            $message = $plugin_name . ' plugin database upgraded successfully';
+            $message = 'Elementor ' . $version . ' plugin database upgraded successfully.';
         } catch (Exception $err) {
             $message = $err->getMessage();
         }
 
         return array(
             'success' => $success,
-            'message' => $message
+            'message' => $message,
         );
     }
 }

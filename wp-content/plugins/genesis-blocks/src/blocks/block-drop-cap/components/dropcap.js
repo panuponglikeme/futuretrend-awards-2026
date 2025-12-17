@@ -19,18 +19,18 @@ export default class DropCap extends Component {
 
 		return (
 			<div
-				style={ {
+				style={{
 					color: dropCapTextColor,
 					textAlign: dropCapAlignment,
-				} }
-				className={ classnames(
+				}}
+				className={classnames(
 					this.props.className,
 					dropCapStyle,
 					'gb-font-size-' + dropCapFontSize,
 					'gb-block-drop-cap'
-				) }
+				)}
 			>
-				{ this.props.children }
+				{this.props.children}
 			</div>
 		);
 	}

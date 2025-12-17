@@ -30,14 +30,14 @@ class Edit extends Component {
 		} = this.props;
 
 		// Setup class names
-		const editClassName = classnames( {
+		const editClassName = classnames({
 			'gb-pricing-table-title': true,
-			[ fontSize.class ]: fontSize.class,
+			[fontSize.class]: fontSize.class,
 			'has-text-color': textColor.color,
 			'has-background': backgroundColor.color,
-			[ backgroundColor.class ]: backgroundColor.class,
-			[ textColor.class ]: textColor.class,
-		} );
+			[backgroundColor.class]: backgroundColor.class,
+			[textColor.class]: textColor.class,
+		});
 
 		// Setup styles
 		const editStyles = {
@@ -57,22 +57,22 @@ class Edit extends Component {
 					this.props.clientId
 				}
 			>
-				<Inspector { ...this.props } />
+				<Inspector {...this.props} />
 				<RichText
 					tagName="div"
 					itemProp="name"
-					placeholder={ __( 'Price Title', 'genesis-blocks' ) }
-					value={ title }
-					onChange={ ( value ) => setAttributes( { title: value } ) }
-					style={ editStyles }
-					className={ editClassName ? editClassName : undefined }
+					placeholder={__('Price Title', 'genesis-blocks')}
+					value={title}
+					onChange={(value) => setAttributes({ title: value })}
+					style={editStyles}
+					className={editClassName ? editClassName : undefined}
 				/>
 			</Fragment>,
 		];
 	}
 }
 
-export default compose( [
-	withFontSizes( 'fontSize' ),
-	withColors( 'backgroundColor', { textColor: 'color' } ),
-] )( Edit );
+export default compose([
+	withFontSizes('fontSize'),
+	withColors('backgroundColor', { textColor: 'color' }),
+])(Edit);

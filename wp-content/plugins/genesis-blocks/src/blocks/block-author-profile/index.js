@@ -114,8 +114,8 @@ const blockAttributes = {
 /**
  * Register the block
  */
-registerBlockType( 'genesis-blocks/gb-profile-box', {
-	title: __( 'Profile Box', 'genesis-blocks' ),
+registerBlockType('genesis-blocks/gb-profile-box', {
+	title: __('Profile Box', 'genesis-blocks'),
 	description: __(
 		'Add a profile box with bio info and social media links.',
 		'genesis-blocks'
@@ -123,10 +123,10 @@ registerBlockType( 'genesis-blocks/gb-profile-box', {
 	icon: 'admin-users',
 	category: 'genesis-blocks',
 	keywords: [
-		__( 'author', 'genesis-blocks' ),
-		__( 'profile', 'genesis-blocks' ),
-		__( 'atomic', 'genesis-blocks' ),
-		__( 'genesis', 'genesis-blocks' ),
+		__('author', 'genesis-blocks'),
+		__('profile', 'genesis-blocks'),
+		__('atomic', 'genesis-blocks'),
+		__('genesis', 'genesis-blocks'),
 	],
 
 	/* Setup the block attributes */
@@ -134,34 +134,34 @@ registerBlockType( 'genesis-blocks/gb-profile-box', {
 
 	gb_settings_data: {
 		gb_author_profile_profileFontSize: {
-			title: __( 'Font Size', 'genesis-blocks' ),
+			title: __('Font Size', 'genesis-blocks'),
 		},
 		gb_author_profile_profileAvatarShape: {
-			title: __( 'Avatar Shape', 'genesis-blocks' ),
+			title: __('Avatar Shape', 'genesis-blocks'),
 		},
 		gb_author_profile_profileBackgroundColor: {
-			title: __( 'Background Color', 'genesis-blocks' ),
+			title: __('Background Color', 'genesis-blocks'),
 		},
 		gb_author_profile_profileTextColor: {
-			title: __( 'Text Color', 'genesis-blocks' ),
+			title: __('Text Color', 'genesis-blocks'),
 		},
 		gb_author_profile_profileLinkColor: {
-			title: __( 'Social Link Color', 'genesis-blocks' ),
+			title: __('Social Link Color', 'genesis-blocks'),
 		},
 		gb_author_profile_socialLinks: {
-			title: __( 'Social Links', 'genesis-blocks' ),
+			title: __('Social Links', 'genesis-blocks'),
 		},
 	},
 
 	/* Render the block in the editor. */
-	edit: ( props ) => {
-		return <Edit { ...props } clientId={ props.clientId } />;
+	edit: (props) => {
+		return <Edit {...props} clientId={props.clientId} />;
 	},
 
 	/* Save the block markup. */
-	save: ( props ) => {
-		return <Save { ...props } clientId={ props.attributes.clientId } />;
+	save: (props) => {
+		return <Save {...props} clientId={props.attributes.clientId} />;
 	},
 
 	deprecated,
-} );
+});

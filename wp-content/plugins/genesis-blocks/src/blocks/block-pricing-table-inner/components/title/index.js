@@ -19,19 +19,19 @@ const {
 } = wp.blockEditor;
 
 // Register the block
-registerBlockType( 'genesis-blocks/gb-pricing-table-title', {
-	title: __( 'Product Title', 'genesis-blocks' ),
+registerBlockType('genesis-blocks/gb-pricing-table-title', {
+	title: __('Product Title', 'genesis-blocks'),
 	description: __(
 		'Adds a product title component with schema markup.',
 		'genesis-blocks'
 	),
 	icon: 'cart',
 	category: 'genesis-blocks',
-	parent: [ 'genesis-blocks/gb-pricing-table' ],
+	parent: ['genesis-blocks/gb-pricing-table'],
 	keywords: [
-		__( 'pricing table', 'genesis-blocks' ),
-		__( 'title', 'genesis-blocks' ),
-		__( 'shop', 'genesis-blocks' ),
+		__('pricing table', 'genesis-blocks'),
+		__('title', 'genesis-blocks'),
+		__('shop', 'genesis-blocks'),
 	],
 
 	attributes: {
@@ -78,7 +78,7 @@ registerBlockType( 'genesis-blocks/gb-pricing-table-title', {
 	edit: Edit,
 
 	// Save the attributes and markup
-	save( props ) {
+	save(props) {
 		// Setup the attributes
 		const {
 			title,
@@ -95,10 +95,10 @@ registerBlockType( 'genesis-blocks/gb-pricing-table-title', {
 		} = props.attributes;
 
 		// Retreive the fontSizeClass
-		const fontSizeClass = getFontSizeClass( fontSize );
+		const fontSizeClass = getFontSizeClass(fontSize);
 
 		// Retreive the getColorClassName
-		const textClass = getColorClassName( 'color', textColor );
+		const textClass = getColorClassName('color', textColor);
 		const backgroundClass = getColorClassName(
 			'background-color',
 			backgroundColor
@@ -117,23 +117,23 @@ registerBlockType( 'genesis-blocks/gb-pricing-table-title', {
 			paddingLeft: paddingLeft ? paddingLeft + 'px' : undefined,
 		};
 
-		const className = classnames( {
+		const className = classnames({
 			'has-background': backgroundColor || customBackgroundColor,
 			'gb-pricing-table-title': true,
-			[ fontSizeClass ]: fontSizeClass,
-			[ textClass ]: textClass,
-			[ backgroundClass ]: backgroundClass,
-		} );
+			[fontSizeClass]: fontSizeClass,
+			[textClass]: textClass,
+			[backgroundClass]: backgroundClass,
+		});
 
 		// Save the block markup for the front end
 		return (
 			<RichText.Content
 				tagName="div"
 				itemProp="name"
-				value={ title }
-				style={ styles }
-				className={ className ? className : undefined }
+				value={title}
+				style={styles}
+				className={className ? className : undefined}
 			/>
 		);
 	},
-} );
+});

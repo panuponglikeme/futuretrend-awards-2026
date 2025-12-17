@@ -22,42 +22,39 @@ import {
 import { conditionallyAddPxUnit, getFontSize, getFontSlug } from '../utils';
 
 export const withResponsiveSettings = createHigherOrderComponent(
-	( BlockEdit ) => {
-		return ( props ) => {
+	(BlockEdit) => {
+		return (props) => {
 			const {
 				disableCustomFontSizes,
 				enableCustomLineHeight,
 				fontSizes,
-			} = useSelect( ( select ) =>
-				select( 'core/block-editor' ).getSettings()
+			} = useSelect((select) =>
+				select('core/block-editor').getSettings()
 			);
-			const selectedDevice = useSelect( ( select ) => {
+			const selectedDevice = useSelect((select) => {
 				const device =
-					select( 'core/editor' )?.getDeviceType ??
-					select( 'core/edit-post' )
+					select('core/editor')?.getDeviceType ??
+					select('core/edit-post')
 						?.__experimentalGetPreviewDeviceType;
 				return device?.() ?? DEVICE_NAMES.desktop;
-			} );
+			});
 
 			const setDevice =
-				useDispatch( 'core/editor' )?.setDeviceType ??
-				useDispatch( 'core/edit-post' )
+				useDispatch('core/editor')?.setDeviceType ??
+				useDispatch('core/edit-post')
 					?.__experimentalSetPreviewDeviceType;
 			const isFontSizeDisabled =
-				! hasBlockSupport( props.name, 'typography.fontSize', true ) ||
-				! fontSizes?.length;
+				!hasBlockSupport(props.name, 'typography.fontSize', true) ||
+				!fontSizes?.length;
 			const isLineHeightDisabled =
-				! hasBlockSupport(
-					props.name,
-					'typography.lineHeight',
-					true
-				) || ! enableCustomLineHeight;
+				!hasBlockSupport(props.name, 'typography.lineHeight', true) ||
+				!enableCustomLineHeight;
 
 			if (
-				! BLOCKS_WITH_RESPONSIVE_SETTINGS.includes( props.name ) ||
-				( isFontSizeDisabled && isLineHeightDisabled )
+				!BLOCKS_WITH_RESPONSIVE_SETTINGS.includes(props.name) ||
+				(isFontSizeDisabled && isLineHeightDisabled)
 			) {
-				return <BlockEdit { ...props } />;
+				return <BlockEdit {...props} />;
 			}
 
 			/**
@@ -65,9 +62,9 @@ export const withResponsiveSettings = createHigherOrderComponent(
 			 *
 			 * @param { 'Mobile' | 'Tablet' | 'Desktop' } device The device to set the preview to.
 			 */
-			const setSelectedDevice = ( device ) => {
-				if ( !! setDevice ) {
-					setDevice( device );
+			const setSelectedDevice = (device) => {
+				if (!!setDevice) {
+					setDevice(device);
 				}
 			};
 
@@ -82,11 +79,11 @@ export const withResponsiveSettings = createHigherOrderComponent(
 				responsiveSettingName,
 				device
 			) =>
-				props.attributes[ RESPONSIVE_SETTINGS_ATTRIBUTE ] &&
-				props.attributes[ RESPONSIVE_SETTINGS_ATTRIBUTE ][ device ]
-					? props.attributes[ RESPONSIVE_SETTINGS_ATTRIBUTE ][
-							device
-					  ][ responsiveSettingName ]
+				props.attributes[RESPONSIVE_SETTINGS_ATTRIBUTE] &&
+				props.attributes[RESPONSIVE_SETTINGS_ATTRIBUTE][device]
+					? props.attributes[RESPONSIVE_SETTINGS_ATTRIBUTE][device][
+							responsiveSettingName
+						]
 					: '';
 
 			/**
@@ -95,9 +92,9 @@ export const withResponsiveSettings = createHigherOrderComponent(
 			 * @return {string} The font size in px, em or rem, if any.
 			 */
 			const getFontSizeOfSelectedDevice = () => {
-				if ( DEVICE_NAMES.desktop === selectedDevice ) {
+				if (DEVICE_NAMES.desktop === selectedDevice) {
 					return (
-						getFontSize( props.attributes.fontSize, fontSizes ) ||
+						getFontSize(props.attributes.fontSize, fontSizes) ||
 						getFontSize(
 							props.attributes?.style?.typography?.fontSize,
 							fontSizes
@@ -108,11 +105,11 @@ export const withResponsiveSettings = createHigherOrderComponent(
 
 				const responsiveValue = getResponsiveValueForDevice(
 					'fontSize',
-					DEVICE_SIZES[ selectedDevice ]
+					DEVICE_SIZES[selectedDevice]
 				);
 
 				return (
-					getFontSize( responsiveValue, fontSizes ) || responsiveValue
+					getFontSize(responsiveValue, fontSizes) || responsiveValue
 				);
 			};
 
@@ -126,8 +123,8 @@ export const withResponsiveSettings = createHigherOrderComponent(
 					? props.attributes?.style?.typography?.lineHeight
 					: getResponsiveValueForDevice(
 							'lineHeight',
-							DEVICE_SIZES[ selectedDevice ]
-					  );
+							DEVICE_SIZES[selectedDevice]
+						);
 
 			/**
 			 * Sets the responsive value, like a 'lineHeight' of '2.0'.
@@ -135,18 +132,18 @@ export const withResponsiveSettings = createHigherOrderComponent(
 			 * @param {string} key   The key of the responsive value to set.
 			 * @param {string} value The responsive value to set.
 			 */
-			const setResponsiveValue = ( key, value ) => {
-				props.setAttributes( {
-					[ RESPONSIVE_SETTINGS_ATTRIBUTE ]: {
-						...props.attributes[ RESPONSIVE_SETTINGS_ATTRIBUTE ],
-						[ DEVICE_SIZES[ selectedDevice ] ]: {
-							...props.attributes[
-								RESPONSIVE_SETTINGS_ATTRIBUTE
-							][ DEVICE_SIZES[ selectedDevice ] ],
-							[ key ]: value,
+			const setResponsiveValue = (key, value) => {
+				props.setAttributes({
+					[RESPONSIVE_SETTINGS_ATTRIBUTE]: {
+						...props.attributes[RESPONSIVE_SETTINGS_ATTRIBUTE],
+						[DEVICE_SIZES[selectedDevice]]: {
+							...props.attributes[RESPONSIVE_SETTINGS_ATTRIBUTE][
+								DEVICE_SIZES[selectedDevice]
+							],
+							[key]: value,
 						},
 					},
-				} );
+				});
 			};
 
 			const mobileFont = getResponsiveValueForDevice(
@@ -160,96 +157,91 @@ export const withResponsiveSettings = createHigherOrderComponent(
 
 			return (
 				<>
-					{ Object.keys(
-						props.attributes[ RESPONSIVE_SETTINGS_ATTRIBUTE ]
+					{Object.keys(
+						props.attributes[RESPONSIVE_SETTINGS_ATTRIBUTE]
 					).length ? (
 						<style>
-							{ isFontSizeDisabled ? null : (
+							{isFontSizeDisabled ? null : (
 								<>
 									<ResponsiveSettingStyle
-										device={ DEVICE_SIZES.Tablet }
+										device={DEVICE_SIZES.Tablet}
 										selectedDevice={
-											DEVICE_SIZES[ selectedDevice ]
+											DEVICE_SIZES[selectedDevice]
 										}
 										settingName="fontSize"
-										settingValue={ conditionallyAddPxUnit(
+										settingValue={conditionallyAddPxUnit(
 											getFontSize(
 												tabletFont,
 												fontSizes
 											) || tabletFont
-										) }
-										clientId={ props.clientId }
+										)}
+										clientId={props.clientId}
 									/>
 									<ResponsiveSettingStyle
-										device={ DEVICE_SIZES.Mobile }
+										device={DEVICE_SIZES.Mobile}
 										selectedDevice={
-											DEVICE_SIZES[ selectedDevice ]
+											DEVICE_SIZES[selectedDevice]
 										}
 										settingName="fontSize"
-										settingValue={ conditionallyAddPxUnit(
+										settingValue={conditionallyAddPxUnit(
 											getFontSize(
 												mobileFont,
 												fontSizes
 											) || mobileFont
-										) }
-										clientId={ props.clientId }
+										)}
+										clientId={props.clientId}
 									/>
 								</>
-							) }
-							{ isLineHeightDisabled ? null : (
+							)}
+							{isLineHeightDisabled ? null : (
 								<>
 									<ResponsiveSettingStyle
-										device={ DEVICE_SIZES.Tablet }
+										device={DEVICE_SIZES.Tablet}
 										selectedDevice={
-											DEVICE_SIZES[ selectedDevice ]
+											DEVICE_SIZES[selectedDevice]
 										}
 										settingName="lineHeight"
-										settingValue={ getResponsiveValueForDevice(
+										settingValue={getResponsiveValueForDevice(
 											'lineHeight',
 											DEVICE_SIZES.Tablet
-										) }
-										clientId={ props.clientId }
+										)}
+										clientId={props.clientId}
 									/>
 									<ResponsiveSettingStyle
-										device={ DEVICE_SIZES.Mobile }
+										device={DEVICE_SIZES.Mobile}
 										selectedDevice={
-											DEVICE_SIZES[ selectedDevice ]
+											DEVICE_SIZES[selectedDevice]
 										}
 										settingName="lineHeight"
-										settingValue={ getResponsiveValueForDevice(
+										settingValue={getResponsiveValueForDevice(
 											'lineHeight',
 											DEVICE_SIZES.Mobile
-										) }
-										clientId={ props.clientId }
+										)}
+										clientId={props.clientId}
 									/>
 								</>
-							) }
+							)}
 						</style>
-					) : null }
-					<BlockEdit { ...props } />
+					) : null}
+					<BlockEdit {...props} />
 					<InspectorControls>
 						<PanelBody
-							title={ __(
+							title={__(
 								'Responsive Typography',
 								'genesis-blocks'
-							) }
+							)}
 						>
 							<NavigableMenu
 								className="gb-responsive-toggle"
-								onNavigate={ () => {} }
+								onNavigate={() => {}}
 								orientation="horizontal"
 							>
 								<Button
 									icon="laptop"
 									showTooltip
-									label={ __(
-										'Desktop view',
-										'genesis-blocks'
-									) }
-									onClick={ () =>
-										setSelectedDevice(
-											DEVICE_NAMES.desktop
-										)
+									label={__('Desktop view', 'genesis-blocks')}
+									onClick={() =>
+										setSelectedDevice(DEVICE_NAMES.desktop)
 									}
 									isPrimary={
 										DEVICE_NAMES.desktop === selectedDevice
@@ -258,17 +250,14 @@ export const withResponsiveSettings = createHigherOrderComponent(
 										DEVICE_NAMES.desktop !== selectedDevice
 									}
 								>
-									{ __( 'Desktop', 'genesis-blocks' ) }
+									{__('Desktop', 'genesis-blocks')}
 								</Button>
 								<Button
 									icon="tablet"
 									showTooltip
-									label={ __(
-										'Tablet view',
-										'genesis-blocks'
-									) }
-									onClick={ () =>
-										setSelectedDevice( DEVICE_NAMES.tablet )
+									label={__('Tablet view', 'genesis-blocks')}
+									onClick={() =>
+										setSelectedDevice(DEVICE_NAMES.tablet)
 									}
 									isPrimary={
 										DEVICE_NAMES.tablet === selectedDevice
@@ -277,17 +266,14 @@ export const withResponsiveSettings = createHigherOrderComponent(
 										DEVICE_NAMES.tablet !== selectedDevice
 									}
 								>
-									{ __( 'Tablet', 'genesis-blocks' ) }
+									{__('Tablet', 'genesis-blocks')}
 								</Button>
 								<Button
 									icon="smartphone"
 									showTooltip
-									label={ __(
-										'Mobile view',
-										'genesis-blocks'
-									) }
-									onClick={ () =>
-										setSelectedDevice( DEVICE_NAMES.mobile )
+									label={__('Mobile view', 'genesis-blocks')}
+									onClick={() =>
+										setSelectedDevice(DEVICE_NAMES.mobile)
 									}
 									isPrimary={
 										DEVICE_NAMES.mobile === selectedDevice
@@ -296,13 +282,13 @@ export const withResponsiveSettings = createHigherOrderComponent(
 										DEVICE_NAMES.mobile !== selectedDevice
 									}
 								>
-									{ __( 'Mobile', 'genesis-blocks' ) }
+									{__('Mobile', 'genesis-blocks')}
 								</Button>
 							</NavigableMenu>
-							{ isFontSizeDisabled ? null : (
+							{isFontSizeDisabled ? null : (
 								<FontSizePicker
-									value={ getFontSizeOfSelectedDevice() }
-									onChange={ ( newFontSize ) => {
+									value={getFontSizeOfSelectedDevice()}
+									onChange={(newFontSize) => {
 										const fontSizeSlug = getFontSlug(
 											newFontSize,
 											fontSizes
@@ -312,8 +298,8 @@ export const withResponsiveSettings = createHigherOrderComponent(
 											DEVICE_NAMES.desktop ===
 											selectedDevice
 										) {
-											props.setAttributes( {
-												style: cleanEmptyObject( {
+											props.setAttributes({
+												style: cleanEmptyObject({
 													...props.attributes?.style,
 													typography: {
 														...props.attributes
@@ -322,9 +308,9 @@ export const withResponsiveSettings = createHigherOrderComponent(
 															? undefined
 															: newFontSize,
 													},
-												} ),
+												}),
 												fontSize: fontSizeSlug,
-											} );
+											});
 
 											return;
 										}
@@ -333,25 +319,25 @@ export const withResponsiveSettings = createHigherOrderComponent(
 											'fontSize',
 											fontSizeSlug || newFontSize
 										);
-									} }
-									fontSizes={ fontSizes }
+									}}
+									fontSizes={fontSizes}
 									disableCustomFontSizes={
 										disableCustomFontSizes
 									}
 									__nextHasNoMarginBottom
 								/>
-							) }
-							{ isLineHeightDisabled ||
-							! LineHeightControl ? null : (
+							)}
+							{isLineHeightDisabled ||
+							!LineHeightControl ? null : (
 								<LineHeightControl
-									__nextHasNoMarginBottom={ true }
-									value={ getLineHeightOfSelectedDevice() }
-									onChange={ ( newLineHeight ) => {
+									__nextHasNoMarginBottom={true}
+									value={getLineHeightOfSelectedDevice()}
+									onChange={(newLineHeight) => {
 										if (
 											DEVICE_NAMES.desktop ===
 											selectedDevice
 										) {
-											props.setAttributes( {
+											props.setAttributes({
 												style: {
 													...props.attributes?.style,
 													typography: {
@@ -361,7 +347,7 @@ export const withResponsiveSettings = createHigherOrderComponent(
 															newLineHeight,
 													},
 												},
-											} );
+											});
 
 											return;
 										}
@@ -370,9 +356,9 @@ export const withResponsiveSettings = createHigherOrderComponent(
 											'lineHeight',
 											newLineHeight
 										);
-									} }
+									}}
 								/>
-							) }
+							)}
 						</PanelBody>
 					</InspectorControls>
 				</>

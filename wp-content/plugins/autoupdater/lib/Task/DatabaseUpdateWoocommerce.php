@@ -15,28 +15,32 @@ class AutoUpdater_Task_DatabaseUpdateWoocommerce extends AutoUpdater_Task_Base
         if (!is_plugin_active('woocommerce/woocommerce.php')) {
             return array(
                 'success' => true,
-                'message' => 'WooCommerce plugin is not active, skipping database update'
+                'message' => 'WooCommerce plugin is not active, skipping database update.',
             );
         }
 
+        $plugin_file = WP_PLUGIN_DIR . '/woocommerce/woocommerce.php';
         if (
-            file_exists(WP_PLUGIN_DIR . '/woocommerce/woocommerce.php')
+            file_exists($plugin_file)
             && file_exists(WP_PLUGIN_DIR . '/woocommerce/includes/class-wc-install.php')
             && file_exists(WP_PLUGIN_DIR . '/woocommerce/includes/wc-update-functions.php')
         ) {
-            include_once WP_PLUGIN_DIR . '/woocommerce/woocommerce.php';
+            include_once $plugin_file; // phpcs:ignore
             include_once WP_PLUGIN_DIR . '/woocommerce/includes/class-wc-install.php';
             include_once WP_PLUGIN_DIR . '/woocommerce/includes/wc-update-functions.php';
         }
+
+        $data = get_file_data($plugin_file, array('Version' => 'Version'));
+        $version = $data['Version'];
 
         if (!defined('WC_PLUGIN_FILE')) {
             return array(
                 'success' => true,
                 'needs_refactor' => true,
-                'message' => 'WooCommerce plugin not loaded'
+                'message' => 'WooCommerce ' . $version . ' plugin not loaded.',
             );
         }
-        
+
         // code here is mostly adapted from https://github.com/woocommerce/woocommerce/blob/e2bc34cf929e2e76cecda7e9376b2b11509424c1/plugins/woocommerce/includes/cli/class-wc-cli-update-command.php
         // in case of any issues, check out how the latest version differs from what we have here
 
@@ -48,7 +52,7 @@ class AutoUpdater_Task_DatabaseUpdateWoocommerce extends AutoUpdater_Task_Base
             return array(
                 'success' => true,
                 'needs_refactor' => true,
-                'message' => 'WooCommerce plugin upgrade functions not found, check for source code updates',
+                'message' => 'WooCommerce ' . $version . ' plugin upgrade functions not found.',
             );
         }
 
@@ -70,7 +74,7 @@ class AutoUpdater_Task_DatabaseUpdateWoocommerce extends AutoUpdater_Task_Base
 
             return array(
                 'success' => true,
-                'message' => 'WooCommerce plugin database is already in the latest version',
+                'message' => 'WooCommerce ' . $version . ' plugin database is up to date.',
             );
         }
 
@@ -82,14 +86,14 @@ class AutoUpdater_Task_DatabaseUpdateWoocommerce extends AutoUpdater_Task_Base
             WC_Admin_Notices::remove_notice('update', true);
 
             $success = true;
-            $message = 'WooCommerce plugin database upgraded successfully';
+            $message = 'WooCommerce ' . $version . ' plugin database upgraded successfully.';
         } catch (Exception $err) {
             $message = $err->getMessage();
         }
 
         return array(
             'success' => $success,
-            'message' => $message
+            'message' => $message,
         );
     }
 }

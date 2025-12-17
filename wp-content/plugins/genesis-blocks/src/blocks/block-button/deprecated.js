@@ -35,7 +35,7 @@ const v1 = {
 			default: false,
 		},
 	},
-	save( props ) {
+	save(props) {
 		const {
 			buttonText,
 			buttonUrl,
@@ -47,32 +47,32 @@ const v1 = {
 		} = props.attributes;
 
 		return (
-			<CustomButton { ...props }>
-				{ buttonText && (
+			<CustomButton {...props}>
+				{buttonText && (
 					<a
-						href={ buttonUrl }
-						target={ buttonTarget ? '_blank' : null }
-						rel={ buttonTarget ? 'noopener noreferrer' : null }
-						className={ classnames(
+						href={buttonUrl}
+						target={buttonTarget ? '_blank' : null}
+						rel={buttonTarget ? 'noopener noreferrer' : null}
+						className={classnames(
 							'gb-button',
 							buttonShape,
 							buttonSize
-						) }
-						style={ {
+						)}
+						style={{
 							color: buttonTextColor
 								? buttonTextColor
 								: '#ffffff',
 							backgroundColor: buttonBackgroundColor
 								? buttonBackgroundColor
 								: '#3373dc',
-						} }
+						}}
 					>
-						<RichText.Content value={ buttonText } />
+						<RichText.Content value={buttonText} />
 					</a>
-				) }
+				)}
 			</CustomButton>
 		);
 	},
 };
 
-export default [ v1 ];
+export default [v1];

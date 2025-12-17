@@ -35,15 +35,15 @@ export default class Inspector extends Component {
 		const spacerStyleOptions = [
 			{
 				value: 'gb-divider-solid',
-				label: __( 'Solid', 'genesis-blocks' ),
+				label: __('Solid', 'genesis-blocks'),
 			},
 			{
 				value: 'gb-divider-dashed',
-				label: __( 'Dashed', 'genesis-blocks' ),
+				label: __('Dashed', 'genesis-blocks'),
 			},
 			{
 				value: 'gb-divider-dotted',
-				label: __( 'Dotted', 'genesis-blocks' ),
+				label: __('Dotted', 'genesis-blocks'),
 			},
 		];
 
@@ -59,85 +59,82 @@ export default class Inspector extends Component {
 		];
 
 		// Update color values
-		const onChangeDividerColor = ( value ) =>
-			setAttributes( { spacerDividerColor: value } );
+		const onChangeDividerColor = (value) =>
+			setAttributes({ spacerDividerColor: value });
 
 		return (
 			<InspectorControls key="inspector">
 				<PanelBody>
 					<RenderSettingControl id="gb_spacer_spacerHeight">
 						<RangeControl
-							label={ __( 'Spacer Height', 'genesis-blocks' ) }
-							value={ spacerHeight || '' }
-							onChange={ ( value ) =>
-								this.props.setAttributes( {
+							label={__('Spacer Height', 'genesis-blocks')}
+							value={spacerHeight || ''}
+							onChange={(value) =>
+								this.props.setAttributes({
 									spacerHeight: value,
-								} )
+								})
 							}
-							min={ 30 }
-							max={ 600 }
+							min={30}
+							max={600}
 						/>
 					</RenderSettingControl>
 					<RenderSettingControl id="gb_spacer_spacerDivider">
 						<ToggleControl
-							label={ __( 'Add Divider', 'genesis-blocks' ) }
-							checked={ spacerDivider }
-							onChange={ () =>
-								this.props.setAttributes( {
-									spacerDivider: ! spacerDivider,
-								} )
+							label={__('Add Divider', 'genesis-blocks')}
+							checked={spacerDivider}
+							onChange={() =>
+								this.props.setAttributes({
+									spacerDivider: !spacerDivider,
+								})
 							}
 						/>
 					</RenderSettingControl>
 				</PanelBody>
-				{ spacerDivider ? (
+				{spacerDivider ? (
 					<Fragment>
 						<PanelBody>
 							<RenderSettingControl id="gb_spacer_spacerDividerStyle">
 								<SelectControl
-									label={ __(
+									label={__(
 										'Divider Style',
 										'genesis-blocks'
-									) }
-									value={ spacerDividerStyle }
-									options={ spacerStyleOptions.map(
-										( { value, label } ) => ( {
+									)}
+									value={spacerDividerStyle}
+									options={spacerStyleOptions.map(
+										({ value, label }) => ({
 											value,
 											label,
-										} )
-									) }
-									onChange={ ( value ) => {
-										this.props.setAttributes( {
+										})
+									)}
+									onChange={(value) => {
+										this.props.setAttributes({
 											spacerDividerStyle: value,
-										} );
-									} }
+										});
+									}}
 								/>
 							</RenderSettingControl>
 							<RenderSettingControl id="gb_spacer_spacerDividerHeight">
 								<RangeControl
-									label={ __(
+									label={__(
 										'Divider Height',
 										'genesis-blocks'
-									) }
-									value={ spacerDividerHeight || '' }
-									onChange={ ( value ) =>
-										this.props.setAttributes( {
+									)}
+									value={spacerDividerHeight || ''}
+									onChange={(value) =>
+										this.props.setAttributes({
 											spacerDividerHeight: value,
-										} )
+										})
 									}
-									min={ 1 }
-									max={ 5 }
+									min={1}
+									max={5}
 								/>
 							</RenderSettingControl>
 						</PanelBody>
 						<RenderSettingControl id="gb_spacer_dividerColor">
 							<PanelColorSettings
-								title={ __(
-									'Divider Color',
-									'genesis-blocks'
-								) }
-								initialOpen={ false }
-								colorSettings={ [
+								title={__('Divider Color', 'genesis-blocks')}
+								initialOpen={false}
+								colorSettings={[
 									{
 										colors: dividerColor,
 										value: spacerDividerColor,
@@ -147,11 +144,11 @@ export default class Inspector extends Component {
 											'genesis-blocks'
 										),
 									},
-								] }
+								]}
 							></PanelColorSettings>
 						</RenderSettingControl>
 					</Fragment>
-				) : null }
+				) : null}
 			</InspectorControls>
 		);
 	}

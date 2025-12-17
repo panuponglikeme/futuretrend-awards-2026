@@ -45,122 +45,114 @@ export default class Inspector extends Component {
 
 		let selectedRows = 1;
 
-		if ( attributes.columns ) {
-			selectedRows = parseInt(
-				attributes.columns.toString().split( '-' )
-			);
+		if (attributes.columns) {
+			selectedRows = parseInt(attributes.columns.toString().split('-'));
 		}
 
 		/* CSS Units */
 		const cssUnits = [
-			{ value: 'px', label: __( 'Pixel (px)', 'genesis-blocks' ) },
-			{ value: '%', label: __( 'Percent (%)', 'genesis-blocks' ) },
-			{ value: 'em', label: __( 'Em (em)', 'genesis-blocks' ) },
+			{ value: 'px', label: __('Pixel (px)', 'genesis-blocks') },
+			{ value: '%', label: __('Percent (%)', 'genesis-blocks') },
+			{ value: 'em', label: __('Em (em)', 'genesis-blocks') },
 		];
 
 		return (
 			<InspectorControls key="inspector">
-				{ attributes.layout && (
+				{attributes.layout && (
 					/* Show the column settings once a layout is selected. */
 					<PanelBody
-						title={ __( 'General', 'genesis-blocks' ) }
-						initialOpen={ true }
+						title={__('General', 'genesis-blocks')}
+						initialOpen={true}
 						className="gb-column-select-panel"
 					>
 						<RenderSettingControl id="gb_column_columns">
 							<RangeControl
-								label={ __( 'Column Count', 'genesis-blocks' ) }
-								help={ __(
+								label={__('Column Count', 'genesis-blocks')}
+								help={__(
 									"Note: Changing the column count after you've added content to the column can cause loss of content.",
 									'genesis-blocks'
-								) }
-								value={ attributes.columns }
-								onChange={ ( value ) =>
-									this.props.setAttributes( {
+								)}
+								value={attributes.columns}
+								onChange={(value) =>
+									this.props.setAttributes({
 										columns: value,
 										layout: 'gb-' + value + '-col-equal',
-									} )
+									})
 								}
-								min={ 1 }
-								max={ 6 }
-								step={ 1 }
+								min={1}
+								max={6}
+								step={1}
 							/>
 						</RenderSettingControl>
 
 						<hr />
 
-						{ ( 2 === attributes.columns ||
+						{(2 === attributes.columns ||
 							3 === attributes.columns ||
-							4 === attributes.columns ) && (
+							4 === attributes.columns) && (
 							<Fragment>
 								<RenderSettingControl id="gb_column_columnLayouts">
 									<p>
-										{ __(
-											'Column Layout',
-											'genesis-blocks'
-										) }
+										{__('Column Layout', 'genesis-blocks')}
 									</p>
 									<ButtonGroup
-										aria-label={ __(
+										aria-label={__(
 											'Column Layout',
 											'genesis-blocks'
-										) }
+										)}
 									>
-										{ map(
-											columnLayouts[ selectedRows ],
-											( { name, key, icon } ) => (
-												<Tooltip
-													text={ name }
-													key={ key }
-												>
+										{map(
+											columnLayouts[selectedRows],
+											({ name, key, icon }) => (
+												<Tooltip text={name} key={key}>
 													<Button
-														key={ key }
+														key={key}
 														className="gb-column-selector-button"
 														isSmall
-														onClick={ () => {
-															setAttributes( {
+														onClick={() => {
+															setAttributes({
 																layout: key,
-															} );
-															this.setState( {
+															});
+															this.setState({
 																selectLayout: false,
-															} );
-														} }
+															});
+														}}
 													>
-														{ icon }
+														{icon}
 													</Button>
 												</Tooltip>
 											)
-										) }
+										)}
 									</ButtonGroup>
 									<p>
 										<i>
-											{ __(
+											{__(
 												'Change the layout of your columns.',
 												'genesis-blocks'
-											) }
+											)}
 										</i>
 									</p>
 									<hr />
 								</RenderSettingControl>
 							</Fragment>
-						) }
+						)}
 
 						<RenderSettingControl id="gb_column_columnsGap">
 							<RangeControl
-								label={ __( 'Column Gap', 'genesis-blocks' ) }
-								help={ __(
+								label={__('Column Gap', 'genesis-blocks')}
+								help={__(
 									'Adjust the spacing between columns.',
 									'genesis-blocks'
-								) }
-								value={ attributes.columnsGap }
-								onChange={ ( value ) =>
-									this.props.setAttributes( {
+								)}
+								value={attributes.columnsGap}
+								onChange={(value) =>
+									this.props.setAttributes({
 										columnsGap: value,
-									} )
+									})
 								}
-								min={ 0 }
-								max={ 10 }
-								step={ 1 }
+								min={0}
+								max={10}
+								step={1}
 							/>
 						</RenderSettingControl>
 
@@ -168,246 +160,243 @@ export default class Inspector extends Component {
 
 						<RenderSettingControl id="gb_column_columnMaxWidth">
 							<RangeControl
-								label={ __( 'Column Inner Max Width (px)' ) }
-								help={ __(
+								label={__('Column Inner Max Width (px)')}
+								help={__(
 									'Adjust the width of the content inside the container wrapper.',
 									'genesis-blocks'
-								) }
-								value={ attributes.columnMaxWidth }
-								onChange={ ( value ) =>
-									this.props.setAttributes( {
+								)}
+								value={attributes.columnMaxWidth}
+								onChange={(value) =>
+									this.props.setAttributes({
 										columnMaxWidth: value,
-									} )
+									})
 								}
-								min={ 0 }
-								max={ 2000 }
-								step={ 1 }
+								min={0}
+								max={2000}
+								step={1}
 							/>
 						</RenderSettingControl>
 
-						{ 0 < attributes.columnMaxWidth && (
+						{0 < attributes.columnMaxWidth && (
 							<RenderSettingControl id="gb_column_centerColumns">
 								<ToggleControl
-									label={ __(
+									label={__(
 										'Center Columns In Container',
 										'genesis-blocks'
-									) }
-									help={ __(
+									)}
+									help={__(
 										'Center the columns in the container when max-width is used.',
 										'genesis-blocks'
-									) }
-									checked={ attributes.centerColumns }
-									onChange={ () =>
-										this.props.setAttributes( {
+									)}
+									checked={attributes.centerColumns}
+									onChange={() =>
+										this.props.setAttributes({
 											centerColumns:
-												! attributes.centerColumns,
-										} )
+												!attributes.centerColumns,
+										})
 									}
 								/>
 							</RenderSettingControl>
-						) }
+						)}
 
 						<hr />
 
 						<RenderSettingControl id="gb_column_responsiveToggle">
 							<ToggleControl
-								label={ __(
+								label={__(
 									'Responsive Columns',
 									'genesis-blocks'
-								) }
-								help={ __(
+								)}
+								help={__(
 									'Columns will be adjusted to fit on tablets and mobile devices.',
 									'genesis-blocks'
-								) }
-								checked={ attributes.responsiveToggle }
-								onChange={ () =>
-									this.props.setAttributes( {
+								)}
+								checked={attributes.responsiveToggle}
+								onChange={() =>
+									this.props.setAttributes({
 										responsiveToggle:
-											! attributes.responsiveToggle,
-									} )
+											!attributes.responsiveToggle,
+									})
 								}
 							/>
 						</RenderSettingControl>
 					</PanelBody>
-				) }
+				)}
 				<RenderSettingControl id="gb_column_marginPadding">
 					<PanelBody
-						title={ __( 'Margin and Padding', 'genesis-blocks' ) }
-						initialOpen={ false }
+						title={__('Margin and Padding', 'genesis-blocks')}
+						initialOpen={false}
 					>
 						<SelectControl
-							label={ __( 'Margin Unit', 'genesis-blocks' ) }
-							help={ __(
+							label={__('Margin Unit', 'genesis-blocks')}
+							help={__(
 								'Choose between pixel, percent, or em units.',
 								'genesis-blocks'
-							) }
-							options={ cssUnits }
-							value={ attributes.marginUnit }
-							onChange={ ( value ) =>
-								this.props.setAttributes( {
+							)}
+							options={cssUnits}
+							value={attributes.marginUnit}
+							onChange={(value) =>
+								this.props.setAttributes({
 									marginUnit: value,
-								} )
+								})
 							}
 						/>
 						<ToggleControl
-							label={ __( 'Sync Margin', 'genesis-blocks' ) }
-							help={ __(
+							label={__('Sync Margin', 'genesis-blocks')}
+							help={__(
 								'Top and bottom margins will have the same value.',
 								'genesis-blocks'
-							) }
-							checked={ attributes.marginSync }
-							onChange={ () =>
-								this.props.setAttributes( {
-									marginSync: ! attributes.marginSync,
-								} )
+							)}
+							checked={attributes.marginSync}
+							onChange={() =>
+								this.props.setAttributes({
+									marginSync: !attributes.marginSync,
+								})
 							}
 						/>
 
-						{ ! attributes.marginSync ? (
+						{!attributes.marginSync ? (
 							<Margin
 								/* Margin top. */
-								marginEnableTop={ true }
-								marginTop={ attributes.marginTop }
+								marginEnableTop={true}
+								marginTop={attributes.marginTop}
 								marginTopMin="0"
 								marginTopMax="200"
-								onChangeMarginTop={ ( marginTop ) =>
-									setAttributes( { marginTop } )
+								onChangeMarginTop={(marginTop) =>
+									setAttributes({ marginTop })
 								}
 								/* Margin bottom. */
-								marginEnableBottom={ true }
-								marginBottom={ attributes.marginBottom }
+								marginEnableBottom={true}
+								marginBottom={attributes.marginBottom}
 								marginBottomMin="0"
 								marginBottomMax="200"
-								onChangeMarginBottom={ ( marginBottom ) =>
-									setAttributes( { marginBottom } )
+								onChangeMarginBottom={(marginBottom) =>
+									setAttributes({ marginBottom })
 								}
 							/>
 						) : (
 							<Margin
 								/* Margin top/bottom. */
-								marginEnableVertical={ true }
-								marginVerticalLabel={ __(
+								marginEnableVertical={true}
+								marginVerticalLabel={__(
 									'Margin Top/Bottom',
 									'genesis-blocks'
-								) }
-								marginVertical={ attributes.margin }
+								)}
+								marginVertical={attributes.margin}
 								marginVerticalMin="0"
 								marginVerticalMax="200"
-								onChangeMarginVertical={ ( margin ) =>
-									setAttributes( { margin } )
+								onChangeMarginVertical={(margin) =>
+									setAttributes({ margin })
 								}
 							/>
-						) }
+						)}
 						<hr />
 						<SelectControl
-							label={ __( 'Padding Unit', 'genesis-blocks' ) }
-							help={ __(
+							label={__('Padding Unit', 'genesis-blocks')}
+							help={__(
 								'Choose between pixel, percent, or em units.',
 								'genesis-blocks'
-							) }
-							options={ cssUnits }
-							value={ attributes.paddingUnit }
-							onChange={ ( value ) =>
-								this.props.setAttributes( {
+							)}
+							options={cssUnits}
+							value={attributes.paddingUnit}
+							onChange={(value) =>
+								this.props.setAttributes({
 									paddingUnit: value,
-								} )
+								})
 							}
 						/>
 						<ToggleControl
-							label={ __( 'Sync Padding', 'genesis-blocks' ) }
-							help={ __(
+							label={__('Sync Padding', 'genesis-blocks')}
+							help={__(
 								'Padding on all sides will have the same value.',
 								'genesis-blocks'
-							) }
-							checked={ attributes.paddingSync }
-							onChange={ () =>
-								this.props.setAttributes( {
-									paddingSync: ! attributes.paddingSync,
-								} )
+							)}
+							checked={attributes.paddingSync}
+							onChange={() =>
+								this.props.setAttributes({
+									paddingSync: !attributes.paddingSync,
+								})
 							}
 						/>
-						{ ! attributes.paddingSync ? (
+						{!attributes.paddingSync ? (
 							<Padding
 								/* Padding top. */
-								paddingEnableTop={ true }
-								paddingTop={ attributes.paddingTop }
+								paddingEnableTop={true}
+								paddingTop={attributes.paddingTop}
 								paddingTopMin="0"
 								paddingTopMax="200"
-								onChangePaddingTop={ ( paddingTop ) =>
-									setAttributes( { paddingTop } )
+								onChangePaddingTop={(paddingTop) =>
+									setAttributes({ paddingTop })
 								}
 								/* Padding right. */
-								paddingEnableRight={ true }
-								paddingRight={ attributes.paddingRight }
+								paddingEnableRight={true}
+								paddingRight={attributes.paddingRight}
 								paddingRightMin="0"
 								paddingRightMax="200"
-								onChangePaddingRight={ ( paddingRight ) =>
-									setAttributes( { paddingRight } )
+								onChangePaddingRight={(paddingRight) =>
+									setAttributes({ paddingRight })
 								}
 								/* Padding bottom. */
-								paddingEnableBottom={ true }
-								paddingBottom={ attributes.paddingBottom }
+								paddingEnableBottom={true}
+								paddingBottom={attributes.paddingBottom}
 								paddingBottomMin="0"
 								paddingBottomMax="200"
-								onChangePaddingBottom={ ( paddingBottom ) =>
-									setAttributes( { paddingBottom } )
+								onChangePaddingBottom={(paddingBottom) =>
+									setAttributes({ paddingBottom })
 								}
 								/* Padding left. */
-								paddingEnableLeft={ true }
-								paddingLeft={ attributes.paddingLeft }
+								paddingEnableLeft={true}
+								paddingLeft={attributes.paddingLeft}
 								paddingLeftMin="0"
 								paddingLeftMax="200"
-								onChangePaddingLeft={ ( paddingLeft ) =>
-									setAttributes( { paddingLeft } )
+								onChangePaddingLeft={(paddingLeft) =>
+									setAttributes({ paddingLeft })
 								}
 							/>
 						) : (
 							<Padding
 								/* Padding. */
-								paddingEnable={ true }
-								padding={ attributes.padding }
+								paddingEnable={true}
+								padding={attributes.padding}
 								paddingMin="0"
 								paddingMax="200"
-								onChangePadding={ ( padding ) =>
-									setAttributes( { padding } )
+								onChangePadding={(padding) =>
+									setAttributes({ padding })
 								}
 							/>
-						) }
+						)}
 					</PanelBody>
 				</RenderSettingControl>
 
 				<RenderSettingControl id="gb_column_colorSettings">
 					<PanelColorSettings
-						title={ __( 'Color', 'genesis-blocks' ) }
-						initialOpen={ false }
-						colorSettings={ [
+						title={__('Color', 'genesis-blocks')}
+						initialOpen={false}
+						colorSettings={[
 							{
 								value: backgroundColor.color,
 								onChange: setBackgroundColor,
-								label: __(
-									'Background Color',
-									'genesis-blocks'
-								),
+								label: __('Background Color', 'genesis-blocks'),
 							},
 							{
 								value: textColor.color,
 								onChange: setTextColor,
-								label: __( 'Text Color', 'genesis-blocks' ),
+								label: __('Text Color', 'genesis-blocks'),
 							},
-						] }
+						]}
 					>
 						<ContrastChecker
-							{ ...{
+							{...{
 								textColor: textColor.color,
 								backgroundColor: backgroundColor.color,
-							} }
+							}}
 						/>
 					</PanelColorSettings>
 				</RenderSettingControl>
 
 				<RenderSettingControl id="gb_column_backgroundImagePanel">
 					<BackgroundImagePanel
-						{ ...this.props }
+						{...this.props}
 					></BackgroundImagePanel>
 				</RenderSettingControl>
 			</InspectorControls>

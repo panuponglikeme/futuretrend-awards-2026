@@ -41,9 +41,9 @@ class Edit extends Component {
 		} = this.props;
 
 		// Setup class names
-		const editClassName = classnames( {
+		const editClassName = classnames({
 			'gb-pricing-table-button': true,
-		} );
+		});
 
 		// Setup styles
 		const editStyles = {
@@ -61,67 +61,64 @@ class Edit extends Component {
 					this.props.clientId
 				}
 			>
-				<Inspector { ...this.props } />
+				<Inspector {...this.props} />
 				<div
-					className={ editClassName ? editClassName : undefined }
-					style={ editStyles }
+					className={editClassName ? editClassName : undefined}
+					style={editStyles}
 				>
-					<CustomButton { ...this.props }>
+					<CustomButton {...this.props}>
 						<RichText
 							tagName="span"
-							placeholder={ __(
-								'Button text…',
-								'genesis-blocks'
-							) }
-							value={ buttonText }
-							allowedFormats={ [] }
-							className={ classnames(
+							placeholder={__('Button text…', 'genesis-blocks')}
+							value={buttonText}
+							allowedFormats={[]}
+							className={classnames(
 								'gb-button',
 								buttonShape,
 								buttonSize
-							) }
-							style={ {
+							)}
+							style={{
 								color: buttonTextColor,
 								backgroundColor: buttonBackgroundColor,
-							} }
-							onChange={ ( value ) =>
-								setAttributes( { buttonText: value } )
+							}}
+							onChange={(value) =>
+								setAttributes({ buttonText: value })
 							}
 						/>
 					</CustomButton>
-					{ isSelected && (
+					{isSelected && (
 						<form
 							key="form-link"
-							className={ `blocks-button__inline-link gb-button-${ buttonAlignment }` }
-							onSubmit={ ( event ) => event.preventDefault() }
-							style={ {
+							className={`blocks-button__inline-link gb-button-${buttonAlignment}`}
+							onSubmit={(event) => event.preventDefault()}
+							style={{
 								textAlign: buttonAlignment,
-							} }
+							}}
 						>
-							<Dashicon icon={ 'admin-links' } />
+							<Dashicon icon={'admin-links'} />
 							<URLInput
 								className="button-url"
-								value={ buttonUrl }
-								onChange={ ( value ) =>
-									setAttributes( { buttonUrl: value } )
+								value={buttonUrl}
+								onChange={(value) =>
+									setAttributes({ buttonUrl: value })
 								}
 								__nextHasNoMarginBottom
 							/>
 							<Button
-								label={ __( 'Apply', 'genesis-blocks' ) }
+								label={__('Apply', 'genesis-blocks')}
 								type="submit"
 							>
 								<Icon icon="editor-break" />
 							</Button>
 						</form>
-					) }
+					)}
 				</div>
 			</Fragment>,
 		];
 	}
 }
 
-export default compose( [
-	withFontSizes( 'fontSize' ),
-	withColors( 'backgroundColor', { textColor: 'color' } ),
-] )( Edit );
+export default compose([
+	withFontSizes('fontSize'),
+	withColors('backgroundColor', { textColor: 'color' }),
+])(Edit);

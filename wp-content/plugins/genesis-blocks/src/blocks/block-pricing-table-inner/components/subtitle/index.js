@@ -19,19 +19,19 @@ const {
 } = wp.blockEditor;
 
 // Register the block
-registerBlockType( 'genesis-blocks/gb-pricing-table-subtitle', {
-	title: __( 'Product Subtitle', 'genesis-blocks' ),
+registerBlockType('genesis-blocks/gb-pricing-table-subtitle', {
+	title: __('Product Subtitle', 'genesis-blocks'),
 	description: __(
 		'Adds a product subtitle component with schema markup.',
 		'genesis-blocks'
 	),
 	icon: 'cart',
 	category: 'genesis-blocks',
-	parent: [ 'genesis-blocks/gb-pricing-table' ],
+	parent: ['genesis-blocks/gb-pricing-table'],
 	keywords: [
-		__( 'pricing table', 'genesis-blocks' ),
-		__( 'subtitle', 'genesis-blocks' ),
-		__( 'shop', 'genesis-blocks' ),
+		__('pricing table', 'genesis-blocks'),
+		__('subtitle', 'genesis-blocks'),
+		__('shop', 'genesis-blocks'),
 	],
 
 	attributes: {
@@ -78,7 +78,7 @@ registerBlockType( 'genesis-blocks/gb-pricing-table-subtitle', {
 	edit: Edit,
 
 	// Save the attributes and markup
-	save( props ) {
+	save(props) {
 		// Setup the attributes
 		const {
 			subtitle,
@@ -95,23 +95,23 @@ registerBlockType( 'genesis-blocks/gb-pricing-table-subtitle', {
 		} = props.attributes;
 
 		// Retreive the fontSizeClass
-		const fontSizeClass = getFontSizeClass( fontSize );
+		const fontSizeClass = getFontSizeClass(fontSize);
 
 		// Retreive the getColorClassName
-		const textClass = getColorClassName( 'color', textColor );
+		const textClass = getColorClassName('color', textColor);
 		const backgroundClass = getColorClassName(
 			'background-color',
 			backgroundColor
 		);
 
 		// Setup class names
-		const className = classnames( {
+		const className = classnames({
 			'has-background': backgroundColor || customBackgroundColor,
 			'gb-pricing-table-subtitle': true,
-			[ fontSizeClass ]: fontSizeClass,
-			[ textClass ]: textClass,
-			[ backgroundClass ]: backgroundClass,
-		} );
+			[fontSizeClass]: fontSizeClass,
+			[textClass]: textClass,
+			[backgroundClass]: backgroundClass,
+		});
 
 		// Setup styles
 		const styles = {
@@ -130,10 +130,10 @@ registerBlockType( 'genesis-blocks/gb-pricing-table-subtitle', {
 		return (
 			<RichText.Content
 				tagName="div"
-				value={ subtitle }
-				className={ className ? className : undefined }
-				style={ styles }
+				value={subtitle}
+				className={className ? className : undefined}
+				style={styles}
 			/>
 		);
 	},
-} );
+});

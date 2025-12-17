@@ -1,24 +1,24 @@
-# Copyright (C) 2024 StudioPress
+# Copyright (C) 2025 StudioPress
 # This file is distributed under the GPL2+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Genesis Blocks 3.1.6\n"
+"Project-Id-Version: Genesis Blocks 3.1.8\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/genesis-blocks\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-10-10T08:19:41+00:00\n"
+"POT-Creation-Date: 2025-12-05T09:41:42+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.11.0\n"
+"X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: genesis-blocks\n"
 
 #. Plugin Name of the plugin
 #: genesis-blocks.php
 #: includes/load-scripts.php:112
 #: lib/Migration/Admin.php:135
-#: lib/Settings/AdminPage.php:67
+#: lib/Settings/AdminPage.php:90
 #: lib/Settings/views/admin/app.php:20
 msgid "Genesis Blocks"
 msgstr ""
@@ -53,16 +53,19 @@ msgstr ""
 
 #. translators: %s: The missing key that is required to register a component.
 #: includes/layout/class-component-registry.php:88
+#, php-format
 msgid "You must supply a %s to register a layout."
 msgstr ""
 
 #. translators: %s: The component's unique key.
 #: includes/layout/class-component-registry.php:96
+#, php-format
 msgid "The %s layout is already registered."
 msgstr ""
 
 #. translators: %s: The component's unique key.
 #: includes/layout/class-component-registry.php:104
+#, php-format
 msgid "The %s section is already registered."
 msgstr ""
 
@@ -72,28 +75,33 @@ msgstr ""
 #: includes/layout/class-component-registry.php:111
 #: includes/layout/class-component-registry.php:128
 #: includes/layout/class-component-registry.php:192
+#, php-format
 msgid "You must supply a valid component type in %s."
 msgstr ""
 
 #. translators: %s: This function's name. Will always be Genesis\Blocks\Layouts\Component_Registry::remove().
 #: includes/layout/class-component-registry.php:133
+#, php-format
 msgid "You must supply a valid component key in %s."
 msgstr ""
 
 #. translators: The requested components unique key.
 #: includes/layout/class-component-registry.php:142
 #: includes/layout/class-component-registry.php:179
+#, php-format
 msgid "The %s layout is not registered."
 msgstr ""
 
 #. translators: The requested components unique key.
 #: includes/layout/class-component-registry.php:150
 #: includes/layout/class-component-registry.php:186
+#, php-format
 msgid "The %s section is not registered."
 msgstr ""
 
 #. translators: This function name. Will always be Genesis\Blocks\Layouts\Component_Registry::get().
 #: includes/layout/class-component-registry.php:172
+#, php-format
 msgid "You must supply a component type in %s."
 msgstr ""
 
@@ -297,7 +305,7 @@ msgstr ""
 #: includes/patterns/gb_slate_section_hero_title.php:45
 #: includes/patterns/gb_slate_section_hero_with_buttons.php:49
 #: includes/patterns/gb_slate_section_hero_with_buttons.php:55
-#: src/blocks/block-post-grid/components/inspector.js:297
+#: src/blocks/block-post-grid/components/inspector.js:295
 msgid "header"
 msgstr ""
 
@@ -406,7 +414,7 @@ msgid "testimonial"
 msgstr ""
 
 #: includes/layout/register-layout-components.php:190
-#: src/blocks/block-drop-cap/index.js:80
+#: src/blocks/block-drop-cap/index.js:77
 #: src/blocks/block-testimonial/index.js:30
 msgid "quote"
 msgstr ""
@@ -830,27 +838,28 @@ msgstr ""
 msgid "Invalid post ID"
 msgstr ""
 
-#: lib/Migration/UserMeta.php:129
+#: lib/Migration/UserMeta.php:136
 msgid "User meta could not be updated"
 msgstr ""
 
-#: lib/Settings/AdminPage.php:66
+#: lib/Settings/AdminPage.php:89
+#: lib/Settings/views/admin/app.php:20
 msgid "Genesis"
 msgstr ""
 
-#: lib/Settings/AdminPage.php:121
+#: lib/Settings/AdminPage.php:103
 msgid "Getting Started with Genesis Blocks"
 msgstr ""
 
-#: lib/Settings/AdminPage.php:122
+#: lib/Settings/AdminPage.php:104
 msgid "Getting Started"
 msgstr ""
 
-#: lib/Settings/AdminPage.php:133
+#: lib/Settings/AdminPage.php:115
 msgid "Genesis Blocks Settings"
 msgstr ""
 
-#: lib/Settings/AdminPage.php:134
+#: lib/Settings/AdminPage.php:116
 msgid "Settings"
 msgstr ""
 
@@ -869,7 +878,7 @@ msgstr ""
 
 #: lib/Settings/views/admin/getting-started.php:74
 #: lib/Settings/views/admin/tabs/genesis-collections.php:21
-#: src/blocks/block-layout/components/layout/layout-modal.js:27
+#: src/blocks/block-layout/components/layout/layout-modal.js:25
 msgid "Collections"
 msgstr ""
 
@@ -893,6 +902,7 @@ msgstr ""
 
 #. translators: %1$: opening i tag, %2$: closing i tag
 #: lib/Settings/views/admin/tabs/genesis-101.php:27
+#, php-format
 msgid "%1$sBlock%2$s is a term used for any kind of content that you add in the new WordPress editor. When editing, anything you insert within a page or a post is a block. WordPress includes a few default blocks such as the Paragraph, Image, Heading, Gallery, etc. that give you a great head start."
 msgstr ""
 
@@ -941,7 +951,7 @@ msgid "View docs"
 msgstr ""
 
 #: lib/Settings/views/admin/tabs/genesis-101.php:58
-#: src/blocks/responsive-settings/components/with-responsive-settings.js:232
+#: src/blocks/responsive-settings/components/with-responsive-settings.js:229
 msgid "Responsive Typography"
 msgstr ""
 
@@ -1221,6 +1231,7 @@ msgstr ""
 
 #. translators: %1$: opening anchor tag, %2$: closing anchor tag
 #: lib/Settings/views/admin/tabs/genesis-collections.php:34
+#, php-format
 msgid "When %1$sediting a page%2$s in your website, you can access Genesis Collections by clicking the “Layouts” button in the top menu bar."
 msgstr ""
 
@@ -1370,27 +1381,27 @@ msgid "Facebook"
 msgstr ""
 
 #: src/blocks/block-author-profile/deprecated/1.8.2/filter.php:73
-#: src/blocks/block-author-profile/components/social.js:127
+#: src/blocks/block-author-profile/components/social.js:124
 #: src/blocks/block-author-profile/deprecated/2.0.0/components/social.js:127
-#: src/blocks/block-sharing/components/edit.js:105
+#: src/blocks/block-sharing/components/edit.js:102
 msgid "Visit Facebook account (opens in a new tab)"
 msgstr ""
 
 #: src/blocks/block-author-profile/deprecated/1.8.2/filter.php:77
-#: src/blocks/block-author-profile/components/social.js:152
+#: src/blocks/block-author-profile/components/social.js:149
 #: src/blocks/block-author-profile/deprecated/1.8.2/components/social.js:86
 #: src/blocks/block-author-profile/deprecated/2.0.0/components/social.js:152
 msgid "Instagram"
 msgstr ""
 
 #: src/blocks/block-author-profile/deprecated/1.8.2/filter.php:79
-#: src/blocks/block-author-profile/components/social.js:172
+#: src/blocks/block-author-profile/components/social.js:166
 #: src/blocks/block-author-profile/deprecated/2.0.0/components/social.js:172
 msgid "Visit Instagram account (opens in a new tab)"
 msgstr ""
 
 #: src/blocks/block-author-profile/deprecated/1.8.2/filter.php:83
-#: src/blocks/block-author-profile/components/social.js:197
+#: src/blocks/block-author-profile/components/social.js:191
 #: src/blocks/block-author-profile/deprecated/1.8.2/components/social.js:106
 #: src/blocks/block-author-profile/deprecated/2.0.0/components/social.js:197
 #: src/blocks/block-sharing/components/inspector.js:112
@@ -1398,40 +1409,40 @@ msgid "Pinterest"
 msgstr ""
 
 #: src/blocks/block-author-profile/deprecated/1.8.2/filter.php:85
-#: src/blocks/block-author-profile/components/social.js:217
+#: src/blocks/block-author-profile/components/social.js:208
 #: src/blocks/block-author-profile/deprecated/2.0.0/components/social.js:217
-#: src/blocks/block-sharing/components/edit.js:143
+#: src/blocks/block-sharing/components/edit.js:137
 msgid "Visit Pinterest account (opens in a new tab)"
 msgstr ""
 
 #: src/blocks/block-author-profile/deprecated/1.8.2/filter.php:89
-#: src/blocks/block-author-profile/components/social.js:242
+#: src/blocks/block-author-profile/components/social.js:233
 #: src/blocks/block-author-profile/deprecated/1.8.2/components/social.js:126
 #: src/blocks/block-author-profile/deprecated/2.0.0/components/social.js:242
 msgid "Google"
 msgstr ""
 
 #: src/blocks/block-author-profile/deprecated/1.8.2/filter.php:91
-#: src/blocks/block-author-profile/components/social.js:258
+#: src/blocks/block-author-profile/components/social.js:249
 #: src/blocks/block-author-profile/deprecated/2.0.0/components/social.js:258
 msgid "Visit Google account (opens in a new tab)"
 msgstr ""
 
 #: src/blocks/block-author-profile/deprecated/1.8.2/filter.php:95
-#: src/blocks/block-author-profile/components/social.js:283
+#: src/blocks/block-author-profile/components/social.js:274
 #: src/blocks/block-author-profile/deprecated/1.8.2/components/social.js:146
 #: src/blocks/block-author-profile/deprecated/2.0.0/components/social.js:283
 msgid "YouTube"
 msgstr ""
 
 #: src/blocks/block-author-profile/deprecated/1.8.2/filter.php:97
-#: src/blocks/block-author-profile/components/social.js:299
+#: src/blocks/block-author-profile/components/social.js:290
 #: src/blocks/block-author-profile/deprecated/2.0.0/components/social.js:299
 msgid "Visit YouTube account (opens in a new tab)"
 msgstr ""
 
 #: src/blocks/block-author-profile/deprecated/1.8.2/filter.php:101
-#: src/blocks/block-author-profile/components/social.js:369
+#: src/blocks/block-author-profile/components/social.js:357
 #: src/blocks/block-author-profile/deprecated/1.8.2/components/social.js:186
 #: src/blocks/block-author-profile/deprecated/2.0.0/components/social.js:369
 msgid "Github"
@@ -1442,10 +1453,10 @@ msgid "Visit Github account (opens in a new tab)"
 msgstr ""
 
 #: src/blocks/block-author-profile/deprecated/1.8.2/filter.php:107
-#: src/blocks/block-author-profile/components/social.js:324
+#: src/blocks/block-author-profile/components/social.js:315
 #: src/blocks/block-author-profile/deprecated/1.8.2/components/social.js:166
 #: src/blocks/block-author-profile/deprecated/2.0.0/components/social.js:324
-#: src/blocks/block-sharing/components/inspector.js:122
+#: src/blocks/block-sharing/components/inspector.js:121
 msgid "LinkedIn"
 msgstr ""
 
@@ -1454,32 +1465,33 @@ msgid "Visit Linkedin account (opens in a new tab)"
 msgstr ""
 
 #: src/blocks/block-author-profile/deprecated/1.8.2/filter.php:113
-#: src/blocks/block-author-profile/components/social.js:410
+#: src/blocks/block-author-profile/components/social.js:398
 #: src/blocks/block-author-profile/deprecated/1.8.2/components/social.js:206
 #: src/blocks/block-author-profile/deprecated/2.0.0/components/social.js:410
 msgid "WordPress"
 msgstr ""
 
 #: src/blocks/block-author-profile/deprecated/1.8.2/filter.php:115
-#: src/blocks/block-author-profile/components/social.js:430
+#: src/blocks/block-author-profile/components/social.js:415
 #: src/blocks/block-author-profile/deprecated/2.0.0/components/social.js:430
 msgid "Visit WordPress account (opens in a new tab)"
 msgstr ""
 
 #: src/blocks/block-author-profile/deprecated/1.8.2/filter.php:119
 #: src/blocks/block-author-profile/deprecated/1.8.2/filter.php:121
-#: src/blocks/block-author-profile/components/social.js:455
-#: src/blocks/block-author-profile/components/social.js:471
+#: src/blocks/block-author-profile/components/social.js:440
+#: src/blocks/block-author-profile/components/social.js:456
 #: src/blocks/block-author-profile/deprecated/1.8.2/components/social.js:226
 #: src/blocks/block-author-profile/deprecated/2.0.0/components/social.js:455
 #: src/blocks/block-author-profile/deprecated/2.0.0/components/social.js:471
-#: src/blocks/block-sharing/components/edit.js:255
-#: src/blocks/block-sharing/components/inspector.js:140
+#: src/blocks/block-sharing/components/edit.js:240
+#: src/blocks/block-sharing/components/inspector.js:139
 msgid "Email"
 msgstr ""
 
 #. translators: %s This PHP class name. Will print Genesis\Blocks\Newsletter\Mailchimp
 #: src/blocks/block-newsletter/includes/classes/class-mailchimp.php:40
+#, php-format
 msgid "An API key is required to use %s."
 msgstr ""
 
@@ -1489,11 +1501,13 @@ msgstr ""
 
 #. translators: %s The PHP method name. Will be Genesis\Blocks\Newsletter\Mailchimp\subscribe.
 #: src/blocks/block-newsletter/includes/classes/class-mailchimp.php:88
+#, php-format
 msgid "An invalid Mailchimp list ID was provided in %s"
 msgstr ""
 
 #. translators: %s The error message returns from the Mailchimp API.
 #: src/blocks/block-newsletter/includes/classes/class-mailchimp.php:105
+#, php-format
 msgid "There was an error subscribing your email address. Please try again. Error: %s"
 msgstr ""
 
@@ -1546,7 +1560,7 @@ msgid "The submission failed."
 msgstr ""
 
 #: src/blocks/block-newsletter/index.php:181
-#: src/blocks/block-newsletter/index.js:24
+#: src/blocks/block-newsletter/index.js:21
 msgid "Subscribe"
 msgstr ""
 
@@ -1601,34 +1615,34 @@ msgstr ""
 #: src/blocks/block-sharing/index.php:160
 #: src/blocks/block-sharing/index.php:176
 #: src/blocks/block-sharing/index.php:177
-#: src/blocks/block-sharing/components/edit.js:116
+#: src/blocks/block-sharing/components/edit.js:113
 msgid "Share on Facebook"
 msgstr ""
 
 #: src/blocks/block-sharing/index.php:183
 #: src/blocks/block-sharing/index.php:199
 #: src/blocks/block-sharing/index.php:200
-#: src/blocks/block-sharing/components/edit.js:154
+#: src/blocks/block-sharing/components/edit.js:148
 msgid "Share on Pinterest"
 msgstr ""
 
 #: src/blocks/block-sharing/index.php:206
 #: src/blocks/block-sharing/index.php:222
 #: src/blocks/block-sharing/index.php:223
-#: src/blocks/block-sharing/components/edit.js:192
+#: src/blocks/block-sharing/components/edit.js:183
 msgid "Share on LinkedIn"
 msgstr ""
 
 #: src/blocks/block-sharing/index.php:229
 #: src/blocks/block-sharing/index.php:245
 #: src/blocks/block-sharing/index.php:246
-#: src/blocks/block-sharing/components/edit.js:218
+#: src/blocks/block-sharing/components/edit.js:206
 msgid "Share on Reddit"
 msgstr ""
 
 #: src/blocks/block-sharing/index.php:262
 #: src/blocks/block-sharing/index.php:263
-#: src/blocks/block-sharing/components/edit.js:263
+#: src/blocks/block-sharing/components/edit.js:248
 msgid "Share via Email"
 msgstr ""
 
@@ -1661,15 +1675,15 @@ msgstr ""
 msgid "Need to let the developer for this site know about this? Send them this link."
 msgstr ""
 
-#: lib/Migration/js/src/components/intro.js:63
+#: lib/Migration/js/src/components/intro.js:62
 msgid "Developer Notice"
 msgstr ""
 
-#: lib/Migration/js/src/components/intro.js:68
+#: lib/Migration/js/src/components/intro.js:66
 msgid "Let's Migrate"
 msgstr ""
 
-#: lib/Migration/js/src/components/step-icon.js:39
+#: lib/Migration/js/src/components/step-icon.js:34
 msgid "Step completed"
 msgstr ""
 
@@ -1685,7 +1699,7 @@ msgstr ""
 msgid "Back Up Your Site"
 msgstr ""
 
-#: lib/Migration/js/src/components/steps/back-up-site.js:75
+#: lib/Migration/js/src/components/steps/back-up-site.js:73
 msgid "I have backed up my site."
 msgstr ""
 
@@ -1713,65 +1727,65 @@ msgstr ""
 msgid "The migration failed during settings migration."
 msgstr ""
 
-#: lib/Migration/js/src/components/steps/migrate-blocks.js:97
+#: lib/Migration/js/src/components/steps/migrate-blocks.js:96
 msgid "The pro settings migration failed."
 msgstr ""
 
-#: lib/Migration/js/src/components/steps/migrate-blocks.js:139
+#: lib/Migration/js/src/components/steps/migrate-blocks.js:137
 msgid "The migration failed during post content migration"
 msgstr ""
 
-#: lib/Migration/js/src/components/steps/migrate-blocks.js:175
+#: lib/Migration/js/src/components/steps/migrate-blocks.js:173
 msgid "The migration failed while migrating favorite blocks."
 msgstr ""
 
-#: lib/Migration/js/src/components/steps/migrate-blocks.js:199
+#: lib/Migration/js/src/components/steps/migrate-blocks.js:197
 msgid "The migration was successful!"
 msgstr ""
 
-#: lib/Migration/js/src/components/steps/migrate-blocks.js:209
+#: lib/Migration/js/src/components/steps/migrate-blocks.js:207
 msgid "The migration is now in progress"
 msgstr ""
 
-#: lib/Migration/js/src/components/steps/migrate-blocks.js:223
+#: lib/Migration/js/src/components/steps/migrate-blocks.js:221
 msgid "Migrate Your Content"
 msgstr ""
 
-#: lib/Migration/js/src/components/steps/migrate-blocks.js:229
+#: lib/Migration/js/src/components/steps/migrate-blocks.js:227
 msgid "Okay! Everything is ready. Let’s do this. While the migration is underway, don’t leave this page."
 msgstr ""
 
-#: lib/Migration/js/src/components/steps/migrate-blocks.js:239
+#: lib/Migration/js/src/components/steps/migrate-blocks.js:237
 msgid "The following error occurred:"
 msgstr ""
 
-#: lib/Migration/js/src/components/steps/migrate-blocks.js:263
+#: lib/Migration/js/src/components/steps/migrate-blocks.js:261
 msgid "Try Again"
 msgstr ""
 
-#: lib/Migration/js/src/components/steps/migrate-blocks.js:264
+#: lib/Migration/js/src/components/steps/migrate-blocks.js:262
 msgid "Migrate Now"
 msgstr ""
 
-#: lib/Migration/js/src/components/steps/migrate-blocks.js:273
-#: lib/Migration/js/src/components/steps/migrate-blocks.js:297
+#: lib/Migration/js/src/components/steps/migrate-blocks.js:271
+#: lib/Migration/js/src/components/steps/migrate-blocks.js:295
 msgid "party emoji"
 msgstr ""
 
-#: lib/Migration/js/src/components/steps/migrate-blocks.js:281
+#: lib/Migration/js/src/components/steps/migrate-blocks.js:279
 msgid "The migration completed successfully! Time to say goodbye to Atomic Blocks (it’s been fun!) and step into the FUTURE"
 msgstr ""
 
-#: lib/Migration/js/src/components/steps/migrate-blocks.js:287
-#: lib/Migration/js/src/components/steps/migrate-blocks.js:290
+#: lib/Migration/js/src/components/steps/migrate-blocks.js:285
+#: lib/Migration/js/src/components/steps/migrate-blocks.js:288
 msgid "FUTURE"
 msgstr ""
 
-#: lib/Migration/js/src/components/steps/migrate-blocks.js:305
+#: lib/Migration/js/src/components/steps/migrate-blocks.js:303
 msgid "The migration completed successfully!"
 msgstr ""
 
-#: lib/Migration/js/src/components/steps/migrate-blocks.js:317
+#: lib/Migration/js/src/components/steps/migrate-blocks.js:315
 msgid "Get started with Genesis Blocks"
 msgstr ""
 
@@ -1811,19 +1825,19 @@ msgstr ""
 msgid "I have made necessary changes to PHP and CSS."
 msgstr ""
 
-#: lib/Settings/js/src/components/settings.js:87
+#: lib/Settings/js/src/components/settings.js:77
 msgid "No fields found for this section."
 msgstr ""
 
-#: lib/Settings/js/src/components/settings.js:131
+#: lib/Settings/js/src/components/settings.js:120
 msgid "Settings saved"
 msgstr ""
 
-#: lib/Settings/js/src/components/settings.js:135
+#: lib/Settings/js/src/components/settings.js:124
 msgid "Saving failed"
 msgstr ""
 
-#: lib/Settings/js/src/components/settings.js:141
+#: lib/Settings/js/src/components/settings.js:130
 msgid "Save All"
 msgstr ""
 
@@ -1854,19 +1868,19 @@ msgstr ""
 #: src/blocks/block-author-profile/index.js:129
 #: src/blocks/block-button/index.js:55
 #: src/blocks/block-container/index.js:112
-#: src/blocks/block-drop-cap/index.js:81
+#: src/blocks/block-drop-cap/index.js:78
 msgid "genesis"
 msgstr ""
 
 #: src/blocks/block-author-profile/components/edit.js:134
 #: src/blocks/block-author-profile/deprecated/1.8.2/components/edit.js:125
-#: src/blocks/block-testimonial/components/edit.js:147
+#: src/blocks/block-testimonial/components/edit.js:144
 msgid "Add name"
 msgstr ""
 
 #: src/blocks/block-author-profile/components/edit.js:147
 #: src/blocks/block-author-profile/deprecated/1.8.2/components/edit.js:138
-#: src/blocks/block-testimonial/components/edit.js:162
+#: src/blocks/block-testimonial/components/edit.js:159
 msgid "Add title"
 msgstr ""
 
@@ -1892,7 +1906,7 @@ msgstr ""
 #: src/blocks/block-author-profile/deprecated/1.8.2/components/inspector.js:67
 #: src/blocks/block-author-profile/index.js:137
 #: src/blocks/block-notice/components/inspector.js:71
-#: src/blocks/block-notice/index.js:145
+#: src/blocks/block-notice/index.js:143
 #: src/blocks/block-testimonial/components/inspector.js:56
 #: src/blocks/block-testimonial/index.js:86
 msgid "Font Size"
@@ -1915,15 +1929,15 @@ msgstr ""
 #: src/blocks/block-author-profile/deprecated/1.8.2/components/inspector.js:105
 #: src/blocks/block-author-profile/index.js:143
 #: src/blocks/block-column-inner/components/inspector.js:195
-#: src/blocks/block-column/components/inspector.js:387
-#: src/blocks/block-container/components/inspector.js:245
-#: src/blocks/block-container/components/inspector.js:250
-#: src/blocks/block-cta/components/inspector.js:201
-#: src/blocks/block-pricing-table-inner/components/button/inspector.js:155
-#: src/blocks/block-pricing-table-inner/components/description/inspector.js:198
-#: src/blocks/block-pricing-table-inner/components/global/inspector.js:131
-#: src/blocks/block-pricing-table-inner/components/inspector.js:124
-#: src/blocks/block-pricing-table-inner/components/price/inspector.js:179
+#: src/blocks/block-column/components/inspector.js:379
+#: src/blocks/block-container/components/inspector.js:224
+#: src/blocks/block-container/components/inspector.js:229
+#: src/blocks/block-cta/components/inspector.js:192
+#: src/blocks/block-pricing-table-inner/components/button/inspector.js:153
+#: src/blocks/block-pricing-table-inner/components/description/inspector.js:193
+#: src/blocks/block-pricing-table-inner/components/global/inspector.js:129
+#: src/blocks/block-pricing-table-inner/components/inspector.js:121
+#: src/blocks/block-pricing-table-inner/components/price/inspector.js:174
 #: src/blocks/block-testimonial/components/inspector.js:87
 #: src/blocks/block-testimonial/components/inspector.js:93
 #: src/blocks/block-testimonial/index.js:92
@@ -1935,107 +1949,107 @@ msgstr ""
 #: src/blocks/block-author-profile/deprecated/1.8.2/components/inspector.js:116
 #: src/blocks/block-author-profile/deprecated/1.8.2/components/inspector.js:122
 #: src/blocks/block-author-profile/index.js:146
-#: src/blocks/block-column-inner/components/inspector.js:203
-#: src/blocks/block-column/components/inspector.js:395
+#: src/blocks/block-column-inner/components/inspector.js:200
+#: src/blocks/block-column/components/inspector.js:384
 #: src/blocks/block-cta/components/inspector.js:120
 #: src/blocks/block-cta/components/inspector.js:126
 #: src/blocks/block-notice/components/inspector.js:129
 #: src/blocks/block-notice/components/inspector.js:136
-#: src/blocks/block-pricing-table-inner/components/description/inspector.js:203
-#: src/blocks/block-pricing-table-inner/components/global/inspector.js:136
-#: src/blocks/block-pricing-table-inner/components/price/inspector.js:184
-#: src/blocks/block-testimonial/components/inspector.js:104
-#: src/blocks/block-testimonial/components/inspector.js:110
+#: src/blocks/block-pricing-table-inner/components/description/inspector.js:198
+#: src/blocks/block-pricing-table-inner/components/global/inspector.js:134
+#: src/blocks/block-pricing-table-inner/components/price/inspector.js:179
+#: src/blocks/block-testimonial/components/inspector.js:101
+#: src/blocks/block-testimonial/components/inspector.js:107
 #: src/blocks/block-testimonial/index.js:95
 msgid "Text Color"
 msgstr ""
 
 #: src/blocks/block-author-profile/components/inspector.js:126
-#: src/blocks/block-author-profile/components/inspector.js:135
+#: src/blocks/block-author-profile/components/inspector.js:132
 #: src/blocks/block-author-profile/deprecated/1.8.2/components/inspector.js:130
 #: src/blocks/block-author-profile/deprecated/1.8.2/components/inspector.js:136
 #: src/blocks/block-author-profile/index.js:149
 msgid "Social Link Color"
 msgstr ""
 
-#: src/blocks/block-author-profile/components/inspector.js:147
+#: src/blocks/block-author-profile/components/inspector.js:144
 #: src/blocks/block-author-profile/deprecated/1.8.2/components/inspector.js:148
 #: src/blocks/block-author-profile/index.js:152
 msgid "Social Links"
 msgstr ""
 
-#: src/blocks/block-author-profile/components/inspector.js:151
+#: src/blocks/block-author-profile/components/inspector.js:148
 #: src/blocks/block-author-profile/deprecated/1.8.2/components/inspector.js:152
 msgid "Add links to your social media site and they will appear in the bottom of the profile box."
 msgstr ""
 
-#: src/blocks/block-author-profile/components/inspector.js:158
+#: src/blocks/block-author-profile/components/inspector.js:155
 #: src/blocks/block-author-profile/deprecated/1.8.2/components/inspector.js:159
 msgid "Twitter URL"
 msgstr ""
 
-#: src/blocks/block-author-profile/components/inspector.js:167
+#: src/blocks/block-author-profile/components/inspector.js:164
 #: src/blocks/block-author-profile/deprecated/1.8.2/components/inspector.js:168
 msgid "Facebook URL"
 msgstr ""
 
-#: src/blocks/block-author-profile/components/inspector.js:176
+#: src/blocks/block-author-profile/components/inspector.js:173
 #: src/blocks/block-author-profile/deprecated/1.8.2/components/inspector.js:177
 msgid "Instagram URL"
 msgstr ""
 
-#: src/blocks/block-author-profile/components/inspector.js:185
+#: src/blocks/block-author-profile/components/inspector.js:182
 #: src/blocks/block-author-profile/deprecated/1.8.2/components/inspector.js:186
 msgid "Pinterest URL"
 msgstr ""
 
-#: src/blocks/block-author-profile/components/inspector.js:194
+#: src/blocks/block-author-profile/components/inspector.js:191
 #: src/blocks/block-author-profile/deprecated/1.8.2/components/inspector.js:195
 msgid "Google URL"
 msgstr ""
 
-#: src/blocks/block-author-profile/components/inspector.js:203
+#: src/blocks/block-author-profile/components/inspector.js:200
 #: src/blocks/block-author-profile/deprecated/1.8.2/components/inspector.js:204
 msgid "YouTube URL"
 msgstr ""
 
-#: src/blocks/block-author-profile/components/inspector.js:212
+#: src/blocks/block-author-profile/components/inspector.js:209
 #: src/blocks/block-author-profile/deprecated/1.8.2/components/inspector.js:213
 msgid "Github URL"
 msgstr ""
 
-#: src/blocks/block-author-profile/components/inspector.js:221
+#: src/blocks/block-author-profile/components/inspector.js:218
 #: src/blocks/block-author-profile/deprecated/1.8.2/components/inspector.js:222
 msgid "LinkedIn URL"
 msgstr ""
 
-#: src/blocks/block-author-profile/components/inspector.js:230
+#: src/blocks/block-author-profile/components/inspector.js:227
 #: src/blocks/block-author-profile/deprecated/1.8.2/components/inspector.js:231
 msgid "WordPress Profile URL"
 msgstr ""
 
-#: src/blocks/block-author-profile/components/inspector.js:242
+#: src/blocks/block-author-profile/components/inspector.js:239
 #: src/blocks/block-author-profile/deprecated/1.8.2/components/inspector.js:243
 msgid "Email URL"
 msgstr ""
 
-#: src/blocks/block-author-profile/components/inspector.js:243
+#: src/blocks/block-author-profile/components/inspector.js:240
 #: src/blocks/block-author-profile/deprecated/1.8.2/components/inspector.js:244
 msgid "Supports a URL or an email link. Email links must be prefixed with \"mailto:\". Example: mailto:test@example.com"
 msgstr ""
 
-#: src/blocks/block-author-profile/components/inspector.js:255
+#: src/blocks/block-author-profile/components/inspector.js:252
 #: src/blocks/block-author-profile/deprecated/1.8.2/components/inspector.js:256
 msgid "Website URL"
 msgstr ""
 
-#: src/blocks/block-author-profile/components/social.js:344
+#: src/blocks/block-author-profile/components/social.js:332
 #: src/blocks/block-author-profile/deprecated/2.0.0/components/social.js:344
-#: src/blocks/block-sharing/components/edit.js:181
+#: src/blocks/block-sharing/components/edit.js:172
 msgid "Visit LinkedIn account (opens in a new tab)"
 msgstr ""
 
-#: src/blocks/block-author-profile/components/social.js:385
+#: src/blocks/block-author-profile/components/social.js:373
 #: src/blocks/block-author-profile/deprecated/2.0.0/components/social.js:385
 msgid "Visit GitHub account (opens in a new tab)"
 msgstr ""
@@ -2050,7 +2064,7 @@ msgstr ""
 
 #: src/blocks/block-author-profile/index.js:128
 #: src/blocks/block-cta/index.js:134
-#: src/blocks/block-notice/index.js:111
+#: src/blocks/block-notice/index.js:109
 #: src/blocks/block-post-grid/index.js:34
 #: src/blocks/block-sharing/index.js:28
 #: src/blocks/block-spacer/index.js:97
@@ -2083,72 +2097,72 @@ msgid "Vertical Align Bottom"
 msgstr ""
 
 #: src/blocks/block-column-inner/components/inspector.js:35
-#: src/blocks/block-column/components/inspector.js:56
+#: src/blocks/block-column/components/inspector.js:54
 msgid "Pixel (px)"
 msgstr ""
 
 #: src/blocks/block-column-inner/components/inspector.js:36
-#: src/blocks/block-column/components/inspector.js:57
+#: src/blocks/block-column/components/inspector.js:55
 msgid "Percent (%)"
 msgstr ""
 
 #: src/blocks/block-column-inner/components/inspector.js:37
-#: src/blocks/block-column/components/inspector.js:58
+#: src/blocks/block-column/components/inspector.js:56
 msgid "Em (em)"
 msgstr ""
 
 #: src/blocks/block-column-inner/components/inspector.js:44
 #: src/blocks/block-column-inner/index.js:107
-#: src/blocks/block-column/components/inspector.js:235
+#: src/blocks/block-column/components/inspector.js:227
 msgid "Margin and Padding"
 msgstr ""
 
 #: src/blocks/block-column-inner/components/inspector.js:48
-#: src/blocks/block-column/components/inspector.js:239
+#: src/blocks/block-column/components/inspector.js:231
 msgid "Margin Unit"
 msgstr ""
 
 #: src/blocks/block-column-inner/components/inspector.js:49
 #: src/blocks/block-column-inner/components/inspector.js:112
-#: src/blocks/block-column/components/inspector.js:240
-#: src/blocks/block-column/components/inspector.js:304
+#: src/blocks/block-column/components/inspector.js:232
+#: src/blocks/block-column/components/inspector.js:296
 msgid "Choose between pixel, percent, or em units."
 msgstr ""
 
 #: src/blocks/block-column-inner/components/inspector.js:62
-#: src/blocks/block-column/components/inspector.js:253
+#: src/blocks/block-column/components/inspector.js:245
 msgid "Sync Margin"
 msgstr ""
 
 #: src/blocks/block-column-inner/components/inspector.js:63
-#: src/blocks/block-column/components/inspector.js:254
+#: src/blocks/block-column/components/inspector.js:246
 msgid "Top and bottom margins will have the same value."
 msgstr ""
 
 #: src/blocks/block-column-inner/components/inspector.js:97
-#: src/blocks/block-column/components/inspector.js:289
+#: src/blocks/block-column/components/inspector.js:281
 msgid "Margin Top/Bottom"
 msgstr ""
 
 #: src/blocks/block-column-inner/components/inspector.js:111
-#: src/blocks/block-column/components/inspector.js:303
+#: src/blocks/block-column/components/inspector.js:295
 msgid "Padding Unit"
 msgstr ""
 
 #: src/blocks/block-column-inner/components/inspector.js:125
-#: src/blocks/block-column/components/inspector.js:317
+#: src/blocks/block-column/components/inspector.js:309
 msgid "Sync Padding"
 msgstr ""
 
 #: src/blocks/block-column-inner/components/inspector.js:126
-#: src/blocks/block-column/components/inspector.js:318
+#: src/blocks/block-column/components/inspector.js:310
 msgid "Padding on all sides will have the same value."
 msgstr ""
 
 #: src/blocks/block-column-inner/components/inspector.js:189
 #: src/blocks/block-column-inner/index.js:110
-#: src/blocks/block-column/components/inspector.js:381
-#: src/blocks/block-newsletter/components/inspector.js:251
+#: src/blocks/block-column/components/inspector.js:373
+#: src/blocks/block-newsletter/components/inspector.js:243
 msgid "Color"
 msgstr ""
 
@@ -2172,7 +2186,7 @@ msgid "Background Image"
 msgstr ""
 
 #: src/blocks/block-column/components/column-layouts.js:13
-#: src/blocks/block-column/components/edit.js:53
+#: src/blocks/block-column/components/edit.js:51
 msgid "1 Column"
 msgstr ""
 
@@ -2217,104 +2231,104 @@ msgid "4 Columns - 20/20/20/40"
 msgstr ""
 
 #: src/blocks/block-column/components/column-layouts.js:95
-#: src/blocks/block-column/components/edit.js:77
+#: src/blocks/block-column/components/edit.js:75
 msgid "5 Columns"
 msgstr ""
 
 #: src/blocks/block-column/components/column-layouts.js:105
-#: src/blocks/block-column/components/edit.js:83
+#: src/blocks/block-column/components/edit.js:81
 msgid "6 Columns"
 msgstr ""
 
-#: src/blocks/block-column/components/edit.js:59
+#: src/blocks/block-column/components/edit.js:57
 msgid "2 Columns"
 msgstr ""
 
-#: src/blocks/block-column/components/edit.js:65
+#: src/blocks/block-column/components/edit.js:63
 msgid "3 Columns"
 msgstr ""
 
-#: src/blocks/block-column/components/edit.js:71
+#: src/blocks/block-column/components/edit.js:69
 msgid "4 Columns"
 msgstr ""
 
-#: src/blocks/block-column/components/edit.js:98
-#: src/blocks/block-column/components/inspector.js:98
-#: src/blocks/block-column/components/inspector.js:104
+#: src/blocks/block-column/components/edit.js:96
+#: src/blocks/block-column/components/inspector.js:96
+#: src/blocks/block-column/components/inspector.js:99
 #: src/blocks/block-column/index.js:125
 msgid "Column Layout"
 msgstr ""
 
-#: src/blocks/block-column/components/edit.js:99
+#: src/blocks/block-column/components/edit.js:97
 msgid "Column Number"
 msgstr ""
 
-#: src/blocks/block-column/components/edit.js:103
+#: src/blocks/block-column/components/edit.js:101
 msgid "Select a layout for this column."
 msgstr ""
 
-#: src/blocks/block-column/components/edit.js:107
+#: src/blocks/block-column/components/edit.js:105
 msgid "Select the number of columns for this layout."
 msgstr ""
 
-#: src/blocks/block-column/components/edit.js:116
+#: src/blocks/block-column/components/edit.js:114
 msgid "Select Row Columns"
 msgstr ""
 
-#: src/blocks/block-column/components/edit.js:162
+#: src/blocks/block-column/components/edit.js:160
 msgid "Select Column Layout"
 msgstr ""
 
-#: src/blocks/block-column/components/edit.js:205
+#: src/blocks/block-column/components/edit.js:203
 msgid "Return to Column Selection"
 msgstr ""
 
-#: src/blocks/block-column/components/inspector.js:66
-#: src/blocks/block-newsletter/components/inspector.js:181
+#: src/blocks/block-column/components/inspector.js:64
+#: src/blocks/block-newsletter/components/inspector.js:176
 msgid "General"
 msgstr ""
 
-#: src/blocks/block-column/components/inspector.js:72
+#: src/blocks/block-column/components/inspector.js:70
 #: src/blocks/block-column/index.js:122
 msgid "Column Count"
 msgstr ""
 
-#: src/blocks/block-column/components/inspector.js:73
+#: src/blocks/block-column/components/inspector.js:71
 msgid "Note: Changing the column count after you've added content to the column can cause loss of content."
 msgstr ""
 
-#: src/blocks/block-column/components/inspector.js:137
+#: src/blocks/block-column/components/inspector.js:129
 msgid "Change the layout of your columns."
 msgstr ""
 
-#: src/blocks/block-column/components/inspector.js:150
+#: src/blocks/block-column/components/inspector.js:142
 #: src/blocks/block-column/index.js:128
 msgid "Column Gap"
 msgstr ""
 
-#: src/blocks/block-column/components/inspector.js:151
+#: src/blocks/block-column/components/inspector.js:143
 msgid "Adjust the spacing between columns."
 msgstr ""
 
-#: src/blocks/block-column/components/inspector.js:172
+#: src/blocks/block-column/components/inspector.js:164
 msgid "Adjust the width of the content inside the container wrapper."
 msgstr ""
 
-#: src/blocks/block-column/components/inspector.js:191
+#: src/blocks/block-column/components/inspector.js:183
 #: src/blocks/block-column/index.js:134
 msgid "Center Columns In Container"
 msgstr ""
 
-#: src/blocks/block-column/components/inspector.js:195
+#: src/blocks/block-column/components/inspector.js:187
 msgid "Center the columns in the container when max-width is used."
 msgstr ""
 
-#: src/blocks/block-column/components/inspector.js:214
+#: src/blocks/block-column/components/inspector.js:206
 #: src/blocks/block-column/index.js:137
 msgid "Responsive Columns"
 msgstr ""
 
-#: src/blocks/block-column/components/inspector.js:218
+#: src/blocks/block-column/components/inspector.js:210
 msgid "Columns will be adjusted to fit on tablets and mobile devices."
 msgstr ""
 
@@ -2336,10 +2350,10 @@ msgid "Margin / Padding"
 msgstr ""
 
 #: src/blocks/block-column/index.js:143
-#: src/blocks/block-pricing-table-inner/components/button/inspector.js:149
-#: src/blocks/block-pricing-table-inner/components/description/inspector.js:192
-#: src/blocks/block-pricing-table-inner/components/global/inspector.js:125
-#: src/blocks/block-pricing-table-inner/components/price/inspector.js:173
+#: src/blocks/block-pricing-table-inner/components/button/inspector.js:147
+#: src/blocks/block-pricing-table-inner/components/description/inspector.js:187
+#: src/blocks/block-pricing-table-inner/components/global/inspector.js:123
+#: src/blocks/block-pricing-table-inner/components/price/inspector.js:168
 msgid "Color Settings"
 msgstr ""
 
@@ -2360,64 +2374,64 @@ msgstr ""
 msgid "Padding Bottom (%)"
 msgstr ""
 
-#: src/blocks/block-container/components/inspector.js:98
+#: src/blocks/block-container/components/inspector.js:95
 msgid "Padding Left (%)"
 msgstr ""
 
-#: src/blocks/block-container/components/inspector.js:111
+#: src/blocks/block-container/components/inspector.js:108
 msgid "Padding Right (%)"
 msgstr ""
 
-#: src/blocks/block-container/components/inspector.js:127
+#: src/blocks/block-container/components/inspector.js:121
 msgid "Margin Top (%)"
 msgstr ""
 
-#: src/blocks/block-container/components/inspector.js:140
+#: src/blocks/block-container/components/inspector.js:134
 msgid "Margin Bottom (%)"
 msgstr ""
 
-#: src/blocks/block-container/components/inspector.js:156
+#: src/blocks/block-container/components/inspector.js:147
 msgid "Inside Container Max Width (px)"
 msgstr ""
 
-#: src/blocks/block-container/components/inspector.js:175
+#: src/blocks/block-container/components/inspector.js:166
 #: src/blocks/block-container/index.js:127
 #: src/blocks/block-cta/components/inspector.js:135
 msgid "Background Options"
 msgstr ""
 
-#: src/blocks/block-container/components/inspector.js:179
+#: src/blocks/block-container/components/inspector.js:170
 #: src/blocks/block-cta/components/inspector.js:139
 msgid "Select a background image:"
 msgstr ""
 
-#: src/blocks/block-container/components/inspector.js:192
-#: src/blocks/block-cta/components/inspector.js:152
+#: src/blocks/block-container/components/inspector.js:180
+#: src/blocks/block-cta/components/inspector.js:149
 #: src/utils/components/background-image/inspector.js:83
 msgid "Edit image"
 msgstr ""
 
-#: src/blocks/block-container/components/inspector.js:199
-#: src/blocks/block-cta/components/inspector.js:159
+#: src/blocks/block-container/components/inspector.js:187
+#: src/blocks/block-cta/components/inspector.js:156
 #: src/utils/components/background-image/inspector.js:90
 msgid "Select Image"
 msgstr ""
 
-#: src/blocks/block-container/components/inspector.js:209
-#: src/blocks/block-cta/components/inspector.js:168
+#: src/blocks/block-container/components/inspector.js:194
+#: src/blocks/block-cta/components/inspector.js:162
 #: src/utils/components/background-image/inspector.js:99
 msgid "Remove Image"
 msgstr ""
 
-#: src/blocks/block-container/components/inspector.js:216
-#: src/blocks/block-cta/components/inspector.js:175
+#: src/blocks/block-container/components/inspector.js:201
+#: src/blocks/block-cta/components/inspector.js:169
 #: src/utils/components/background-image/inspector.js:110
 msgid "Remove"
 msgstr ""
 
-#: src/blocks/block-container/components/inspector.js:228
-#: src/blocks/block-cta/components/inspector.js:184
-#: src/utils/components/background-image/inspector.js:134
+#: src/blocks/block-container/components/inspector.js:210
+#: src/blocks/block-cta/components/inspector.js:178
+#: src/utils/components/background-image/inspector.js:131
 msgid "Image Opacity"
 msgstr ""
 
@@ -2435,7 +2449,7 @@ msgstr ""
 
 #: src/blocks/block-container/index.js:111
 #: src/blocks/block-layout/index.js:33
-#: src/blocks/block-post-grid/components/inspector.js:298
+#: src/blocks/block-post-grid/components/inspector.js:296
 msgid "section"
 msgstr ""
 
@@ -2447,47 +2461,47 @@ msgstr ""
 msgid "Text Font Size"
 msgstr ""
 
-#: src/blocks/block-cta/components/inspector.js:207
+#: src/blocks/block-cta/components/inspector.js:198
 msgid "Overlay Color"
 msgstr ""
 
-#: src/blocks/block-cta/components/inspector.js:219
+#: src/blocks/block-cta/components/inspector.js:210
 msgid "Button Options"
 msgstr ""
 
-#: src/blocks/block-cta/components/inspector.js:223
+#: src/blocks/block-cta/components/inspector.js:214
 #: src/utils/inspector/button.js:71
 msgid "Open link in new window"
 msgstr ""
 
-#: src/blocks/block-cta/components/inspector.js:236
-#: src/blocks/block-sharing/components/inspector.js:191
+#: src/blocks/block-cta/components/inspector.js:227
+#: src/blocks/block-sharing/components/inspector.js:190
 #: src/blocks/block-sharing/index.js:42
-#: src/utils/inspector/button.js:82
+#: src/utils/inspector/button.js:79
 msgid "Button Size"
 msgstr ""
 
-#: src/blocks/block-cta/components/inspector.js:252
-#: src/blocks/block-sharing/components/inspector.js:174
+#: src/blocks/block-cta/components/inspector.js:243
+#: src/blocks/block-sharing/components/inspector.js:173
 #: src/blocks/block-sharing/index.js:39
-#: src/utils/inspector/button.js:95
+#: src/utils/inspector/button.js:90
 msgid "Button Shape"
 msgstr ""
 
-#: src/blocks/block-cta/components/inspector.js:268
-#: src/blocks/block-cta/components/inspector.js:274
-#: src/blocks/block-sharing/components/inspector.js:208
+#: src/blocks/block-cta/components/inspector.js:259
+#: src/blocks/block-cta/components/inspector.js:265
+#: src/blocks/block-sharing/components/inspector.js:207
 #: src/blocks/block-sharing/index.js:45
-#: src/utils/inspector/button.js:108
-#: src/utils/inspector/button.js:114
+#: src/utils/inspector/button.js:101
+#: src/utils/inspector/button.js:107
 msgid "Button Color"
 msgstr ""
 
-#: src/blocks/block-cta/components/inspector.js:283
-#: src/blocks/block-cta/components/inspector.js:292
-#: src/blocks/block-newsletter/components/inspector.js:281
-#: src/utils/inspector/button.js:121
-#: src/utils/inspector/button.js:127
+#: src/blocks/block-cta/components/inspector.js:271
+#: src/blocks/block-cta/components/inspector.js:277
+#: src/blocks/block-newsletter/components/inspector.js:270
+#: src/utils/inspector/button.js:114
+#: src/utils/inspector/button.js:120
 msgid "Button Text Color"
 msgstr ""
 
@@ -2524,12 +2538,12 @@ msgid "Border"
 msgstr ""
 
 #: src/blocks/block-drop-cap/components/inspector.js:49
-#: src/blocks/block-drop-cap/index.js:106
+#: src/blocks/block-drop-cap/index.js:103
 msgid "Drop Cap Size"
 msgstr ""
 
 #: src/blocks/block-drop-cap/components/inspector.js:64
-#: src/blocks/block-drop-cap/index.js:109
+#: src/blocks/block-drop-cap/index.js:106
 msgid "Drop Cap Style"
 msgstr ""
 
@@ -2537,20 +2551,20 @@ msgstr ""
 msgid "Choose the style of the drop cap in your paragraph"
 msgstr ""
 
-#: src/blocks/block-drop-cap/index.js:71
+#: src/blocks/block-drop-cap/index.js:68
 msgid "Drop Cap"
 msgstr ""
 
-#: src/blocks/block-drop-cap/index.js:72
+#: src/blocks/block-drop-cap/index.js:69
 msgid "Add a styled drop cap to the beginning of your paragraph."
 msgstr ""
 
-#: src/blocks/block-drop-cap/index.js:79
+#: src/blocks/block-drop-cap/index.js:76
 msgid "drop cap"
 msgstr ""
 
 #: src/blocks/block-layout/components/edit.js:35
-#: src/blocks/block-layout/components/layout/layout-modal.js:79
+#: src/blocks/block-layout/components/layout/layout-modal.js:77
 msgid "Layout Selector"
 msgstr ""
 
@@ -2602,55 +2616,55 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
-#: src/blocks/block-layout/components/layout/layout-library.js:106
+#: src/blocks/block-layout/components/layout/layout-library.js:104
 msgid "Layout Categories"
 msgstr ""
 
-#: src/blocks/block-layout/components/layout/layout-library.js:123
+#: src/blocks/block-layout/components/layout/layout-library.js:121
 msgid "Search Layouts"
 msgstr ""
 
-#: src/blocks/block-layout/components/layout/layout-library.js:138
-#: src/blocks/block-layout/components/layout/layout-modal.js:57
-#: src/blocks/block-layout/components/layout/layout-modal.js:106
+#: src/blocks/block-layout/components/layout/layout-library.js:135
+#: src/blocks/block-layout/components/layout/layout-modal.js:55
+#: src/blocks/block-layout/components/layout/layout-modal.js:104
 msgid "Reusable Blocks"
 msgstr ""
 
-#: src/blocks/block-layout/components/layout/layout-library.js:149
+#: src/blocks/block-layout/components/layout/layout-library.js:145
 msgid "Manage All Reusable Blocks"
 msgstr ""
 
-#: src/blocks/block-layout/components/layout/layout-library.js:173
+#: src/blocks/block-layout/components/layout/layout-library.js:169
 msgid "Layout Options"
 msgstr ""
 
-#: src/blocks/block-layout/components/layout/layout-modal.js:35
+#: src/blocks/block-layout/components/layout/layout-modal.js:33
 msgid "Sections"
 msgstr ""
 
-#: src/blocks/block-layout/components/layout/layout-modal.js:43
+#: src/blocks/block-layout/components/layout/layout-modal.js:41
 #: src/blocks/block-layout/index.js:23
 #: src/blocks/block-layout/index.js:75
 msgid "Layouts"
 msgstr ""
 
-#: src/blocks/block-layout/components/layout/layout-modal.js:50
+#: src/blocks/block-layout/components/layout/layout-modal.js:48
 msgid "Favorites"
 msgstr ""
 
-#: src/blocks/block-layout/components/layout/layout-modal.js:73
+#: src/blocks/block-layout/components/layout/layout-modal.js:71
 msgid "Layout Library"
 msgstr ""
 
-#: src/blocks/block-layout/components/layout/layout-modal.js:96
+#: src/blocks/block-layout/components/layout/layout-modal.js:94
 msgid "Add Custom Layouts"
 msgstr ""
 
-#: src/blocks/block-layout/components/layout/layout-modal.js:115
+#: src/blocks/block-layout/components/layout/layout-modal.js:113
 msgid "Send Feedback"
 msgstr ""
 
-#: src/blocks/block-layout/components/layout/layout-modal.js:129
+#: src/blocks/block-layout/components/layout/layout-modal.js:127
 msgid "Default tab content"
 msgstr ""
 
@@ -2662,80 +2676,80 @@ msgstr ""
 msgid "Insert Layout"
 msgstr ""
 
-#: src/blocks/block-newsletter/components/edit.js:97
+#: src/blocks/block-newsletter/components/edit.js:95
 msgid "You must define your newsletter provider API keys to use this block."
 msgstr ""
 
-#: src/blocks/block-newsletter/components/edit.js:109
+#: src/blocks/block-newsletter/components/edit.js:107
 msgid "Configure your settings"
 msgstr ""
 
-#: src/blocks/block-newsletter/components/edit.js:138
+#: src/blocks/block-newsletter/components/edit.js:136
 #: src/blocks/block-pricing-table-inner/components/button/edit.js:72
 msgid "Button text…"
 msgstr ""
 
-#: src/blocks/block-newsletter/components/inspector.js:92
+#: src/blocks/block-newsletter/components/inspector.js:90
 msgid "Select a list"
 msgstr ""
 
-#: src/blocks/block-newsletter/components/inspector.js:110
-#: src/blocks/block-newsletter/index.js:25
+#: src/blocks/block-newsletter/components/inspector.js:108
+#: src/blocks/block-newsletter/index.js:22
 msgid "Newsletter"
 msgstr ""
 
-#: src/blocks/block-newsletter/components/inspector.js:115
-#: src/blocks/block-newsletter/index.js:30
+#: src/blocks/block-newsletter/components/inspector.js:113
+#: src/blocks/block-newsletter/index.js:27
 msgid "Mailing List"
 msgstr ""
 
-#: src/blocks/block-newsletter/components/inspector.js:116
+#: src/blocks/block-newsletter/components/inspector.js:114
 msgid "The list people will be subscribed to."
 msgstr ""
 
-#: src/blocks/block-newsletter/components/inspector.js:131
-#: src/blocks/block-newsletter/index.js:33
+#: src/blocks/block-newsletter/components/inspector.js:129
+#: src/blocks/block-newsletter/index.js:30
 msgid "Success Message"
 msgstr ""
 
-#: src/blocks/block-newsletter/components/inspector.js:132
+#: src/blocks/block-newsletter/components/inspector.js:130
 msgid "The message shown when people successfully subscribe."
 msgstr ""
 
-#: src/blocks/block-newsletter/components/inspector.js:165
-#: src/blocks/block-newsletter/index.js:36
+#: src/blocks/block-newsletter/components/inspector.js:163
+#: src/blocks/block-newsletter/index.js:33
 msgid "Enable Double Opt-In"
 msgstr ""
 
-#: src/blocks/block-newsletter/components/inspector.js:171
+#: src/blocks/block-newsletter/components/inspector.js:166
 msgid "Send contacts an opt-in confirmation email when they subscribe to your list."
 msgstr ""
 
-#: src/blocks/block-newsletter/components/inspector.js:188
+#: src/blocks/block-newsletter/components/inspector.js:183
 msgid "Block Padding"
 msgstr ""
 
-#: src/blocks/block-newsletter/components/inspector.js:192
+#: src/blocks/block-newsletter/components/inspector.js:184
 msgid "Adjust the padding applied to the inside of the block."
 msgstr ""
 
-#: src/blocks/block-newsletter/components/inspector.js:209
+#: src/blocks/block-newsletter/components/inspector.js:201
 msgid "Block Margin Top"
 msgstr ""
 
-#: src/blocks/block-newsletter/components/inspector.js:221
+#: src/blocks/block-newsletter/components/inspector.js:213
 msgid "Block Margin Bottom"
 msgstr ""
 
-#: src/blocks/block-newsletter/components/inspector.js:257
+#: src/blocks/block-newsletter/components/inspector.js:249
 msgid "Block Background Color"
 msgstr ""
 
-#: src/blocks/block-newsletter/components/inspector.js:265
+#: src/blocks/block-newsletter/components/inspector.js:257
 msgid "Block Text Color"
 msgstr ""
 
-#: src/blocks/block-newsletter/components/inspector.js:273
+#: src/blocks/block-newsletter/components/inspector.js:262
 msgid "Button Background Color"
 msgstr ""
 
@@ -2747,19 +2761,19 @@ msgstr ""
 msgid "Add an email newsletter sign-up form."
 msgstr ""
 
-#: src/blocks/block-newsletter/index.js:23
+#: src/blocks/block-newsletter/index.js:20
 msgid "Mailchimp"
 msgstr ""
 
-#: src/blocks/block-newsletter/index.js:39
+#: src/blocks/block-newsletter/index.js:36
 msgid "Form Padding"
 msgstr ""
 
-#: src/blocks/block-newsletter/index.js:42
+#: src/blocks/block-newsletter/index.js:39
 msgid "Form Margin"
 msgstr ""
 
-#: src/blocks/block-newsletter/index.js:45
+#: src/blocks/block-newsletter/index.js:42
 msgid "Color Options"
 msgstr ""
 
@@ -2772,7 +2786,7 @@ msgid "Dismissible"
 msgstr ""
 
 #: src/blocks/block-notice/components/inspector.js:86
-#: src/blocks/block-notice/index.js:148
+#: src/blocks/block-notice/index.js:146
 msgid "Notice Display"
 msgstr ""
 
@@ -2782,7 +2796,7 @@ msgstr ""
 
 #: src/blocks/block-notice/components/inspector.js:103
 #: src/blocks/block-notice/components/inspector.js:111
-#: src/blocks/block-notice/index.js:151
+#: src/blocks/block-notice/index.js:149
 msgid "Notice Color"
 msgstr ""
 
@@ -2795,19 +2809,19 @@ msgstr ""
 msgid "Notice Title"
 msgstr ""
 
-#: src/blocks/block-notice/index.js:104
+#: src/blocks/block-notice/index.js:102
 msgid "Notice"
 msgstr ""
 
-#: src/blocks/block-notice/index.js:105
+#: src/blocks/block-notice/index.js:103
 msgid "Add a stylized text notice."
 msgstr ""
 
-#: src/blocks/block-notice/index.js:109
+#: src/blocks/block-notice/index.js:107
 msgid "notice"
 msgstr ""
 
-#: src/blocks/block-notice/index.js:110
+#: src/blocks/block-notice/index.js:108
 msgid "message"
 msgstr ""
 
@@ -2827,199 +2841,199 @@ msgstr ""
 msgid "List View"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/edit.js:262
-#: src/blocks/block-post-grid/components/edit.js:287
+#: src/blocks/block-post-grid/components/edit.js:258
+#: src/blocks/block-post-grid/components/edit.js:283
 msgid "(Untitled)"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/image.js:132
+#: src/blocks/block-post-grid/components/image.js:130
 msgid "There is no image generated for the selected image size, so a fallback image size is being used."
 msgstr ""
 
-#: src/blocks/block-post-grid/components/image.js:141
+#: src/blocks/block-post-grid/components/image.js:139
 msgid "Learn more about image sizes (opens in a new tab)"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/image.js:147
+#: src/blocks/block-post-grid/components/image.js:145
 msgid "Learn more "
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:290
+#: src/blocks/block-post-grid/components/inspector.js:288
 msgid "Post"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:291
+#: src/blocks/block-post-grid/components/inspector.js:289
 msgid "Page"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:296
+#: src/blocks/block-post-grid/components/inspector.js:294
 msgid "div"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:299
+#: src/blocks/block-post-grid/components/inspector.js:297
 msgid "article"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:300
+#: src/blocks/block-post-grid/components/inspector.js:298
 msgid "main"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:301
+#: src/blocks/block-post-grid/components/inspector.js:299
 msgid "aside"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:302
+#: src/blocks/block-post-grid/components/inspector.js:300
 msgid "footer"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:307
+#: src/blocks/block-post-grid/components/inspector.js:305
 msgid "H2"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:308
+#: src/blocks/block-post-grid/components/inspector.js:306
 msgid "H3"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:309
+#: src/blocks/block-post-grid/components/inspector.js:307
 msgid "H4"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:310
+#: src/blocks/block-post-grid/components/inspector.js:308
 msgid "H5"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:311
+#: src/blocks/block-post-grid/components/inspector.js:309
 msgid "H6"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:323
+#: src/blocks/block-post-grid/components/inspector.js:321
 msgid "Select image size"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:329
+#: src/blocks/block-post-grid/components/inspector.js:327
 msgid "GB Grid Landscape"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:335
+#: src/blocks/block-post-grid/components/inspector.js:333
 msgid "GB Grid Square"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:357
+#: src/blocks/block-post-grid/components/inspector.js:355
 msgid "Post and Page Grid Settings"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:365
+#: src/blocks/block-post-grid/components/inspector.js:360
 #: src/blocks/block-post-grid/index.js:41
 msgid "Content Type"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:396
+#: src/blocks/block-post-grid/components/inspector.js:391
 msgid "Enter page names to display"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:415
+#: src/blocks/block-post-grid/components/inspector.js:410
 msgid "Start typing page name…"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:527
+#: src/blocks/block-post-grid/components/inspector.js:524
 msgid "Enter category names to display"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:546
+#: src/blocks/block-post-grid/components/inspector.js:543
 msgid "Start typing category name…"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:681
+#: src/blocks/block-post-grid/components/inspector.js:680
 msgid "Number of items to offset"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:699
+#: src/blocks/block-post-grid/components/inspector.js:698
 #: src/blocks/block-post-grid/index.js:50
 msgid "Columns"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:718
+#: src/blocks/block-post-grid/components/inspector.js:717
 msgid "Post and Page Grid Content"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:726
+#: src/blocks/block-post-grid/components/inspector.js:722
 #: src/blocks/block-post-grid/index.js:53
 msgid "Display Section Title"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:742
+#: src/blocks/block-post-grid/components/inspector.js:738
 #: src/blocks/block-post-grid/index.js:56
 msgid "Section Title"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:758
+#: src/blocks/block-post-grid/components/inspector.js:751
 #: src/blocks/block-post-grid/index.js:59
 msgid "Display Featured Image"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:774
+#: src/blocks/block-post-grid/components/inspector.js:767
 #: src/blocks/block-post-grid/index.js:62
 msgid "Image Size"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:787
+#: src/blocks/block-post-grid/components/inspector.js:780
 msgid "Display Title"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:800
+#: src/blocks/block-post-grid/components/inspector.js:793
 msgid "Display Author"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:817
+#: src/blocks/block-post-grid/components/inspector.js:807
 msgid "Display Date"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:830
+#: src/blocks/block-post-grid/components/inspector.js:820
 msgid "Display Excerpt"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:843
+#: src/blocks/block-post-grid/components/inspector.js:833
 #: src/blocks/block-post-grid/index.js:77
 msgid "Excerpt Length"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:858
+#: src/blocks/block-post-grid/components/inspector.js:845
 #: src/blocks/block-post-grid/index.js:80
 msgid "Display Continue Reading Link"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:874
+#: src/blocks/block-post-grid/components/inspector.js:861
 msgid "Customize Continue Reading Text"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:890
+#: src/blocks/block-post-grid/components/inspector.js:877
 msgid "Post and Page Grid Markup"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:899
+#: src/blocks/block-post-grid/components/inspector.js:883
 #: src/blocks/block-post-grid/index.js:86
 msgid "Post Grid Section Tag"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:910
+#: src/blocks/block-post-grid/components/inspector.js:894
 msgid "Change the post grid section tag to match your content hierarchy."
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:919
+#: src/blocks/block-post-grid/components/inspector.js:903
 #: src/blocks/block-post-grid/index.js:89
 msgid "Section Title Heading Tag"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:930
+#: src/blocks/block-post-grid/components/inspector.js:914
 msgid "Change the post/page section title tag to match your content hierarchy."
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:940
+#: src/blocks/block-post-grid/components/inspector.js:924
 #: src/blocks/block-post-grid/index.js:92
 msgid "Post Title Heading Tag"
 msgstr ""
 
-#: src/blocks/block-post-grid/components/inspector.js:951
+#: src/blocks/block-post-grid/components/inspector.js:935
 msgid "Change the post/page title tag to match your content hierarchy."
 msgstr ""
 
@@ -3067,7 +3081,7 @@ msgstr ""
 msgid "Read More Text"
 msgstr ""
 
-#: src/blocks/block-pricing-table-inner/components/button/edit.js:111
+#: src/blocks/block-pricing-table-inner/components/button/edit.js:108
 msgid "Apply"
 msgstr ""
 
@@ -3098,19 +3112,19 @@ msgstr ""
 #: src/blocks/block-pricing-table-inner/components/price/index.js:36
 #: src/blocks/block-pricing-table-inner/components/subtitle/index.js:34
 #: src/blocks/block-pricing-table-inner/components/title/index.js:34
-#: src/blocks/block-pricing-table-inner/index.js:218
+#: src/blocks/block-pricing-table-inner/index.js:216
 #: src/blocks/block-pricing-table/index.js:94
 msgid "shop"
 msgstr ""
 
-#: src/blocks/block-pricing-table-inner/components/button/inspector.js:79
+#: src/blocks/block-pricing-table-inner/components/button/inspector.js:77
 msgid "Button Settings"
 msgstr ""
 
-#: src/blocks/block-pricing-table-inner/components/button/inspector.js:110
-#: src/blocks/block-pricing-table-inner/components/description/inspector.js:153
-#: src/blocks/block-pricing-table-inner/components/global/inspector.js:86
-#: src/blocks/block-pricing-table-inner/components/price/inspector.js:134
+#: src/blocks/block-pricing-table-inner/components/button/inspector.js:108
+#: src/blocks/block-pricing-table-inner/components/description/inspector.js:148
+#: src/blocks/block-pricing-table-inner/components/global/inspector.js:84
+#: src/blocks/block-pricing-table-inner/components/price/inspector.js:129
 msgid "Padding Settings"
 msgstr ""
 
@@ -3122,41 +3136,41 @@ msgstr ""
 msgid "Adds a product feature component with schema markup."
 msgstr ""
 
-#: src/blocks/block-pricing-table-inner/components/description/inspector.js:96
-#: src/blocks/block-pricing-table-inner/components/global/inspector.js:77
-#: src/blocks/block-pricing-table-inner/components/price/inspector.js:86
+#: src/blocks/block-pricing-table-inner/components/description/inspector.js:94
+#: src/blocks/block-pricing-table-inner/components/global/inspector.js:75
+#: src/blocks/block-pricing-table-inner/components/price/inspector.js:84
 msgid "Text Settings"
 msgstr ""
 
-#: src/blocks/block-pricing-table-inner/components/description/inspector.js:104
+#: src/blocks/block-pricing-table-inner/components/description/inspector.js:102
 msgid "List Border Style"
 msgstr ""
 
-#: src/blocks/block-pricing-table-inner/components/description/inspector.js:116
+#: src/blocks/block-pricing-table-inner/components/description/inspector.js:114
 msgid "List Border Width"
 msgstr ""
 
-#: src/blocks/block-pricing-table-inner/components/description/inspector.js:134
+#: src/blocks/block-pricing-table-inner/components/description/inspector.js:129
 msgid "List Border Color"
 msgstr ""
 
 #: src/blocks/block-pricing-table-inner/components/inspector.js:44
-#: src/blocks/block-pricing-table-inner/index.js:246
+#: src/blocks/block-pricing-table-inner/index.js:244
 msgid "Pricing Column Padding"
 msgstr ""
 
 #: src/blocks/block-pricing-table-inner/components/inspector.js:59
-#: src/blocks/block-pricing-table-inner/index.js:249
+#: src/blocks/block-pricing-table-inner/index.js:247
 msgid "Pricing Column Border"
 msgstr ""
 
 #: src/blocks/block-pricing-table-inner/components/inspector.js:76
-#: src/blocks/block-pricing-table-inner/index.js:252
+#: src/blocks/block-pricing-table-inner/index.js:250
 msgid "Pricing Column Border Radius"
 msgstr ""
 
 #: src/blocks/block-pricing-table-inner/components/inspector.js:95
-#: src/blocks/block-pricing-table-inner/index.js:255
+#: src/blocks/block-pricing-table-inner/index.js:253
 msgid "Pricing Column Border Color"
 msgstr ""
 
@@ -3164,8 +3178,8 @@ msgstr ""
 msgid "Border Color"
 msgstr ""
 
-#: src/blocks/block-pricing-table-inner/components/inspector.js:115
-#: src/blocks/block-pricing-table-inner/index.js:258
+#: src/blocks/block-pricing-table-inner/components/inspector.js:112
+#: src/blocks/block-pricing-table-inner/index.js:256
 msgid "Pricing Column Background Color"
 msgstr ""
 
@@ -3194,19 +3208,19 @@ msgstr ""
 msgid "price"
 msgstr ""
 
-#: src/blocks/block-pricing-table-inner/components/price/inspector.js:94
+#: src/blocks/block-pricing-table-inner/components/price/inspector.js:92
 msgid "Show currency symbol"
 msgstr ""
 
-#: src/blocks/block-pricing-table-inner/components/price/inspector.js:104
+#: src/blocks/block-pricing-table-inner/components/price/inspector.js:102
 msgid "Currency Symbol"
 msgstr ""
 
-#: src/blocks/block-pricing-table-inner/components/price/inspector.js:113
+#: src/blocks/block-pricing-table-inner/components/price/inspector.js:111
 msgid "Show pricing duration"
 msgstr ""
 
-#: src/blocks/block-pricing-table-inner/components/price/inspector.js:124
+#: src/blocks/block-pricing-table-inner/components/price/inspector.js:119
 msgid "Pricing Duration"
 msgstr ""
 
@@ -3234,31 +3248,31 @@ msgstr ""
 msgid "Adds a product title component with schema markup."
 msgstr ""
 
-#: src/blocks/block-pricing-table-inner/index.js:158
+#: src/blocks/block-pricing-table-inner/index.js:156
 msgid "Product Feature One"
 msgstr ""
 
-#: src/blocks/block-pricing-table-inner/index.js:167
+#: src/blocks/block-pricing-table-inner/index.js:165
 msgid "Product Feature Two"
 msgstr ""
 
-#: src/blocks/block-pricing-table-inner/index.js:176
+#: src/blocks/block-pricing-table-inner/index.js:174
 msgid "Product Feature Three"
 msgstr ""
 
-#: src/blocks/block-pricing-table-inner/index.js:211
+#: src/blocks/block-pricing-table-inner/index.js:209
 msgid "Pricing Column"
 msgstr ""
 
-#: src/blocks/block-pricing-table-inner/index.js:212
+#: src/blocks/block-pricing-table-inner/index.js:210
 msgid "Add a pricing column."
 msgstr ""
 
-#: src/blocks/block-pricing-table-inner/index.js:217
+#: src/blocks/block-pricing-table-inner/index.js:215
 msgid "pricing"
 msgstr ""
 
-#: src/blocks/block-pricing-table-inner/index.js:219
+#: src/blocks/block-pricing-table-inner/index.js:217
 msgid "buy"
 msgstr ""
 
@@ -3284,7 +3298,7 @@ msgstr ""
 msgid "purchase"
 msgstr ""
 
-#: src/blocks/block-sharing/components/edit.js:229
+#: src/blocks/block-sharing/components/edit.js:217
 msgid "Share on reddit"
 msgstr ""
 
@@ -3337,15 +3351,15 @@ msgstr ""
 msgid "Enable or disable the sharing links you want to output."
 msgstr ""
 
-#: src/blocks/block-sharing/components/inspector.js:131
+#: src/blocks/block-sharing/components/inspector.js:130
 msgid "Reddit"
 msgstr ""
 
-#: src/blocks/block-sharing/components/inspector.js:152
+#: src/blocks/block-sharing/components/inspector.js:151
 msgid "Sharing Button Options"
 msgstr ""
 
-#: src/blocks/block-sharing/components/inspector.js:157
+#: src/blocks/block-sharing/components/inspector.js:156
 #: src/blocks/block-sharing/index.js:36
 msgid "Button Style"
 msgstr ""
@@ -3399,7 +3413,7 @@ msgid "Divider Height"
 msgstr ""
 
 #: src/blocks/block-spacer/components/inspector.js:135
-#: src/blocks/block-spacer/components/inspector.js:145
+#: src/blocks/block-spacer/components/inspector.js:142
 #: src/blocks/block-spacer/index.js:136
 msgid "Divider Color"
 msgstr ""
@@ -3449,27 +3463,27 @@ msgstr ""
 msgid "Add a user testimonial with a name and title."
 msgstr ""
 
-#: src/blocks/responsive-settings/components/with-responsive-settings.js:245
+#: src/blocks/responsive-settings/components/with-responsive-settings.js:242
 msgid "Desktop view"
 msgstr ""
 
-#: src/blocks/responsive-settings/components/with-responsive-settings.js:261
+#: src/blocks/responsive-settings/components/with-responsive-settings.js:253
 msgid "Desktop"
 msgstr ""
 
-#: src/blocks/responsive-settings/components/with-responsive-settings.js:266
+#: src/blocks/responsive-settings/components/with-responsive-settings.js:258
 msgid "Tablet view"
 msgstr ""
 
-#: src/blocks/responsive-settings/components/with-responsive-settings.js:280
+#: src/blocks/responsive-settings/components/with-responsive-settings.js:269
 msgid "Tablet"
 msgstr ""
 
-#: src/blocks/responsive-settings/components/with-responsive-settings.js:285
+#: src/blocks/responsive-settings/components/with-responsive-settings.js:274
 msgid "Mobile view"
 msgstr ""
 
-#: src/blocks/responsive-settings/components/with-responsive-settings.js:299
+#: src/blocks/responsive-settings/components/with-responsive-settings.js:285
 msgid "Mobile"
 msgstr ""
 
@@ -3513,19 +3527,19 @@ msgstr ""
 msgid "Scales the background image in the corresponding direction such that its intrinsic proportions are maintained."
 msgstr ""
 
-#: src/utils/components/background-image/inspector.js:125
+#: src/utils/components/background-image/inspector.js:122
 msgid "Focal Point"
 msgstr ""
 
-#: src/utils/components/background-image/inspector.js:150
+#: src/utils/components/background-image/inspector.js:144
 msgid "Fixed Background"
 msgstr ""
 
-#: src/utils/components/background-image/inspector.js:167
+#: src/utils/components/background-image/inspector.js:158
 msgid "Image Display"
 msgstr ""
 
-#: src/utils/components/background-image/inspector.js:183
+#: src/utils/components/background-image/inspector.js:171
 msgid "Image Repeat"
 msgstr ""
 

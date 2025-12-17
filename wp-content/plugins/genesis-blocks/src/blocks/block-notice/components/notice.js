@@ -27,24 +27,24 @@ export default class NoticeBox extends Component {
 		} = this.props;
 
 		// Generate a unique ID for the dismissible notice
-		const blockID = generateUniqueID( noticeDismiss + noticeTitle );
+		const blockID = generateUniqueID(noticeDismiss + noticeTitle);
 
 		return (
 			<div
-				style={ {
+				style={{
 					color: noticeTextColor,
 					textAlign: noticeAlignment,
 					backgroundColor: noticeBackgroundColor,
-				} }
-				className={ classnames(
+				}}
+				className={classnames(
 					this.props.className,
 					noticeDismiss,
 					'gb-font-size-' + noticeFontSize,
 					'gb-block-notice'
-				) }
-				data-id={ blockID }
+				)}
+				data-id={blockID}
 			>
-				{ this.props.children }
+				{this.props.children}
 			</div>
 		);
 	}

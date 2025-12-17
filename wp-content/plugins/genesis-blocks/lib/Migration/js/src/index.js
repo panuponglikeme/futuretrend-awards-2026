@@ -10,6 +10,6 @@ import { render } from '@wordpress/element';
 import { App } from './components';
 
 // Renders the app in the container.
-domReady( () => {
-	render( <App />, document.querySelector( '.gb-migration__content' ) );
-} );
+domReady(() => {
+	render(<App />, document.querySelector('.gb-migration__content'));
+});

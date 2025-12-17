@@ -17,8 +17,8 @@ const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
 
 // Register the block
-registerBlockType( 'genesis-blocks/gb-testimonial', {
-	title: __( 'Testimonial', 'genesis-blocks' ),
+registerBlockType('genesis-blocks/gb-testimonial', {
+	title: __('Testimonial', 'genesis-blocks'),
 	description: __(
 		'Add a user testimonial with a name and title.',
 		'genesis-blocks'
@@ -26,9 +26,9 @@ registerBlockType( 'genesis-blocks/gb-testimonial', {
 	icon: 'format-quote',
 	category: 'genesis-blocks',
 	keywords: [
-		__( 'testimonial', 'genesis-blocks' ),
-		__( 'quote', 'genesis-blocks' ),
-		__( 'atomic', 'genesis-blocks' ),
+		__('testimonial', 'genesis-blocks'),
+		__('quote', 'genesis-blocks'),
+		__('atomic', 'genesis-blocks'),
 	],
 	attributes: {
 		testimonialName: {
@@ -83,26 +83,26 @@ registerBlockType( 'genesis-blocks/gb-testimonial', {
 	},
 	gb_settings_data: {
 		gb_testimonial_testimonialFontSize: {
-			title: __( 'Font Size', 'genesis-blocks' ),
+			title: __('Font Size', 'genesis-blocks'),
 		},
 		gb_testimonial_testimonialCiteAlign: {
-			title: __( 'Cite Alignment', 'genesis-blocks' ),
+			title: __('Cite Alignment', 'genesis-blocks'),
 		},
 		gb_testimonial_testimonialBackgroundColor: {
-			title: __( 'Background Color', 'genesis-blocks' ),
+			title: __('Background Color', 'genesis-blocks'),
 		},
 		gb_testimonial_testimonialTextColor: {
-			title: __( 'Text Color', 'genesis-blocks' ),
+			title: __('Text Color', 'genesis-blocks'),
 		},
 	},
 
 	/* Render the block in the editor. */
-	edit: ( props ) => {
-		return <Edit { ...props } />;
+	edit: (props) => {
+		return <Edit {...props} />;
 	},
 
 	/* Save the block markup. */
-	save: ( props ) => {
-		return <Save { ...props } />;
+	save: (props) => {
+		return <Save {...props} />;
 	},
-} );
+});

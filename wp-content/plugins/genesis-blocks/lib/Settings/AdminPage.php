@@ -19,22 +19,6 @@ namespace Genesis\Blocks\Settings;
  */
 final class AdminPage {
 	/**
-	 * Page Title
-	 *
-	 * @since 1.0.0
-	 * @var string
-	 */
-	private $page_title;
-
-	/**
-	 * Menu Title
-	 *
-	 * @since 1.0.0
-	 * @var string
-	 */
-	private $menu_title;
-
-	/**
 	 * Plugin context, such as path and url.
 	 *
 	 * @since 1.0.0
@@ -63,9 +47,7 @@ final class AdminPage {
 	 * @param array $context Plugin context.
 	 */
 	public function __construct( array $context ) {
-		$this->page_title = __( 'Genesis', 'genesis-blocks' );
-		$this->menu_title = __( 'Genesis Blocks', 'genesis-blocks' );
-		$this->context    = $context;
+		$this->context = $context;
 	}
 
 	/**
@@ -104,8 +86,8 @@ final class AdminPage {
 		 * Adds the top-level Genesis Blocks menu item.
 		 */
 		add_menu_page(
-			$this->page_title,
-			$this->menu_title,
+			__( 'Genesis', 'genesis-blocks' ),
+			__( 'Genesis Blocks', 'genesis-blocks' ),
 			'manage_options',
 			self::PARENT_MENU_SLUG,
 			[ $this, 'render_getting_started_page' ],

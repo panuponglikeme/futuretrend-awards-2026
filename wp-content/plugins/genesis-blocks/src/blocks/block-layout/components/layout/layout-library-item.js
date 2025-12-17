@@ -21,19 +21,19 @@ class LayoutLibraryItem extends Component {
 	layoutTabContent() {
 		let component = [];
 
-		if ( 'gb-layout-tab-reusable-blocks' === this.props.currentTab ) {
-			component = <LayoutLibraryItemList { ...this.props } />;
-		} else if ( 'gb-layout-tab-collections' === this.props.currentTab ) {
-			component = <Collections { ...this.props } />;
+		if ('gb-layout-tab-reusable-blocks' === this.props.currentTab) {
+			component = <LayoutLibraryItemList {...this.props} />;
+		} else if ('gb-layout-tab-collections' === this.props.currentTab) {
+			component = <Collections {...this.props} />;
 		} else {
-			component = <LayoutLibraryItemCard { ...this.props } />;
+			component = <LayoutLibraryItemCard {...this.props} />;
 		}
 
 		return component;
 	}
 
 	render() {
-		return <Fragment>{ this.layoutTabContent() }</Fragment>;
+		return <Fragment>{this.layoutTabContent()}</Fragment>;
 	}
 }
 
@@ -42,34 +42,34 @@ export default compose(
 	 * Use rawHandler to parse html layouts to blocks
 	 * See https://git.io/fjqGc for details
 	 */
-	withSelect( ( select, { clientId } ) => {
-		const { getBlock } = select( 'core/block-editor' );
+	withSelect((select, { clientId }) => {
+		const { getBlock } = select('core/block-editor');
 		let canUserUseUnfilteredHTML;
 
 		// The core/editor package doesn't work on the widgets page, and thus doesn't exist there. Therefore this conditional exists.
-		if ( select( 'core/editor' ) ) {
+		if (select('core/editor')) {
 			canUserUseUnfilteredHTML =
-				select( 'core/editor' ).canUserUseUnfilteredHTML;
+				select('core/editor').canUserUseUnfilteredHTML;
 			canUserUseUnfilteredHTML = canUserUseUnfilteredHTML();
 		} else {
 			canUserUseUnfilteredHTML = true;
 		}
 
-		const block = getBlock( clientId );
+		const block = getBlock(clientId);
 		return {
 			block,
 			canUserUseUnfilteredHTML,
 		};
-	} ),
-	withDispatch( ( dispatch, { block, canUserUseUnfilteredHTML } ) => ( {
-		import: ( blockLayout ) =>
-			dispatch( 'core/block-editor' ).replaceBlocks(
+	}),
+	withDispatch((dispatch, { block, canUserUseUnfilteredHTML }) => ({
+		import: (blockLayout) =>
+			dispatch('core/block-editor').replaceBlocks(
 				block.clientId,
-				rawHandler( {
+				rawHandler({
 					HTML: blockLayout,
 					mode: 'BLOCKS',
 					canUserUseUnfilteredHTML,
-				} )
+				})
 			),
-	} ) )
-)( LayoutLibraryItem );
+	}))
+)(LayoutLibraryItem);

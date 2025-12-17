@@ -32,19 +32,17 @@ const {
 } = wp.components;
 
 // Apply fallback styles
-const applyFallbackStyles = withFallbackStyles( ( node, ownProps ) => {
+const applyFallbackStyles = withFallbackStyles((node, ownProps) => {
 	const { backgroundColor } = ownProps.attributes;
-	const editableNode = node.querySelector( '[contenteditable="true"]' );
-	const computedStyles = editableNode
-		? getComputedStyle( editableNode )
-		: null;
+	const editableNode = node.querySelector('[contenteditable="true"]');
+	const computedStyles = editableNode ? getComputedStyle(editableNode) : null;
 	return {
 		fallbackBackgroundColor:
-			backgroundColor || ! computedStyles
+			backgroundColor || !computedStyles
 				? undefined
 				: computedStyles.backgroundColor,
 	};
-} );
+});
 
 /**
  * Create an Inspector Controls wrapper Component
@@ -76,93 +74,93 @@ class Inspector extends Component {
 
 		return (
 			<InspectorControls key="inspector">
-				<PanelBody title={ __( 'Button Settings', 'genesis-blocks' ) }>
+				<PanelBody title={__('Button Settings', 'genesis-blocks')}>
 					<ButtonSettings
 						// Open in new window
-						buttonTarget={ buttonTarget }
-						onChangeButtonTarget={ ( value ) =>
-							setAttributes( { buttonTarget: ! buttonTarget } )
+						buttonTarget={buttonTarget}
+						onChangeButtonTarget={(value) =>
+							setAttributes({ buttonTarget: !buttonTarget })
 						}
 						// Button Size
-						buttonSize={ buttonSize }
-						onChangeButtonSize={ ( buttonSize ) =>
-							setAttributes( { buttonSize } )
+						buttonSize={buttonSize}
+						onChangeButtonSize={(buttonSize) =>
+							setAttributes({ buttonSize })
 						}
 						// Button Shape
-						buttonShape={ buttonShape }
-						onChangeButtonShape={ ( buttonShape ) =>
-							setAttributes( { buttonShape } )
+						buttonShape={buttonShape}
+						onChangeButtonShape={(buttonShape) =>
+							setAttributes({ buttonShape })
 						}
 						// Button color
-						buttonBackgroundColor={ buttonBackgroundColor }
-						onChangeButtonColor={ ( buttonBackgroundColor ) =>
-							setAttributes( { buttonBackgroundColor } )
+						buttonBackgroundColor={buttonBackgroundColor}
+						onChangeButtonColor={(buttonBackgroundColor) =>
+							setAttributes({ buttonBackgroundColor })
 						}
 						// Button text color
-						buttonTextColor={ buttonTextColor }
-						onChangeButtonTextColor={ ( buttonTextColor ) =>
-							setAttributes( { buttonTextColor } )
+						buttonTextColor={buttonTextColor}
+						onChangeButtonTextColor={(buttonTextColor) =>
+							setAttributes({ buttonTextColor })
 						}
 					/>
 				</PanelBody>
 
 				<PanelBody
-					title={ __( 'Padding Settings', 'genesis-blocks' ) }
-					initialOpen={ false }
+					title={__('Padding Settings', 'genesis-blocks')}
+					initialOpen={false}
 				>
 					<Padding
 						// Top padding
-						paddingEnableTop={ true }
-						paddingTop={ paddingTop }
+						paddingEnableTop={true}
+						paddingTop={paddingTop}
 						paddingTopMin="0"
 						paddingTopMax="100"
-						onChangePaddingTop={ ( paddingTop ) =>
-							setAttributes( { paddingTop } )
+						onChangePaddingTop={(paddingTop) =>
+							setAttributes({ paddingTop })
 						}
 						// Right padding
-						paddingEnableRight={ true }
-						paddingRight={ paddingRight }
+						paddingEnableRight={true}
+						paddingRight={paddingRight}
 						paddingRightMin="0"
 						paddingRightMax="100"
-						onChangePaddingRight={ ( paddingRight ) =>
-							setAttributes( { paddingRight } )
+						onChangePaddingRight={(paddingRight) =>
+							setAttributes({ paddingRight })
 						}
 						// Bottom padding
-						paddingEnableBottom={ true }
-						paddingBottom={ paddingBottom }
+						paddingEnableBottom={true}
+						paddingBottom={paddingBottom}
 						paddingBottomMin="0"
 						paddingBottomMax="100"
-						onChangePaddingBottom={ ( paddingBottom ) =>
-							setAttributes( { paddingBottom } )
+						onChangePaddingBottom={(paddingBottom) =>
+							setAttributes({ paddingBottom })
 						}
 						// Left padding
-						paddingEnableLeft={ true }
-						paddingLeft={ paddingLeft }
+						paddingEnableLeft={true}
+						paddingLeft={paddingLeft}
 						paddingLeftMin="0"
 						paddingLeftMax="100"
-						onChangePaddingLeft={ ( paddingLeft ) =>
-							setAttributes( { paddingLeft } )
+						onChangePaddingLeft={(paddingLeft) =>
+							setAttributes({ paddingLeft })
 						}
 					/>
 				</PanelBody>
 				<PanelColorSettings
-					title={ __( 'Color Settings', 'genesis-blocks' ) }
-					initialOpen={ false }
-					colorSettings={ [
+					title={__('Color Settings', 'genesis-blocks')}
+					initialOpen={false}
+					colorSettings={[
 						{
 							value: backgroundColor.color,
 							onChange: setBackgroundColor,
-							label: __( 'Background Color', 'genesis-blocks' ),
+							label: __('Background Color', 'genesis-blocks'),
 						},
-					] }
+					]}
 				></PanelColorSettings>
 			</InspectorControls>
 		);
 	}
 }
 
-export default compose( [
+export default compose([
 	applyFallbackStyles,
-	withFontSizes( 'fontSize' ),
-	withColors( 'backgroundColor' ),
-] )( Inspector );
+	withFontSizes('fontSize'),
+	withColors('backgroundColor'),
+])(Inspector);

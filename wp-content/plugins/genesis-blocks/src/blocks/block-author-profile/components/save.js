@@ -26,52 +26,52 @@ export default class Save extends Component {
 
 		return (
 			/* Save the block markup for the front end */
-			<ProfileBox { ...this.props }>
-				{ profileImgURL && profileImgID && (
-					<AvatarColumn { ...this.props }>
+			<ProfileBox {...this.props}>
+				{profileImgURL && profileImgID && (
+					<AvatarColumn {...this.props}>
 						<figure className="gb-profile-image-square">
 							<img
-								className={ classnames(
+								className={classnames(
 									'gb-profile-avatar',
 									'wp-image-' + profileImgID
-								) }
-								src={ profileImgURL }
-								alt={ profileImgAlt }
+								)}
+								src={profileImgURL}
+								alt={profileImgAlt}
 							/>
 						</figure>
 					</AvatarColumn>
-				) }
+				)}
 
 				<div
-					className={ classnames(
+					className={classnames(
 						'gb-profile-column gb-profile-content-wrap'
-					) }
+					)}
 				>
 					<RichText.Content
 						tagName="h2"
 						className="gb-profile-name"
-						style={ {
+						style={{
 							color: profileTextColor,
-						} }
-						value={ profileName }
+						}}
+						value={profileName}
 					/>
 
 					<RichText.Content
 						tagName="p"
 						className="gb-profile-title"
-						style={ {
+						style={{
 							color: profileTextColor,
-						} }
-						value={ profileTitle }
+						}}
+						value={profileTitle}
 					/>
 
 					<RichText.Content
 						tagName="div"
 						className="gb-profile-text"
-						value={ profileContent }
+						value={profileContent}
 					/>
 
-					<SocialIcons { ...this.props } />
+					<SocialIcons {...this.props} />
 				</div>
 			</ProfileBox>
 		);

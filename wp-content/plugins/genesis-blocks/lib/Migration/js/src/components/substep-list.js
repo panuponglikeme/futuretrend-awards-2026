@@ -18,32 +18,32 @@ import * as React from 'react';
  * @param {SubstepListProps} props The component props.
  * @return {React.ReactElement} SubstepList component.
  */
-const SubstepList = ( { steps, currentStep, complete } ) => {
-	const stepList = steps.map( ( label, index ) => {
+const SubstepList = ({ steps, currentStep, complete }) => {
+	const stepList = steps.map((label, index) => {
 		let listClass = '';
-		if ( currentStep === index ) {
+		if (currentStep === index) {
 			listClass = 'active';
 		}
 		if (
 			currentStep > index ||
-			( complete && currentStep === steps.length - 1 )
+			(complete && currentStep === steps.length - 1)
 		) {
 			listClass = 'done';
 		}
 		return (
-			<li key={ index } className={ listClass }>
-				{ label }
-				{ currentStep === index && ! complete && (
+			<li key={index} className={listClass}>
+				{label}
+				{currentStep === index && !complete && (
 					<div className="gb-migration-progress" role="progressbar">
 						<div className="gb-migration-progress-inside"></div>
 						<div className="gb-migration-progress-inside gb-migration-progress-animate2"></div>
 					</div>
-				) }
+				)}
 			</li>
 		);
-	} );
+	});
 
-	return <ul className="substeps">{ stepList }</ul>;
+	return <ul className="substeps">{stepList}</ul>;
 };
 
 export default SubstepList;

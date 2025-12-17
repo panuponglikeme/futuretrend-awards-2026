@@ -11,18 +11,18 @@ export default class SocialIcons extends Component {
 	render() {
 		return (
 			<ul className="gb-social-links">
-				{ this.props.attributes.website &&
-					!! this.props.attributes.website.length && (
+				{this.props.attributes.website &&
+					!!this.props.attributes.website.length && (
 						<li>
 							<a
-								href={ this.props.attributes.website }
+								href={this.props.attributes.website}
 								target="_blank"
 								rel="noopener noreferrer"
-								style={ {
+								style={{
 									backgroundColor:
 										this.props.attributes.profileLinkColor,
-								} }
-								aria-label={ __( 'Website', 'genesis-blocks' ) }
+								}}
+								aria-label={__('Website', 'genesis-blocks')}
 							>
 								<svg
 									aria-labelledby={
@@ -38,10 +38,10 @@ export default class SocialIcons extends Component {
 											this.props.clientId
 										}
 									>
-										{ __(
+										{__(
 											'Visit Website (opens in a new tab)',
 											'genesis-blocks'
-										) }
+										)}
 									</title>
 									<path
 										fill="#fff"
@@ -50,20 +50,20 @@ export default class SocialIcons extends Component {
 								</svg>
 							</a>
 						</li>
-					) }
+					)}
 
-				{ this.props.attributes.twitter &&
-					!! this.props.attributes.twitter.length && (
+				{this.props.attributes.twitter &&
+					!!this.props.attributes.twitter.length && (
 						<li>
 							<a
-								href={ this.props.attributes.twitter }
+								href={this.props.attributes.twitter}
 								target="_blank"
 								rel="noopener noreferrer"
-								style={ {
+								style={{
 									backgroundColor:
 										this.props.attributes.profileLinkColor,
-								} }
-								aria-label={ __( 'Twitter', 'genesis-blocks' ) }
+								}}
+								aria-label={__('Twitter', 'genesis-blocks')}
 							>
 								<svg
 									aria-labelledby={
@@ -79,10 +79,10 @@ export default class SocialIcons extends Component {
 											this.props.clientId
 										}
 									>
-										{ __(
+										{__(
 											'Visit Twitter account (opens in a new tab)',
 											'genesis-blocks'
-										) }
+										)}
 									</title>
 									<path
 										fill="#fff"
@@ -91,23 +91,20 @@ export default class SocialIcons extends Component {
 								</svg>
 							</a>
 						</li>
-					) }
+					)}
 
-				{ this.props.attributes.facebook &&
-					!! this.props.attributes.facebook.length && (
+				{this.props.attributes.facebook &&
+					!!this.props.attributes.facebook.length && (
 						<li>
 							<a
-								href={ this.props.attributes.facebook }
+								href={this.props.attributes.facebook}
 								target="_blank"
 								rel="noopener noreferrer"
-								style={ {
+								style={{
 									backgroundColor:
 										this.props.attributes.profileLinkColor,
-								} }
-								aria-label={ __(
-									'Facebook',
-									'genesis-blocks'
-								) }
+								}}
+								aria-label={__('Facebook', 'genesis-blocks')}
 							>
 								<svg
 									aria-labelledby={
@@ -124,10 +121,10 @@ export default class SocialIcons extends Component {
 											this.props.clientId
 										}
 									>
-										{ __(
+										{__(
 											'Visit Facebook account (opens in a new tab)',
 											'genesis-blocks'
-										) }
+										)}
 									</title>
 									<path
 										fill="#fff"
@@ -136,23 +133,20 @@ export default class SocialIcons extends Component {
 								</svg>
 							</a>
 						</li>
-					) }
+					)}
 
-				{ this.props.attributes.instagram &&
-					!! this.props.attributes.instagram.length && (
+				{this.props.attributes.instagram &&
+					!!this.props.attributes.instagram.length && (
 						<li>
 							<a
-								href={ this.props.attributes.instagram }
+								href={this.props.attributes.instagram}
 								target="_blank"
 								rel="noopener noreferrer"
-								style={ {
+								style={{
 									backgroundColor:
 										this.props.attributes.profileLinkColor,
-								} }
-								aria-label={ __(
-									'Instagram',
-									'genesis-blocks'
-								) }
+								}}
+								aria-label={__('Instagram', 'genesis-blocks')}
 							>
 								<svg
 									aria-labelledby={
@@ -169,10 +163,10 @@ export default class SocialIcons extends Component {
 											this.props.clientId
 										}
 									>
-										{ __(
+										{__(
 											'Visit Instagram account (opens in a new tab)',
 											'genesis-blocks'
-										) }
+										)}
 									</title>
 									<path
 										fill="#fff"
@@ -181,23 +175,20 @@ export default class SocialIcons extends Component {
 								</svg>
 							</a>
 						</li>
-					) }
+					)}
 
-				{ this.props.attributes.pinterest &&
-					!! this.props.attributes.pinterest.length && (
+				{this.props.attributes.pinterest &&
+					!!this.props.attributes.pinterest.length && (
 						<li>
 							<a
-								href={ this.props.attributes.pinterest }
+								href={this.props.attributes.pinterest}
 								target="_blank"
 								rel="noopener noreferrer"
-								style={ {
+								style={{
 									backgroundColor:
 										this.props.attributes.profileLinkColor,
-								} }
-								aria-label={ __(
-									'Pinterest',
-									'genesis-blocks'
-								) }
+								}}
+								aria-label={__('Pinterest', 'genesis-blocks')}
 							>
 								<svg
 									aria-labelledby={
@@ -214,10 +205,10 @@ export default class SocialIcons extends Component {
 											this.props.clientId
 										}
 									>
-										{ __(
+										{__(
 											'Visit Pinterest account (opens in a new tab)',
 											'genesis-blocks'
-										) }
+										)}
 									</title>
 									<path
 										fill="#fff"
@@ -226,20 +217,20 @@ export default class SocialIcons extends Component {
 								</svg>
 							</a>
 						</li>
-					) }
+					)}
 
-				{ this.props.attributes.google &&
-					!! this.props.attributes.google.length && (
+				{this.props.attributes.google &&
+					!!this.props.attributes.google.length && (
 						<li>
 							<a
-								href={ this.props.attributes.google }
+								href={this.props.attributes.google}
 								target="_blank"
 								rel="noopener noreferrer"
-								style={ {
+								style={{
 									backgroundColor:
 										this.props.attributes.profileLinkColor,
-								} }
-								aria-label={ __( 'Google', 'genesis-blocks' ) }
+								}}
+								aria-label={__('Google', 'genesis-blocks')}
 							>
 								<svg
 									aria-labelledby={
@@ -255,10 +246,10 @@ export default class SocialIcons extends Component {
 											this.props.clientId
 										}
 									>
-										{ __(
+										{__(
 											'Visit Google account (opens in a new tab)',
 											'genesis-blocks'
-										) }
+										)}
 									</title>
 									<path
 										fill="#fff"
@@ -267,20 +258,20 @@ export default class SocialIcons extends Component {
 								</svg>
 							</a>
 						</li>
-					) }
+					)}
 
-				{ this.props.attributes.youtube &&
-					!! this.props.attributes.youtube.length && (
+				{this.props.attributes.youtube &&
+					!!this.props.attributes.youtube.length && (
 						<li>
 							<a
-								href={ this.props.attributes.youtube }
+								href={this.props.attributes.youtube}
 								target="_blank"
 								rel="noopener noreferrer"
-								style={ {
+								style={{
 									backgroundColor:
 										this.props.attributes.profileLinkColor,
-								} }
-								aria-label={ __( 'YouTube', 'genesis-blocks' ) }
+								}}
+								aria-label={__('YouTube', 'genesis-blocks')}
 							>
 								<svg
 									aria-labelledby={
@@ -296,10 +287,10 @@ export default class SocialIcons extends Component {
 											this.props.clientId
 										}
 									>
-										{ __(
+										{__(
 											'Visit YouTube account (opens in a new tab)',
 											'genesis-blocks'
-										) }
+										)}
 									</title>
 									<path
 										fill="#fff"
@@ -308,23 +299,20 @@ export default class SocialIcons extends Component {
 								</svg>
 							</a>
 						</li>
-					) }
+					)}
 
-				{ this.props.attributes.linkedin &&
-					!! this.props.attributes.linkedin.length && (
+				{this.props.attributes.linkedin &&
+					!!this.props.attributes.linkedin.length && (
 						<li>
 							<a
-								href={ this.props.attributes.linkedin }
+								href={this.props.attributes.linkedin}
 								target="_blank"
 								rel="noopener noreferrer"
-								style={ {
+								style={{
 									backgroundColor:
 										this.props.attributes.profileLinkColor,
-								} }
-								aria-label={ __(
-									'LinkedIn',
-									'genesis-blocks'
-								) }
+								}}
+								aria-label={__('LinkedIn', 'genesis-blocks')}
 							>
 								<svg
 									aria-labelledby={
@@ -341,10 +329,10 @@ export default class SocialIcons extends Component {
 											this.props.clientId
 										}
 									>
-										{ __(
+										{__(
 											'Visit LinkedIn account (opens in a new tab)',
 											'genesis-blocks'
-										) }
+										)}
 									</title>
 									<path
 										fill="#fff"
@@ -353,20 +341,20 @@ export default class SocialIcons extends Component {
 								</svg>
 							</a>
 						</li>
-					) }
+					)}
 
-				{ this.props.attributes.github &&
-					!! this.props.attributes.github.length && (
+				{this.props.attributes.github &&
+					!!this.props.attributes.github.length && (
 						<li>
 							<a
-								href={ this.props.attributes.github }
+								href={this.props.attributes.github}
 								target="_blank"
 								rel="noopener noreferrer"
-								style={ {
+								style={{
 									backgroundColor:
 										this.props.attributes.profileLinkColor,
-								} }
-								aria-label={ __( 'Github', 'genesis-blocks' ) }
+								}}
+								aria-label={__('Github', 'genesis-blocks')}
 							>
 								<svg
 									aria-labelledby={
@@ -382,10 +370,10 @@ export default class SocialIcons extends Component {
 											this.props.clientId
 										}
 									>
-										{ __(
+										{__(
 											'Visit GitHub account (opens in a new tab)',
 											'genesis-blocks'
-										) }
+										)}
 									</title>
 									<path
 										fill="#fff"
@@ -394,23 +382,20 @@ export default class SocialIcons extends Component {
 								</svg>
 							</a>
 						</li>
-					) }
+					)}
 
-				{ this.props.attributes.wordpress &&
-					!! this.props.attributes.wordpress.length && (
+				{this.props.attributes.wordpress &&
+					!!this.props.attributes.wordpress.length && (
 						<li>
 							<a
-								href={ this.props.attributes.wordpress }
+								href={this.props.attributes.wordpress}
 								target="_blank"
 								rel="noopener noreferrer"
-								style={ {
+								style={{
 									backgroundColor:
 										this.props.attributes.profileLinkColor,
-								} }
-								aria-label={ __(
-									'WordPress',
-									'genesis-blocks'
-								) }
+								}}
+								aria-label={__('WordPress', 'genesis-blocks')}
 							>
 								<svg
 									aria-labelledby={
@@ -427,10 +412,10 @@ export default class SocialIcons extends Component {
 											this.props.clientId
 										}
 									>
-										{ __(
+										{__(
 											'Visit WordPress account (opens in a new tab)',
 											'genesis-blocks'
-										) }
+										)}
 									</title>
 									<path
 										fill="#fff"
@@ -439,20 +424,20 @@ export default class SocialIcons extends Component {
 								</svg>
 							</a>
 						</li>
-					) }
+					)}
 
-				{ this.props.attributes.email &&
-					!! this.props.attributes.email.length && (
+				{this.props.attributes.email &&
+					!!this.props.attributes.email.length && (
 						<li>
 							<a
-								href={ this.props.attributes.email }
+								href={this.props.attributes.email}
 								target="_blank"
 								rel="noopener noreferrer"
-								style={ {
+								style={{
 									backgroundColor:
 										this.props.attributes.profileLinkColor,
-								} }
-								aria-label={ __( 'Email', 'genesis-blocks' ) }
+								}}
+								aria-label={__('Email', 'genesis-blocks')}
 							>
 								<svg
 									aria-labelledby={
@@ -468,7 +453,7 @@ export default class SocialIcons extends Component {
 											this.props.clientId
 										}
 									>
-										{ __( 'Email', 'genesis-blocks' ) }
+										{__('Email', 'genesis-blocks')}
 									</title>
 									<path
 										fill="#fff"
@@ -477,7 +462,7 @@ export default class SocialIcons extends Component {
 								</svg>
 							</a>
 						</li>
-					) }
+					)}
 			</ul>
 		);
 	}

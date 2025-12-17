@@ -63,7 +63,7 @@ class Wpe_Admin_Ux {
 	public function plugin_install_admin() {
 		$screen         = get_current_screen();
 		$is_plugin_page = $screen && ( 'plugin-install' === $screen->id || 'plugin-install-network' === $screen->id );
-		if ( $is_plugin_page && wpe_use_wp_updater_api() ) {
+		if ( $is_plugin_page && wpe_use_wpe_updater_api() ) {
 			add_filter( 'gettext', array( $this, 'remove_dotorg_notice_from_plugin_page' ), 10, 3 );
 			$this->wpe_missing_plugin_image_styles();
 			$this->script_search_plugin_card_image();

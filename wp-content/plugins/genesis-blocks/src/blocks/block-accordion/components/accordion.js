@@ -15,7 +15,7 @@ export default class Accordion extends Component {
 	render() {
 		return (
 			<div
-				className={ classnames(
+				className={classnames(
 					this.props.className,
 					this.props.attributes.accordionAlignment
 						? 'gb-align-' + this.props.attributes.accordionAlignment
@@ -25,9 +25,9 @@ export default class Accordion extends Component {
 						? 'gb-font-size-' +
 								this.props.attributes.accordionFontSize
 						: null
-				) }
+				)}
 			>
-				{ this.props.children }
+				{this.props.children}
 			</div>
 		);
 	}

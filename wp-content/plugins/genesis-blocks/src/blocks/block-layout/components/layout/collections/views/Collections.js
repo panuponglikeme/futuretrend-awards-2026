@@ -18,32 +18,32 @@ const { useDispatch, useSelect } = wp.data;
 const { __ } = wp.i18n;
 const { ButtonGroup } = wp.components;
 
-export function Collections( props ) {
-	const { currentCollection } = useSelect( ( select ) =>
-		select( 'core/block-editor' ).getSettings()
+export function Collections(props) {
+	const { currentCollection } = useSelect((select) =>
+		select('core/block-editor').getSettings()
 	);
-	const collectionsView = useCollectionsVisualState( {
-		view: !! currentCollection ? 'collection' : 'collections',
-	} );
-	const { updateSettings } = useDispatch( 'core/block-editor' );
-	const setCurrentCollection = ( newCollection ) =>
-		updateSettings( { currentCollection: newCollection } );
+	const collectionsView = useCollectionsVisualState({
+		view: !!currentCollection ? 'collection' : 'collections',
+	});
+	const { updateSettings } = useDispatch('core/block-editor');
+	const setCurrentCollection = (newCollection) =>
+		updateSettings({ currentCollection: newCollection });
 
-	function renderCollections( collections ) {
-		if ( collectionsView.currentView !== 'collections' ) {
+	function renderCollections(collections) {
+		if (collectionsView.currentView !== 'collections') {
 			return '';
 		}
 
 		const mapper = [];
 
-		for ( const collection in collections ) {
+		for (const collection in collections) {
 			mapper.push(
 				<CollectionCard
-					key={ collection }
-					collectionSlug={ collection }
-					collectionsView={ collectionsView }
-					setCurrentCollection={ setCurrentCollection }
-					{ ...props }
+					key={collection}
+					collectionSlug={collection}
+					collectionsView={collectionsView}
+					setCurrentCollection={setCurrentCollection}
+					{...props}
 				/>
 			);
 		}
@@ -51,69 +51,69 @@ export function Collections( props ) {
 		return (
 			<ButtonGroup
 				className="gb-layout-choices"
-				aria-label={ __( 'Collections Available', 'genesis-blocks' ) }
+				aria-label={__('Collections Available', 'genesis-blocks')}
 			>
-				{ mapper }
+				{mapper}
 			</ButtonGroup>
 		);
 	}
 
-	function renderSingleCollectionItems( itemType = 'layouts' ) {
+	function renderSingleCollectionItems(itemType = 'layouts') {
 		const mapper = [];
 
-		for ( const layoutKey in props.context[ itemType ] ) {
-			const item = props.context[ itemType ][ layoutKey ];
+		for (const layoutKey in props.context[itemType]) {
+			const item = props.context[itemType][layoutKey];
 			if (
-				item.hasOwnProperty( 'collection' ) &&
+				item.hasOwnProperty('collection') &&
 				currentCollection === item.collection.slug
 			) {
 				mapper.push(
 					<LayoutLibraryItemCard
-						key={ item.key }
-						itemKey={ item.key }
-						name={ item.name }
-						image={ item.image }
-						import={ importBlockPattern }
-						content={ item.content }
-						context={ props.context }
-						clientId={ props.clientId }
+						key={item.key}
+						itemKey={item.key}
+						name={item.name}
+						image={item.image}
+						import={importBlockPattern}
+						content={item.content}
+						context={props.context}
+						clientId={props.clientId}
 					/>
 				);
 			}
 		}
 
-		if ( mapper.length === 0 ) {
+		if (mapper.length === 0) {
 			return '';
 		}
 
 		return (
 			<>
 				<h3 className="gb-collection-type-title">
-					{ ( () => {
-						if ( itemType === 'layouts' ) {
-							return __( 'Page Layouts', 'genesis-blocks' );
+					{(() => {
+						if (itemType === 'layouts') {
+							return __('Page Layouts', 'genesis-blocks');
 						}
 
-						if ( itemType === 'sections' ) {
-							return __( 'Page Sections', 'genesis-blocks' );
+						if (itemType === 'sections') {
+							return __('Page Sections', 'genesis-blocks');
 						}
-					} )() }
+					})()}
 				</h3>
 				<ButtonGroup
 					className="gb-layout-choices"
-					aria-label={ __(
+					aria-label={__(
 						'Layout Options in this Collection',
 						'genesis-blocks'
-					) }
+					)}
 				>
-					{ mapper }
+					{mapper}
 				</ButtonGroup>
 			</>
 		);
 	}
 
 	function renderViewAllButton() {
-		if ( collectionsView.currentView !== 'collection' ) {
+		if (collectionsView.currentView !== 'collection') {
 			return '';
 		}
 
@@ -121,46 +121,46 @@ export function Collections( props ) {
 			<div className="gb-collections-view-all-container">
 				<button
 					className="gb-collections-view-all-link"
-					onClick={ () => {
-						collectionsView.setCurrentView( 'collections' );
-						collectionsView.setCurrentCollection( null );
-					} }
+					onClick={() => {
+						collectionsView.setCurrentView('collections');
+						collectionsView.setCurrentCollection(null);
+					}}
 				>
 					<span className="dashicons dashicons-arrow-left-alt"></span>
-					{ __( 'View All Collections ', 'genesis-blocks' ) }
+					{__('View All Collections ', 'genesis-blocks')}
 				</button>
 			</div>
 		);
 	}
 
 	function renderMainTitle() {
-		if ( collectionsView.currentView === 'collections' ) {
+		if (collectionsView.currentView === 'collections') {
 			return (
 				<h2 className="gb-collection-title">
-					{ __( 'Collections ', 'genesis-blocks' ) }
+					{__('Collections ', 'genesis-blocks')}
 				</h2>
 			);
 		}
 
-		if ( collectionsView.currentView === 'collection' ) {
+		if (collectionsView.currentView === 'collection') {
 			return (
 				<h2 className="gb-collection-title">
-					{ __( 'Browsing ', 'genesis-blocks' ) +
-						props.context.collections[ currentCollection ]?.label }
+					{__('Browsing ', 'genesis-blocks') +
+						props.context.collections[currentCollection]?.label}
 				</h2>
 			);
 		}
 	}
 
 	function renderSingleCollectionView() {
-		if ( collectionsView.currentView !== 'collection' ) {
+		if (collectionsView.currentView !== 'collection') {
 			return '';
 		}
 
 		return (
 			<>
-				{ renderSingleCollectionItems( 'sections' ) }
-				{ renderSingleCollectionItems( 'layouts' ) }
+				{renderSingleCollectionItems('sections')}
+				{renderSingleCollectionItems('layouts')}
 			</>
 		);
 	}
@@ -169,8 +169,8 @@ export function Collections( props ) {
 		<div className="gb-collections">
 			<div className="gb-collections-header">
 				<div className="gb-collections-header-left">
-					{ renderViewAllButton() }
-					{ renderMainTitle() }
+					{renderViewAllButton()}
+					{renderMainTitle()}
 				</div>
 				<a
 					target="_blank"
@@ -180,12 +180,12 @@ export function Collections( props ) {
 					className="gb-collections-link"
 				>
 					<span className="dashicons dashicons-info"></span>
-					{ __( 'Learn about Collections', 'genesis-blocks' ) }
+					{__('Learn about Collections', 'genesis-blocks')}
 				</a>
 			</div>
 			<div className="gb-collections-body">
-				{ renderCollections( props.context.collections ) }
-				{ renderSingleCollectionView() }
+				{renderCollections(props.context.collections)}
+				{renderSingleCollectionView()}
 			</div>
 		</div>
 	);

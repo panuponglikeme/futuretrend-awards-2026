@@ -1,7 +1,7 @@
 import getCoverAttributes from './get-cover-attributes';
 
-describe( 'getCoverAttributes', () => {
-	it.each( [
+describe('getCoverAttributes', () => {
+	it.each([
 		[
 			{
 				buttonAlignment: 'center',
@@ -51,7 +51,7 @@ describe( 'getCoverAttributes', () => {
 				url: undefined,
 			},
 		],
-	] )( 'should get the Cover block attributes', ( attributes, expected ) => {
-		expect( getCoverAttributes( attributes ) ).toEqual( expected );
-	} );
-} );
+	])('should get the Cover block attributes', (attributes, expected) => {
+		expect(getCoverAttributes(attributes)).toEqual(expected);
+	});
+});

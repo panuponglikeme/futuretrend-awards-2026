@@ -20,17 +20,17 @@ const { RichText, AlignmentToolbar, BlockControls, MediaUpload } =
 
 const { Button, Dashicon } = wp.components;
 
-const ALLOWED_MEDIA_TYPES = [ 'image' ];
+const ALLOWED_MEDIA_TYPES = ['image'];
 
 export default class Edit extends Component {
 	constructor() {
-		super( ...arguments );
+		super(...arguments);
 
 		if (
-			! this.props.attributes.clientId ||
+			!this.props.attributes.clientId ||
 			this.props.attributes.clientId !== this.props.clientId
 		) {
-			this.props.setAttributes( { clientId: this.props.clientId } );
+			this.props.setAttributes({ clientId: this.props.clientId });
 		}
 	}
 
@@ -53,128 +53,125 @@ export default class Edit extends Component {
 			/* Show the block alignment controls on focus */
 			<BlockControls key="controls">
 				<AlignmentToolbar
-					value={ profileAlignment }
-					onChange={ ( value ) =>
-						setAttributes( { profileAlignment: value } )
+					value={profileAlignment}
+					onChange={(value) =>
+						setAttributes({ profileAlignment: value })
 					}
 				/>
 			</BlockControls>,
 
 			/* Show the block controls on focus */
 			<Inspector
-				key={ 'gb-author-profile-inspector-' + this.props.clientId }
-				{ ...{ setAttributes, ...this.props } }
+				key={'gb-author-profile-inspector-' + this.props.clientId}
+				{...{ setAttributes, ...this.props }}
 			/>,
 
 			/* Show the block markup in the editor */
 			<ProfileBox
-				key={ 'gb-author-profile-' + this.props.clientId }
-				{ ...this.props }
+				key={'gb-author-profile-' + this.props.clientId}
+				{...this.props}
 			>
-				<AvatarColumn { ...this.props }>
+				<AvatarColumn {...this.props}>
 					<figure className="gb-profile-image-square">
 						<MediaUpload
-							buttonProps={ {
+							buttonProps={{
 								className: 'change-image',
-							} }
-							onSelect={ ( img ) =>
-								setAttributes( {
+							}}
+							onSelect={(img) =>
+								setAttributes({
 									profileImgID: img.id,
 									profileImgURL: img.url,
 									profileImgAlt: img.alt,
-								} )
+								})
 							}
-							allowed={ ALLOWED_MEDIA_TYPES }
+							allowed={ALLOWED_MEDIA_TYPES}
 							type="image"
-							value={ profileImgID }
-							render={ ( { open } ) => (
+							value={profileImgID}
+							render={({ open }) => (
 								<Fragment>
-									<Button onClick={ open }>
-										{ ! profileImgID ? (
+									<Button onClick={open}>
+										{!profileImgID ? (
 											icons.upload
 										) : (
 											<img
-												className={ classnames(
+												className={classnames(
 													'gb-profile-avatar',
 													'gb-change-image',
 													'wp-image-' + profileImgID
-												) }
-												src={ profileImgURL }
-												alt={ profileImgAlt }
+												)}
+												src={profileImgURL}
+												alt={profileImgAlt}
 											/>
-										) }
+										)}
 									</Button>
-									{ profileImgID && (
+									{profileImgID && (
 										<Button
 											className="gb-remove-image"
-											onClick={ () => {
-												setAttributes( {
+											onClick={() => {
+												setAttributes({
 													profileImgID: null,
 													profileImgURL: null,
 													profileImgAlt: null,
-												} );
-											} }
+												});
+											}}
 										>
-											<Dashicon icon={ 'dismiss' } />
+											<Dashicon icon={'dismiss'} />
 										</Button>
-									) }
+									)}
 								</Fragment>
-							) }
+							)}
 						></MediaUpload>
 					</figure>
 				</AvatarColumn>
 
 				<div
-					className={ classnames(
+					className={classnames(
 						'gb-profile-column gb-profile-content-wrap'
-					) }
+					)}
 				>
 					<RichText
 						tagName="h2"
-						placeholder={ __( 'Add name', 'genesis-blocks' ) }
-						value={ profileName }
+						placeholder={__('Add name', 'genesis-blocks')}
+						value={profileName}
 						className="gb-profile-name"
-						style={ {
+						style={{
 							color: profileTextColor,
-						} }
-						onChange={ ( value ) =>
-							setAttributes( { profileName: value } )
+						}}
+						onChange={(value) =>
+							setAttributes({ profileName: value })
 						}
 					/>
 
 					<RichText
 						tagName="p"
-						placeholder={ __( 'Add title', 'genesis-blocks' ) }
-						value={ profileTitle }
+						placeholder={__('Add title', 'genesis-blocks')}
+						value={profileTitle}
 						className="gb-profile-title"
-						style={ {
+						style={{
 							color: profileTextColor,
-						} }
-						onChange={ ( value ) =>
-							setAttributes( { profileTitle: value } )
+						}}
+						onChange={(value) =>
+							setAttributes({ profileTitle: value })
 						}
 					/>
 
 					<RichText
 						tagName="div"
 						className="gb-profile-text"
-						placeholder={ __(
-							'Add profile text…',
-							'genesis-blocks'
-						) }
-						value={ profileContent }
-						allowedFormats={ [
+						placeholder={__('Add profile text…', 'genesis-blocks')}
+						value={profileContent}
+						allowedFormats={[
 							'core/bold',
 							'core/italic',
 							'core/strikethrough',
 							'core/link',
-						] }
-						onChange={ ( value ) =>
-							setAttributes( { profileContent: value } )
+						]}
+						onChange={(value) =>
+							setAttributes({ profileContent: value })
 						}
 					/>
 
-					<SocialIcons { ...this.props } />
+					<SocialIcons {...this.props} />
 				</div>
 			</ProfileBox>,
 		];

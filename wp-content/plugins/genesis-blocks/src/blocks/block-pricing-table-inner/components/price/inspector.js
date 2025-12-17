@@ -30,26 +30,24 @@ const {
 } = wp.components;
 
 // Apply fallback styles
-const applyFallbackStyles = withFallbackStyles( ( node, ownProps ) => {
+const applyFallbackStyles = withFallbackStyles((node, ownProps) => {
 	const { textColor, backgroundColor, fontSize, customFontSize } =
 		ownProps.attributes;
-	const editableNode = node.querySelector( '[contenteditable="true"]' );
-	const computedStyles = editableNode
-		? getComputedStyle( editableNode )
-		: null;
+	const editableNode = node.querySelector('[contenteditable="true"]');
+	const computedStyles = editableNode ? getComputedStyle(editableNode) : null;
 	return {
 		fallbackBackgroundColor:
-			backgroundColor || ! computedStyles
+			backgroundColor || !computedStyles
 				? undefined
 				: computedStyles.backgroundColor,
 		fallbackTextColor:
-			textColor || ! computedStyles ? undefined : computedStyles.color,
+			textColor || !computedStyles ? undefined : computedStyles.color,
 		fallbackFontSize:
-			fontSize || customFontSize || ! computedStyles
+			fontSize || customFontSize || !computedStyles
 				? undefined
-				: parseInt( computedStyles.fontSize ) || undefined,
+				: parseInt(computedStyles.fontSize) || undefined,
 	};
-} );
+});
 
 /**
  * Create an Inspector Controls wrapper Component
@@ -83,116 +81,113 @@ class Inspector extends Component {
 
 		return (
 			<InspectorControls key="inspector">
-				<PanelBody title={ __( 'Text Settings', 'genesis-blocks' ) }>
+				<PanelBody title={__('Text Settings', 'genesis-blocks')}>
 					<FontSizePicker
-						fallbackFontSize={ fallbackFontSize }
-						value={ fontSize.size }
-						onChange={ setFontSize }
+						fallbackFontSize={fallbackFontSize}
+						value={fontSize.size}
+						onChange={setFontSize}
 						__nextHasNoMarginBottom
 					/>
 					<ToggleControl
-						label={ __( 'Show currency symbol', 'genesis-blocks' ) }
-						checked={ showCurrency }
-						onChange={ () =>
-							this.props.setAttributes( {
-								showCurrency: ! showCurrency,
-							} )
+						label={__('Show currency symbol', 'genesis-blocks')}
+						checked={showCurrency}
+						onChange={() =>
+							this.props.setAttributes({
+								showCurrency: !showCurrency,
+							})
 						}
 					/>
-					{ showCurrency && (
+					{showCurrency && (
 						<TextControl
-							label={ __( 'Currency Symbol', 'genesis-blocks' ) }
+							label={__('Currency Symbol', 'genesis-blocks')}
 							type="text"
-							value={ currency }
-							onChange={ ( value ) =>
-								this.props.setAttributes( { currency: value } )
+							value={currency}
+							onChange={(value) =>
+								this.props.setAttributes({ currency: value })
 							}
 						/>
-					) }
+					)}
 					<ToggleControl
-						label={ __(
-							'Show pricing duration',
-							'genesis-blocks'
-						) }
-						checked={ showTerm }
-						onChange={ () =>
-							this.props.setAttributes( { showTerm: ! showTerm } )
+						label={__('Show pricing duration', 'genesis-blocks')}
+						checked={showTerm}
+						onChange={() =>
+							this.props.setAttributes({ showTerm: !showTerm })
 						}
 					/>
-					{ showTerm && (
+					{showTerm && (
 						<TextControl
-							label={ __( 'Pricing Duration', 'genesis-blocks' ) }
+							label={__('Pricing Duration', 'genesis-blocks')}
 							type="text"
-							value={ term }
-							onChange={ ( value ) =>
-								this.props.setAttributes( { term: value } )
+							value={term}
+							onChange={(value) =>
+								this.props.setAttributes({ term: value })
 							}
 						/>
-					) }
+					)}
 				</PanelBody>
 				<PanelBody
-					title={ __( 'Padding Settings', 'genesis-blocks' ) }
-					initialOpen={ false }
+					title={__('Padding Settings', 'genesis-blocks')}
+					initialOpen={false}
 				>
 					<Padding
 						// Top padding
-						paddingEnableTop={ true }
-						paddingTop={ paddingTop }
+						paddingEnableTop={true}
+						paddingTop={paddingTop}
 						paddingTopMin="0"
 						paddingTopMax="100"
-						onChangePaddingTop={ ( paddingTop ) =>
-							setAttributes( { paddingTop } )
+						onChangePaddingTop={(paddingTop) =>
+							setAttributes({ paddingTop })
 						}
 						// Right padding
-						paddingEnableRight={ true }
-						paddingRight={ paddingRight }
+						paddingEnableRight={true}
+						paddingRight={paddingRight}
 						paddingRightMin="0"
 						paddingRightMax="100"
-						onChangePaddingRight={ ( paddingRight ) =>
-							setAttributes( { paddingRight } )
+						onChangePaddingRight={(paddingRight) =>
+							setAttributes({ paddingRight })
 						}
 						// Bottom padding
-						paddingEnableBottom={ true }
-						paddingBottom={ paddingBottom }
+						paddingEnableBottom={true}
+						paddingBottom={paddingBottom}
 						paddingBottomMin="0"
 						paddingBottomMax="100"
-						onChangePaddingBottom={ ( paddingBottom ) =>
-							setAttributes( { paddingBottom } )
+						onChangePaddingBottom={(paddingBottom) =>
+							setAttributes({ paddingBottom })
 						}
 						// Left padding
-						paddingEnableLeft={ true }
-						paddingLeft={ paddingLeft }
+						paddingEnableLeft={true}
+						paddingLeft={paddingLeft}
 						paddingLeftMin="0"
 						paddingLeftMax="100"
-						onChangePaddingLeft={ ( paddingLeft ) =>
-							setAttributes( { paddingLeft } )
+						onChangePaddingLeft={(paddingLeft) =>
+							setAttributes({ paddingLeft })
 						}
 					/>
 				</PanelBody>
 				<PanelColorSettings
-					title={ __( 'Color Settings', 'genesis-blocks' ) }
-					initialOpen={ false }
-					colorSettings={ [
+					title={__('Color Settings', 'genesis-blocks')}
+					initialOpen={false}
+					colorSettings={[
 						{
 							value: backgroundColor.color,
 							onChange: setBackgroundColor,
-							label: __( 'Background Color', 'genesis-blocks' ),
+							label: __('Background Color', 'genesis-blocks'),
 						},
 						{
 							value: textColor.color,
 							onChange: setTextColor,
-							label: __( 'Text Color', 'genesis-blocks' ),
+							label: __('Text Color', 'genesis-blocks'),
 						},
-					] }
+					]}
 				>
 					<ContrastChecker
-						{ ...{
+						{...{
 							textColor: textColor.color,
 							backgroundColor: backgroundColor.color,
 							fallbackTextColor,
 							fallbackBackgroundColor,
-						} }
-						fontSize={ fontSize.size }
+						}}
+						fontSize={fontSize.size}
 					/>
 				</PanelColorSettings>
 			</InspectorControls>
@@ -200,8 +195,8 @@ class Inspector extends Component {
 	}
 }
 
-export default compose( [
+export default compose([
 	applyFallbackStyles,
-	withFontSizes( 'fontSize' ),
-	withColors( 'backgroundColor', { textColor: 'color' } ),
-] )( Inspector );
+	withFontSizes('fontSize'),
+	withColors('backgroundColor', { textColor: 'color' }),
+])(Inspector);

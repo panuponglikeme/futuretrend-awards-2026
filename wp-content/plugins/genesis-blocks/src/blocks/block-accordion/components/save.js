@@ -10,11 +10,11 @@ const { RichText, InnerBlocks } = wp.blockEditor;
 export default class Save extends Component {
 	render() {
 		return (
-			<Accordion { ...this.props }>
-				<details open={ this.props.attributes.accordionOpen }>
+			<Accordion {...this.props}>
+				<details open={this.props.attributes.accordionOpen}>
 					<summary className="gb-accordion-title">
 						<RichText.Content
-							value={ this.props.attributes.accordionTitle }
+							value={this.props.attributes.accordionTitle}
 						/>
 					</summary>
 					<div className="gb-accordion-text">

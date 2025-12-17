@@ -19,11 +19,11 @@ import * as React from 'react';
  * @param {StepContentProps} props The component props.
  * @return {React.ReactElement} The component for the step content.
  */
-const StepContent = ( { children, heading, isStepActive, isLastStep } ) => {
+const StepContent = ({ children, heading, isStepActive, isLastStep }) => {
 	return (
 		<div className="step-content">
-			<h3>{ heading }</h3>
-			{ ( isStepActive || isLastStep ) && children }
+			<h3>{heading}</h3>
+			{(isStepActive || isLastStep) && children}
 		</div>
 	);
 };

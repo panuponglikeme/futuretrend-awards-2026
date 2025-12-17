@@ -29,15 +29,15 @@ export default class Inspector extends Component {
 		const dropCapOptions = [
 			{
 				value: 'gb-drop-cap-letter',
-				label: __( 'Letter', 'genesis-blocks' ),
+				label: __('Letter', 'genesis-blocks'),
 			},
 			{
 				value: 'gb-drop-cap-square',
-				label: __( 'Square', 'genesis-blocks' ),
+				label: __('Square', 'genesis-blocks'),
 			},
 			{
 				value: 'gb-drop-cap-border',
-				label: __( 'Border', 'genesis-blocks' ),
+				label: __('Border', 'genesis-blocks'),
 			},
 		];
 
@@ -46,32 +46,32 @@ export default class Inspector extends Component {
 				<PanelBody>
 					<RenderSettingControl id="gb_dropcap_dropCapFontSize">
 						<RangeControl
-							label={ __( 'Drop Cap Size', 'genesis-blocks' ) }
-							value={ dropCapFontSize }
-							onChange={ ( value ) =>
-								this.props.setAttributes( {
+							label={__('Drop Cap Size', 'genesis-blocks')}
+							value={dropCapFontSize}
+							onChange={(value) =>
+								this.props.setAttributes({
 									dropCapFontSize: value,
-								} )
+								})
 							}
-							min={ 1 }
-							max={ 6 }
-							step={ 1 }
+							min={1}
+							max={6}
+							step={1}
 						/>
 					</RenderSettingControl>
 
 					<RenderSettingControl id="gb_dropcap_dropCapStyle">
 						<SelectControl
-							label={ __( 'Drop Cap Style', 'genesis-blocks' ) }
-							description={ __(
+							label={__('Drop Cap Style', 'genesis-blocks')}
+							description={__(
 								'Choose the style of the drop cap in your paragraph',
 								'genesis-blocks'
-							) }
-							options={ dropCapOptions }
-							value={ dropCapStyle }
-							onChange={ ( value ) =>
-								this.props.setAttributes( {
+							)}
+							options={dropCapOptions}
+							value={dropCapStyle}
+							onChange={(value) =>
+								this.props.setAttributes({
 									dropCapStyle: value,
-								} )
+								})
 							}
 						/>
 					</RenderSettingControl>

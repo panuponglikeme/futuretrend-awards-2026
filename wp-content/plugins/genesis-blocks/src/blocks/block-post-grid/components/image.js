@@ -10,8 +10,8 @@ const { Fragment, Component } = wp.element;
 const { Placeholder, Dashicon } = wp.components;
 
 export default class PostGridImage extends Component {
-	constructor( props ) {
-		super( ...arguments );
+	constructor(props) {
+		super(...arguments);
 
 		this.state = {
 			imageUrl: '',
@@ -20,8 +20,8 @@ export default class PostGridImage extends Component {
 		};
 	}
 
-	componentDidUpdate( prevProps ) {
-		if ( this.props.imgSize !== prevProps.imgSize ) {
+	componentDidUpdate(prevProps) {
+		if (this.props.imgSize !== prevProps.imgSize) {
 			this.setImageUrl();
 		}
 	}
@@ -30,11 +30,11 @@ export default class PostGridImage extends Component {
 		/**
 		 * Set the image URL on load and when state changes.
 		 */
-		this.setState( {
-			setImageUrlSubscription: wp.data.subscribe( () => {
+		this.setState({
+			setImageUrlSubscription: wp.data.subscribe(() => {
 				this.setImageUrl();
-			} ),
-		} );
+			}),
+		});
 	}
 
 	componentWillUnmount() {
@@ -47,22 +47,22 @@ export default class PostGridImage extends Component {
 	setImageUrl() {
 		let imageUrl = this.getImageUrl();
 
-		if ( ! imageUrl ) {
+		if (!imageUrl) {
 			imageUrl = this.getFullImageSize();
 		}
 
-		if ( imageUrl ) {
-			this.setState( {
+		if (imageUrl) {
+			this.setState({
 				imageUrl,
 				imageLoaded: true,
-			} );
+			});
 		}
 	}
 
 	getImageUrl() {
 		return get(
 			/* getMedia accepts an image id and returns an object with all the image data. */
-			wp.data.select( 'core' ).getMedia( this.props.imgID ),
+			wp.data.select('core').getMedia(this.props.imgID),
 			[
 				'media_details',
 				'sizes',
@@ -78,7 +78,7 @@ export default class PostGridImage extends Component {
 	getFullImageSize() {
 		return get(
 			/* getMedia accepts an image id and returns an object with all the image data. */
-			wp.data.select( 'core' ).getMedia( this.props.imgID ),
+			wp.data.select('core').getMedia(this.props.imgID),
 			[
 				'media_details',
 				'sizes',
@@ -91,9 +91,9 @@ export default class PostGridImage extends Component {
 	render() {
 		return (
 			<Fragment>
-				<div className={ classnames( 'gb-block-post-grid-image' ) }>
+				<div className={classnames('gb-block-post-grid-image')}>
 					<a
-						href={ this.props.imgLink }
+						href={this.props.imgLink}
 						target="_blank"
 						rel="bookmark noopener noreferrer"
 					>
@@ -103,23 +103,21 @@ export default class PostGridImage extends Component {
 									? this.state.imageUrl
 									: this.props.imgSizeLandscape
 							}
-							alt={ this.props.imgAlt }
-							className={ this.props.imgClass }
+							alt={this.props.imgAlt}
+							className={this.props.imgClass}
 						/>
 					</a>
 
 					{
 						/* If we don't have the selected image size, show a warning */
-						! this.getImageUrl() &&
+						!this.getImageUrl() &&
 							this.state.imageLoaded &&
 							'selectimage' !== this.props.imgSize && (
 								<Fragment>
 									<div
-										className={
-											'gb-post-grid-no-image-icon'
-										}
+										className={'gb-post-grid-no-image-icon'}
 									>
-										<Dashicon icon={ 'warning' } />
+										<Dashicon icon={'warning'} />
 									</div>
 
 									<Placeholder
@@ -127,27 +125,27 @@ export default class PostGridImage extends Component {
 											'gb-post-grid-no-image-placeholder'
 										}
 									>
-										<Dashicon icon={ 'info' } />
+										<Dashicon icon={'info'} />
 										<div className="components-placeholder__label">
-											{ __(
+											{__(
 												'There is no image generated for the selected image size, so a fallback image size is being used.',
 												'genesis-blocks'
-											) }
+											)}
 										</div>
 										<div className="gb-post-grid-image-help">
 											<a
 												target="_blank"
 												rel="noreferrer noopener"
-												aria-label={ __(
+												aria-label={__(
 													'Learn more about image sizes (opens in a new tab)',
 													'genesis-blocks'
-												) }
+												)}
 												href="https://github.com/studiopress/genesis-blocks/wiki/Post-Grid-Block#featured-image-sizes"
 											>
-												{ __(
+												{__(
 													'Learn more ',
 													'genesis-blocks'
-												) }
+												)}
 												<span>&rarr;</span>
 											</a>
 										</div>

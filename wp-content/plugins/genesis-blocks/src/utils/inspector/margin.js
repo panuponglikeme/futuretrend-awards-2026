@@ -2,7 +2,7 @@ const { __ } = wp.i18n;
 const { Fragment } = wp.element;
 const { RangeControl } = wp.components;
 
-export default function MarginSettings( props ) {
+export default function MarginSettings(props) {
 	const {
 		// Margin top props
 		marginTop,
@@ -55,84 +55,84 @@ export default function MarginSettings( props ) {
 
 	return (
 		<Fragment>
-			{ marginEnableTop && (
+			{marginEnableTop && (
 				<RangeControl
 					label={
 						marginTopLabel
 							? marginTopLabel
-							: __( 'Margin Top', 'genesis-blocks' )
+							: __('Margin Top', 'genesis-blocks')
 					}
-					value={ marginTop }
-					min={ marginTopMin }
-					max={ marginTopMax }
-					onChange={ onChangeMarginTop }
+					value={marginTop}
+					min={marginTopMin}
+					max={marginTopMax}
+					onChange={onChangeMarginTop}
 				/>
-			) }
-			{ marginEnableRight && (
+			)}
+			{marginEnableRight && (
 				<RangeControl
 					label={
 						marginRightLabel
 							? marginRightLabel
-							: __( 'Margin Right', 'genesis-blocks' )
+							: __('Margin Right', 'genesis-blocks')
 					}
-					value={ marginRight }
-					min={ marginRightMin }
-					max={ marginRightMax }
-					onChange={ onChangeMarginRight }
+					value={marginRight}
+					min={marginRightMin}
+					max={marginRightMax}
+					onChange={onChangeMarginRight}
 				/>
-			) }
-			{ marginEnableBottom && (
+			)}
+			{marginEnableBottom && (
 				<RangeControl
 					label={
 						marginBottomLabel
 							? marginBottomLabel
-							: __( 'Margin Bottom', 'genesis-blocks' )
+							: __('Margin Bottom', 'genesis-blocks')
 					}
-					value={ marginBottom }
-					min={ marginBottomMin }
-					max={ marginBottomMax }
-					onChange={ onChangeMarginBottom }
+					value={marginBottom}
+					min={marginBottomMin}
+					max={marginBottomMax}
+					onChange={onChangeMarginBottom}
 				/>
-			) }
-			{ marginEnableLeft && (
+			)}
+			{marginEnableLeft && (
 				<RangeControl
 					label={
 						marginLeftLabel
 							? marginLeftLabel
-							: __( 'Margin Left', 'genesis-blocks' )
+							: __('Margin Left', 'genesis-blocks')
 					}
-					value={ marginLeft }
-					min={ marginLeftMin }
-					max={ marginLeftMax }
-					onChange={ onChangeMarginLeft }
+					value={marginLeft}
+					min={marginLeftMin}
+					max={marginLeftMax}
+					onChange={onChangeMarginLeft}
 				/>
-			) }
-			{ marginEnableVertical && (
+			)}
+			{marginEnableVertical && (
 				<RangeControl
 					label={
 						marginVerticalLabel
 							? marginVerticalLabel
-							: __( 'Margin Vertical', 'genesis-blocks' )
+							: __('Margin Vertical', 'genesis-blocks')
 					}
-					value={ marginVertical }
-					min={ marginVerticalMin }
-					max={ marginVerticalMax }
-					onChange={ onChangeMarginVertical }
+					value={marginVertical}
+					min={marginVerticalMin}
+					max={marginVerticalMax}
+					onChange={onChangeMarginVertical}
 				/>
-			) }
-			{ marginEnableHorizontal && (
+			)}
+			{marginEnableHorizontal && (
 				<RangeControl
 					label={
 						marginHorizontalLabel
 							? marginHorizontalLabel
-							: __( 'Margin Horizontal', 'genesis-blocks' )
+							: __('Margin Horizontal', 'genesis-blocks')
 					}
-					value={ marginHorizontal }
-					min={ marginHorizontalMin }
-					max={ marginHorizontalMax }
-					onChange={ onChangeMarginHorizontal }
+					value={marginHorizontal}
+					min={marginHorizontalMin}
+					max={marginHorizontalMax}
+					onChange={onChangeMarginHorizontal}
 				/>
-			) }
+			)}
 		</Fragment>
 	);
 }

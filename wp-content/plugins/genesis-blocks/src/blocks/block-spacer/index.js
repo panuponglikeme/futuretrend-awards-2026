@@ -30,31 +30,31 @@ class GBSpacerBlock extends Component {
 		return [
 			// Show the block controls on focus
 			<Inspector
-				key={ 'gb-spacer-inspector-' + this.props.clientId }
-				{ ...this.props }
+				key={'gb-spacer-inspector-' + this.props.clientId}
+				{...this.props}
 			/>,
 
 			// Show the button markup in the editor
 			<Spacer
-				key={ 'gb-spacer-editor-' + this.props.clientId }
-				{ ...this.props }
+				key={'gb-spacer-editor-' + this.props.clientId}
+				{...this.props}
 			>
 				<Resizable
-					className={ classnames( className, 'gb-spacer-handle' ) }
-					style={ {
+					className={classnames(className, 'gb-spacer-handle')}
+					style={{
 						color: spacerDividerColor,
-					} }
-					size={ {
+					}}
+					size={{
 						width: '100%',
 						height: spacerHeight,
-					} }
-					minWidth={ '100%' }
-					maxWidth={ '100%' }
-					minHeight={ '100%' }
-					handleClasses={ {
+					}}
+					minWidth={'100%'}
+					maxWidth={'100%'}
+					minHeight={'100%'}
+					handleClasses={{
 						bottomLeft: 'gb-spacer-control__resize-handle',
-					} }
-					enable={ {
+					}}
+					enable={{
 						top: false,
 						right: false,
 						bottom: true,
@@ -63,19 +63,19 @@ class GBSpacerBlock extends Component {
 						bottomRight: false,
 						bottomLeft: true,
 						topLeft: false,
-					} }
-					onResizeStart={ () => {
-						toggleSelection( false );
-					} }
-					onResizeStop={ ( event, direction, elt, delta ) => {
-						setAttributes( {
+					}}
+					onResizeStart={() => {
+						toggleSelection(false);
+					}}
+					onResizeStop={(event, direction, elt, delta) => {
+						setAttributes({
 							spacerHeight: parseInt(
 								spacerHeight + delta.height,
 								10
 							),
-						} );
-						toggleSelection( true );
-					} }
+						});
+						toggleSelection(true);
+					}}
 				></Resizable>
 			</Spacer>,
 		];
@@ -83,8 +83,8 @@ class GBSpacerBlock extends Component {
 }
 
 // Register the block
-registerBlockType( 'genesis-blocks/gb-spacer', {
-	title: __( 'Spacer', 'genesis-blocks' ),
+registerBlockType('genesis-blocks/gb-spacer', {
+	title: __('Spacer', 'genesis-blocks'),
 	description: __(
 		'Add a spacer and divider between your blocks.',
 		'genesis-blocks'
@@ -92,9 +92,9 @@ registerBlockType( 'genesis-blocks/gb-spacer', {
 	icon: 'image-flip-vertical',
 	category: 'genesis-blocks',
 	keywords: [
-		__( 'spacer', 'genesis-blocks' ),
-		__( 'divider', 'genesis-blocks' ),
-		__( 'atomic', 'genesis-blocks' ),
+		__('spacer', 'genesis-blocks'),
+		__('divider', 'genesis-blocks'),
+		__('atomic', 'genesis-blocks'),
 	],
 	attributes: {
 		spacerHeight: {
@@ -121,19 +121,19 @@ registerBlockType( 'genesis-blocks/gb-spacer', {
 
 	gb_settings_data: {
 		gb_spacer_spacerHeight: {
-			title: __( 'Spacer Height', 'genesis-blocks' ),
+			title: __('Spacer Height', 'genesis-blocks'),
 		},
 		gb_spacer_spacerDivider: {
-			title: __( 'Add Divider', 'genesis-blocks' ),
+			title: __('Add Divider', 'genesis-blocks'),
 		},
 		gb_spacer_spacerDividerStyle: {
-			title: __( 'Divider Style', 'genesis-blocks' ),
+			title: __('Divider Style', 'genesis-blocks'),
 		},
 		gb_spacer_spacerDividerHeight: {
-			title: __( 'Divider Height', 'genesis-blocks' ),
+			title: __('Divider Height', 'genesis-blocks'),
 		},
 		gb_spacer_dividerColor: {
-			title: __( 'Divider Color', 'genesis-blocks' ),
+			title: __('Divider Color', 'genesis-blocks'),
 		},
 	},
 
@@ -141,19 +141,19 @@ registerBlockType( 'genesis-blocks/gb-spacer', {
 	edit: GBSpacerBlock,
 
 	// Save the attributes and markup
-	save( props ) {
+	save(props) {
 		// Setup the attributes
 		const { spacerHeight } = props.attributes;
 
 		// Save the block markup for the front end
 		return (
-			<Spacer { ...props }>
+			<Spacer {...props}>
 				<hr
-					style={ {
+					style={{
 						height: spacerHeight ? spacerHeight + 'px' : undefined,
-					} }
+					}}
 				></hr>
 			</Spacer>
 		);
 	},
-} );
+});

@@ -41,7 +41,13 @@ class AutoUpdater_Installer
             AutoUpdater_Config::set('version', AUTOUPDATER_VERSION);
         }
 
-        $this->createTokens();
+        if (is_multisite()) {
+            switch_to_blog(1);
+            $this->createTokens();
+            restore_current_blog();
+        } else {
+            $this->createTokens();
+        }
 
         AutoUpdater_Log::debug(sprintf('Worker %s has been installed.', AUTOUPDATER_VERSION));
 

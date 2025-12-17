@@ -22,12 +22,13 @@ class AutoUpdater_Task_DatabaseUpdateAcf extends AutoUpdater_Task_Base
         if (!is_plugin_active($acf_slug)) {
             return array(
                 'success' => true,
-                'message' => $acf_name . ' plugin is not active, skipping database update'
+                'message' => $acf_name . ' plugin is not active, skipping database update.',
             );
         }
 
-        if (file_exists(WP_PLUGIN_DIR . $acf_dir . '/acf.php')) {
-            include_once WP_PLUGIN_DIR . $acf_dir . '/acf.php';
+        $plugin_file = WP_PLUGIN_DIR . $acf_dir . '/acf.php';
+        if (file_exists($plugin_file)) {
+            include_once $plugin_file; // phpcs:ignore
         }
 
         if (file_exists(WP_PLUGIN_DIR . $acf_dir . '/includes/upgrades.php')
@@ -35,11 +36,14 @@ class AutoUpdater_Task_DatabaseUpdateAcf extends AutoUpdater_Task_Base
             include_once WP_PLUGIN_DIR . $acf_dir . '/includes/upgrades.php';
         }
 
+        $data = get_file_data($plugin_file, array('Version' => 'Version'));
+        $version = $data['Version'];
+
         if (!defined('ACF') || !defined('ACF_VERSION')) {
             return array(
                 'success' => true,
                 'needs_refactor' => true,
-                'message' => $acf_name . ' plugin not loaded'
+                'message' => $acf_name . ' ' . $version . ' plugin not loaded.',
             );
         }
 
@@ -47,28 +51,28 @@ class AutoUpdater_Task_DatabaseUpdateAcf extends AutoUpdater_Task_Base
             return array(
                 'success' => true,
                 'needs_refactor' => true,
-                'message' => $acf_name . ' plugin upgrade functions not found, check for source code updates',
+                'message' => $acf_name . ' ' . $version . ' plugin upgrade functions not found.',
             );
         }
 
         if (!acf_has_upgrade()) {
             return array(
                 'success' => true,
-                'message' => $acf_name . ' plugin database is already in the latest version',
+                'message' => $acf_name . ' ' . $version . ' plugin database is up to date.',
             );
         }
 
         try {
             acf_upgrade_all();
             $success = true;
-            $message = $acf_name . ' plugin database upgraded successfully';
+            $message = $acf_name . ' ' . $version . ' plugin database upgraded successfully.';
         } catch (Exception $err) {
             $message = $err->getMessage();
         }
 
         return array(
             'success' => $success,
-            'message' => $message
+            'message' => $message,
         );
     }
 }

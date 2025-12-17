@@ -16,8 +16,8 @@ import * as React from 'react';
  * @param {StepFooterProps} props The component props.
  * @return {React.ReactElement} The component for the step content.
  */
-const StepFooter = ( { children } ) => {
-	return <div className="step-footer">{ children }</div>;
+const StepFooter = ({ children }) => {
+	return <div className="step-footer">{children}</div>;
 };
 
 export default StepFooter;

@@ -63,37 +63,35 @@ class GBPricingTableBlock extends Component {
 		return [
 			<BlockControls key="controls">
 				<AlignmentToolbar
-					value={ alignment }
-					onChange={ ( nextAlign ) => {
-						setAttributes( { alignment: nextAlign } );
-					} }
+					value={alignment}
+					onChange={(nextAlign) => {
+						setAttributes({ alignment: nextAlign });
+					}}
 				/>
 			</BlockControls>,
 			<Inspector
-				key={
-					'gb-pricing-table-inner-inspector-' + this.props.clientId
-				}
-				{ ...{ setAttributes, ...this.props } }
+				key={'gb-pricing-table-inner-inspector-' + this.props.clientId}
+				{...{ setAttributes, ...this.props }}
 			/>,
 			<Fragment
-				key={ 'gb-pricing-table-inner-fragment-' + this.props.clientId }
+				key={'gb-pricing-table-inner-fragment-' + this.props.clientId}
 			>
 				<div
-					className={ classnames(
+					className={classnames(
 						alignment
 							? 'gb-block-pricing-table-' + alignment
 							: 'gb-block-pricing-table-center',
 						'gb-block-pricing-table'
-					) }
+					)}
 					itemScope
 					itemType="http://schema.org/Product"
 				>
 					<div
 						className="gb-block-pricing-table-inside"
-						style={ styles }
+						style={styles}
 					>
 						<InnerBlocks
-							template={ [
+							template={[
 								// Add placeholder blocks
 								[
 									'genesis-blocks/gb-pricing-table-title',
@@ -194,10 +192,10 @@ class GBPricingTableBlock extends Component {
 										paddingLeft: 20,
 									},
 								],
-							] }
-							templateLock={ false }
-							allowedBlocks={ ALLOWED_BLOCKS }
-							templateInsertUpdatesSelection={ false }
+							]}
+							templateLock={false}
+							allowedBlocks={ALLOWED_BLOCKS}
+							templateInsertUpdatesSelection={false}
 						/>
 					</div>
 				</div>
@@ -207,16 +205,16 @@ class GBPricingTableBlock extends Component {
 }
 
 // Register the block
-registerBlockType( 'genesis-blocks/gb-pricing-table', {
-	title: __( 'Pricing Column', 'genesis-blocks' ),
-	description: __( 'Add a pricing column.', 'genesis-blocks' ),
+registerBlockType('genesis-blocks/gb-pricing-table', {
+	title: __('Pricing Column', 'genesis-blocks'),
+	description: __('Add a pricing column.', 'genesis-blocks'),
 	icon: 'cart',
 	category: 'genesis-blocks',
-	parent: [ 'genesis-blocks/gb-pricing' ],
+	parent: ['genesis-blocks/gb-pricing'],
 	keywords: [
-		__( 'pricing', 'genesis-blocks' ),
-		__( 'shop', 'genesis-blocks' ),
-		__( 'buy', 'genesis-blocks' ),
+		__('pricing', 'genesis-blocks'),
+		__('shop', 'genesis-blocks'),
+		__('buy', 'genesis-blocks'),
 	],
 	attributes: {
 		borderWidth: {
@@ -243,19 +241,19 @@ registerBlockType( 'genesis-blocks/gb-pricing-table', {
 
 	gb_settings_data: {
 		gb_pricing_inner_padding: {
-			title: __( 'Pricing Column Padding', 'genesis-blocks' ),
+			title: __('Pricing Column Padding', 'genesis-blocks'),
 		},
 		gb_pricing_inner_borderWidth: {
-			title: __( 'Pricing Column Border', 'genesis-blocks' ),
+			title: __('Pricing Column Border', 'genesis-blocks'),
 		},
 		gb_pricing_inner_borderRadius: {
-			title: __( 'Pricing Column Border Radius', 'genesis-blocks' ),
+			title: __('Pricing Column Border Radius', 'genesis-blocks'),
 		},
 		gb_pricing_inner_borderColor: {
-			title: __( 'Pricing Column Border Color', 'genesis-blocks' ),
+			title: __('Pricing Column Border Color', 'genesis-blocks'),
 		},
 		gb_pricing_inner_colorSettings: {
-			title: __( 'Pricing Column Background Color', 'genesis-blocks' ),
+			title: __('Pricing Column Background Color', 'genesis-blocks'),
 		},
 	},
 
@@ -263,7 +261,7 @@ registerBlockType( 'genesis-blocks/gb-pricing-table', {
 	edit: GBPricingTableBlock,
 
 	// Save the attributes and markup
-	save( props ) {
+	save(props) {
 		// Setup the attributes
 		const {
 			borderWidth,
@@ -286,19 +284,19 @@ registerBlockType( 'genesis-blocks/gb-pricing-table', {
 		// Save the block markup for the front end
 		return (
 			<div
-				className={ classnames(
+				className={classnames(
 					alignment
 						? 'gb-block-pricing-table-' + alignment
 						: 'gb-block-pricing-table-center',
 					'gb-block-pricing-table'
-				) }
+				)}
 				itemScope
 				itemType="http://schema.org/Product"
 			>
-				<div className="gb-block-pricing-table-inside" style={ styles }>
+				<div className="gb-block-pricing-table-inside" style={styles}>
 					<InnerBlocks.Content />
 				</div>
 			</div>
 		);
 	},
-} );
+});

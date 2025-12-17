@@ -9,7 +9,7 @@ import React, { createContext, Component } from 'react';
 
 const { apiFetch } = wp;
 
-export const LayoutsContext = createContext( {
+export const LayoutsContext = createContext({
 	favorites: '',
 	favoriteKeys: '',
 	layouts: '',
@@ -17,7 +17,7 @@ export const LayoutsContext = createContext( {
 	all: '',
 	reusableBlocks: '',
 	collections: '',
-} );
+});
 
 export default class LayoutsProvider extends Component {
 	state = {
@@ -34,36 +34,36 @@ export default class LayoutsProvider extends Component {
 	 * Retrieves the keys of current user's favorites.
 	 */
 	getFavoriteKeys() {
-		return apiFetch( {
+		return apiFetch({
 			path: '/genesisblocks/v1/layouts/favorites',
 			method: 'GET',
-		} )
-			.then( ( favorite_keys ) => {
+		})
+			.then((favorite_keys) => {
 				return favorite_keys;
-			} )
-			.catch( ( error ) => console.error( error ) );
+			})
+			.catch((error) => console.error(error));
 	}
 
 	/**
 	 * Returns the current user's favorite layouts and sections.
 	 */
 	getFavorites() {
-		return apiFetch( {
+		return apiFetch({
 			path: '/genesisblocks/v1/layouts/favorites',
 			method: 'GET',
-		} )
-			.then( ( favorite_keys ) => {
+		})
+			.then((favorite_keys) => {
 				const favorites = [];
 
-				Object.values( this.state.all ).forEach( function ( item ) {
-					if ( favorite_keys.includes( item.key ) ) {
-						favorites.push( item );
+				Object.values(this.state.all).forEach(function (item) {
+					if (favorite_keys.includes(item.key)) {
+						favorites.push(item);
 					}
-				} );
+				});
 
 				return favorites;
-			} )
-			.catch( ( error ) => console.error( error ) );
+			})
+			.catch((error) => console.error(error));
 	}
 
 	/**
@@ -72,13 +72,13 @@ export default class LayoutsProvider extends Component {
 	 * @param {string} key The layout's unique key.
 	 * @return {Object} The user's favorite layouts.
 	 */
-	addFavorite( key ) {
-		return apiFetch( {
+	addFavorite(key) {
+		return apiFetch({
 			path: '/genesisblocks/v1/layouts/favorites',
 			method: 'PATCH',
-			body: JSON.stringify( { genesis_blocks_favorite_key: key } ),
+			body: JSON.stringify({ genesis_blocks_favorite_key: key }),
 			_wpnonce: wpApiSettings.nonce,
-		} ).catch( ( error ) => console.error( error ) );
+		}).catch((error) => console.error(error));
 	}
 
 	/**
@@ -87,13 +87,13 @@ export default class LayoutsProvider extends Component {
 	 * @param {string} key The layout's unique key.
 	 * @return {Object} The user's favorite layouts.
 	 */
-	removeFavorite( key ) {
-		return apiFetch( {
+	removeFavorite(key) {
+		return apiFetch({
 			path: '/genesisblocks/v1/layouts/favorites',
 			method: 'DELETE',
-			body: JSON.stringify( { genesis_blocks_favorite_key: key } ),
+			body: JSON.stringify({ genesis_blocks_favorite_key: key }),
 			_wpnonce: wpApiSettings.nonce,
-		} ).catch( ( error ) => console.error( error ) );
+		}).catch((error) => console.error(error));
 	}
 
 	async componentDidMount() {
@@ -103,45 +103,43 @@ export default class LayoutsProvider extends Component {
 		 * Retrieve all the registered layouts, sections,
 		 * and the user's favorites and save them to state.
 		 */
-		wp.apiFetch( {
+		wp.apiFetch({
 			method: 'GET',
 			path: '/genesisblocks/v1/layouts/all?filter=allowed',
-		} ).then( async ( components ) => {
+		}).then(async (components) => {
 			const layouts = [];
 			const sections = [];
 			const reusableBlocks = [];
 			const favorites = [];
 			const collections = [];
 
-			Object.values( components ).forEach( function ( item ) {
-				if ( 'layout' === item.type ) {
-					layouts.push( item );
+			Object.values(components).forEach(function (item) {
+				if ('layout' === item.type) {
+					layouts.push(item);
 				}
 
-				if ( 'section' === item.type ) {
-					sections.push( item );
+				if ('section' === item.type) {
+					sections.push(item);
 				}
 
-				if ( 'wp_block' === item.type ) {
-					reusableBlocks.push( item );
+				if ('wp_block' === item.type) {
+					reusableBlocks.push(item);
 				}
 
-				if ( item.hasOwnProperty( 'collection' ) ) {
-					if (
-						! collections.hasOwnProperty( item.collection.slug )
-					) {
-						collections[ item.collection.slug ] = [];
+				if (item.hasOwnProperty('collection')) {
+					if (!collections.hasOwnProperty(item.collection.slug)) {
+						collections[item.collection.slug] = [];
 						item.collection.image = item.image;
-						collections[ item.collection.slug ] = item.collection;
+						collections[item.collection.slug] = item.collection;
 					}
 				}
 
-				if ( favoriteKeys.includes( item.key ) ) {
-					favorites.push( item );
+				if (favoriteKeys.includes(item.key)) {
+					favorites.push(item);
 				}
-			} );
+			});
 
-			this.setState( {
+			this.setState({
 				all: components,
 				layouts,
 				sections,
@@ -149,15 +147,15 @@ export default class LayoutsProvider extends Component {
 				favoriteKeys,
 				reusableBlocks,
 				collections,
-			} );
-		} );
+			});
+		});
 	}
 
 	render() {
-		if ( this.state.all ) {
+		if (this.state.all) {
 			return (
 				<LayoutsContext.Provider
-					value={ {
+					value={{
 						favorites: this.state.favorites,
 						favoriteKeys: this.state.favoriteKeys,
 						layouts: this.state.layouts,
@@ -165,27 +163,27 @@ export default class LayoutsProvider extends Component {
 						all: this.state.all,
 						reusableBlocks: this.state.reusableBlocks,
 						collections: this.state.collections,
-						toggleFavorite: async ( key ) => {
+						toggleFavorite: async (key) => {
 							let favoriteKeys = await this.getFavoriteKeys();
 
-							if ( favoriteKeys.includes( key ) ) {
-								favoriteKeys = await this.removeFavorite( key );
+							if (favoriteKeys.includes(key)) {
+								favoriteKeys = await this.removeFavorite(key);
 							} else {
-								favoriteKeys = await this.addFavorite( key );
+								favoriteKeys = await this.addFavorite(key);
 							}
 
 							const favorites = await this.getFavorites();
 
-							this.setState( {
+							this.setState({
 								favorites,
 								favoriteKeys,
-							} );
+							});
 
 							return favorites;
 						},
-					} }
+					}}
 				>
-					{ this.props.children }
+					{this.props.children}
 				</LayoutsContext.Provider>
 			);
 		}

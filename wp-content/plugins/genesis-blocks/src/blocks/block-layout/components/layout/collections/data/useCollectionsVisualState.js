@@ -5,8 +5,8 @@
 
 const { useState } = wp.element;
 
-export function useCollectionsVisualState( initialSettings ) {
-	const [ currentView, setCurrentView ] = useState( initialSettings.view );
+export function useCollectionsVisualState(initialSettings) {
+	const [currentView, setCurrentView] = useState(initialSettings.view);
 
 	return {
 		currentView,

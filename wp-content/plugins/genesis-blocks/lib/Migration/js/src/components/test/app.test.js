@@ -8,15 +8,15 @@ import { render } from '@testing-library/react';
  */
 import App from '../app';
 
-test( 'migration app', async () => {
-	const { getByText } = render( <App /> );
+test('migration app', async () => {
+	const { getByText } = render(<App />);
 
 	expect(
-		getByText( 'Atomic Blocks has been renamed to Genesis Blocks' )
+		getByText('Atomic Blocks has been renamed to Genesis Blocks')
 	).toBeInTheDocument();
 	expect(
 		getByText(
 			'Need to let the developer for this site know about this? Send them this link.'
 		)
 	).toBeInTheDocument();
-} );
+});

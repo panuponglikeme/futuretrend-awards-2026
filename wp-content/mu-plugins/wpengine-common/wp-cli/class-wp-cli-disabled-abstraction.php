@@ -41,4 +41,15 @@ class Wp_Cli_Disabled_Abstraction implements Wp_Cli_Abstraction {
 	 * @return void
 	 */
 	public function add_hook( $hook_name, $callback ) {}
+
+	/**
+	 * WP CLI's add_command
+	 *
+	 * Documentation: https://make.wordpress.org/cli/handbook/references/internal-api/wp-cli-add-command/
+	 *
+	 * @param string       $cmd_name Name of the command to be created.
+	 * @param string|array $callback Either a string or an array containing the function/class to be called.
+	 * @return void
+	 */
+	public function add_command( $cmd_name, $callback ) {}
 }

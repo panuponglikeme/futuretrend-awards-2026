@@ -1,11 +1,11 @@
 const { rawHandler } = wp.blocks;
 
-export function importBlockPattern( blockPattern, clientId ) {
-	wp.data.dispatch( 'core/block-editor' ).replaceBlocks(
+export function importBlockPattern(blockPattern, clientId) {
+	wp.data.dispatch('core/block-editor').replaceBlocks(
 		clientId,
-		rawHandler( {
+		rawHandler({
 			HTML: blockPattern,
 			mode: 'BLOCKS',
-		} )
+		})
 	);
 }

@@ -24,7 +24,7 @@ export default class Columns extends Component {
 		/* Setup the background color class. */
 		let backgroundColorClass;
 
-		if ( attributes.customBackgroundColor ) {
+		if (attributes.customBackgroundColor) {
 			backgroundColorClass = 'gb-has-custom-background-color';
 		} else {
 			backgroundColorClass = attributes.backgroundColor
@@ -35,7 +35,7 @@ export default class Columns extends Component {
 		/* Setup the text color class. */
 		let textColorClass;
 
-		if ( attributes.customTextColor ) {
+		if (attributes.customTextColor) {
 			textColorClass = 'gb-has-custom-text-color';
 		} else {
 			textColorClass = attributes.textColor
@@ -49,7 +49,7 @@ export default class Columns extends Component {
 				this.props.className,
 				'gb-layout-columns-' + attributes.columns,
 				attributes.layout,
-				...BackgroundImageClasses( attributes ),
+				...BackgroundImageClasses(attributes),
 				backgroundColorClass,
 				textColorClass,
 				attributes.columnMaxWidth && attributes.centerColumns
@@ -57,14 +57,14 @@ export default class Columns extends Component {
 					: null,
 			],
 			{
-				[ 'align' + attributes.align ]: attributes.align,
+				['align' + attributes.align]: attributes.align,
 			}
 		);
 
 		/* Setup the margin styles. */
 		let marginValue;
 
-		if ( attributes.marginSync ) {
+		if (attributes.marginSync) {
 			marginValue = {
 				marginTop:
 					0 < attributes.margin
@@ -91,7 +91,7 @@ export default class Columns extends Component {
 		/* Setup the padding styles. */
 		let paddingValue;
 
-		if ( attributes.paddingSync ) {
+		if (attributes.paddingSync) {
 			paddingValue = {
 				padding:
 					0 < attributes.padding
@@ -125,15 +125,15 @@ export default class Columns extends Component {
 				? this.props.backgroundColorValue
 				: null,
 			color: this.props.textColorValue ? this.props.textColorValue : null,
-			...BackgroundImageStyles( attributes ),
+			...BackgroundImageStyles(attributes),
 		};
 
 		return (
 			<div
-				className={ className ? className : undefined }
-				style={ Object.assign( marginValue, paddingValue, styles ) }
+				className={className ? className : undefined}
+				style={Object.assign(marginValue, paddingValue, styles)}
 			>
-				{ this.props.children }
+				{this.props.children}
 			</div>
 		);
 	}

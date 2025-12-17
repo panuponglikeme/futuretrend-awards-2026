@@ -8,7 +8,7 @@ import getCurrentUserData from './../data-providers/currentUserData';
  */
 export default class RenderSettingControl extends Component {
 	render() {
-		if ( 'undefined' === typeof this.props.children ) {
+		if ('undefined' === typeof this.props.children) {
 			return null;
 		}
 
@@ -27,11 +27,11 @@ export default class RenderSettingControl extends Component {
 
 		if (
 			fallback &&
-			( 'undefined' === typeof this.props.children._owner ||
+			('undefined' === typeof this.props.children._owner ||
 				'undefined' ===
 					typeof this.props.children._owner.memoizedProps ||
 				'undefined' ===
-					typeof this.props.children._owner.memoizedProps.name )
+					typeof this.props.children._owner.memoizedProps.name)
 		) {
 			return this.props.children;
 		}

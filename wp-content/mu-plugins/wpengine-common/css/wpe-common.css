@@ -14,6 +14,17 @@
 	--color-wpe-blue: #0ecad4;
 	--color-error: #d21b46;
 	--color-input-border: #6b757b;
+	--color-success: #00a86b;
+	--color-failure: #D63638;
+}
+
+.icon-info {
+	display: block;
+	width: 14px;
+	height: 14px;
+	background-image: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 14 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 0C10.8675 0 14 3.1325 14 7C14 10.8675 10.8675 14 7 14C3.1325 14 0 10.8675 0 7C0 3.1325 3.1325 0 7 0ZM7.875 3.5C7.875 3.01875 7.48125 2.625 7 2.625C6.51875 2.625 6.125 3.01875 6.125 3.5C6.125 3.98125 6.51875 4.375 7 4.375C7.48125 4.375 7.875 3.98125 7.875 3.5ZM7.875 11.375V6.125H6.125V11.375H7.875Z' fill='%23787C82'/%3E%3C/svg%3E%0A");
+	background-position: center;
+	background-repeat: no-repeat;
 }
 
 .toplevel_page_wpengine-common *,
@@ -550,6 +561,11 @@ ul#adminmenu>li.current>a.current.toplevel_page_wpengine-common::after {
 	width: 1.5rem;
 }
 
+.wpe-common-plugin-admin-body input[type=radio],
+.wpe-common-plugin-admin-body input[type=radio]:checked {
+	border-radius: 50%;
+}
+
 .wpe-common-plugin-admin-body input[type=checkbox]:checked {
 	background-color: var(--color-body);
 	border-color: var(--color-body);
@@ -665,6 +681,41 @@ ul#adminmenu>li.current>a.current.toplevel_page_wpengine-common::after {
 .wpe-common-settings-panel li {
 	list-style-type: disc;
 	list-style-position: outside;
+}
+
+.wpe-current-provider {
+	display: flex;
+}
+
+.wpe-current-provider .icon-info {
+	height: 1lh;
+	margin-right: 0.5rem;
+	flex-shrink: 0;
+}
+
+.wpe-provider-status {
+	display: flex;
+	align-items: flex-start;
+}
+
+.wpe-provider-status::before {
+	content: '';
+	display: block;
+	width: 14px;
+	height: 14px;
+	flex-shrink: 0;
+	margin-top: 6px;
+	margin-right: 0.5rem;
+	background-color: var( --color-gray );
+	border-radius: 100%;
+}
+
+.wpe-provider-status--good::before {
+	background-color: var( --color-success );
+}
+
+.wpe-provider-status--bad::before {
+	background-color: var( --color-error );
 }
 
 details.wpe-common-settings-panel {

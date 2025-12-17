@@ -21,16 +21,16 @@ const { registerBlockType } = wp.blocks;
 /**
  * Register advanced columns block.
  */
-registerBlockType( 'genesis-blocks/gb-column', {
-	title: __( 'Column', 'genesis-blocks' ),
-	description: __( 'Add a pre-defined column layout.', 'genesis-blocks' ),
+registerBlockType('genesis-blocks/gb-column', {
+	title: __('Column', 'genesis-blocks'),
+	description: __('Add a pre-defined column layout.', 'genesis-blocks'),
 	icon: 'editor-table',
 	category: 'genesis-blocks',
-	parent: [ 'genesis-blocks/gb-columns' ],
+	parent: ['genesis-blocks/gb-columns'],
 	keywords: [
-		__( 'column', 'genesis-blocks' ),
-		__( 'layout', 'genesis-blocks' ),
-		__( 'row', 'genesis-blocks' ),
+		__('column', 'genesis-blocks'),
+		__('layout', 'genesis-blocks'),
+		__('row', 'genesis-blocks'),
 	],
 	attributes: {
 		...BackgroundAttributes,
@@ -104,33 +104,33 @@ registerBlockType( 'genesis-blocks/gb-column', {
 
 	gb_settings_data: {
 		gb_column_inner_marginPadding: {
-			title: __( 'Margin and Padding', 'genesis-blocks' ),
+			title: __('Margin and Padding', 'genesis-blocks'),
 		},
 		gb_column_inner_colorSettings: {
-			title: __( 'Color', 'genesis-blocks' ),
+			title: __('Color', 'genesis-blocks'),
 		},
 		gb_column_inner_backgroundImagePanel: {
-			title: __( 'Background Image', 'genesis-blocks' ),
+			title: __('Background Image', 'genesis-blocks'),
 		},
 	},
 
 	/* Render the block in the editor. */
-	edit: ( props ) => {
-		return <Edit { ...props } />;
+	edit: (props) => {
+		return <Edit {...props} />;
 	},
 
 	/* Save the block markup. */
-	save: ( props ) => {
-		return <Save { ...props } />;
+	save: (props) => {
+		return <Save {...props} />;
 	},
 
 	deprecated,
-} );
+});
 
 /* Add the vertical column alignment class to the block wrapper. */
 const withClientIdClassName = wp.compose.createHigherOrderComponent(
-	( BlockListBlock ) => {
-		return ( props ) => {
+	(BlockListBlock) => {
+		return (props) => {
 			const blockName = props.block.name;
 
 			if (
@@ -139,7 +139,7 @@ const withClientIdClassName = wp.compose.createHigherOrderComponent(
 			) {
 				return (
 					<BlockListBlock
-						{ ...props }
+						{...props}
 						className={
 							'gb-is-vertically-aligned-' +
 							props.block.attributes.columnVerticalAlignment
@@ -147,7 +147,7 @@ const withClientIdClassName = wp.compose.createHigherOrderComponent(
 					/>
 				);
 			}
-			return <BlockListBlock { ...props } />;
+			return <BlockListBlock {...props} />;
 		};
 	},
 	'withClientIdClassName'

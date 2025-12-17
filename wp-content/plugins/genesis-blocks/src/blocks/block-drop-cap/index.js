@@ -35,31 +35,28 @@ class GBDropCapBlock extends Component {
 			// Show the alignment toolbar on focus
 			<BlockControls key="controls">
 				<AlignmentToolbar
-					value={ dropCapAlignment }
-					onChange={ ( value ) =>
-						this.props.setAttributes( { dropCapAlignment: value } )
+					value={dropCapAlignment}
+					onChange={(value) =>
+						this.props.setAttributes({ dropCapAlignment: value })
 					}
 				/>
 			</BlockControls>,
 
 			// Show the block controls on focus
 			<Inspector
-				key={ 'gb-drop-cap-inspector-' + this.props.clientId }
-				{ ...this.props }
+				key={'gb-drop-cap-inspector-' + this.props.clientId}
+				{...this.props}
 			/>,
 
 			// Show the block markup in the editor
-			<DropCap
-				key={ 'gb-drop-cap-' + this.props.clientId }
-				{ ...this.props }
-			>
+			<DropCap key={'gb-drop-cap-' + this.props.clientId} {...this.props}>
 				<div
-					className={ classnames(
+					className={classnames(
 						'gb-drop-cap-text',
 						'gb-font-size-' + dropCapFontSize
-					) }
+					)}
 				>
-					<InnerBlocks allowedBlocks={ [ 'core/paragraph' ] } />
+					<InnerBlocks allowedBlocks={['core/paragraph']} />
 				</div>
 			</DropCap>,
 		];
@@ -67,8 +64,8 @@ class GBDropCapBlock extends Component {
 }
 
 // Register the block
-registerBlockType( 'genesis-blocks/gb-drop-cap', {
-	title: __( 'Drop Cap', 'genesis-blocks' ),
+registerBlockType('genesis-blocks/gb-drop-cap', {
+	title: __('Drop Cap', 'genesis-blocks'),
 	description: __(
 		'Add a styled drop cap to the beginning of your paragraph.',
 		'genesis-blocks'
@@ -76,9 +73,9 @@ registerBlockType( 'genesis-blocks/gb-drop-cap', {
 	icon: 'format-quote',
 	category: 'genesis-blocks',
 	keywords: [
-		__( 'drop cap', 'genesis-blocks' ),
-		__( 'quote', 'genesis-blocks' ),
-		__( 'genesis', 'genesis-blocks' ),
+		__('drop cap', 'genesis-blocks'),
+		__('quote', 'genesis-blocks'),
+		__('genesis', 'genesis-blocks'),
 	],
 	attributes: {
 		dropCapAlignment: {
@@ -103,10 +100,10 @@ registerBlockType( 'genesis-blocks/gb-drop-cap', {
 	},
 	gb_settings_data: {
 		gb_dropcap_dropCapFontSize: {
-			title: __( 'Drop Cap Size', 'genesis-blocks' ),
+			title: __('Drop Cap Size', 'genesis-blocks'),
 		},
 		gb_dropcap_dropCapStyle: {
-			title: __( 'Drop Cap Style', 'genesis-blocks' ),
+			title: __('Drop Cap Style', 'genesis-blocks'),
 		},
 	},
 
@@ -114,10 +111,10 @@ registerBlockType( 'genesis-blocks/gb-drop-cap', {
 	edit: GBDropCapBlock,
 
 	// Save the attributes and markup
-	save( props ) {
+	save(props) {
 		// Save the block markup for the front end
 		return (
-			<DropCap { ...props }>
+			<DropCap {...props}>
 				<div className="gb-drop-cap-text">
 					<InnerBlocks.Content />
 				</div>
@@ -125,4 +122,4 @@ registerBlockType( 'genesis-blocks/gb-drop-cap', {
 		);
 	},
 	deprecated,
-} );
+});

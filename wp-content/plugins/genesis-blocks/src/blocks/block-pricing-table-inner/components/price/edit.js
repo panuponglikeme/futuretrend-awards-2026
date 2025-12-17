@@ -34,20 +34,20 @@ class Edit extends Component {
 		} = this.props;
 
 		// Setup wrapper class names
-		const editClassWrapperName = classnames( {
+		const editClassWrapperName = classnames({
 			'gb-pricing-table-price-wrap': true,
 			'has-text-color': textColor.color,
 			'has-background': backgroundColor.color,
-			[ backgroundColor.class ]: backgroundColor.class,
-			[ textColor.class ]: textColor.class,
+			[backgroundColor.class]: backgroundColor.class,
+			[textColor.class]: textColor.class,
 			'gb-pricing-has-currency': showCurrency,
-		} );
+		});
 
 		// Setup price class names
-		const editClassName = classnames( {
+		const editClassName = classnames({
 			'gb-pricing-table-price': true,
-			[ fontSize.class ]: fontSize.class,
-		} );
+			[fontSize.class]: fontSize.class,
+		});
 
 		// Setup wrapper styles
 		const editWrapStyles = {
@@ -65,13 +65,13 @@ class Edit extends Component {
 		};
 
 		// Setup currency styles
-		const currencySize = Math.floor( fontSize.size / 2.5 );
+		const currencySize = Math.floor(fontSize.size / 2.5);
 		const currencyStyles = {
 			fontSize: fontSize.size ? currencySize + 'px' : undefined,
 		};
 
 		// Setup term styles
-		const termSize = Math.floor( fontSize.size / 2.5 );
+		const termSize = Math.floor(fontSize.size / 2.5);
 		const termStyles = {
 			fontSize: fontSize.size ? termSize + 'px' : undefined,
 		};
@@ -83,56 +83,56 @@ class Edit extends Component {
 					this.props.clientId
 				}
 			>
-				<Inspector { ...this.props } />
+				<Inspector {...this.props} />
 				<div
 					className={
 						editClassWrapperName ? editClassWrapperName : undefined
 					}
-					style={ editWrapStyles }
+					style={editWrapStyles}
 				>
 					<div
 						itemProp="offers"
 						itemScope
 						itemType="http://schema.org/Offer"
 					>
-						{ showCurrency && (
+						{showCurrency && (
 							<RichText
 								tagName="span"
 								itemProp="priceCurrency"
-								placeholder={ __( '$', 'genesis-blocks' ) }
-								value={ currency }
-								onChange={ ( value ) =>
-									setAttributes( { currency: value } )
+								placeholder={__('$', 'genesis-blocks')}
+								value={currency}
+								onChange={(value) =>
+									setAttributes({ currency: value })
 								}
 								className="gb-pricing-table-currency"
-								style={ currencyStyles }
+								style={currencyStyles}
 							/>
-						) }
+						)}
 						<RichText
 							tagName="div"
 							itemProp="price"
-							placeholder={ __( '49', 'genesis-blocks' ) }
-							value={ price }
-							onChange={ ( value ) =>
-								setAttributes( { price: value } )
+							placeholder={__('49', 'genesis-blocks')}
+							value={price}
+							onChange={(value) =>
+								setAttributes({ price: value })
 							}
-							style={ editStyles }
+							style={editStyles}
 							className={
 								editClassName ? editClassName : undefined
 							}
 						/>
-						{ showTerm && (
+						{showTerm && (
 							<RichText
 								tagName="span"
-								value={ term }
-								placeholder={ __( '/mo', 'genesis-blocks' ) }
-								onChange={ ( value ) =>
-									setAttributes( { term: value } )
+								value={term}
+								placeholder={__('/mo', 'genesis-blocks')}
+								onChange={(value) =>
+									setAttributes({ term: value })
 								}
 								className="gb-pricing-table-term"
-								style={ termStyles }
+								style={termStyles}
 							/>
-						) }
+						)}
 					</div>
 				</div>
 			</Fragment>,
@@ -140,7 +140,7 @@ class Edit extends Component {
 	}
 }
 
-export default compose( [
-	withFontSizes( 'fontSize' ),
-	withColors( 'backgroundColor', { textColor: 'color' } ),
-] )( Edit );
+export default compose([
+	withFontSizes('fontSize'),
+	withColors('backgroundColor', { textColor: 'color' }),
+])(Edit);

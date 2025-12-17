@@ -11,8 +11,8 @@ const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
 
 // Register the block
-registerBlockType( 'genesis-blocks/gb-pricing-table-features', {
-	title: __( 'Product Features', 'genesis-blocks' ),
+registerBlockType('genesis-blocks/gb-pricing-table-features', {
+	title: __('Product Features', 'genesis-blocks'),
 	description: __(
 		'Adds a product feature component with schema markup.',
 		'genesis-blocks'
@@ -21,11 +21,11 @@ registerBlockType( 'genesis-blocks/gb-pricing-table-features', {
 	category: 'genesis-blocks',
 	supports: { inserter: false },
 	keywords: [
-		__( 'pricing table', 'genesis-blocks' ),
-		__( 'features', 'genesis-blocks' ),
-		__( 'shop', 'genesis-blocks' ),
+		__('pricing table', 'genesis-blocks'),
+		__('features', 'genesis-blocks'),
+		__('shop', 'genesis-blocks'),
 	],
 	edit,
 	save,
 	deprecated,
-} );
+});

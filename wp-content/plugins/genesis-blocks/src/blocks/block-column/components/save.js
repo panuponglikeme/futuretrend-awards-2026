@@ -14,15 +14,15 @@ export default class Save extends Component {
 	render() {
 		const { attributes } = this.props;
 
-		const className = classnames( [
+		const className = classnames([
 			'gb-layout-column-wrap',
 			'gb-block-layout-column-gap-' + attributes.columnsGap,
 			attributes.responsiveToggle ? 'gb-is-responsive-column' : null,
-		] );
+		]);
 
 		return (
 			<Columns
-				{ ...this.props }
+				{...this.props}
 				/* Pass through the color attributes to the Columns component */
 				backgroundColorValue={
 					attributes.backgroundColor
@@ -34,12 +34,12 @@ export default class Save extends Component {
 				}
 			>
 				<div
-					className={ className ? className : undefined }
-					style={ {
+					className={className ? className : undefined}
+					style={{
 						maxWidth: attributes.columnMaxWidth
 							? attributes.columnMaxWidth
 							: null,
-					} }
+					}}
 				>
 					<InnerBlocks.Content />
 				</div>
