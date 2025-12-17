@@ -1,0 +1,161 @@
+.site-header-2025 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    z-index: 9001;
+    @include transition;
+    display: flex;
+    align-items: center;
+    padding: 0 100px;
+    background-image: linear-gradient(to right, #171640, #090a40, #090a40, #000231, #000231, #000342, #000b34, #000614);
+
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        display: block;
+        width: 100%;
+        height: 1px;
+        background-image: linear-gradient(to right, transparent, #262750, #262750, #262750, #262750, #262750, transparent);
+    }
+
+    .site-header-inner {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        @include transition;
+
+        .hamberger {
+            display: none;
+        }
+
+        .site-branding {
+            position: absolute;
+            top: 50%;
+            //left: 100px;
+            display: flex;
+            margin-top: -35px;
+    
+            .custom-logo-link {
+                width: 100%;
+
+                img {
+                    max-width: 110px;
+                    max-height: 70px;
+                    vertical-align: middle;
+                    @include transition;
+                }
+            }
+        }
+
+        .main-navigation {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+
+            ul.menu {
+                display: inline-flex;
+                list-style-type: none;
+    
+                li {
+                    display: inline-flex;
+                    width: auto;
+                    margin-right: 40px;
+
+                    a {
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: auto;
+                        // height: 33px;
+                        font-family: Neue-Kaine;
+                        color: #fff;
+                        font-size: 16px;
+                        font-weight: 500;
+                        @include transition;
+                        padding: 0;
+                        margin: 0;
+                        border: 1px solid transparent;
+                        border-radius: 15px;
+
+                        &:hover {
+                            color: $colorYellow;
+                        }
+                    }
+
+                    &.current_page_item {
+                        a {
+                            color: $colorYellow;
+
+                            // &::after {
+                            //     width: 100%;
+                            // }
+                        }
+                    }
+
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                }
+            }
+
+            .link-awards {
+                position: absolute;
+                right: 0;
+                display: inline-flex;
+                min-width: 160px;
+                background-image: linear-gradient(to bottom, $colorYellow, rgba(0,214,234,1));
+                border-radius: 30px;
+                align-items: center;
+                text-align: center;
+                justify-content: center;
+                color: #fff;
+                font-size: 18px;
+                font-weight: 500;
+                padding: 2px;
+                @include transition;
+
+                span {
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    background-color: #000513;
+                    border-radius: 30px;
+                    padding: 10px 30px;
+                    @include transition;
+                }
+
+                &:hover {
+                    background-image: linear-gradient(to bottom, $colorSky, $colorSky);
+                    span {
+                        //background-color: $colorBluelight;
+                        color: $colorSky;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.site-header.sticky {
+    height: 70px;
+    background-color: $colorBluedark;
+    //background-color: rgba(0, 176, 207, 0.5);
+
+    .site-header-inner {
+        .site-branding {
+            margin-top: -25px;
+
+            img {
+                max-width: 90px;
+                max-height: 50px;
+            }
+        }
+    }
+}

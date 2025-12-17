@@ -1,0 +1,93 @@
+<?php die(); ?>
+[2024-06-11 00:41:56] ERROR Task ChildVerify ended with PHP fatal error: Uncaught Error: Class "DeliciousBrains\WPMDB\Common\Filesystem\RecursiveScanner" not found in /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/class/ClassMap.php:523
+Stack trace:
+#0 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/class/SiteMigration/ClassMap.php(178): DeliciousBrains\WPMDB\ClassMap->__construct()
+#1 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/class/SetupProviders.php(46): DeliciousBrains\WPMDB\SiteMigration\ClassMap->__construct()
+#2 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/class/SetupProviders.php(25): DeliciousBrains\WPMDB\SetupProviders->maybeAddProvider('DeliciousBrains...')
+#3 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/class/WPMDBDI_Config.php(9): DeliciousBrains\WPMDB\SetupProviders->setup()
+#4 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/vendor/php-di/php-di/src/DI/Definition/Source/DefinitionFile.php(48): require('/nas/content/li...')
+#5 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/vendor/php-di/php-di/src/DI/Definition/Source/DefinitionFile.php(36): DeliciousBrains\WPMDB\Container\DI\Definition\Source\DefinitionFile->initialize()
+#6 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/vendor/php-di/php-di/src/DI/Definition/Source/SourceChain.php(45): DeliciousBrains\WPMDB\Container\DI\Definition\Source\DefinitionFile->getDefinition('DeliciousBrains...')
+#7 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/vendor/php-di/php-di/src/DI/Container.php(99): DeliciousBrains\WPMDB\Container\DI\Definition\Source\SourceChain->getDefinition('DeliciousBrains...')
+#8 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/class/WPMigrateDB.php(63): DeliciousBrains\WPMDB\Container\DI\Container->get('DeliciousBrains...')
+#9 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/class/SiteMigration/WPESiteMigration.php(19): DeliciousBrains\WPMDB\WPMigrateDB->register()
+#10 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/setup-wpe.php(24): DeliciousBrains\WPMDB\SiteMigration\WPESiteMigration->register()
+#11 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/setup-wpe.php(47): wpe_migrations()
+#12 /nas/content/live/ftaward/wp-includes/class-wp-hook.php(324): wpe_migrations_loaded('')
+#13 /nas/content/live/ftaward/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#14 /nas/content/live/ftaward/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#15 /nas/content/live/ftaward/wp-settings.php(506): do_action('plugins_loaded')
+#16 /nas/content/live/ftaward/wp-config.php(119): require_once('/nas/content/li...')
+#17 /nas/content/live/ftaward/wp-load.php(50): require_once('/nas/content/li...')
+#18 /nas/content/live/ftaward/wp-admin/admin-ajax.php(22): require_once('/nas/content/li...')
+#19 {main}
+  thrown on line 523 in file wp-content/plugins/wpe-site-migration/class/ClassMap.php
+[2024-06-11 00:41:57] ERROR Task ChildVerify ended with PHP fatal error: Uncaught Error: Class "DeliciousBrains\WPMDB\Common\Filesystem\RecursiveScanner" not found in /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/class/ClassMap.php:523
+Stack trace:
+#0 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/class/SiteMigration/ClassMap.php(178): DeliciousBrains\WPMDB\ClassMap->__construct()
+#1 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/class/SetupProviders.php(46): DeliciousBrains\WPMDB\SiteMigration\ClassMap->__construct()
+#2 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/class/SetupProviders.php(25): DeliciousBrains\WPMDB\SetupProviders->maybeAddProvider('DeliciousBrains...')
+#3 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/class/WPMDBDI_Config.php(9): DeliciousBrains\WPMDB\SetupProviders->setup()
+#4 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/vendor/php-di/php-di/src/DI/Definition/Source/DefinitionFile.php(48): require('/nas/content/li...')
+#5 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/vendor/php-di/php-di/src/DI/Definition/Source/DefinitionFile.php(36): DeliciousBrains\WPMDB\Container\DI\Definition\Source\DefinitionFile->initialize()
+#6 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/vendor/php-di/php-di/src/DI/Definition/Source/SourceChain.php(45): DeliciousBrains\WPMDB\Container\DI\Definition\Source\DefinitionFile->getDefinition('DeliciousBrains...')
+#7 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/vendor/php-di/php-di/src/DI/Container.php(99): DeliciousBrains\WPMDB\Container\DI\Definition\Source\SourceChain->getDefinition('DeliciousBrains...')
+#8 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/class/WPMigrateDB.php(63): DeliciousBrains\WPMDB\Container\DI\Container->get('DeliciousBrains...')
+#9 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/class/SiteMigration/WPESiteMigration.php(19): DeliciousBrains\WPMDB\WPMigrateDB->register()
+#10 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/setup-wpe.php(24): DeliciousBrains\WPMDB\SiteMigration\WPESiteMigration->register()
+#11 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/setup-wpe.php(47): wpe_migrations()
+#12 /nas/content/live/ftaward/wp-includes/class-wp-hook.php(324): wpe_migrations_loaded('')
+#13 /nas/content/live/ftaward/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#14 /nas/content/live/ftaward/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#15 /nas/content/live/ftaward/wp-settings.php(506): do_action('plugins_loaded')
+#16 /nas/content/live/ftaward/wp-config.php(119): require_once('/nas/content/li...')
+#17 /nas/content/live/ftaward/wp-load.php(50): require_once('/nas/content/li...')
+#18 /nas/content/live/ftaward/wp-admin/admin-ajax.php(22): require_once('/nas/content/li...')
+#19 {main}
+  thrown on line 523 in file wp-content/plugins/wpe-site-migration/class/ClassMap.php
+[2024-06-11 00:41:57] ERROR Task ChildVerify ended with PHP fatal error: Uncaught Error: Class "DeliciousBrains\WPMDB\Common\Filesystem\RecursiveScanner" not found in /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/class/ClassMap.php:523
+Stack trace:
+#0 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/class/SiteMigration/ClassMap.php(178): DeliciousBrains\WPMDB\ClassMap->__construct()
+#1 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/class/SetupProviders.php(46): DeliciousBrains\WPMDB\SiteMigration\ClassMap->__construct()
+#2 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/class/SetupProviders.php(25): DeliciousBrains\WPMDB\SetupProviders->maybeAddProvider('DeliciousBrains...')
+#3 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/class/WPMDBDI_Config.php(9): DeliciousBrains\WPMDB\SetupProviders->setup()
+#4 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/vendor/php-di/php-di/src/DI/Definition/Source/DefinitionFile.php(48): require('/nas/content/li...')
+#5 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/vendor/php-di/php-di/src/DI/Definition/Source/DefinitionFile.php(36): DeliciousBrains\WPMDB\Container\DI\Definition\Source\DefinitionFile->initialize()
+#6 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/vendor/php-di/php-di/src/DI/Definition/Source/SourceChain.php(45): DeliciousBrains\WPMDB\Container\DI\Definition\Source\DefinitionFile->getDefinition('DeliciousBrains...')
+#7 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/vendor/php-di/php-di/src/DI/Container.php(99): DeliciousBrains\WPMDB\Container\DI\Definition\Source\SourceChain->getDefinition('DeliciousBrains...')
+#8 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/class/WPMigrateDB.php(63): DeliciousBrains\WPMDB\Container\DI\Container->get('DeliciousBrains...')
+#9 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/class/SiteMigration/WPESiteMigration.php(19): DeliciousBrains\WPMDB\WPMigrateDB->register()
+#10 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/setup-wpe.php(24): DeliciousBrains\WPMDB\SiteMigration\WPESiteMigration->register()
+#11 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/setup-wpe.php(47): wpe_migrations()
+#12 /nas/content/live/ftaward/wp-includes/class-wp-hook.php(324): wpe_migrations_loaded('')
+#13 /nas/content/live/ftaward/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#14 /nas/content/live/ftaward/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#15 /nas/content/live/ftaward/wp-settings.php(506): do_action('plugins_loaded')
+#16 /nas/content/live/ftaward/wp-config.php(119): require_once('/nas/content/li...')
+#17 /nas/content/live/ftaward/wp-load.php(50): require_once('/nas/content/li...')
+#18 /nas/content/live/ftaward/wp-admin/admin-ajax.php(22): require_once('/nas/content/li...')
+#19 {main}
+  thrown on line 523 in file wp-content/plugins/wpe-site-migration/class/ClassMap.php
+[2024-06-11 00:41:57] ERROR Task ChildVerify ended with PHP fatal error: Uncaught Error: Class "DeliciousBrains\WPMDB\Common\Filesystem\RecursiveScanner" not found in /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/class/ClassMap.php:523
+Stack trace:
+#0 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/class/SiteMigration/ClassMap.php(178): DeliciousBrains\WPMDB\ClassMap->__construct()
+#1 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/class/SetupProviders.php(46): DeliciousBrains\WPMDB\SiteMigration\ClassMap->__construct()
+#2 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/class/SetupProviders.php(25): DeliciousBrains\WPMDB\SetupProviders->maybeAddProvider('DeliciousBrains...')
+#3 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/class/WPMDBDI_Config.php(9): DeliciousBrains\WPMDB\SetupProviders->setup()
+#4 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/vendor/php-di/php-di/src/DI/Definition/Source/DefinitionFile.php(48): require('/nas/content/li...')
+#5 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/vendor/php-di/php-di/src/DI/Definition/Source/DefinitionFile.php(36): DeliciousBrains\WPMDB\Container\DI\Definition\Source\DefinitionFile->initialize()
+#6 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/vendor/php-di/php-di/src/DI/Definition/Source/SourceChain.php(45): DeliciousBrains\WPMDB\Container\DI\Definition\Source\DefinitionFile->getDefinition('DeliciousBrains...')
+#7 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/vendor/php-di/php-di/src/DI/Container.php(99): DeliciousBrains\WPMDB\Container\DI\Definition\Source\SourceChain->getDefinition('DeliciousBrains...')
+#8 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/class/WPMigrateDB.php(63): DeliciousBrains\WPMDB\Container\DI\Container->get('DeliciousBrains...')
+#9 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/class/SiteMigration/WPESiteMigration.php(19): DeliciousBrains\WPMDB\WPMigrateDB->register()
+#10 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/setup-wpe.php(24): DeliciousBrains\WPMDB\SiteMigration\WPESiteMigration->register()
+#11 /nas/content/live/ftaward/wp-content/plugins/wpe-site-migration/setup-wpe.php(47): wpe_migrations()
+#12 /nas/content/live/ftaward/wp-includes/class-wp-hook.php(324): wpe_migrations_loaded('')
+#13 /nas/content/live/ftaward/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#14 /nas/content/live/ftaward/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#15 /nas/content/live/ftaward/wp-settings.php(506): do_action('plugins_loaded')
+#16 /nas/content/live/ftaward/wp-config.php(119): require_once('/nas/content/li...')
+#17 /nas/content/live/ftaward/wp-load.php(50): require_once('/nas/content/li...')
+#18 /nas/content/live/ftaward/wp-admin/admin-ajax.php(22): require_once('/nas/content/li...')
+#19 {main}
+  thrown on line 523 in file wp-content/plugins/wpe-site-migration/class/ClassMap.php

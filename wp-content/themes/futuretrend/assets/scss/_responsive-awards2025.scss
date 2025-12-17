@@ -1,0 +1,334 @@
+@media screen and (max-width: 991px) {
+    .page-template-template-awards-2025 {
+        .awards-title-wrapper {
+            padding: 100px 20px 20px 20px;
+
+            .inner {
+                flex-direction: column;
+
+                .left {
+                    width: 100%;
+                    margin-bottom: 50px;
+
+                    .tag-title {
+                        font-size: 20px;
+                    }
+        
+                    h1 {
+                        font-size: 54px;
+                    }
+
+                    .subtitle {
+                        h2 {
+                            font-size: 30px;
+                        }
+                    }
+
+                    .details {
+                        //font-size: 16px;
+                    }
+                }
+
+                .box1 {
+                    margin: auto;
+                    width: 70%;
+                }
+            }
+        }
+
+        .awards-cl-wrapper {
+            .tab-button-wrapper {
+                margin: 0 20px 80px 20px;
+
+                .tab-button-corp-lead {
+                    font-size: 20px;
+                }
+            }
+
+            .inner-wrapper {
+                h2 {
+                    font-size: 38px;
+                }
+
+                .descp {
+                    font-size: 18px;
+                }
+
+                .inner {
+                    .tabcontent-wrapper {
+                        .tabcontent {
+                            .tab-row {
+                                .top {
+                                    h3 {
+                                        font-size: 30px;
+                                    }
+
+                                    .desc {
+                                        font-size: 18px;
+                                    }
+                                }
+
+                                .bottom {
+                                    .row-wrapper {
+                                        .row-list {
+                                            h4 {
+                                                font-size: 22px;
+                                            }
+
+                                            .row-inner-wrapper {
+                                                .row-inner-list {
+                                                    width: calc(33.33% - 20px);
+
+                                                    .list {
+                                                        .fig-wrapper {
+                                                            padding: 20px;
+                                                            figure {
+                                                                //width: 85px;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .awards-process-wrapper {
+            padding: 50px 20px 20px 20px;
+
+            .inner-wrapper {
+                padding: 40px 10px;
+
+                .title-wrapper {
+                    margin-bottom: 30px;
+                }
+
+                .inner-process {
+                    .process-details-wrapper {
+                        display: flex;
+                        flex-wrap: wrap;
+
+                        .listing {
+                            display: block;
+                            width: 100%;
+                            margin-bottom: 20px;
+                            padding-top: 30px;
+
+                            .img-mobile {
+                                margin-left: 0;
+                            }
+
+                            .details {
+                                ul {
+                                    margin-left: 10px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .page-template-template-awards-2025 {
+        .awards-title-wrapper {
+            padding: 50px 20px 20px 20px;
+
+            .inner {
+                .left {
+                    .tag-title {
+                        font-size: 20px;
+                    }
+        
+                    h1 {
+                        font-size: 44px;
+                    }
+
+                    .subtitle {
+                        h2 {
+                            font-size: 28px;
+                        }
+                    }
+
+                    .details {
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+
+        .awards-cl-wrapper {
+            .tab-button-wrapper {
+                margin: 0 20px 60px 20px;
+
+                .tab-button-corp-lead {
+                    font-size: 16px;
+                }
+            }
+
+            .inner-wrapper {
+                h2 {
+                    font-size: 28px;
+                }
+
+                .descp {
+                    font-size: 16px;
+                    padding: 0 20px;
+                }
+
+                .inner {
+                    .tab-link-wrapper {
+                        overflow: unset;
+
+                        .tab {
+                            min-width: auto;
+                        }
+                    }
+
+                    .tabcontent-wrapper {
+                        padding: 0px 20px 20px 20px;
+
+                        .tabcontent {
+                            .tab-row {
+                                padding-top: 40px;
+
+                                .top {
+                                    h3 {
+                                        font-size: 24px;
+                                    }
+
+                                    .desc {
+                                        font-size: 16px;
+                                    }
+                                }
+
+                                .bottom {
+                                    .row-wrapper {
+                                        .row-list {
+                                            h4 {
+                                                font-size: 20px;
+                                            }
+
+                                            .row-inner-wrapper {
+                                                .row-inner-list {
+                                                    width: calc(50% - 20px);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .awards-process-wrapper {
+            .inner-wrapper {
+                padding: 30px 0px;
+                border-radius: 20px;
+
+                .title-wrapper {
+                    margin-bottom: 30px;
+
+                    h2 {
+                        font-size: 24px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .page-template-template-awards-2025 {
+        .awards-title-wrapper {
+            .inner {
+                .left {        
+                    h1 {
+                        font-size: 36px;
+                    }
+
+                    .subtitle {
+                        h2 {
+                            font-size: 24px;
+                        }
+                    }
+
+                    .details {
+                        br {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+
+        .awards-cl-wrapper {
+            .tab-button-wrapper {
+                padding: 10px 10px;
+                margin: 0 8px 50px 8px;
+
+                .tab-button-corp-lead {
+                    border-radius: 30px;
+                    font-size: 14px;
+                    padding: 12px 8px 10px 8px;
+                }
+            }
+
+            .inner-wrapper {
+                .descp {
+                    padding: 0;
+                }
+
+                .inner {
+                    padding-bottom: 20px;
+
+                    .tab-link-wrapper {
+                        .tab {
+                            .tablinks {
+                                margin-right: 0;
+                                margin-bottom: 10px;
+                            }
+                        }
+                    }
+
+                    .tabcontent-wrapper {
+                        .tabcontent {
+                            .tab-row {
+                                .bottom {
+                                    .row-wrapper {
+                                        .row-list {
+                                            .row-inner-wrapper {
+                                                .row-inner-list {
+                                                    width: 100%;
+                                                    margin-left: 0;
+                                                    margin-right: 0;
+
+                                                    .list {
+                                                        .fig-wrapper {
+                                                            margin-bottom: 30px;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,105 @@
+.tax-wrapper {
+    position: relative;
+    display: block;
+    width: 100%;
+    text-align: center;
+    background-size: cover;
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    padding: 80px 0;
+
+    .inner-wrapper {
+        position: relative;
+        display: block;
+        max-width: 1180px;
+        padding: 0 20px;
+        margin: auto;
+
+        .back {
+            display: flex;
+            vertical-align: middle;
+            align-items: center;
+            color: #fff;
+            font-size: 16px;
+            line-height: 1.1;
+            text-align: left;
+            transition: ease-in-out .2s;
+            padding: 0;
+            margin-bottom: 10px;
+            background: transparent;
+            border: 0;
+            cursor: pointer;
+            @include transition;
+
+            &:hover {
+                opacity: .8;
+            }
+
+            &::before {
+                content: "";
+                display: block;
+                width: 20px;
+                height: 15px;
+                background-image: url('../images/arrow-white.png');
+                background-repeat: no-repeat;
+                background-size: contain;
+                transition: ease-in-out .2s;
+                margin-right: 7px;
+                transform: scaleX(-1);
+                transform-origin: 5px 0;
+            }
+        }
+
+        .top-wrapper {
+            display: block;
+            width: 100%;
+            margin-bottom: 80px;
+
+            img {
+                display: block;
+                max-width: 175px;
+                vertical-align: middle;
+                margin: auto;
+            }
+
+            h1 {
+                display: block;
+                font-size: 33px;
+                line-height: 1.3;
+                margin-bottom: 10px;
+            }
+
+            .desc {
+                display: block;
+                font-size: 22px;
+            }
+        }
+
+        @include cmtList;
+    }
+}
+
+.tax-corporate_cat {
+    .tax-wrapper {
+        .inner-wrapper {
+            .top-wrapper {
+                h1 {
+                    color: $colorSky;
+                }
+            }
+        }
+    }
+}
+
+.tax-leader_cat {
+    .tax-wrapper {
+        .inner-wrapper {
+            .top-wrapper {
+                h1 {
+                    color: $colorYellow;
+                }
+            }
+        }
+    }
+}
