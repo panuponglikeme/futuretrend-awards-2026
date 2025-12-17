@@ -5,7 +5,7 @@
 	"title": "Social Icon",
 	"category": "widgets",
 	"parent": [ "core/social-links" ],
-	"description": "Display an icon linking to a social profile or site.",
+	"description": "Display an icon linking to a social media profile or site.",
 	"textdomain": "default",
 	"attributes": {
 		"url": {
@@ -31,10 +31,7 @@
 	],
 	"supports": {
 		"reusable": false,
-		"html": false,
-		"interactivity": {
-			"clientNavigation": true
-		}
+		"html": false
 	},
 	"editorStyle": "wp-block-social-link-editor"
 }

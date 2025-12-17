@@ -36,8 +36,7 @@ class WP_Theme_Install_List_Table extends WP_Themes_List_Table {
 		require ABSPATH . 'wp-admin/includes/theme-install.php';
 
 		global $tabs, $tab, $paged, $type, $theme_field_defaults;
-
-		$tab = ! empty( $_REQUEST['tab'] ) ? sanitize_text_field( $_REQUEST['tab'] ) : '';
+		wp_reset_vars( array( 'tab' ) );
 
 		$search_terms  = array();
 		$search_string = '';
@@ -230,9 +229,6 @@ class WP_Theme_Install_List_Table extends WP_Themes_List_Table {
 	}
 
 	/**
-	 * Generates the list table rows.
-	 *
-	 * @since 3.1.0
 	 */
 	public function display_rows() {
 		$themes = $this->items;
@@ -337,7 +333,7 @@ class WP_Theme_Install_List_Table extends WP_Themes_List_Table {
 					esc_url( wp_nonce_url( $install_url, 'install-theme_' . $theme->slug ) ),
 					/* translators: %s: Theme name. */
 					esc_attr( sprintf( _x( 'Install %s', 'theme' ), $name ) ),
-					_x( 'Install Now', 'theme' )
+					__( 'Install Now' )
 				);
 				break;
 		}
