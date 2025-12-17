@@ -46,22 +46,24 @@ function cc_mime_types($mimes) {
 add_filter('upload_mimes', 'cc_mime_types');
 
 //ACF Option Page
-if ( function_exists( 'acf_add_options_page' ) ) {
+add_action('acf/init', function() {
+	if ( function_exists( 'acf_add_options_page' ) ) {
 
-	// Main Theme Settings Page
-	$parent = acf_add_options_page( array(
-	  'page_title' => 'Theme Settings',
-	  'menu_title' => 'Theme Options',
-	  'redirect'   => 'Theme Settings',
-	) );
+		// Main Theme Settings Page
+		$parent = acf_add_options_page( array(
+		'page_title' => 'Theme Settings',
+		'menu_title' => 'Theme Options',
+		'redirect'   => 'Theme Settings',
+		) );
 
-	acf_add_options_sub_page( array(
-	  'page_title' => 'Theme Options',
-	  'menu_title' => __('Theme Options'),
-	  'menu_slug'  => "acf-options",
-	  'parent'     => $parent['menu_slug']
-	) );
-}
+		acf_add_options_sub_page( array(
+		'page_title' => 'Theme Options',
+		'menu_title' => __('Theme Options'),
+		'menu_slug'  => "acf-options",
+		'parent'     => $parent['menu_slug']
+		) );
+	}
+});
 
 /**
  * Add News post type Corporate
@@ -72,15 +74,15 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 	'menu_name' => _x('Corporate', THEME_TEXTDOMAIN),
 	'name_admin_bar' => _x('Corporate', THEME_TEXTDOMAIN),
 	'add_new' => _x('Add New', THEME_TEXTDOMAIN),
-	'add_new_item' => __('Add New', THEME_TEXTDOMAIN),
-	'new_item' => __('New', THEME_TEXTDOMAIN),
-	'edit_item' => __('Edit', THEME_TEXTDOMAIN),
-	'view_item' => __('View', THEME_TEXTDOMAIN),
-	'all_items' => __('All Corporate', THEME_TEXTDOMAIN),
-	'search_items' => __('Search', THEME_TEXTDOMAIN),
-	'parent_item_colon' => __('Parent:', THEME_TEXTDOMAIN),
-	'not_found' => __('Not found.', THEME_TEXTDOMAIN),
-	'not_found_in_trash' => __('Not found in Trash.', THEME_TEXTDOMAIN)
+	'add_new_item' => _x('Add New', THEME_TEXTDOMAIN),
+	'new_item' => _x('New', THEME_TEXTDOMAIN),
+	'edit_item' => _x('Edit', THEME_TEXTDOMAIN),
+	'view_item' => _x('View', THEME_TEXTDOMAIN),
+	'all_items' => _x('All Corporate', THEME_TEXTDOMAIN),
+	'search_items' => _x('Search', THEME_TEXTDOMAIN),
+	'parent_item_colon' => _x('Parent:', THEME_TEXTDOMAIN),
+	'not_found' => _x('Not found.', THEME_TEXTDOMAIN),
+	'not_found_in_trash' => _x('Not found in Trash.', THEME_TEXTDOMAIN)
 );
 
 $args = array(
@@ -115,15 +117,15 @@ register_post_type( "corporate", $args );
 	'menu_name' => _x('Leader', THEME_TEXTDOMAIN),
 	'name_admin_bar' => _x('Leader', THEME_TEXTDOMAIN),
 	'add_new' => _x('Add New', THEME_TEXTDOMAIN),
-	'add_new_item' => __('Add New', THEME_TEXTDOMAIN),
-	'new_item' => __('New', THEME_TEXTDOMAIN),
-	'edit_item' => __('Edit', THEME_TEXTDOMAIN),
-	'view_item' => __('View', THEME_TEXTDOMAIN),
-	'all_items' => __('All Leader', THEME_TEXTDOMAIN),
-	'search_items' => __('Search', THEME_TEXTDOMAIN),
-	'parent_item_colon' => __('Parent:', THEME_TEXTDOMAIN),
-	'not_found' => __('Not found.', THEME_TEXTDOMAIN),
-	'not_found_in_trash' => __('Not found in Trash.', THEME_TEXTDOMAIN)
+	'add_new_item' => _x('Add New', THEME_TEXTDOMAIN),
+	'new_item' => _x('New', THEME_TEXTDOMAIN),
+	'edit_item' => _x('Edit', THEME_TEXTDOMAIN),
+	'view_item' => _x('View', THEME_TEXTDOMAIN),
+	'all_items' => _x('All Leader', THEME_TEXTDOMAIN),
+	'search_items' => _x('Search', THEME_TEXTDOMAIN),
+	'parent_item_colon' => _x('Parent:', THEME_TEXTDOMAIN),
+	'not_found' => _x('Not found.', THEME_TEXTDOMAIN),
+	'not_found_in_trash' => _x('Not found in Trash.', THEME_TEXTDOMAIN)
 );
 
 $args = array(
@@ -157,15 +159,15 @@ register_post_type( "leader", $args );
 	'menu_name' => _x('Sponsor', THEME_TEXTDOMAIN),
 	'name_admin_bar' => _x('Sponsor', THEME_TEXTDOMAIN),
 	'add_new' => _x('Add New', THEME_TEXTDOMAIN),
-	'add_new_item' => __('Add New', THEME_TEXTDOMAIN),
-	'new_item' => __('New', THEME_TEXTDOMAIN),
-	'edit_item' => __('Edit', THEME_TEXTDOMAIN),
-	'view_item' => __('View', THEME_TEXTDOMAIN),
-	'all_items' => __('All Sponsor', THEME_TEXTDOMAIN),
-	'search_items' => __('Search', THEME_TEXTDOMAIN),
-	'parent_item_colon' => __('Parent:', THEME_TEXTDOMAIN),
-	'not_found' => __('Not found.', THEME_TEXTDOMAIN),
-	'not_found_in_trash' => __('Not found in Trash.', THEME_TEXTDOMAIN)
+	'add_new_item' => _x('Add New', THEME_TEXTDOMAIN),
+	'new_item' => _x('New', THEME_TEXTDOMAIN),
+	'edit_item' => _x('Edit', THEME_TEXTDOMAIN),
+	'view_item' => _x('View', THEME_TEXTDOMAIN),
+	'all_items' => _x('All Sponsor', THEME_TEXTDOMAIN),
+	'search_items' => _x('Search', THEME_TEXTDOMAIN),
+	'parent_item_colon' => _x('Parent:', THEME_TEXTDOMAIN),
+	'not_found' => _x('Not found.', THEME_TEXTDOMAIN),
+	'not_found_in_trash' => _x('Not found in Trash.', THEME_TEXTDOMAIN)
 );
 
 $argsSp = array(
@@ -199,15 +201,15 @@ $labelsCmt = array(
 	'menu_name' => _x('Committee', THEME_TEXTDOMAIN),
 	'name_admin_bar' => _x('Committee', THEME_TEXTDOMAIN),
 	'add_new' => _x('Add New', THEME_TEXTDOMAIN),
-	'add_new_item' => __('Add New', THEME_TEXTDOMAIN),
-	'new_item' => __('New', THEME_TEXTDOMAIN),
-	'edit_item' => __('Edit', THEME_TEXTDOMAIN),
-	'view_item' => __('View', THEME_TEXTDOMAIN),
-	'all_items' => __('All Committee', THEME_TEXTDOMAIN),
-	'search_items' => __('Search', THEME_TEXTDOMAIN),
-	'parent_item_colon' => __('Parent:', THEME_TEXTDOMAIN),
-	'not_found' => __('Not found.', THEME_TEXTDOMAIN),
-	'not_found_in_trash' => __('Not found in Trash.', THEME_TEXTDOMAIN)
+	'add_new_item' => _x('Add New', THEME_TEXTDOMAIN),
+	'new_item' => _x('New', THEME_TEXTDOMAIN),
+	'edit_item' => _x('Edit', THEME_TEXTDOMAIN),
+	'view_item' => _x('View', THEME_TEXTDOMAIN),
+	'all_items' => _x('All Committee', THEME_TEXTDOMAIN),
+	'search_items' => _x('Search', THEME_TEXTDOMAIN),
+	'parent_item_colon' => _x('Parent:', THEME_TEXTDOMAIN),
+	'not_found' => _x('Not found.', THEME_TEXTDOMAIN),
+	'not_found_in_trash' => _x('Not found in Trash.', THEME_TEXTDOMAIN)
 );
 
 $argsCmt = array(
@@ -241,15 +243,15 @@ $labelsGal = array(
 	'menu_name' => _x('Gallery', THEME_TEXTDOMAIN),
 	'name_admin_bar' => _x('Gallery', THEME_TEXTDOMAIN),
 	'add_new' => _x('Add New', THEME_TEXTDOMAIN),
-	'add_new_item' => __('Add New', THEME_TEXTDOMAIN),
-	'new_item' => __('New', THEME_TEXTDOMAIN),
-	'edit_item' => __('Edit', THEME_TEXTDOMAIN),
-	'view_item' => __('View', THEME_TEXTDOMAIN),
-	'all_items' => __('All Gallery', THEME_TEXTDOMAIN),
-	'search_items' => __('Search', THEME_TEXTDOMAIN),
-	'parent_item_colon' => __('Parent:', THEME_TEXTDOMAIN),
-	'not_found' => __('Not found.', THEME_TEXTDOMAIN),
-	'not_found_in_trash' => __('Not found in Trash.', THEME_TEXTDOMAIN)
+	'add_new_item' => _x('Add New', THEME_TEXTDOMAIN),
+	'new_item' => _x('New', THEME_TEXTDOMAIN),
+	'edit_item' => _x('Edit', THEME_TEXTDOMAIN),
+	'view_item' => _x('View', THEME_TEXTDOMAIN),
+	'all_items' => _x('All Gallery', THEME_TEXTDOMAIN),
+	'search_items' => _x('Search', THEME_TEXTDOMAIN),
+	'parent_item_colon' => _x('Parent:', THEME_TEXTDOMAIN),
+	'not_found' => _x('Not found.', THEME_TEXTDOMAIN),
+	'not_found_in_trash' => _x('Not found in Trash.', THEME_TEXTDOMAIN)
 );
 
 $argsGal = array(
@@ -283,15 +285,15 @@ $labelsGal = array(
 	'menu_name' => _x('Partner', THEME_TEXTDOMAIN),
 	'name_admin_bar' => _x('Partner', THEME_TEXTDOMAIN),
 	'add_new' => _x('Add New', THEME_TEXTDOMAIN),
-	'add_new_item' => __('Add New', THEME_TEXTDOMAIN),
-	'new_item' => __('New', THEME_TEXTDOMAIN),
-	'edit_item' => __('Edit', THEME_TEXTDOMAIN),
-	'view_item' => __('View', THEME_TEXTDOMAIN),
-	'all_items' => __('All Partner', THEME_TEXTDOMAIN),
-	'search_items' => __('Search', THEME_TEXTDOMAIN),
-	'parent_item_colon' => __('Parent:', THEME_TEXTDOMAIN),
-	'not_found' => __('Not found.', THEME_TEXTDOMAIN),
-	'not_found_in_trash' => __('Not found in Trash.', THEME_TEXTDOMAIN)
+	'add_new_item' => _x('Add New', THEME_TEXTDOMAIN),
+	'new_item' => _x('New', THEME_TEXTDOMAIN),
+	'edit_item' => _x('Edit', THEME_TEXTDOMAIN),
+	'view_item' => _x('View', THEME_TEXTDOMAIN),
+	'all_items' => _x('All Partner', THEME_TEXTDOMAIN),
+	'search_items' => _x('Search', THEME_TEXTDOMAIN),
+	'parent_item_colon' => _x('Parent:', THEME_TEXTDOMAIN),
+	'not_found' => _x('Not found.', THEME_TEXTDOMAIN),
+	'not_found_in_trash' => _x('Not found in Trash.', THEME_TEXTDOMAIN)
 );
 
 $argsGal = array(
@@ -323,7 +325,7 @@ function likeme_taxonomy() {
     register_taxonomy(
         'corporate_cat', 'corporate',
         array(
-          'label'     => __( 'Categories', THEME_TEXTDOMAIN ),
+          'label'     => _x( 'Categories', THEME_TEXTDOMAIN ),
           'hierarchical'  => true,
           'query_var'   => true,
           'rewrite'     => array( 'slug' => 'corporate_categories' ),
@@ -334,7 +336,7 @@ function likeme_taxonomy() {
 	register_taxonomy(
         'leader_cat', 'leader',
         array(
-          'label'     => __( 'Categories', THEME_TEXTDOMAIN ),
+          'label'     => _x( 'Categories', THEME_TEXTDOMAIN ),
           'hierarchical'  => true,
           'query_var'   => true,
           'rewrite'     => array( 'slug' => 'leader_categories' ),
@@ -345,7 +347,7 @@ function likeme_taxonomy() {
 	register_taxonomy(
         'sponsor_cat', 'sponsor',
         array(
-          'label'     => __( 'Categories', THEME_TEXTDOMAIN ),
+          'label'     => _x( 'Categories', THEME_TEXTDOMAIN ),
           'hierarchical'  => true,
           'query_var'   => true,
           'rewrite'     => array( 'slug' => 'sponsor_categories' ),
@@ -356,7 +358,7 @@ function likeme_taxonomy() {
 	register_taxonomy(
         'committee_cat', 'committee',
         array(
-          'label'     => __( 'Categories', THEME_TEXTDOMAIN ),
+          'label'     => _x( 'Categories', THEME_TEXTDOMAIN ),
           'hierarchical'  => true,
           'query_var'   => true,
           'rewrite'     => array( 'slug' => 'committee_categories' ),
@@ -367,7 +369,7 @@ function likeme_taxonomy() {
 	register_taxonomy(
         'gallery_cat', 'gallery',
         array(
-          'label'     => __( 'Categories', THEME_TEXTDOMAIN ),
+          'label'     => _x( 'Categories', THEME_TEXTDOMAIN ),
           'hierarchical'  => true,
           'query_var'   => true,
           'rewrite'     => array( 'slug' => 'gallery_categories' ),
