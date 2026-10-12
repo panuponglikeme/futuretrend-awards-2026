@@ -151,6 +151,90 @@ $args = array(
 register_post_type( "leader", $args );
 
 /**
+ * Add News post type Better World Corporate
+ */
+ $labelsBetter = array(
+	'name' => _x('Better World Corporate', THEME_TEXTDOMAIN),
+	'singular_name' => _x('Better World Corporate', THEME_TEXTDOMAIN),
+	'menu_name' => _x('Better World Corporate', THEME_TEXTDOMAIN),
+	'name_admin_bar' => _x('Better World Corporate', THEME_TEXTDOMAIN),
+	'add_new' => _x('Add New', THEME_TEXTDOMAIN),
+	'add_new_item' => _x('Add New', THEME_TEXTDOMAIN),
+	'new_item' => _x('New', THEME_TEXTDOMAIN),
+	'edit_item' => _x('Edit', THEME_TEXTDOMAIN),
+	'view_item' => _x('View', THEME_TEXTDOMAIN),
+	'all_items' => _x('All Better World Corporate', THEME_TEXTDOMAIN),
+	'search_items' => _x('Search', THEME_TEXTDOMAIN),
+	'parent_item_colon' => _x('Parent:', THEME_TEXTDOMAIN),
+	'not_found' => _x('Not found.', THEME_TEXTDOMAIN),
+	'not_found_in_trash' => _x('Not found in Trash.', THEME_TEXTDOMAIN)
+);
+
+$argsBetter = array(
+    "labels" => $labelsBetter,
+    "description" => "",
+    "public" => true,
+    "show_ui" => true,
+    "show_in_rest" => true,
+    "has_archive" => true,
+    "show_in_menu" => true,
+    "exclude_from_search" => false,
+	'publicly_queryable' => false,
+    "capability_type" => "post",
+    "map_meta_cap" => true,
+    "hierarchical" => true,
+    'menu_icon'           => 'dashicons-universal-access',
+    'menu_position'       => 31,
+    "rewrite" => array( "slug" => "better-world", "with_front" => true ),
+    "query_var" => true,
+    "show_in_nav_menus" => true,
+    "supports" => array( "title", 'page-attributes', 'thumbnail' ),
+);
+register_post_type( "better-world", $argsBetter );
+
+/**
+ * Add News post type Most Beloved Employer
+ */
+ $labelsMost = array(
+	'name' => _x('Most Beloved Employer', THEME_TEXTDOMAIN),
+	'singular_name' => _x('Most Beloved Employer', THEME_TEXTDOMAIN),
+	'menu_name' => _x('Most Beloved Employer', THEME_TEXTDOMAIN),
+	'name_admin_bar' => _x('Most Beloved Employer', THEME_TEXTDOMAIN),
+	'add_new' => _x('Add New', THEME_TEXTDOMAIN),
+	'add_new_item' => _x('Add New', THEME_TEXTDOMAIN),
+	'new_item' => _x('New', THEME_TEXTDOMAIN),
+	'edit_item' => _x('Edit', THEME_TEXTDOMAIN),
+	'view_item' => _x('View', THEME_TEXTDOMAIN),
+	'all_items' => _x('All Most Beloved Employer', THEME_TEXTDOMAIN),
+	'search_items' => _x('Search', THEME_TEXTDOMAIN),
+	'parent_item_colon' => _x('Parent:', THEME_TEXTDOMAIN),
+	'not_found' => _x('Not found.', THEME_TEXTDOMAIN),
+	'not_found_in_trash' => _x('Not found in Trash.', THEME_TEXTDOMAIN)
+);
+
+$argsMost = array(
+    "labels" => $labelsMost,
+    "description" => "",
+    "public" => true,
+    "show_ui" => true,
+    "show_in_rest" => true,
+    "has_archive" => true,
+    "show_in_menu" => true,
+    "exclude_from_search" => false,
+	'publicly_queryable' => false,
+    "capability_type" => "post",
+    "map_meta_cap" => true,
+    "hierarchical" => true,
+    'menu_icon'           => 'dashicons-universal-access',
+    'menu_position'       => 31,
+    "rewrite" => array( "slug" => "beloved-employer", "with_front" => true ),
+    "query_var" => true,
+    "show_in_nav_menus" => true,
+    "supports" => array( "title", 'page-attributes', 'thumbnail' ),
+);
+register_post_type( "beloved-employer", $argsMost );
+
+/**
  * Add News post type Sponsors
  */
  $labelsSp = array(
@@ -334,6 +418,28 @@ function likeme_taxonomy() {
     );
 
 	register_taxonomy(
+        'better_world_cat', 'better-world',
+        array(
+          'label'     => _x( 'Categories', THEME_TEXTDOMAIN ),
+          'hierarchical'  => true,
+          'query_var'   => true,
+          'rewrite'     => array( 'slug' => 'better_world_categories' ),
+		  'publicly_queryable' => false,
+        )
+    );
+
+	register_taxonomy(
+        'beloved_employer_cat', 'beloved-employer',
+        array(
+          'label'     => _x( 'Categories', THEME_TEXTDOMAIN ),
+          'hierarchical'  => true,
+          'query_var'   => true,
+          'rewrite'     => array( 'slug' => 'beloved_employer_categories' ),
+		  'publicly_queryable' => false,
+        )
+    );
+
+	register_taxonomy(
         'leader_cat', 'leader',
         array(
           'label'     => _x( 'Categories', THEME_TEXTDOMAIN ),
@@ -385,7 +491,7 @@ function wpse_81939_post_types_admin_order( $wp_query ) {
 		// Get the post type from the query
 		$post_type = $wp_query->query['post_type'];
 
-		if ( $post_type == 'speaker' || $post_type == 'corporate' || $post_type == 'leader' || $post_type == 'sponsor' || $post_type == 'committee' || $post_type == 'gallery' || $post_type == 'partner' ) {
+		if ( $post_type == 'speaker' || $post_type == 'corporate' || $post_type == 'leader' || $post_type == 'better-world-corporate' || $post_type == 'sponsor' || $post_type == 'committee' || $post_type == 'gallery' || $post_type == 'partner' ) {
 			$wp_query->set('orderby', 'date');
 			$wp_query->set('order', 'DESC');
 		}

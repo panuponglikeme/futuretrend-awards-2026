@@ -1,0 +1,270 @@
+@media screen and (max-width: 1199px) {
+    .page-template-template-about-2026 {
+        .about-2025-comm-wrapper {
+            .inner-wrapper {
+                .comm-corp, .comm-lead {
+                    ul.the-wrapper {
+                        > li {
+                            > figure {
+                                height: 280px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .about-2025-gall-wrapper {
+            //padding-top: 80px;
+
+            .inner-wrapper {
+                > h2, > h3 {
+                    font-size: 44px;
+                }
+
+                > h3 {
+                    font-size: 44px;
+                }
+
+                .photo-gall-wrapper {
+                    > h2 {
+                        font-size: 44px;
+                    }
+                }
+            }
+        }
+
+        .about-2025-obj-wrapper {
+            padding: 200px 20px 150px 20px;
+        }
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .page-template-template-about-2026 {
+
+        .about-2025-obj-wrapper {
+            padding: 150px 20px 100px 20px;
+
+            .inner-wrapper {
+                > h1 {
+                    font-size: 50px;
+                }
+            }
+        }
+
+        .about-2025-gall-wrapper {
+            padding-top: 60px;
+
+            .inner-wrapper {
+                > h2, > h3 {
+                    font-size: 34px;
+                }
+
+                > h3 {
+                    font-size: 34px;
+                }
+
+                > h4 {
+                    font-size: 18px;
+                }
+
+                .photo-gall-wrapper {
+                    padding: 50px 0 50px 0;
+                    > h2 {
+                        font-size: 34px;
+                    }
+
+                    > h3 {
+                        font-size: 18px;
+                    }
+
+                    .photo-list-wrapper {
+                        > ul {
+                            > li {
+                                width: calc(33.33% - 20px);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .about-2025-pn-wrapper {
+            .inner-wrapper {
+                > h3 {
+                    font-size: 25px;
+                }
+            }
+        }
+
+        .about-2025-comm-wrapper {
+            .inner-wrapper {
+                .comm-lead {
+                    margin-top: 60px !important;
+                }
+
+                .comm-corp, .comm-lead {
+                    > h3 {
+                        font-size: 30px;
+                    }
+                }
+            }
+        }
+
+        .about-2025-comm-wrapper {
+            padding: 20px 20px 50px 20px;
+
+            .inner-wrapper {
+                .comm-corp, .comm-lead {
+                    ul.the-wrapper {
+                        > li {
+                            width: calc(33.33% - 20px);
+
+                            > figure {
+                                height: 270px;
+                            }
+                        }
+                    }
+                }
+
+                .comm-lead {
+                    margin-top: 80px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .page-template-template-about-2026 {
+        .about-2025-hero {
+            &::before {
+                display: none;
+            }
+
+            figure.desktop {
+                display: none;
+            }
+
+            figure.mobile {
+                display: block;
+            }
+        }
+
+        .about-2025-obj-wrapper {
+            padding: 50px 20px;
+
+            .inner-wrapper {
+                padding: 20px;
+
+                > h1 {
+                    font-size: 43px;
+                }
+
+                .subtitle {
+                    font-size: 20px;
+                    line-height: 1.2;
+                }
+
+                > ul {
+                    > li {
+                        width: 100%;
+                        margin: 0 0 20px 0;
+                    }
+                }
+            }
+        }
+
+        .about-2025-gall-wrapper {
+            padding: 60px 20px 50px 20px;
+
+            .inner-wrapper {
+                .video-wrapper {
+                    .play {
+                        transform: scale(.6);
+                    }
+                }
+            }
+        }
+
+        .about-2025-pn-wrapper {
+            padding: 50px 20px;
+
+            .inner-wrapper {
+                ul.partner-wrapper {
+                    > li {
+                        width: calc(25% - 20px);
+                    }
+                }
+            }
+        }
+
+        .about-2025-comm-wrapper {
+            .inner-wrapper {
+                .comm-corp, .comm-lead {
+                    ul.the-wrapper {
+                        > li {
+                            width: calc(50% - 20px);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .page-template-template-about-2026 {
+        .about-2025-gall-wrapper {
+            .inner-wrapper {
+                .photo-gall-wrapper {
+                    .photo-list-wrapper {
+                        > ul {
+                            > li {
+                                width: calc(50% - 10px);
+                                margin: 0 5px 10px 5px;
+                            }
+                        }
+                    }
+
+                    .photo-load-more {
+                        font-size: 14px;
+                        padding: 7px 20px;
+                    }
+                }
+            }
+        }
+
+        .about-2025-pn-wrapper {
+            .inner-wrapper {
+                ul.partner-wrapper {
+                    > li {
+                        width: calc(33.33% - 10px);
+                        margin: 0 5px 10px 5px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .page-template-template-about-2026 {
+        .about-2025-comm-wrapper {
+            .inner-wrapper {
+                .comm-corp, .comm-lead {
+                    ul.the-wrapper {
+                        > li {
+                            width: 100%;
+
+                            > figure {
+                                height: 350px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

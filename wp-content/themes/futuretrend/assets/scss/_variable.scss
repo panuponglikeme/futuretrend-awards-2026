@@ -1,16 +1,32 @@
 //Fonts
 $fontIBM: 'IBM Plex Sans Thai', sans-serif;
 $fontBebas: 'Bebas Neue', sans-serif;
+$fontMitr: "Mitr", sans-serif;
 
 //Fontface
-@font-face {
-	font-family: Neue-Kaine;
-	src: url('../fonts/Neue-Kaine-Variable.ttf');
-}
+// @font-face {
+// 	font-family: Neue-Kaine;
+// 	src: url('../fonts/Neue-Kaine-Variable.ttf');
+// }
 
+// @font-face {
+// 	font-family: Urbanist;
+// 	src: url('../fonts/Urbanist-VariableFont-wghte.ttf');
+// }
+
+// @font-face {
+//     font-family: 'LINE Seed Sans TH';
+//     src: url('../fonts/LINESeedSansTH_W_Rg.woff') format('woff')
+// }
 @font-face {
-	font-family: Urbanist;
-	src: url('../fonts/Urbanist-VariableFont-wghte.ttf');
+    font-family: 'LINE Seed Sans TH';
+    src: url('../fonts/LINESeedSansTH_W_Rg.eot'); /* For IE */
+    src: url('../fonts/LINESeedSansTH_W_Rg.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/LINESeedSansTH_W_Rg.woff2') format('woff2'),
+         url('../fonts/LINESeedSansTH_W_Rg.woff') format('woff'),
+         url('../fonts/LINESeedSansTH_Rg.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 
 //Color

@@ -45,6 +45,36 @@ function hiddenScrolling() {
     //     document.getElementById("defaultOpenLead").click();
     // }
 
+    //Open Tab Beloved
+    function openBeloved(evt, tabID) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent-beloved");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks-beloved");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(tabID).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+    //Open Tab Better
+    function openBetter(evt, tabID) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent-better");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks-better-world");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(tabID).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
     //Open Tab Lead
     function openLead(evt, tabID) {
         var i, tabcontent, tablinks;
