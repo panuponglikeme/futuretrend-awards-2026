@@ -483,6 +483,19 @@ function likeme_taxonomy() {
 		  'show_in_rest' => true,
         )
     );
+
+	register_taxonomy(
+        'partner_cat', 'partner',
+        array(
+          'label'     => _x( 'Categories', THEME_TEXTDOMAIN ),
+          'hierarchical'  => true,
+          'query_var'   => true,
+          'rewrite'     => array( 'slug' => 'partner_categories' ),
+		  'publicly_queryable' => false,
+		  'show_in_rest' => true,
+		  'show_admin_column' => true,
+        )
+    );
 }
 
 //Order post type back-end
