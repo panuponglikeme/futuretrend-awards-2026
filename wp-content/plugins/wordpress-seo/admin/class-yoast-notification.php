@@ -113,19 +113,6 @@ class Yoast_Notification {
 	}
 
 	/**
-	 * Retrieve the user to show the notification for.
-	 *
-	 * @deprecated 21.6
-	 * @codeCoverageIgnore
-	 *
-	 * @return WP_User|null The user to show this notification for.
-	 */
-	public function get_user() {
-		_deprecated_function( __METHOD__, 'Yoast SEO 21.6' );
-		return null;
-	}
-
-	/**
 	 * Retrieve the id of the user to show the notification for.
 	 *
 	 * Returns the id of the current user if not user has been sent.
@@ -359,9 +346,7 @@ class Yoast_Notification {
 			$message = $this->wrap_yoast_seo_icon( $this->message );
 		}
 
-		if ( $message === null ) {
-			$message = wpautop( $this->message );
-		}
+		$message ??= wpautop( $this->message );
 
 		// Build the output DIV.
 		return '<div ' . implode( ' ', $attributes ) . '>' . $message . '</div>' . PHP_EOL;
@@ -388,7 +373,7 @@ class Yoast_Notification {
 			'<img src="%1$s" height="%2$d" width="%3$d" class="yoast-seo-icon" />',
 			esc_url( plugin_dir_url( WPSEO_FILE ) . 'packages/js/images/Yoast_SEO_Icon.svg' ),
 			60,
-			60
+			60,
 		);
 		$out .= '<div class="yoast-seo-icon-wrap">';
 		$out .= $message;
@@ -429,9 +414,7 @@ class Yoast_Notification {
 		}
 
 		// Set to the id of the current user if not supplied.
-		if ( $options['user_id'] === null ) {
-			$options['user_id'] = get_current_user_id();
-		}
+		$options['user_id'] ??= get_current_user_id();
 
 		return $options;
 	}
