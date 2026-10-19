@@ -277,6 +277,7 @@
     </div>
 </div>
 
+<?php /* Partner Awards section: hidden to match live
 <div class="about-2025-pn-wrapper">
     <div class="inner-wrapper">
         <h2><?php echo $about_2026_pn_title; ?></h2>
@@ -306,6 +307,7 @@
         ?>
     </div>
 </div>
+*/ ?>
 
 <script>
     let gallID = document.querySelector('#photo-list-wrapper')
