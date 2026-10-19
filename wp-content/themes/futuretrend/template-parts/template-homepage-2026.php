@@ -85,13 +85,7 @@
             <div class="cate-wrapper">
                 <ul>
                     <?php
-                        $terms = get_terms( array(
-                            'taxonomy' => 'corporate_cat',
-                            'hide_empty' => false,
-                            'orderby' => 'meta_value_num',
-                            'meta_key' => 'corp_cate_order',
-                            'order' => 'ASC'
-                        ) );
+                        $terms = ft_award_terms( 'corporate_cat', 2026, 'corp_cate_order' );
                         foreach ($terms as $_terms):
                             $corp_cate_number_awards = get_field( 'corp_cate_number_awards', $_terms->taxonomy . '_' . $_terms->term_id );
                             $description = get_term_field( 'description', $_terms );
@@ -128,13 +122,7 @@
             <div class="cate-wrapper">
                 <ul>
                     <?php
-                        $terms = get_terms( array(
-                            'taxonomy' => 'better_world_cat',
-                            'hide_empty' => false,
-                            'orderby' => 'meta_value_num',
-                            'meta_key' => 'bett_corp_cate_order',
-                            'order' => 'ASC'
-                        ) );
+                        $terms = ft_award_terms( 'better_world_cat', 2026, 'bett_corp_cate_order' );
                         foreach ($terms as $_terms):
                             $bett_corp_cate_number_awards = get_field( 'bett_corp_cate_number_awards', $_terms->taxonomy . '_' . $_terms->term_id );
                             $description = get_term_field( 'description', $_terms );
@@ -171,13 +159,7 @@
             <div class="cate-wrapper">
                 <ul>
                     <?php
-                        $terms = get_terms( array(
-                            'taxonomy' => 'beloved_employer_cat',
-                            'hide_empty' => false,
-                            'orderby' => 'meta_value_num',
-                            'meta_key' => 'beloved_cate_order',
-                            'order' => 'ASC'
-                        ) );
+                        $terms = ft_award_terms( 'beloved_employer_cat', 2026, 'beloved_cate_order' );
                         foreach ($terms as $_terms):
                             $beloved_cate_number_awards = get_field( 'beloved_cate_number_awards', $_terms->taxonomy . '_' . $_terms->term_id );
                             $description = get_term_field( 'description', $_terms );
@@ -214,13 +196,7 @@
             <div class="cate-wrapper">
                 <ul>
                     <?php
-                        $terms = get_terms( array(
-                            'taxonomy' => 'leader_cat',
-                            'hide_empty' => false,
-                            'orderby' => 'meta_value_num',
-                            'meta_key' => 'lead_cate_order',
-                            'order' => 'ASC'
-                        ) );
+                        $terms = ft_award_terms( 'leader_cat', 2026, 'lead_cate_order' );
                         foreach ($terms as $_terms):
                             $lead_cate_number_awards = get_field( 'lead_cate_number_awards', $_terms->taxonomy . '_' . $_terms->term_id );
                             $description = get_term_field( 'description', $_terms );

@@ -613,3 +613,46 @@ add_filter( 'rest_gallery_collection_params', function ( $params, WP_Post_Type $
     }
     return $params;
 }, 10, 2 );
+
+/**
+ * Award categories for one year.
+ *
+ * Each year's categories are children of a parent term whose slug is the year (e.g. "2027").
+ * The 2026 categories were created before this and sit at the top level, so for 2026 (when no
+ * "2026" parent exists) return the top-level categories minus the year parents.
+ *
+ * @param string     $taxonomy  corporate_cat, better_world_cat, beloved_employer_cat or leader_cat.
+ * @param int|string $year      Award year, e.g. 2027.
+ * @param string     $order_key ACF field holding the category order, e.g. corp_cate_order.
+ * @return WP_Term[]
+ */
+function ft_award_terms( $taxonomy, $year, $order_key ) {
+	$args = array(
+		'taxonomy'   => $taxonomy,
+		'hide_empty' => false,
+		'orderby'    => 'meta_value_num',
+		'meta_key'   => $order_key,
+		'order'      => 'ASC',
+	);
+
+	$year_term = get_term_by( 'slug', (string) $year, $taxonomy );
+
+	if ( $year_term ) {
+		$args['parent'] = $year_term->term_id;
+	} elseif ( 2026 === (int) $year ) {
+		$year_parents = get_terms( array(
+			'taxonomy'   => $taxonomy,
+			'hide_empty' => false,
+			'parent'     => 0,
+			'fields'     => 'id=>slug',
+		) );
+		$args['parent']  = 0;
+		$args['exclude'] = is_wp_error( $year_parents ) ? array() : array_keys( preg_grep( '/^\d{4}$/', $year_parents ) );
+	} else {
+		return array();
+	}
+
+	$terms = get_terms( $args );
+
+	return is_wp_error( $terms ) ? array() : $terms;
+}
