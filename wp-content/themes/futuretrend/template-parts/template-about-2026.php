@@ -83,11 +83,23 @@
                 echo '</figure>';
             }
 
+            // Only this year's photos; falls back to all photos until the "2026" gallery category exists.
+            $gall_year = get_term_by( 'slug', '2026', 'gallery_cat' );
+
             $args = array(
                 'post_type' => 'gallery',
                 'post_status' => 'publish',
                 'posts_per_page' => -1,
             );
+            if ( $gall_year ) {
+                $args['tax_query'] = array(
+                    array(
+                        'taxonomy' => 'gallery_cat',
+                        'field'    => 'term_id',
+                        'terms'    => $gall_year->term_id,
+                    ),
+                );
+            }
             $query = new WP_Query($args);
             if( $query->have_posts() ) {
                 while( $query->have_posts() ) {
@@ -322,7 +334,7 @@
                 redirect: 'follow',
             }
 
-            let targetURL = '/wp-json/wp/v2/gallery?order=desc&per_page='+pppGall
+            let targetURL = '/wp-json/wp/v2/gallery?order=desc&per_page='+pppGall<?php if ( $gall_year ) { echo " + '&gallery_cat=" . (int) $gall_year->term_id . "'"; } ?>
 
             fetch(targetURL, requestOptions)
             .then(response => response.text())

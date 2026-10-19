@@ -480,6 +480,7 @@ function likeme_taxonomy() {
           'query_var'   => true,
           'rewrite'     => array( 'slug' => 'gallery_categories' ),
 		  'publicly_queryable' => false,
+		  'show_in_rest' => true,
         )
     );
 }
