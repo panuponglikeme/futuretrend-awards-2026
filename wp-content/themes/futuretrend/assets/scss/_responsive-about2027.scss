@@ -1,0 +1,14 @@
+//Version 2027 about: responsive
+
+@media screen and (max-width: $bp2027Md) {
+	.ab27-hero,
+	.ab27-gallery,
+	.ab27-committee,
+	.ab27-partners {
+		padding: 48px 0;
+	}
+
+	.ab27-photos ul {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}

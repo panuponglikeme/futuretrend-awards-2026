@@ -1,0 +1,67 @@
+//Version 2027 base: everything the 2027 pages need, since style.css is not loaded on them.
+
+h1, h2, h3, h4, h5, h6, p, ul, li, figure, figcaption {
+	margin: 0;
+	padding: 0;
+}
+
+ul {
+	list-style: none;
+}
+
+a, a:hover, a:active, a:focus, a:visited {
+	text-decoration: none;
+	outline: none;
+	color: inherit;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+	vertical-align: middle;
+}
+
+button {
+	font: inherit;
+	color: inherit;
+	cursor: pointer;
+}
+
+[hidden] {
+	display: none !important;
+}
+
+html {
+	overflow-x: hidden;
+
+	&.hd27-no-scroll {
+		overflow: hidden;
+	}
+}
+
+body.v2027 {
+	margin: 0;
+	padding-top: $header2027Height;
+	font-family: $font2027;
+	font-size: 1rem;
+	font-weight: 400;
+	color: $color2027Text;
+	background-color: $color2027Bg;
+}
+
+.aw27-container,
+.ab27-container,
+.hm27-container {
+	width: 100%;
+	max-width: $container2027 + ($gutter2027 * 2);
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: $gutter2027;
+	padding-right: $gutter2027;
+}

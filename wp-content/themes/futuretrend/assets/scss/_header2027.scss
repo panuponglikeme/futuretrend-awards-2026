@@ -1,0 +1,53 @@
+//Version 2027 header: header-2027.php
+
+.hd27 {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 100;
+	@include transition();
+
+	&.is-sticky {
+		background-color: $color2027Bg;
+	}
+
+	&__inner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		max-width: $container2027 + ($gutter2027 * 2);
+		height: $header2027Height;
+		margin: 0 auto;
+		padding: 0 $gutter2027;
+	}
+
+	&__brand img {
+		max-height: 60px;
+		width: auto;
+	}
+
+	&__menu {
+		display: flex;
+		gap: 32px;
+	}
+
+	&__toggle {
+		display: none;
+		background: none;
+		border: 0;
+		padding: 8px;
+	}
+
+	&__toggle-bar {
+		display: block;
+		width: 24px;
+		height: 2px;
+		margin: 5px 0;
+		background-color: currentColor;
+	}
+}
+
+.admin-bar .hd27 {
+	top: 32px;
+}

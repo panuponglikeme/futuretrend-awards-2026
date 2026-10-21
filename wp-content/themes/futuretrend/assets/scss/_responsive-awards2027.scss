@@ -1,0 +1,11 @@
+//Version 2027 awards: responsive
+
+@media screen and (max-width: $bp2027Md) {
+	.aw27-hero {
+		padding: 48px 0;
+	}
+
+	.aw27-winners {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}

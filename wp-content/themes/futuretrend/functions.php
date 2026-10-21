@@ -180,6 +180,11 @@ require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/template-functions.php';
 
 /**
+ * Version 2027: menu, assets and data config.
+ */
+require get_template_directory() . '/inc/version-2027.php';
+
+/**
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';

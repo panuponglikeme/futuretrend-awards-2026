@@ -1,0 +1,22 @@
+//Version 2027 homepage: template-parts/template-homepage-2027.php
+
+.hm27-hero {
+	padding: 80px 0;
+}
+
+.hm27-awards {
+	padding: 80px 0;
+}
+
+.hm27-award-group {
+	& + & {
+		margin-top: 48px;
+	}
+}
+
+.hm27-award-cats {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+	gap: 24px;
+	margin-top: 24px;
+}

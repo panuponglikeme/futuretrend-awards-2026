@@ -1,0 +1,65 @@
+//Version 2027 awards: template-parts/template-awards-2027.php, template-parts/2027/award-groups.php
+
+.aw27-hero {
+	padding: 80px 0;
+}
+
+.aw27-groups,
+.aw27-cats {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 16px;
+}
+
+.aw27-group-btn,
+.aw27-cat-btn {
+	padding: 12px 20px;
+	border: 1px solid currentColor;
+	border-radius: 999px;
+	background: none;
+	@include transition();
+
+	&.is-active {
+		color: $color2027Bg;
+		background-color: $color2027Primary;
+		border-color: $color2027Primary;
+	}
+}
+
+.aw27-cat-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.aw27-group {
+	margin-top: 48px;
+}
+
+.aw27-cat-panel {
+	margin-top: 48px;
+}
+
+.aw27-row {
+	margin-top: 32px;
+}
+
+.aw27-winners {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+	gap: 24px;
+	margin-top: 16px;
+}
+
+.aw27-winner-logo img {
+	width: 100%;
+	aspect-ratio: 1;
+	object-fit: contain;
+	background-color: #FFF;
+}
+
+.aw27-winner-name {
+	margin-top: 8px;
+	text-align: center;
+}

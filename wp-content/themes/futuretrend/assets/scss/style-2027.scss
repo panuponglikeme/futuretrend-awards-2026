@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+// Version 2027 stylesheet -> assets/css/style-2027.css
+// Loaded only on the 2027 templates; style.css (2026) is not loaded there (inc/version-2027.php).
+
+//Shared fonts, colors and mixins (also used by 2026, do not change for 2027)
+@import "variable";
+@import "mixin";
+
+//2027
+@import "variable2027";
+@import "global2027";
+
+//Header & Footer
+@import "header2027";
+@import "footer2027";
+
+//page
+@import "homepage2027";
+@import "about2027";
+@import "awards2027";
+
+//Responsive
+@import "responsive-header2027";
+@import "responsive-footer2027";
+@import "responsive-homepage2027";
+@import "responsive-about2027";
+@import "responsive-awards2027";

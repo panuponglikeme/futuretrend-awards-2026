@@ -1,0 +1,34 @@
+//Version 2027 header: responsive
+
+@media screen and (max-width: $bp2027Lg) {
+	.hd27 {
+		&__toggle {
+			display: block;
+		}
+
+		&__nav {
+			display: none;
+		}
+
+		&.is-menu-open &__nav {
+			display: block;
+			position: absolute;
+			top: 100%;
+			left: 0;
+			right: 0;
+			padding: $gutter2027;
+			background-color: $color2027Bg;
+		}
+
+		&__menu {
+			flex-direction: column;
+			gap: 16px;
+		}
+	}
+}
+
+@media screen and (max-width: 782px) {
+	.admin-bar .hd27 {
+		top: 46px;
+	}
+}

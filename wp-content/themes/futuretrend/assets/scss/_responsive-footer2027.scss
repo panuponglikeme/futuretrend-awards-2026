@@ -1,0 +1,15 @@
+//Version 2027 footer: responsive
+
+@media screen and (max-width: $bp2027Md) {
+	.ft27 {
+		&__inner {
+			flex-direction: column;
+			gap: 24px;
+		}
+
+		&__menu {
+			flex-wrap: wrap;
+			justify-content: center;
+		}
+	}
+}
