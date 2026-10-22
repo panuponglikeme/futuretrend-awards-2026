@@ -17,6 +17,16 @@
 @media screen and (max-width: $bp2027Md) {
 	.hm27-intro {
 		padding: 80px 0;
+
+		//Mobile background (opaque, 392x984): runs on behind the first group card, fading out at the bottom
+		//so it blends into the page colour instead of ending in a hard edge
+		&::before {
+			height: calc(100% + 360px);
+			aspect-ratio: auto;
+			background: #0B4BD9 url('../images/2027/hero-home-section-2-mobile-2027.jpg') no-repeat center top / cover;
+			-webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent 100%);
+			mask-image: linear-gradient(to bottom, #000 70%, transparent 100%);
+		}
 	}
 
 	.hm27-intro-title-line {

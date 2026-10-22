@@ -70,7 +70,8 @@ $current_year  = '2027';
 				<?php endif; ?>
 
 				<button type="button" class="hd27__toggle" aria-controls="hd27-nav" aria-expanded="false">
-					<i class="fa-solid fa-bars" aria-hidden="true"></i>
+					<i class="fa-solid fa-bars hd27__toggle-open" aria-hidden="true"></i>
+					<i class="fa-solid fa-xmark hd27__toggle-close" aria-hidden="true"></i>
 					<span class="screen-reader-text"><?php esc_html_e( 'Menu', THEME_TEXTDOMAIN ); ?></span>
 				</button>
 			</div>

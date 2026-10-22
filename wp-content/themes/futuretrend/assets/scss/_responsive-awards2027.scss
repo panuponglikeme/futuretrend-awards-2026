@@ -34,8 +34,10 @@
 		font-size: 1rem;
 	}
 
+	//Mobile background (393x1525), so the chrome corners are not cropped away
 	.aw27-process {
 		padding: 72px 0 80px;
+		@include bg-webp2027('bg-awards-section-3-steps-mobile', 'jpg');
 	}
 
 	//Fluid sizes so long words never overflow narrow phones (56px at 430px wide and up)
@@ -52,8 +54,10 @@
 		margin-top: 48px;
 	}
 
+	//Mobile background (393x858), so the chrome corners are not cropped away
 	.aw27-celebrate {
 		padding: 64px 0 56px;
+		@include bg-webp2027('bg-awards-section-celebrating-mobile', 'jpg');
 	}
 
 	.aw27-celebrate-title {
@@ -94,7 +98,7 @@
 	//Larger waves on phones so both corners still show
 	.aw27-results {
 		padding: 32px 0 80px;
-		background-size: 160% auto, auto;
+		background-size: 100% auto, 160% auto;
 	}
 
 	.aw27-card {

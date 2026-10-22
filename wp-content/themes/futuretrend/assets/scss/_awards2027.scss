@@ -12,7 +12,9 @@
 .aw27-process {
 	padding: 100px 0 120px;
 	text-align: center;
-	background: linear-gradient(180deg, $color2027AwardsTop 0%, $color2027AwardsBottom 100%);
+	//Chrome frame and light (1440x841), covering the section; the blue shows while it loads
+	background: no-repeat center top / cover $color2027AwardsBottom;
+	@include bg-webp2027('bg-awards-section-3-steps', 'jpg');
 }
 
 .aw27-process-title {
@@ -110,7 +112,9 @@
 .aw27-celebrate {
 	padding: 80px 0 72px;
 	text-align: center;
-	background: linear-gradient(180deg, $color2027AwardsTop 0%, $color2027AwardsBottom 100%);
+	//Blurred chrome left, chrome ring right (1440x573), covering the section; the blue shows while it loads
+	background: no-repeat center / cover $color2027AwardsTop;
+	@include bg-webp2027('bg-awards-section-celebrating', 'jpg');
 }
 
 .aw27-celebrate-title {
@@ -164,10 +168,18 @@
 }
 
 //Results: group title, category tabs and the winners card
-//Waves (1440x333) at the bottom corners, behind the winners card
+//Two layers: light from the top edge (1440x146) and waves at the bottom corners (1440x333), behind the winners card.
+//WebP with the PNGs for older browsers (as bg-webp2027(), for two images).
 .aw27-results {
 	padding: 40px 0 120px;
-	background: url('../images/2027/bg-awards-bottom.png') no-repeat center bottom / 100% auto, $color2027Results;
+	background-color: $color2027Results;
+	background-repeat: no-repeat, no-repeat;
+	background-position: center top, center bottom;
+	background-size: 100% auto, 100% auto;
+	background-image: url('../images/2027/bg-awards-section-listing.png'), url('../images/2027/bg-awards-bottom.png');
+	background-image:
+		image-set(url('../images/2027/bg-awards-section-listing.webp') type('image/webp'), url('../images/2027/bg-awards-section-listing.png') type('image/png')),
+		image-set(url('../images/2027/bg-awards-bottom.webp') type('image/webp'), url('../images/2027/bg-awards-bottom.png') type('image/png'));
 }
 
 .aw27-group {

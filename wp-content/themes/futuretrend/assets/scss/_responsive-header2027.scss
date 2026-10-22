@@ -78,6 +78,19 @@
 			display: block;
 		}
 
+		//Dimmed page behind the open menu; a click on it closes the menu (js/site-2027.js).
+		//Absolute, not fixed: the header's backdrop-filter would contain a fixed child anyway.
+		&.is-menu-open::after {
+			content: '';
+			position: absolute;
+			top: 100%;
+			left: 0;
+			right: 0;
+			z-index: -1;
+			height: 100vh;
+			background-color: rgba(0, 4, 20, 0.6);
+		}
+
 		&__menu {
 			flex-direction: column;
 			gap: 20px;

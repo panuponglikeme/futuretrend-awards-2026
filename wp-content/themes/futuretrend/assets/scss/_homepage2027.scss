@@ -1,9 +1,30 @@
 //Version 2027 homepage: template-parts/template-homepage-2027.php
 
 //Title section under the hero
+//Own stacking context so the intro glow (z-index -1) sits behind all homepage content but above the body colour
+.hm27 {
+	position: relative;
+	isolation: isolate;
+}
+
 .hm27-intro {
+	position: relative;
 	padding: 96px 0 120px;
 	text-align: center;
+
+	//Glows and chrome (1440x984, taller than the section): starts at the top of the intro and runs on behind the first group card
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: -1;
+		aspect-ratio: 1440 / 984;
+		background: no-repeat center top / 100% auto;
+		@include bg-webp2027('home-section-2-bg-update');
+		pointer-events: none;
+	}
 }
 
 .hm27-intro-title {
@@ -85,7 +106,8 @@
 //Award groups: the wave (1440x195) sits at the bottom, behind the last card
 .hm27-awards {
 	padding: 80px 0 73px;
-	background: url('../images/2027/bg-home-bottom.png') no-repeat center bottom / 100% auto;
+	background: no-repeat center bottom / 100% auto;
+	@include bg-webp2027('bg-home-bottom');
 }
 
 .hm27-group {

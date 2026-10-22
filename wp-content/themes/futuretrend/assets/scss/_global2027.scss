@@ -1,5 +1,13 @@
 //Version 2027 base: everything the 2027 pages need, since style.css is not loaded on them.
 
+//Background image from assets/images/2027 as WebP, with the original ($ext: png or jpg) for browsers without WebP
+//or image-set() type() (they ignore the second declaration and keep the first).
+@mixin bg-webp2027($name, $ext: 'png') {
+	$mime: if($ext == 'jpg', 'image/jpeg', 'image/png');
+	background-image: url('../images/2027/#{$name}.#{$ext}');
+	background-image: image-set(url('../images/2027/#{$name}.webp') type('image/webp'), url('../images/2027/#{$name}.#{$ext}') type($mime));
+}
+
 h1, h2, h3, h4, h5, h6, p, ul, li, figure, figcaption {
 	margin: 0;
 	padding: 0;

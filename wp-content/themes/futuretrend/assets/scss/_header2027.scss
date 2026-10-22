@@ -186,6 +186,16 @@
 		line-height: 1;
 		color: $color2027Text;
 	}
+
+	//Bars when closed, cross when open
+	&__toggle-close,
+	&__toggle[aria-expanded="true"] &__toggle-open {
+		display: none;
+	}
+
+	&__toggle[aria-expanded="true"] &__toggle-close {
+		display: inline-block;
+	}
 }
 
 .admin-bar .hd27 {

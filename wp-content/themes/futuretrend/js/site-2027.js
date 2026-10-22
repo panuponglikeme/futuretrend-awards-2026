@@ -14,14 +14,32 @@
     document.addEventListener('scroll', updateSticky, { passive: true });
     updateSticky();
 
-    // Mobile menu toggle.
+    // Mobile menu: the button toggles it (icon swaps to a cross via CSS); a click outside the menu or Escape closes it.
     var toggle = header.querySelector('.hd27__toggle');
-    if (toggle) {
-        toggle.addEventListener('click', function () {
-            var open = toggle.getAttribute('aria-expanded') !== 'true';
+    var nav = header.querySelector('.hd27__nav');
+    if (toggle && nav) {
+        var setMenuOpen = function (open) {
             toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
             header.classList.toggle('is-menu-open', open);
             document.documentElement.classList.toggle('hd27-no-scroll', open);
+        };
+        var isMenuOpen = function () {
+            return header.classList.contains('is-menu-open');
+        };
+
+        toggle.addEventListener('click', function () {
+            setMenuOpen(!isMenuOpen());
+        });
+        document.addEventListener('click', function (event) {
+            if (isMenuOpen() && !nav.contains(event.target) && !toggle.contains(event.target)) {
+                setMenuOpen(false);
+            }
+        });
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape' && isMenuOpen()) {
+                setMenuOpen(false);
+                toggle.focus();
+            }
         });
     }
 
