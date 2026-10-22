@@ -17,7 +17,7 @@ $no_img  = get_template_directory_uri() . '/assets/images/no-img.jpg';
 $entries = get_field( 'awards_2027_entries_label' );
 
 if ( 'tabs' === $part ) : ?>
-	<div class="aw27-groups" role="tablist">
+	<div class="aw27-groups" role="tablist" data-ft27-fade style="--ft27-fade-delay: 0.3s">
 		<?php foreach ( $groups as $key => $group ) : ?>
 			<button type="button" class="aw27-group-btn<?php echo $key === $first ? ' is-active' : ''; ?>" role="tab" aria-selected="<?php echo $key === $first ? 'true' : 'false'; ?>" data-aw27-group="<?php echo esc_attr( $key ); ?>">
 				<?php echo esc_html( $group['title'] ); ?>
@@ -32,14 +32,18 @@ foreach ( $groups as $key => $group ) :
 	$terms = array_values( $group['terms'] );
 	?>
 	<div class="aw27-group aw27-group--<?php echo esc_attr( $key ); ?>" role="tabpanel" data-aw27-panel="<?php echo esc_attr( $key ); ?>"<?php echo $key === $first ? '' : ' hidden'; ?>>
-		<div class="aw27-group-head">
+		<?php
+			//Fade on the wrappers, not the buttons: the fade transition would replace the buttons' hover transition.
+			//Only the panel shown at load fades; hidden panels sit at the top of the viewport, so site-2027.js skips them.
+		?>
+		<div class="aw27-group-head" data-ft27-fade>
 			<h2 class="aw27-group-title"><?php echo esc_html( $group['title'] ); ?></h2>
 			<?php if ( $group['desc'] ) : ?>
 				<p class="aw27-group-desc"><?php echo esc_html( $group['desc'] ); ?></p>
 			<?php endif; ?>
 		</div>
 
-		<div class="aw27-cats" role="tablist">
+		<div class="aw27-cats" role="tablist" data-ft27-fade style="--ft27-fade-delay: 0.1s">
 			<?php foreach ( $terms as $i => $term ) : ?>
 				<button type="button" class="aw27-cat-btn<?php echo 0 === $i ? ' is-active' : ''; ?>" role="tab" aria-selected="<?php echo 0 === $i ? 'true' : 'false'; ?>" data-aw27-cat="<?php echo esc_attr( $term->slug ); ?>">
 					<?php echo esc_html( $term->name ); ?>
@@ -56,7 +60,7 @@ foreach ( $groups as $key => $group ) :
 				}
 		?>
 			<div class="aw27-cat-panel" role="tabpanel" data-aw27-cat-panel="<?php echo esc_attr( $term->slug ); ?>"<?php echo 0 === $i ? '' : ' hidden'; ?>>
-				<div class="aw27-card">
+				<div class="aw27-card" data-ft27-fade>
 					<div class="aw27-card-head">
 						<div class="aw27-card-heading">
 							<h3 class="aw27-card-title"><?php echo esc_html( $term->name ); ?></h3>
@@ -78,10 +82,10 @@ foreach ( $groups as $key => $group ) :
 						<?php if ( ! empty( $row[ $group['listing'] ] ) ) : ?>
 							<ul class="aw27-winners">
 								<?php
-									foreach ( $row[ $group['listing'] ] as $winner ) :
+									foreach ( array_values( (array) $row[ $group['listing'] ] ) as $w => $winner ) :
 										$winner_id = is_object( $winner ) ? $winner->ID : (int) $winner;
 								?>
-									<li class="aw27-winner">
+									<li class="aw27-winner" data-ft27-fade style="--ft27-fade-delay: <?php echo esc_attr( ( $w % 3 ) * 0.1 ); ?>s">
 										<figure class="aw27-winner-logo">
 											<?php
 												if ( has_post_thumbnail( $winner_id ) ) {

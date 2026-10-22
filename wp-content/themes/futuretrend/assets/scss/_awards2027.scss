@@ -54,8 +54,8 @@
 	padding: 24px 24px 32px;
 	border: 1px solid rgba(255, 255, 255, 0.3);
 	border-radius: 20px;
+	//No backdrop-filter: with the fade-in opacity, Chrome left a blank box after a window resize
 	background-color: rgba(13, 30, 90, 0.75);
-	backdrop-filter: blur(8px);
 
 	@for $i from 1 through 3 {
 		&:nth-child(3n + #{$i}) {
