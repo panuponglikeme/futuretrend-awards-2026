@@ -1,15 +1,50 @@
 //Version 2027 footer: responsive
 
-@media screen and (max-width: $bp2027Md) {
+@media screen and (max-width: $bp2027Lg) {
 	.ft27 {
+		padding: 40px 0 32px;
+
 		&__inner {
-			flex-direction: column;
-			gap: 24px;
+			grid-template-columns: 1fr;
+		}
+
+		&__col {
+			& + & {
+				margin-top: 16px;
+				padding-left: 0;
+				border-left: 0;
+			}
+
+			&--brand {
+				padding-right: 0;
+			}
+		}
+
+		&__tagline {
+			margin-top: 16px;
+		}
+
+		&__social {
+			margin-top: 24px;
 		}
 
 		&__menu {
+			display: flex;
 			flex-wrap: wrap;
-			justify-content: center;
+			gap: 24px;
+			margin-top: 24px;
+
+			li + li {
+				margin-top: 0;
+			}
+		}
+
+		&__contact {
+			margin-top: 24px;
+		}
+
+		&__copyright {
+			margin-top: 32px;
 		}
 	}
 }

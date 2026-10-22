@@ -235,6 +235,48 @@ $argsMost = array(
 register_post_type( "beloved-employer", $argsMost );
 
 /**
+ * Add News post type The Future Government Awards (since 2027)
+ */
+ $labelsGov = array(
+	'name' => _x('The Future Government Awards', THEME_TEXTDOMAIN),
+	'singular_name' => _x('The Future Government Awards', THEME_TEXTDOMAIN),
+	'menu_name' => _x('Future Government', THEME_TEXTDOMAIN),
+	'name_admin_bar' => _x('The Future Government Awards', THEME_TEXTDOMAIN),
+	'add_new' => _x('Add New', THEME_TEXTDOMAIN),
+	'add_new_item' => _x('Add New', THEME_TEXTDOMAIN),
+	'new_item' => _x('New', THEME_TEXTDOMAIN),
+	'edit_item' => _x('Edit', THEME_TEXTDOMAIN),
+	'view_item' => _x('View', THEME_TEXTDOMAIN),
+	'all_items' => _x('All Future Government', THEME_TEXTDOMAIN),
+	'search_items' => _x('Search', THEME_TEXTDOMAIN),
+	'parent_item_colon' => _x('Parent:', THEME_TEXTDOMAIN),
+	'not_found' => _x('Not found.', THEME_TEXTDOMAIN),
+	'not_found_in_trash' => _x('Not found in Trash.', THEME_TEXTDOMAIN)
+);
+
+$argsGov = array(
+    "labels" => $labelsGov,
+    "description" => "",
+    "public" => true,
+    "show_ui" => true,
+    "show_in_rest" => true,
+    "has_archive" => true,
+    "show_in_menu" => true,
+    "exclude_from_search" => false,
+	'publicly_queryable' => false,
+    "capability_type" => "post",
+    "map_meta_cap" => true,
+    "hierarchical" => true,
+    'menu_icon'           => 'dashicons-universal-access',
+    'menu_position'       => 31,
+    "rewrite" => array( "slug" => "future-government", "with_front" => true ),
+    "query_var" => true,
+    "show_in_nav_menus" => true,
+    "supports" => array( "title", 'page-attributes', 'thumbnail' ),
+);
+register_post_type( "future-government", $argsGov );
+
+/**
  * Add News post type Sponsors
  */
  $labelsSp = array(
@@ -440,6 +482,17 @@ function likeme_taxonomy() {
     );
 
 	register_taxonomy(
+        'government_cat', 'future-government',
+        array(
+          'label'     => _x( 'Categories', THEME_TEXTDOMAIN ),
+          'hierarchical'  => true,
+          'query_var'   => true,
+          'rewrite'     => array( 'slug' => 'government_categories' ),
+		  'publicly_queryable' => false,
+        )
+    );
+
+	register_taxonomy(
         'leader_cat', 'leader',
         array(
           'label'     => _x( 'Categories', THEME_TEXTDOMAIN ),
@@ -635,7 +688,7 @@ add_filter( 'rest_gallery_collection_params', function ( $params, WP_Post_Type $
  * The 2026 categories were created before this and sit at the top level, so for 2026 (when no
  * "2026" parent exists) return the top-level categories minus the year parents.
  *
- * @param string     $taxonomy  corporate_cat, better_world_cat, beloved_employer_cat or leader_cat.
+ * @param string     $taxonomy  corporate_cat, better_world_cat, beloved_employer_cat, leader_cat or government_cat.
  * @param int|string $year      Award year, e.g. 2027.
  * @param string     $order_key ACF field holding the category order, e.g. corp_cate_order.
  * @return WP_Term[]
@@ -669,4 +722,83 @@ function ft_award_terms( $taxonomy, $year, $order_key ) {
 	$terms = get_terms( $args );
 
 	return is_wp_error( $terms ) ? array() : $terms;
+}
+
+/**
+ * One award group for one year: title, description and image from the year parent category
+ * (ACF "Award group (year)"), its categories, and the total awards across those categories.
+ *
+ * @param string     $taxonomy   corporate_cat, better_world_cat, beloved_employer_cat, leader_cat or government_cat.
+ * @param int|string $year       Award year, e.g. 2027.
+ * @param string     $order_key  ACF field holding the category order, e.g. corp_cate_order.
+ * @param string     $number_key ACF field holding a category's number of awards, e.g. corp_cate_number_awards.
+ * @return array { title, desc, image (attachment ID), terms (WP_Term[]), total }
+ */
+function ft_award_group( $taxonomy, $year, $order_key, $number_key ) {
+	$year_term = get_term_by( 'slug', (string) $year, $taxonomy );
+	$terms     = ft_award_terms( $taxonomy, $year, $order_key );
+
+	$total = 0;
+	foreach ( $terms as $term ) {
+		$total += (int) get_field( $number_key, $term );
+	}
+
+	return array(
+		'title' => $year_term ? (string) get_field( 'award_group_title', $year_term ) : '',
+		'desc'  => $year_term ? (string) get_field( 'award_group_desc', $year_term ) : '',
+		'image' => $year_term ? (int) get_field( 'award_group_image', $year_term ) : 0,
+		'terms' => $terms,
+		'total' => $total,
+	);
+}
+
+/**
+ * On the category edit screen of the award taxonomies, show the "Award group (year)" fields only
+ * on year parent categories (slug 2026, 2027, ...) and the award category fields only on the others.
+ */
+function ft_award_year_term_fields( $field ) {
+	$award_group_year = 'group_ft_award_group_year';
+	$award_categories = array( 'group_65a63f8b62916', 'group_65a640e7b57e1', 'group_6944f5a83405b', 'group_6944f62322e93', 'group_ft_government_taxonomy' );
+
+	$group = acf_get_field_group( $field['parent'] );
+	if ( ! $group || ! in_array( $group['key'], array_merge( array( $award_group_year ), $award_categories ), true ) ) {
+		return $field;
+	}
+
+	// Term being edited (term.php); not set on the "Add Category" form.
+	$term    = isset( $GLOBALS['tag'] ) ? $GLOBALS['tag'] : null;
+	$is_year = $term instanceof WP_Term && preg_match( '/^\d{4}$/', $term->slug );
+
+	if ( $award_group_year === $group['key'] ) {
+		return $is_year ? $field : false;
+	}
+
+	return $is_year ? false : $field;
+}
+add_filter( 'acf/prepare_field', 'ft_award_year_term_fields' );
+
+/**
+ * Year switcher dropdown for the headers before 2027 (header-2025.php, used by the 2026 pages).
+ * Years and links come from Theme Options (Year switcher, Year prefix); behaviour lives in js/custom.js.
+ *
+ * @param string $current Year of the page, e.g. 2026.
+ * @param string $class   Extra class for the wrapper.
+ */
+function ft_year_switcher( $current, $class = '' ) {
+	$years = get_field( 'opt_2027_years', 'option' );
+	if ( ! $years ) {
+		return '';
+	}
+	$prefix = get_field( 'opt_2027_year_prefix', 'option' );
+
+	$html  = '<div class="ft-year ' . esc_attr( $class ) . '">';
+	$html .= '<button type="button" class="ft-year__toggle" aria-expanded="false">';
+	$html .= '<span>' . ( $prefix ? '<span class="ft-year__prefix">' . esc_html( $prefix ) . ' </span>' : '' ) . esc_html( $current ) . '</span>';
+	$html .= '</button><ul class="ft-year__list" hidden>';
+	foreach ( $years as $year ) {
+		$html .= '<li><a href="' . esc_url( $year['link'] ) . '"' . ( false !== strpos( $year['year'], $current ) ? ' class="is-current"' : '' ) . '>' . esc_html( $year['year'] ) . '</a></li>';
+	}
+	$html .= '</ul></div>';
+
+	return $html;
 }

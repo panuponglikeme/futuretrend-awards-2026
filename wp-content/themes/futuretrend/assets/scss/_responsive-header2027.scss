@@ -1,28 +1,86 @@
 //Version 2027 header: responsive
 
-@media screen and (max-width: $bp2027Lg) {
+@media screen and (max-width: $bp2027Xl) {
 	.hd27 {
-		&__toggle {
-			display: block;
+		&__inner {
+			padding-left: $gutter2027;
 		}
 
-		&__nav {
+		&__year-prefix {
 			display: none;
 		}
+	}
+}
 
-		&.is-menu-open &__nav {
-			display: block;
+@media screen and (max-width: $bp2027Lg) {
+	.hd27 {
+		&__inner {
+			height: $header2027HeightMobile;
+			padding: 0 16px 0 20px;
+		}
+
+		&__brand img,
+		&.is-sticky &__brand img {
+			width: 66px;
+		}
+
+		//Mobile keeps one height while scrolling
+		&.is-sticky &__inner {
+			height: $header2027HeightMobile;
+		}
+
+		&__actions {
+			gap: 16px;
+		}
+
+		&__year-list {
+			left: auto;
+			right: 0;
+		}
+
+		&__year-list a {
+			padding: 8px 20px;
+		}
+
+		&__year-toggle {
+			height: 40px;
+			gap: 16px;
+			font-size: 1.0625rem;
+		}
+
+		&__button {
+			display: none;
+
+			&--menu {
+				display: inline-flex;
+				justify-content: center;
+				margin-top: 24px;
+			}
+		}
+
+		&__toggle {
+			display: inline-flex;
+		}
+
+		//Menu panel under the header
+		&__nav {
+			display: none;
 			position: absolute;
 			top: 100%;
 			left: 0;
 			right: 0;
-			padding: $gutter2027;
-			background-color: $color2027Bg;
+			padding: 24px 20px 32px;
+			background-color: $color2027Header;
+			border-top: 1px solid rgba(255, 255, 255, 0.1);
+		}
+
+		&.is-menu-open &__nav {
+			display: block;
 		}
 
 		&__menu {
 			flex-direction: column;
-			gap: 16px;
+			gap: 20px;
 		}
 	}
 }

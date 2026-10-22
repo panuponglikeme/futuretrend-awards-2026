@@ -18,13 +18,22 @@
         root.addEventListener('click', function (event) {
             var groupButton = event.target.closest('[data-aw27-group]');
             if (groupButton && root.contains(groupButton)) {
+                var key = groupButton.getAttribute('data-aw27-group');
                 activate(
                     root.querySelectorAll('[data-aw27-group]'),
                     root.querySelectorAll('[data-aw27-panel]'),
-                    groupButton.getAttribute('data-aw27-group'),
+                    key,
                     'data-aw27-group',
                     'data-aw27-panel'
                 );
+
+                // On mobile the group buttons stack, so bring the chosen group's results into view.
+                if (window.matchMedia('(max-width: 991px)').matches) {
+                    var panel = root.querySelector('[data-aw27-panel="' + key + '"]');
+                    if (panel) {
+                        panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
                 return;
             }
 

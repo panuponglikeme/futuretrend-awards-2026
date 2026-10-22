@@ -89,7 +89,39 @@ function ft_2027_award_groups() {
 			'listing'    => 'lead_cate_list_listing',
 			'name'       => 'lead_name',
 		),
+		'government'   => array(
+			'label'      => 'The Future Government Awards',
+			'taxonomy'   => 'government_cat',
+			'order'      => 'gov_cate_order',
+			'number'     => 'gov_cate_number_awards',
+			'list'       => 'gov_cate_list',
+			'list_title' => 'gov_cate_list_title',
+			'listing'    => 'gov_cate_list_listing',
+			'name'       => 'corp_name',
+		),
 	);
+}
+
+/**
+ * The 2027 award groups that have categories, each with its config and 2027 data
+ * (title, desc, image, terms, total). Cached for the request.
+ */
+function ft_2027_award_groups_data() {
+	static $groups = null;
+	if ( null !== $groups ) {
+		return $groups;
+	}
+
+	$groups = array();
+	foreach ( ft_2027_award_groups() as $key => $config ) {
+		$data = ft_award_group( $config['taxonomy'], 2027, $config['order'], $config['number'] );
+		if ( ! $data['terms'] ) {
+			continue;
+		}
+		$data['title']  = $data['title'] ? $data['title'] : $config['label'];
+		$groups[ $key ] = array_merge( $config, $data );
+	}
+	return $groups;
 }
 
 /**
@@ -101,7 +133,46 @@ function ft_2027_committee_groups() {
 		'better-world' => 'committee-better-world-coporate-awards-2027',
 		'beloved'      => 'committee-most-beloved-employer-awards-2027',
 		'leader'       => 'committee-leaders-awards-2027',
+		'government'   => 'committee-government-awards-2027',
 	);
+}
+
+/**
+ * 2027 logo <img> from Theme Options 2027, falling back to the file in the theme.
+ */
+function ft_2027_logo() {
+	$logo = get_field( 'opt_2027_logo', 'option' );
+	$src  = $logo ? $logo['url'] : get_template_directory_uri() . '/assets/images/2027/logo-future-trends-2027.svg';
+	$alt  = ( $logo && $logo['alt'] ) ? $logo['alt'] : get_bloginfo( 'name' );
+
+	return '<a href="' . esc_url( home_url( '/' ) ) . '" class="ft27-logo" rel="home"><img src="' . esc_url( $src ) . '" alt="' . esc_attr( $alt ) . '" width="187" height="107"></a>';
+}
+
+/**
+ * Icon of a Theme Options 2027 repeater row (Social, Contact): the uploaded image, else the Font Awesome class.
+ */
+function ft_2027_icon( $row ) {
+	if ( ! empty( $row['image'] ) ) {
+		return '<img class="ft27-icon-img" src="' . esc_url( $row['image']['url'] ) . '" alt="" width="20" height="20">';
+	}
+	if ( ! empty( $row['icon'] ) ) {
+		return '<i class="' . esc_attr( $row['icon'] ) . '" aria-hidden="true"></i>';
+	}
+	return '';
+}
+
+/**
+ * Star icon used in the Awards page section tags (assets/images/2027/icon-star.svg).
+ */
+function ft_2027_icon_star() {
+	return '<img class="ft27-tag-icon" src="' . esc_url( ft_2027_image( 'icon-star.svg' ) ) . '" alt="" width="18" height="18">';
+}
+
+/**
+ * URL of an image in assets/images/2027.
+ */
+function ft_2027_image( $file ) {
+	return get_template_directory_uri() . '/assets/images/2027/' . $file;
 }
 
 /**
@@ -135,7 +206,8 @@ function ft_2027_enqueue() {
 
 	$uri = get_template_directory_uri();
 
-	wp_enqueue_style( 'ft-2027', $uri . '/assets/css/style-2027.css', array(), ft_2027_asset_version( '/assets/css/style-2027.css' ) );
+	wp_enqueue_style( 'ft-fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css', array(), null );
+	wp_enqueue_style( 'ft-2027', $uri . '/assets/css/style-2027.css', array( 'ft-fontawesome' ), ft_2027_asset_version( '/assets/css/style-2027.css' ) );
 	wp_enqueue_script( 'ft-site-2027', $uri . '/js/site-2027.js', array(), ft_2027_asset_version( '/js/site-2027.js' ), true );
 
 	$page_script = '/js/' . $type . '-2027.js';

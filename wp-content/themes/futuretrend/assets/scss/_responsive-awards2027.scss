@@ -1,11 +1,137 @@
 //Version 2027 awards: responsive
 
+@media screen and (max-width: $bp2027Lg) {
+	.aw27-process-title-line {
+		font-size: 3rem;
+	}
+
+	.aw27-process-title-highlight {
+		font-size: 4rem;
+	}
+
+	.aw27-steps {
+		grid-template-columns: 1fr;
+		max-width: 480px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.aw27-card {
+		padding: 40px 32px;
+	}
+
+	.aw27-group {
+		scroll-margin-top: $header2027HeightMobile + 16px;
+	}
+
+	.aw27-awards {
+		scroll-margin-top: $header2027HeightMobile;
+	}
+}
+
 @media screen and (max-width: $bp2027Md) {
-	.aw27-hero {
-		padding: 48px 0;
+	.aw27 .ft27-tag {
+		font-size: 1rem;
+	}
+
+	.aw27-process {
+		padding: 72px 0 80px;
+	}
+
+	//Fluid sizes so long words never overflow narrow phones (56px at 430px wide and up)
+	.aw27-process-title-line,
+	.aw27-process-title-highlight {
+		font-size: clamp(2.25rem, 13vw, 3.5rem);
+	}
+
+	.aw27-process-title-highlight {
+		margin-top: 16px;
+	}
+
+	.aw27-steps {
+		margin-top: 48px;
+	}
+
+	.aw27-celebrate {
+		padding: 64px 0 56px;
+	}
+
+	.aw27-celebrate-title {
+		font-size: clamp(2.5rem, 14vw, 4rem);
+	}
+
+	.aw27-celebrate-title-highlight {
+		display: block;
+		margin-top: 8px;
+	}
+
+	.aw27-groups {
+		flex-direction: column;
+		gap: 16px;
+	}
+
+	.aw27-group-btn {
+		min-height: 56px;
+		padding: 12px 20px;
+		font-size: 1.125rem;
+	}
+
+	//Category tabs stack as a centred list
+	.aw27-cats {
+		flex-direction: column;
+		gap: 4px;
+		padding: 12px;
+	}
+
+	.aw27-cat-btn {
+		flex: 0 0 auto;
+		min-height: 52px;
+		padding: 12px 16px;
+		font-size: 1.125rem;
+		text-align: center;
+	}
+
+	//Larger waves on phones so both corners still show
+	.aw27-results {
+		padding: 32px 0 80px;
+		background-size: 160% auto, auto;
+	}
+
+	.aw27-card {
+		margin-top: 32px;
+		padding: 32px 20px;
+	}
+
+	.aw27-card-head {
+		flex-direction: column;
+	}
+
+	//Fluid: 32px from 430px wide, 24px on a 320px phone, so long words like "Transformational" fit
+	.aw27-card-title {
+		font-size: clamp(1.5rem, 7.5vw, 2rem);
+		overflow-wrap: break-word;
+	}
+
+	.aw27-group-title {
+		font-size: clamp(1.875rem, 10vw, 2.5rem);
+		overflow-wrap: break-word;
+	}
+
+	.aw27-card-desc {
+		font-size: 1.125rem;
 	}
 
 	.aw27-winners {
-		grid-template-columns: repeat(2, 1fr);
+		margin-top: 32px;
+	}
+
+	.aw27-winner {
+		flex-basis: 100%;
+		max-width: none;
+	}
+
+	.aw27-winner-name {
+		margin-top: 12px;
+		padding-top: 12px;
 	}
 }

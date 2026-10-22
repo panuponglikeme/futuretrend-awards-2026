@@ -1,65 +1,355 @@
 //Version 2027 awards: template-parts/template-awards-2027.php, template-parts/2027/award-groups.php
+//Section background images (waves) come later from the design team.
 
-.aw27-hero {
-	padding: 80px 0;
-}
-
-.aw27-groups,
-.aw27-cats {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	gap: 16px;
-}
-
-.aw27-group-btn,
-.aw27-cat-btn {
-	padding: 12px 20px;
-	border: 1px solid currentColor;
-	border-radius: 999px;
-	background: none;
-	@include transition();
-
-	&.is-active {
-		color: $color2027Bg;
-		background-color: $color2027Primary;
-		border-color: $color2027Primary;
+.aw27 {
+	.ft27-tag {
+		padding: 10px 18px;
+		font-size: 1.125rem;
 	}
 }
 
-.aw27-cat-btn {
+//3 Steps Award Process
+.aw27-process {
+	padding: 100px 0 120px;
+	text-align: center;
+	background: linear-gradient(180deg, $color2027AwardsTop 0%, $color2027AwardsBottom 100%);
+}
+
+.aw27-process-title {
+	margin-top: 40px;
+	font-weight: 400;
+}
+
+.aw27-process-title-line {
+	display: block;
+	font-size: 4rem;
+	line-height: 1.2;
+}
+
+//inline-block so the gradient spans the text, not the whole container
+.aw27-process-title-highlight {
+	display: inline-block;
+	margin-top: 32px;
+	font-size: 5.5rem;
+	font-weight: 700;
+	line-height: 1.1;
+	background: linear-gradient(90deg, #95C4FB 0%, #6FE3FA 50%, #CFC3EC 100%);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+}
+
+.aw27-steps {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 24px;
+	margin: 72px 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.aw27-step {
+	padding: 24px 24px 32px;
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	border-radius: 20px;
+	background-color: rgba(13, 30, 90, 0.75);
+	backdrop-filter: blur(8px);
+
+	@for $i from 1 through 3 {
+		&:nth-child(3n + #{$i}) {
+			--aw27-step-icon: #{nth($award2027StepIcons, $i)};
+		}
+	}
+}
+
+.aw27-step-icon {
 	display: inline-flex;
 	align-items: center;
-	gap: 8px;
+	justify-content: center;
+	width: 58px;
+	height: 58px;
+	border: 1px solid rgba(255, 255, 255, 0.15);
+	border-radius: 12px;
+	background-color: rgba(255, 255, 255, 0.06);
+	font-size: 1.375rem;
+	color: var(--aw27-step-icon);
+
+	.ft27-icon-img {
+		width: 26px;
+		height: 26px;
+		object-fit: contain;
+	}
+}
+
+.aw27-step-details {
+	margin-top: 24px;
+	font-size: 0.875rem;
+	line-height: 1.6;
+	color: rgba(255, 255, 255, 0.6);
+
+	h3 {
+		margin-bottom: 20px;
+		font-size: 1.5rem;
+		font-weight: 400;
+		line-height: 1.5;
+		text-transform: uppercase;
+		color: $color2027Text;
+	}
+
+	p {
+		margin: 0;
+	}
+}
+
+//Celebrating Award (#awards, the header "ผลประกาศรางวัล" button links here): keep the title clear of the fixed header
+.aw27-awards {
+	scroll-margin-top: $header2027HeightSticky;
+}
+
+//Celebrating Award: title and group tabs
+.aw27-celebrate {
+	padding: 80px 0 72px;
+	text-align: center;
+	background: linear-gradient(180deg, $color2027AwardsTop 0%, $color2027AwardsBottom 100%);
+}
+
+.aw27-celebrate-title {
+	margin-top: 32px;
+	font-size: 4rem;
+	font-weight: 400;
+	line-height: 1.2;
+}
+
+.aw27-celebrate-title-highlight {
+	font-weight: 700;
+	color: $color2027Cyan;
+}
+
+.aw27-celebrate-subtitle {
+	margin: 40px 0 0;
+	font-size: 1rem;
+}
+
+.aw27-groups {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 18px;
+	margin-top: 28px;
+}
+
+.aw27-group-btn {
+	min-height: 80px;
+	padding: 0 32px;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	border-radius: 16px;
+	background-color: rgba($color2027GroupButton, 0.85);
+	font-size: 1.25rem;
+	color: rgba(255, 255, 255, 0.85);
+	@include transition();
+
+	&:hover,
+	&:focus {
+		border-color: rgba(255, 255, 255, 0.45);
+		color: $color2027Text;
+	}
+
+	&.is-active {
+		border-color: transparent;
+		background: linear-gradient(135deg, $color2027ActiveStart 0%, $color2027ActiveEnd 100%);
+		font-weight: 700;
+		color: $color2027Text;
+		box-shadow: 0 8px 24px rgba($color2027ActiveEnd, 0.35);
+	}
+}
+
+//Results: group title, category tabs and the winners card
+//Waves (1440x333) at the bottom corners, behind the winners card
+.aw27-results {
+	padding: 40px 0 120px;
+	background: url('../images/2027/bg-awards-bottom.png') no-repeat center bottom / 100% auto, $color2027Results;
 }
 
 .aw27-group {
-	margin-top: 48px;
+	--aw27-accent: #FFF;
+	--aw27-name: #FFF;
+	scroll-margin-top: $header2027HeightSticky + 16px;
+
+	@each $key, $colors in $award2027Groups {
+		&--#{$key} {
+			--aw27-accent: #{nth($colors, 3)};
+			--aw27-name: #{nth($colors, 4)};
+			--aw27-gradient: linear-gradient(135deg, #{nth($colors, 1)} 0%, #{nth($colors, 2)} 100%);
+		}
+	}
 }
 
-.aw27-cat-panel {
-	margin-top: 48px;
+.aw27-group-head {
+	text-align: center;
 }
 
-.aw27-row {
+.aw27-group-title {
+	font-size: 3rem;
+	font-weight: 700;
+	line-height: 1.2;
+}
+
+.aw27-group-desc {
+	margin: 16px 0 0;
+	font-size: 1.125rem;
+	color: rgba(255, 255, 255, 0.6);
+}
+
+.aw27-cats {
+	display: flex;
+	align-items: stretch;
+	gap: 8px;
 	margin-top: 32px;
+	padding: 16px;
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	border-radius: 16px;
+	background-color: rgba(255, 255, 255, 0.12);
+	box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
 }
 
-.aw27-winners {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+.aw27-cat-btn {
+	flex: 1 1 0;
+	min-height: 72px;
+	padding: 8px 16px;
+	border: 0;
+	border-radius: 12px;
+	background: none;
+	font-size: 1.25rem;
+	line-height: 1.2;
+	color: rgba(255, 255, 255, 0.75);
+	@include transition();
+
+	&:hover,
+	&:focus {
+		color: $color2027Text;
+	}
+
+	&.is-active {
+		background: var(--aw27-gradient);
+		color: $color2027Text;
+		box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+	}
+}
+
+.aw27-card {
+	margin-top: 48px;
+	padding: 64px 88px;
+	border: 1px solid rgba(255, 255, 255, 0.15);
+	border-top: 2px solid var(--aw27-name);
+	border-radius: 24px;
+	background: var(--aw27-gradient);
+}
+
+.aw27-card-head {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
 	gap: 24px;
-	margin-top: 16px;
 }
 
-.aw27-winner-logo img {
-	width: 100%;
-	aspect-ratio: 1;
-	object-fit: contain;
+.aw27-card-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	line-height: 1.2;
+}
+
+.aw27-card-desc {
+	margin: 12px 0 0;
+	font-size: 1.375rem;
+	color: rgba(255, 255, 255, 0.6);
+}
+
+.aw27-card-count {
+	flex-shrink: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 96px;
+	height: 82px;
+	border: 1px solid var(--aw27-accent);
+	border-radius: 20px;
+	background-color: rgba(255, 255, 255, 0.1);
+	color: var(--aw27-name);
+}
+
+.aw27-card-count-num {
+	font-size: 2rem;
+	font-weight: 700;
+	line-height: 1;
+}
+
+.aw27-card-count-label {
+	margin-top: 6px;
+	font-size: 0.75rem;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+.aw27-row-title {
+	margin-top: 48px;
+	font-size: 1.5rem;
+	font-weight: 700;
+	color: var(--aw27-name);
+}
+
+//Winners: centred rows, so a short last row sits in the middle
+.aw27-winners {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 24px;
+	margin: 48px 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.aw27-winner {
+	flex: 0 0 calc((100% - 48px) / 3);
+	max-width: 320px;
+	padding: 12px 12px 24px;
+	border: 1px solid rgba(255, 255, 255, 0.15);
+	border-radius: 16px;
+	background-color: rgba(255, 255, 255, 0.05);
+	text-align: center;
+}
+
+.aw27-winner-logo {
+	border-radius: 12px;
+	overflow: hidden;
 	background-color: #FFF;
+
+	img {
+		display: block;
+		width: 100%;
+		aspect-ratio: 1;
+		object-fit: cover;
+	}
 }
 
 .aw27-winner-name {
-	margin-top: 8px;
-	text-align: center;
+	position: relative;
+	margin-top: 16px;
+	padding-top: 16px;
+	font-size: 1.25rem;
+	font-weight: 700;
+	line-height: 1.6;
+	color: var(--aw27-name);
+
+	//Divider between the logo and the name, fading out at both ends
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 1px;
+		background: linear-gradient(90deg, transparent 0%, var(--aw27-name) 50%, transparent 100%);
+		opacity: 0.7;
+	}
 }

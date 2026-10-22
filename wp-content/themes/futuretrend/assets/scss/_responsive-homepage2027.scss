@@ -1,8 +1,79 @@
 //Version 2027 homepage: responsive
 
+@media screen and (max-width: $bp2027Lg) {
+	.hm27-stat-list {
+		gap: 16px;
+	}
+
+	.hm27-group {
+		padding: 40px 32px;
+	}
+
+	.hm27-cats {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
 @media screen and (max-width: $bp2027Md) {
-	.hm27-hero,
+	.hm27-intro {
+		padding: 80px 0;
+	}
+
+	.hm27-intro-title-line {
+		font-size: 2.75rem;
+	}
+
+	.hm27-intro-title-highlight {
+		font-size: 4rem;
+	}
+
+	.hm27-intro-subtitle {
+		font-size: 1.75rem;
+	}
+
+	.hm27-stat-list {
+		grid-template-columns: 1fr;
+		gap: 24px;
+	}
+
+	//Mobile design shows the wave larger: the left crest, cropped on the right
 	.hm27-awards {
-		padding: 48px 0;
+		padding: 48px 0 80px;
+		background-position: left bottom;
+		background-size: auto 300px;
+	}
+
+	.hm27-group {
+		padding: 32px 24px;
+
+		& + & {
+			margin-top: 40px;
+		}
+	}
+
+	.hm27-group-head {
+		flex-direction: column;
+	}
+
+	.hm27-group-title {
+		font-size: 2.25rem;
+	}
+
+	.hm27-group-desc {
+		font-size: 1.125rem;
+	}
+
+	.hm27-group-image {
+		margin-top: 32px;
+
+		img {
+			height: 200px;
+		}
+	}
+
+	.hm27-cats {
+		grid-template-columns: 1fr;
+		gap: 16px;
+		margin-top: 32px;
 	}
 }

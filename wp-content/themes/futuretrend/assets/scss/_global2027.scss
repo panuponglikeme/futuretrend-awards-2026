@@ -39,6 +39,7 @@ button {
 
 html {
 	overflow-x: hidden;
+	scroll-behavior: smooth;
 
 	&.hd27-no-scroll {
 		overflow: hidden;
@@ -47,7 +48,6 @@ html {
 
 body.v2027 {
 	margin: 0;
-	padding-top: $header2027Height;
 	font-family: $font2027;
 	font-size: 1rem;
 	font-weight: 400;
@@ -64,4 +64,72 @@ body.v2027 {
 	margin-right: auto;
 	padding-left: $gutter2027;
 	padding-right: $gutter2027;
+}
+
+.screen-reader-text {
+	position: absolute !important;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(1px, 1px, 1px, 1px);
+	white-space: nowrap;
+}
+
+//Fade in on scroll (js/site-2027.js): only elements marked .is-fade-pending by JS are hidden,
+//so content stays visible without JS and elements already on screen at load do not wait.
+[data-ft27-fade].is-fade-pending {
+	opacity: 0;
+	transform: translateY(24px);
+	transition:
+		opacity 0.6s ease-out var(--ft27-fade-delay, 0s),
+		transform 0.6s ease-out var(--ft27-fade-delay, 0s);
+
+	&.is-visible {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+//Hero (template-parts/2027/hero.php): desktop / mobile images
+.ft27-hero-img {
+	img {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
+	&--mobile {
+		display: none;
+	}
+}
+
+@media screen and (max-width: $bp2027Md) {
+	.ft27-hero-img {
+		&--desktop {
+			display: none;
+		}
+
+		&--mobile {
+			display: block;
+		}
+	}
+}
+
+//Small pill label above section titles (Homepage intro, Awards sections)
+.ft27-tag {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 5px 12px;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	border-radius: 999px;
+	//Purple on the left to dark teal on the right, over the section blue
+	background: linear-gradient(90deg, rgba(110, 60, 150, 0.43) 0%, rgba(30, 78, 100, 0.4) 100%);
+	font-size: 0.875rem;
+}
+
+.ft27-tag-icon {
+	flex-shrink: 0;
+	width: 1em;
+	height: 1em;
 }

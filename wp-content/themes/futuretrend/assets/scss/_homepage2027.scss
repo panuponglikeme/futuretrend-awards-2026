@@ -1,22 +1,223 @@
 //Version 2027 homepage: template-parts/template-homepage-2027.php
 
-.hm27-hero {
-	padding: 80px 0;
+//Title section under the hero
+.hm27-intro {
+	padding: 96px 0 120px;
+	text-align: center;
 }
 
+.hm27-intro-title {
+	margin-top: 32px;
+	font-weight: 400;
+}
+
+.hm27-intro-title-line {
+	display: block;
+}
+
+//inline-block so the gradient spans the text, not the whole container
+.hm27-intro-title-highlight {
+	display: inline-block;
+}
+
+.hm27-intro-title-line {
+	font-size: 2.875rem;
+	line-height: 1.3;
+}
+
+.hm27-intro-title-highlight {
+	margin-top: 24px;
+	font-size: 4.5rem;
+	font-weight: 700;
+	line-height: 1.2;
+	background: linear-gradient(90deg, #AABEFB 0%, #84D7FA 100%);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+}
+
+.hm27-intro-subtitle {
+	margin-top: 40px;
+	font-size: 1.75rem;
+	line-height: 1.4;
+}
+
+.hm27-stat-list {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 40px;
+	margin-top: 48px;
+	text-align: left;
+}
+
+.hm27-stat {
+	position: relative;
+	padding: 28px 24px 24px;
+	border: 1px solid rgba(255, 255, 255, 0.25);
+	border-radius: 16px;
+	background-color: rgba(255, 255, 255, 0.12);
+	backdrop-filter: blur(8px);
+}
+
+.hm27-stat-num {
+	display: block;
+	padding-bottom: 12px;
+	margin-right: 56px;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+	font-size: 2.75rem;
+	font-weight: 700;
+	line-height: 1.2;
+}
+
+.hm27-stat-icon {
+	position: absolute;
+	top: 40px;
+	right: 24px;
+}
+
+.hm27-stat-name {
+	display: block;
+	margin-top: 12px;
+	font-size: 0.875rem;
+	opacity: 0.6;
+}
+
+//Award groups: the wave (1440x195) sits at the bottom, behind the last card
 .hm27-awards {
-	padding: 80px 0;
+	padding: 80px 0 73px;
+	background: url('../images/2027/bg-home-bottom.png') no-repeat center bottom / 100% auto;
 }
 
-.hm27-award-group {
+.hm27-group {
+	--aw27-accent: #FFF;
+	padding: 64px;
+	border: 1px solid rgba(255, 255, 255, 0.15);
+	border-radius: 24px;
+
 	& + & {
-		margin-top: 48px;
+		margin-top: 80px;
+	}
+
+	@each $key, $colors in $award2027Groups {
+		&--#{$key} {
+			--aw27-accent: #{nth($colors, 3)};
+			--aw27-pill-bg: linear-gradient(135deg, #{rgba(nth($colors, 3), 0.45)} 0%, #{rgba(nth($colors, 3), 0.12)} 100%);
+			background: linear-gradient(135deg, nth($colors, 1) 0%, nth($colors, 2) 100%);
+		}
 	}
 }
 
-.hm27-award-cats {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+.hm27-group-head {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
 	gap: 24px;
-	margin-top: 24px;
+}
+
+.hm27-group-heading {
+	padding-left: 22px;
+	border-left: 3px solid var(--aw27-accent);
+}
+
+.hm27-group-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	line-height: 1.2;
+}
+
+.hm27-group-desc {
+	margin-top: 12px;
+	font-size: 1.375rem;
+	color: rgba(255, 255, 255, 0.6);
+}
+
+.hm27-group-total {
+	flex-shrink: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100px;
+	height: 92px;
+	border: 1px solid var(--aw27-accent);
+	border-radius: 20px;
+	background-color: rgba(255, 255, 255, 0.08);
+}
+
+.hm27-group-total-num {
+	font-size: 2.25rem;
+	line-height: 1;
+}
+
+.hm27-group-total-label {
+	margin-top: 6px;
+	font-size: 0.75rem;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+}
+
+.hm27-group-image {
+	position: relative;
+	margin-top: 60px;
+	border-radius: 20px;
+	overflow: hidden;
+
+	img {
+		display: block;
+		width: 100%;
+		height: 400px;
+		object-fit: cover;
+	}
+
+	&::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(90deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 0.35) 100%);
+	}
+}
+
+.hm27-cats {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 24px;
+	margin-top: 60px;
+}
+
+.hm27-cat {
+	min-height: 182px;
+	padding: 24px;
+	border: 1px solid rgba(255, 255, 255, 0.12);
+	border-top: 2px solid var(--aw27-accent);
+	border-radius: 22px;
+	background-color: rgba(255, 255, 255, 0.06);
+}
+
+.hm27-cat-num {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 6px 12px;
+	border: 1px solid var(--aw27-accent);
+	border-radius: 12px;
+	background: var(--aw27-pill-bg, rgba(255, 255, 255, 0.12));
+	font-size: 1.375rem;
+	line-height: 1.2;
+
+	i {
+		font-size: 0.875rem;
+	}
+}
+
+.hm27-cat-name {
+	margin-top: 28px;
+	font-size: 1.0625rem;
+	font-weight: 700;
+}
+
+.hm27-cat-desc {
+	margin-top: 12px;
+	font-size: 0.8125rem;
+	line-height: 1.6;
+	color: rgba(255, 255, 255, 0.6);
 }

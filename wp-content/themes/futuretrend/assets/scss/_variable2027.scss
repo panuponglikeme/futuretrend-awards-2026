@@ -1,17 +1,48 @@
-//Version 2027 variables: fill in from the 2027 design.
+//Version 2027 variables (colours sampled from the Homepage 2027 design).
 
 //Fonts
 $font2027: 'LINE Seed Sans TH', sans-serif;
 
 //Color
-$color2027Bg: #000b18;
+$color2027Bg: #012585;
 $color2027Text: #FFF;
+$color2027Muted: #8EA3C9;
 $color2027Primary: #00D6EA;
+$color2027Gold: #F2B230;
+$color2027YearBorderStart: #F5C518;
+$color2027YearBorderEnd: #F7931E;
+$color2027Header: #142340;
+$color2027Button: #27446E;
+$color2027ButtonBorder: #3D7BE0;
+$color2027FooterTop: #001446;
+$color2027FooterBottom: #001B5E;
+$color2027Social: #3F8CFF;
+
+//Award group cards: [gradient start, gradient end, accent, winner name]
+$award2027Groups: (
+	corporate: (#1B201C, #625529, #C9A54A, #F2CF6B),
+	better-world: (#0C2529, #2D6864, #4FB3A2, #8EE0CF),
+	beloved: (#241A33, #554166, #A58CC7, #D2BCF2),
+	leader: (#090F31, #34398A, #7C87E6, #B3BBFF),
+	government: (#20252B, #575E68, #A6ADB6, #DDE1E7),
+);
+
+//Awards page
+$color2027AwardsTop: #2459DD;
+$color2027AwardsBottom: #1946C5;
+$color2027Results: #16389A;
+$color2027GroupButton: #0D2668;
+$color2027ActiveStart: #EA9A07;
+$color2027ActiveEnd: #DC8409;
+$color2027Cyan: #29C4F6;
+$award2027StepIcons: (#8B5CF8, #F5A524, #3B82F6);
 
 //Layout
 $container2027: 1200px;
-$gutter2027: 16px;
-$header2027Height: 100px;
+$gutter2027: 24px;
+$header2027Height: 104px;
+$header2027HeightSticky: 90px;
+$header2027HeightMobile: 56px;
 
 //Breakpoints (same steps as the 2026 responsive files)
 $bp2027Xl: 1199px;
