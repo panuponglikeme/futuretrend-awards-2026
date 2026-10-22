@@ -32,14 +32,21 @@
 			<nav id="site-navigation" class="main-navigation">
 				<?php wp_nav_menu( array( 'theme_location' => 'primary-menu' ) ); ?>
 
-				<?php
-					$link_awards_section = get_field('link_awards_section', 'option');
+				<div class="header-2025-actions">
+					<?php
+						// Year switcher (desktop); on mobile the copy outside the menu panel is shown.
+						echo ft_year_switcher( '2026', 'ft-year--desktop' );
 
-					if ( $link_awards_section ) {
-						echo '<a href="'.$link_awards_section['url'].'" class="link-awards" target="'.$link_awards_section['target'].'"><span>'.$link_awards_section['title'].'</span></a>';
-					}
-				?>
+						$link_awards_section = get_field('link_awards_section', 'option');
+
+						if ( $link_awards_section ) {
+							echo '<a href="'.$link_awards_section['url'].'" class="link-awards" target="'.$link_awards_section['target'].'"><span>'.$link_awards_section['title'].'</span></a>';
+						}
+					?>
+				</div>
 			</nav><!-- #site-navigation -->
+
+			<?php echo ft_year_switcher( '2026', 'ft-year--mobile' ); ?>
 
 			<div class="hamberger">
 				<div class="bar1"></div>

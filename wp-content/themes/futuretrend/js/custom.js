@@ -149,3 +149,32 @@ jQuery(document).ready(function($){
     });
 
 })
+
+//Year switcher dropdown (ft_year_switcher() in inc/template-functions.php)
+//Leading semicolon: the code above ends without one.
+;(function () {
+    document.querySelectorAll('.ft-year').forEach(function (wrap) {
+        var toggle = wrap.querySelector('.ft-year__toggle');
+        var list = wrap.querySelector('.ft-year__list');
+        if (!toggle || !list) {
+            return;
+        }
+        function setOpen(open) {
+            toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+            list.hidden = !open;
+        }
+        toggle.addEventListener('click', function () {
+            setOpen(list.hidden);
+        });
+        document.addEventListener('click', function (event) {
+            if (!list.hidden && !wrap.contains(event.target)) {
+                setOpen(false);
+            }
+        });
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') {
+                setOpen(false);
+            }
+        });
+    });
+})();

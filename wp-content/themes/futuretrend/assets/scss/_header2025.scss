@@ -160,3 +160,109 @@
         }
     }
 }
+//Year switcher (ft_year_switcher() in inc/template-functions.php, js/custom.js): same look as the 2027 header
+.site-header-2025 {
+    .site-header-inner {
+        .main-navigation {
+            .header-2025-actions {
+                position: absolute;
+                right: 0;
+                display: flex;
+                align-items: center;
+                gap: 16px;
+
+                .link-awards {
+                    position: static;
+                }
+            }
+        }
+    }
+
+    .ft-year {
+        position: relative;
+
+        &--mobile {
+            display: none;
+        }
+    }
+
+    .ft-year__toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        height: 46px;
+        padding: 0 18px;
+        border: 1px solid transparent;
+        border-radius: 999px;
+        background:
+            linear-gradient(#0A0B3A, #0A0B3A) padding-box,
+            linear-gradient(90deg, #F5C518, #F7931E) border-box;
+        box-shadow: inset 0 0 0 100px rgba(242, 178, 48, 0.14);
+        font-family: inherit;
+        font-size: 16px;
+        text-transform: uppercase;
+        color: #fff;
+        cursor: pointer;
+        @include transition;
+
+        //Chevron
+        &::after {
+            content: "";
+            width: 7px;
+            height: 7px;
+            margin-top: -4px;
+            border-right: 2px solid #fff;
+            border-bottom: 2px solid #fff;
+            transform: rotate(45deg);
+            @include transition;
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            border-color: transparent;
+        }
+
+        &:hover,
+        &[aria-expanded="true"] {
+            box-shadow: inset 0 0 0 100px rgba(242, 178, 48, 0.28), 0 0 18px rgba(247, 147, 30, 0.35);
+        }
+
+        &[aria-expanded="true"]::after {
+            margin-top: 4px;
+            transform: rotate(-135deg);
+        }
+    }
+
+    .ft-year__list {
+        position: absolute;
+        top: calc(100% + 8px);
+        right: 0;
+        min-width: 100%;
+        margin: 0;
+        padding: 8px 0;
+        list-style: none;
+        white-space: nowrap;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 16px;
+        background-color: #0A0B3A;
+        z-index: 10;
+
+        &[hidden] {
+            display: none;
+        }
+
+        a {
+            display: block;
+            padding: 8px 20px;
+            text-align: center;
+            color: #fff;
+            text-decoration: none;
+
+            &:hover,
+            &.is-current {
+                color: $colorYellow;
+            }
+        }
+    }
+}

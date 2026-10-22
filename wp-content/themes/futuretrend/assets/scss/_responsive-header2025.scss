@@ -129,3 +129,60 @@
         }
     }
 }
+//Year switcher: in the header bar on mobile, not in the menu panel
+@media screen and (max-width: 991px) {
+    .site-header-2025 {
+        .site-header-inner {
+            .main-navigation {
+                .header-2025-actions {
+                    position: relative;
+                    display: block;
+                }
+            }
+        }
+
+        .ft-year {
+            &--desktop {
+                display: none;
+            }
+
+            &--mobile {
+                display: block;
+                position: absolute;
+                top: 50%;
+                right: 0;
+                transform: translateY(-50%);
+            }
+        }
+
+        .ft-year__toggle {
+            height: 40px;
+            padding: 0 14px;
+            gap: 12px;
+        }
+
+        .ft-year__prefix {
+            display: none;
+        }
+    }
+}
+
+//Year switcher on smaller desktops: keep it clear of the centred menu
+@media screen and (min-width: 992px) and (max-width: 1365px) {
+    .site-header-2025 {
+        .ft-year__prefix {
+            display: none;
+        }
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+    .site-header-2025 {
+        .site-header-inner {
+            .main-navigation {
+                justify-content: flex-start;
+                padding-left: 158px;
+            }
+        }
+    }
+}
