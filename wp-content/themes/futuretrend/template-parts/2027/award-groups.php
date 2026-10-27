@@ -43,23 +43,24 @@ foreach ( $groups as $key => $group ) :
 			<?php endif; ?>
 		</div>
 
+		<?php // As in 2026: every category's card shows at first, a category tab then shows only its own. ?>
 		<div class="aw27-cats" role="tablist" data-ft27-fade style="--ft27-fade-delay: 0.1s">
-			<?php foreach ( $terms as $i => $term ) : ?>
-				<button type="button" class="aw27-cat-btn<?php echo 0 === $i ? ' is-active' : ''; ?>" role="tab" aria-selected="<?php echo 0 === $i ? 'true' : 'false'; ?>" data-aw27-cat="<?php echo esc_attr( $term->slug ); ?>">
+			<?php foreach ( $terms as $term ) : ?>
+				<button type="button" class="aw27-cat-btn" role="tab" aria-selected="false" data-aw27-cat="<?php echo esc_attr( $term->slug ); ?>">
 					<?php echo esc_html( $term->name ); ?>
 				</button>
 			<?php endforeach; ?>
 		</div>
 
 		<?php
-			foreach ( $terms as $i => $term ) :
+			foreach ( $terms as $term ) :
 				$rows    = (array) get_field( $group['list'], $term );
 				$winners = 0;
 				foreach ( $rows as $row ) {
 					$winners += count( (array) $row[ $group['listing'] ] );
 				}
 		?>
-			<div class="aw27-cat-panel" role="tabpanel" data-aw27-cat-panel="<?php echo esc_attr( $term->slug ); ?>"<?php echo 0 === $i ? '' : ' hidden'; ?>>
+			<div class="aw27-cat-panel" role="tabpanel" data-aw27-cat-panel="<?php echo esc_attr( $term->slug ); ?>">
 				<div class="aw27-card" data-ft27-fade>
 					<div class="aw27-card-head">
 						<div class="aw27-card-heading">
