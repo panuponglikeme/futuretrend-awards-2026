@@ -1,38 +1,486 @@
 //Version 2027 about: template-parts/template-about-2027.php
+//Section background images come later from the design team; the section colours show until then.
 
-.ab27-hero,
-.ab27-gallery,
-.ab27-committee,
-.ab27-partners {
-	padding: 80px 0;
-}
-
-.ab27-photos ul {
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	gap: 16px;
-}
-
-.ab27-photos-more {
+//Divider between sections: a light line fading out at both ends, as wide as the container
+@mixin ab27-divider {
+	content: '';
 	display: block;
-	margin: 32px auto 0;
+	width: #{'min(100% - ' + $gutter2027 * 2 + ', ' + $container2027 + ')'};
+	height: 2px;
+	margin: 0 auto;
+	background: linear-gradient(90deg, transparent 0%, rgba($color2027Cyan, 0.45) 25%, $color2027Cyan 50%, rgba($color2027Cyan, 0.45) 75%, transparent 100%);
 }
 
-.ab27-committee-group {
-	& + & {
-		margin-top: 48px;
+//Hero trophy height (355px in the 1440 design, smaller on smaller screens) and the part of it that runs over the
+//Objective section: about a third, as in the desktop and mobile designs.
+.ab27 {
+	--ab27-trophy-height: clamp(220px, 24.65vw, 355px);
+	--ab27-trophy-overlap: calc(var(--ab27-trophy-height) * 0.34);
+
+	//No trophy: no overlap (the hero then ends with its own padding)
+	&--no-trophy {
+		--ab27-trophy-overlap: 0px;
+
+		.ab27-hero {
+			padding-bottom: 64px;
+		}
+	}
+
+	.ft27-tag {
+		font-size: 0.875rem;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
 	}
 }
 
-.ab27-committee-list {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-	gap: 24px;
+//Shared section titles: white text with a blue gradient part (.ab27-title-highlight)
+.ab27-title {
+	margin-top: 24px;
+	font-size: 2.75rem;
+	font-weight: 700;
+	line-height: 1.3;
 }
 
+//inline-block so the gradient spans the text, not the whole line
+.ab27-title-highlight {
+	display: inline-block;
+	background: linear-gradient(90deg, #5AACFE 0%, #3DCEFF 50%, #73B3FF 100%);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+}
+
+.ab27-subtitle {
+	margin-top: 12px;
+	font-size: 1.5rem;
+	line-height: 1.4;
+	color: rgba(255, 255, 255, 0.55);
+}
+
+//Hero: text, then the trophy, which runs over the Objective section (negative margin, above it).
+//Sizes follow the screen width up to the 1440 design, so the section keeps close to its background's proportions.
+//flow-root: without it the trophy's negative margin would pass through the section, and the background would run to the trophy's base
+.ab27-hero {
+	display: flow-root;
+	position: relative;
+	z-index: 1;
+	padding-top: $header2027Height + 64px;
+	text-align: center;
+	//Chrome waves (1440x810 at 2x), held at the bottom so its light meets the Objective background's at the seam; the blue shows while it loads
+	background: no-repeat center bottom / cover $color2027AwardsTop;
+	@include bg-webp2027('bg-about-section-hero', 'jpg');
+
+	.ft27-tag {
+		padding: 4px 12px;
+		font-size: 0.8125rem;
+		line-height: 1.3;
+		letter-spacing: 0.08em;
+	}
+}
+
+//96px: "FUTURE TRENDS" as wide as in the design (765px)
+.ab27-hero-title {
+	margin-top: clamp(24px, 2.3vw, 33px);
+	font-weight: 400;
+	font-size: clamp(48px, 6.67vw, 96px);
+	line-height: 1.2;
+}
+
+.ab27-hero-title-line {
+	display: block;
+}
+
+//inline-block so the gradient spans the text, not the whole line
+.ab27-hero-title-highlight {
+	display: inline-block;
+	font-weight: 700;
+	background: linear-gradient(90deg, #6FE3FA 0%, #95C4FB 55%, #D9B8EE 100%);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+}
+
+.ab27-hero-desc {
+	margin-top: clamp(16px, 1.7vw, 24px);
+	font-size: clamp(15px, 1.25vw, 18px);
+	line-height: 1.6;
+	color: rgba(255, 255, 255, 0.75);
+}
+
+.ab27-hero-trophy {
+	margin: clamp(24px, 2.5vw, 36px) auto calc(var(--ab27-trophy-overlap) * -1);
+
+	img {
+		display: block;
+		width: auto;
+		height: var(--ab27-trophy-height);
+		margin: 0 auto;
+	}
+}
+
+//Objective
+.ab27-objective {
+	padding: calc(var(--ab27-trophy-overlap) + 60px) 0 96px;
+	text-align: center;
+	//Chrome waves (1440x666 at 2x), held at the top, under the hero's
+	background: no-repeat center top / cover $color2027AwardsTop;
+	@include bg-webp2027('bg-about-section-objective', 'jpg');
+
+	> .ab27-container > .ft27-tag {
+		padding: 6px 20px;
+		font-size: 1.25rem;
+		line-height: 1.2;
+		letter-spacing: 0;
+		text-transform: none;
+	}
+}
+
+//66px: as wide as in the design (the design's lighter weight is narrower than LINE Seed Regular)
+.ab27-objective-title {
+	display: inline-block;
+	width: 100%;
+	margin-top: 32px;
+	font-size: 4.125rem;
+	font-weight: 400;
+	line-height: 1.1;
+	background: linear-gradient(90deg, #95C4FB 0%, #6FE3FA 50%, #CFC3EC 100%);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+}
+
+//Narrower than the container, as in the design
+.ab27-objective-list {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 26px;
+	max-width: 1102px;
+	margin: 48px auto 0;
+	padding: 0;
+	list-style: none;
+}
+
+.ab27-objective-item {
+	padding: 24px 24px 28px;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	border-radius: 20px;
+	background-color: rgba(28, 39, 93, 0.85);
+}
+
+.ab27-objective-label {
+	padding: 4px 12px;
+	line-height: 1.3;
+}
+
+.ab27-objective-details {
+	margin-top: 18px;
+	font-size: 1rem;
+	line-height: 1.6;
+}
+
+//The Night of Excellence: glass panel with the video cover
+.ab27-video {
+	padding: 80px 0;
+	text-align: center;
+	//Chrome top left and bottom right (1440x1016 at 1.5x), covering the section; the blue shows while it loads
+	background: no-repeat center / cover $color2027AwardsBottom;
+	@include bg-webp2027('bg-about-section-video', 'jpg');
+}
+
+//Cover 1068px wide in the 1200px panel, as in the design
+.ab27-video-panel {
+	position: relative;
+	padding: 40px 66px 65px;
+	border: 1px solid rgba(255, 255, 255, 0.18);
+	border-radius: 24px;
+	background-color: rgba(255, 255, 255, 0.08);
+	box-shadow: 0 24px 48px rgba(0, 0, 0, 0.15);
+
+	//Light along the top edge
+	&::before {
+		content: '';
+		position: absolute;
+		top: -1px;
+		left: 10%;
+		right: 10%;
+		height: 2px;
+		background: linear-gradient(90deg, transparent 0%, $color2027Cyan 50%, transparent 100%);
+	}
+
+	.ab27-title {
+		margin-top: 0;
+	}
+}
+
+.ab27-video-cover {
+	position: relative;
+	margin-top: 48px;
+	border-radius: 16px;
+	overflow: hidden;
+
+	//16:9 as in the design, whatever the size of the uploaded cover
+	img {
+		display: block;
+		width: 100%;
+		aspect-ratio: 16 / 9;
+		object-fit: cover;
+	}
+}
+
+.ab27-video-play {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	background-color: rgba(30, 30, 30, 0.85);
+	font-size: 2.25rem;
+	transform: translate(-50%, -50%);
+	@include transition();
+
+	//Optical centre of the triangle
+	i {
+		margin-left: 6px;
+	}
+
+	&:hover,
+	&:focus-visible {
+		background-color: $color2027ButtonBorder;
+		box-shadow: 0 0 32px rgba($color2027ButtonBorder, 0.6);
+		transform: translate(-50%, -50%) scale(1.08);
+	}
+}
+
+//Gallery, committee and partners share one colour
+.ab27-gallery,
+.ab27-committee,
+.ab27-partners {
+	text-align: center;
+	background-color: $color2027AboutLower;
+}
+
+//Gallery (photos added by js/about-2027.js)
+.ab27-gallery {
+	padding: 96px 0 0;
+
+	//Divider under the section
+	&::after {
+		@include ab27-divider;
+		margin-top: 72px;
+	}
+}
+
+//Divider on the edge between the video and the section after it (the gallery, or the committee while there are no photos)
+.ab27-video + section {
+	position: relative;
+
+	&::before {
+		@include ab27-divider;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+	}
+}
+
+//Centred rows, so a short last row sits in the middle
+.ab27-photos {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 24px;
+	margin: 32px 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.ab27-photo {
+	flex: 0 0 calc((100% - 72px) / 4);
+	padding: 12px;
+	border: 1px solid rgba(255, 255, 255, 0.18);
+	border-radius: 20px;
+	background-color: rgba(255, 255, 255, 0.08);
+
+	img {
+		display: block;
+		width: 100%;
+		aspect-ratio: 261 / 238;
+		border-radius: 14px;
+		object-fit: cover;
+	}
+}
+
+.ab27-photos-more {
+	display: inline-flex;
+	align-items: center;
+	gap: 16px;
+	margin-top: 32px;
+	padding: 14px 28px;
+	border: 0;
+	border-radius: 999px;
+	background: linear-gradient(90deg, #E4E3FB 0%, #C9C3F7 100%);
+	box-shadow: 0 0 24px rgba(174, 160, 255, 0.5);
+	font-size: 1rem;
+	font-weight: 500;
+	color: #12193A;
+	@include transition();
+
+	i {
+		font-size: 0.875rem;
+		@include transition();
+	}
+
+	&:hover,
+	&:focus-visible {
+		box-shadow: 0 0 32px rgba(174, 160, 255, 0.8);
+		transform: translateY(-2px);
+	}
+
+	&:hover i {
+		transform: translateX(4px);
+	}
+
+	&:disabled {
+		opacity: 0.6;
+		cursor: wait;
+	}
+}
+
+//Committee: one section per award group
+.ab27-committee {
+	padding: 80px 0 0;
+
+	//More room between one award group's committee and the next
+	& + & {
+		padding-top: 130px;
+	}
+
+	&:last-of-type {
+		padding-bottom: 96px;
+	}
+}
+
+//Centred rows, so a short last row sits in the middle
+.ab27-members {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 24px;
+	margin: 40px 0 0;
+	padding: 0;
+	list-style: none;
+	text-align: left;
+}
+
+.ab27-member {
+	flex: 0 0 calc((100% - 48px) / 3);
+	display: flex;
+	flex-direction: column;
+	border: 1px solid rgba(255, 255, 255, 0.15);
+	border-radius: 20px;
+	overflow: hidden;
+	background-color: rgba(74, 108, 190, 0.6);
+}
+
+//Ratio on the image itself: on the figure, the image's own height would stretch it. Faces are near the top of the photos.
+.ab27-member-photo {
+	background-color: #FFF;
+
+	img {
+		display: block;
+		width: 100%;
+		aspect-ratio: 383 / 340;
+		object-fit: cover;
+		object-position: center top;
+	}
+}
+
+.ab27-member-body {
+	position: relative;
+	flex-grow: 1;
+	padding: 24px 24px 32px;
+
+	//Light along the bottom edge
+	&::after {
+		content: '';
+		position: absolute;
+		left: 10%;
+		right: 10%;
+		bottom: 0;
+		height: 2px;
+		background: linear-gradient(90deg, transparent 0%, $color2027Cyan 50%, transparent 100%);
+	}
+}
+
+.ab27-member-name {
+	font-size: 1.125rem;
+	font-weight: 700;
+	letter-spacing: 0.02em;
+}
+
+.ab27-member-role {
+	margin-top: 8px;
+	font-size: 0.875rem;
+	line-height: 1.6;
+	text-transform: uppercase;
+	color: rgba(255, 255, 255, 0.55);
+}
+
+//Partners, with the waves at the bottom corners (1440x333) as at the bottom of the Awards page
+.ab27-partners {
+	padding: 96px 0 120px;
+	background: no-repeat center bottom / 100% auto $color2027AboutLower;
+	@include bg-webp2027('bg-awards-bottom');
+
+	.ab27-title {
+		margin-top: 0;
+	}
+}
+
+//Divider between the committee and the partners, above the title
+.ab27-committee + .ab27-partners::before {
+	@include ab27-divider;
+	margin-bottom: 60px;
+}
+
+//Centred rows, so a short last row sits in the middle
 .ab27-partner-list {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
 	gap: 24px;
+	margin: 40px 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.ab27-partner {
+	flex: 0 0 calc((100% - 72px) / 4);
+	position: relative;
+	padding: 16px;
+	border: 1px solid rgba(255, 255, 255, 0.18);
+	border-radius: 24px;
+	background-color: rgba(255, 255, 255, 0.1);
+
+	//Light along the top edge
+	&::before {
+		content: '';
+		position: absolute;
+		top: -1px;
+		left: 15%;
+		right: 15%;
+		height: 2px;
+		background: linear-gradient(90deg, transparent 0%, $color2027Cyan 50%, transparent 100%);
+	}
+
+	img {
+		display: block;
+		width: 100%;
+		height: auto;
+		border-radius: 18px;
+	}
 }

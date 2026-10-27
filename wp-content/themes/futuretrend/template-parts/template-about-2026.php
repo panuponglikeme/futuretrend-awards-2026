@@ -83,8 +83,8 @@
                 echo '</figure>';
             }
 
-            // Only this year's photos; falls back to all photos until the "2026" gallery category exists.
-            $gall_year = get_term_by( 'slug', '2026', 'gallery_cat' );
+            // Photos of the 2025 event (gallery categories are named by the year of the event); falls back to all photos without it.
+            $gall_year = get_term_by( 'slug', '2025', 'gallery_cat' );
 
             $args = array(
                 'post_type' => 'gallery',
@@ -302,6 +302,13 @@
                 'order' => 'DESC',
                 'post_status' => 'publish',
                 'posts_per_page' => -1,
+                'tax_query' => array(
+                    array(
+                        'taxonomy' => 'partner_cat',
+                        'field'    => 'slug',
+                        'terms'    => '2026',
+                    ),
+                ),
             );
             $query = new WP_Query($args);
             if( $query->have_posts() ) {

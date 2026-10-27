@@ -1,14 +1,183 @@
 //Version 2027 about: responsive
 
-@media screen and (max-width: $bp2027Md) {
-	.ab27-hero,
-	.ab27-gallery,
-	.ab27-committee,
-	.ab27-partners {
-		padding: 48px 0;
+//Objective cards one under the other: three side by side are too narrow for their lines below 1200px
+@media screen and (max-width: $bp2027Xl) {
+	.ab27-objective-list {
+		grid-template-columns: 1fr;
+		gap: 24px;
+		max-width: 560px;
+	}
+}
+
+@media screen and (max-width: $bp2027Lg) {
+	.ab27-hero {
+		padding-top: $header2027HeightMobile + 40px;
 	}
 
-	.ab27-photos ul {
-		grid-template-columns: repeat(2, 1fr);
+	.ab27-video-panel {
+		padding: 32px 32px 40px;
+	}
+
+	.ab27-video-cover {
+		margin-top: 32px;
+	}
+
+	.ab27-photo {
+		flex-basis: calc((100% - 48px) / 3);
+	}
+
+	.ab27-member {
+		flex-basis: calc((100% - 24px) / 2);
+	}
+
+	.ab27-partner {
+		flex-basis: calc((100% - 48px) / 3);
+	}
+}
+
+@media screen and (max-width: $bp2027Md) {
+	//Trophy 257px tall on a 393px phone, as in the mobile design
+	.ab27 {
+		--ab27-trophy-height: clamp(200px, 65vw, 320px);
+	}
+
+	//Mobile backgrounds (393x753 and 393x1072)
+	.ab27-hero {
+		padding-top: $header2027HeightMobile + 32px;
+		@include bg-webp2027('bg-about-section-hero-mobile', 'jpg');
+	}
+
+	//Fluid: on a 393px phone "FUTURE TRENDS" on one line as wide as in the design (299px) and 12.4px text, so the lines keep the design's breaks
+	.ab27-hero-title {
+		margin-top: 32px;
+		font-size: clamp(28px, 9.3vw, 56px);
+		line-height: 1.2;
+	}
+
+	.ab27-hero-desc {
+		margin-top: 20px;
+		font-size: clamp(11px, 3.15vw, 16px);
+		line-height: 1.45;
+	}
+
+	.ab27-hero-trophy {
+		margin-top: 28px;
+	}
+
+	//Fluid sizes so long words never overflow narrow phones
+	//30px on a 393px phone; wrapped lines of about the same length
+	.ab27-title {
+		font-size: clamp(1.625rem, 7.6vw, 2.25rem);
+		overflow-wrap: break-word;
+		text-wrap: balance;
+	}
+
+	//Committee: "กรรมการกลุ่มรางวัล" on its own line, the award group's name under it
+	.ab27-committee .ab27-title-highlight {
+		display: block;
+	}
+
+	.ab27-subtitle {
+		font-size: 1.25rem;
+	}
+
+	.ab27-objective {
+		padding: calc(var(--ab27-trophy-overlap) + 86px) 0 72px;
+		@include bg-webp2027('bg-about-section-objective-mobile', 'jpg');
+
+		> .ab27-container > .ft27-tag {
+			padding: 12px 24px;
+			border-radius: 32px;
+			font-size: clamp(1.125rem, 5.5vw, 1.375rem);
+		}
+	}
+
+	//43px on a 393px phone
+	.ab27-objective-title {
+		font-size: clamp(2.25rem, 11vw, 3.5rem);
+	}
+
+	.ab27-objective-list {
+		margin-top: 48px;
+	}
+
+	.ab27-video {
+		padding: 48px 0 64px;
+	}
+
+	.ab27-video-panel {
+		padding: 32px 20px 20px;
+	}
+
+	.ab27-video-play {
+		width: 56px;
+		height: 56px;
+		font-size: 1.25rem;
+
+		i {
+			margin-left: 3px;
+		}
+	}
+
+	.ab27-gallery {
+		padding-top: 64px;
+
+		&::after {
+			margin-top: 48px;
+		}
+	}
+
+	.ab27-photos {
+		gap: 16px;
+	}
+
+	.ab27-photo {
+		flex-basis: calc((100% - 16px) / 2);
+		padding: 10px;
+	}
+
+	.ab27-committee {
+		padding-top: 64px;
+
+		& + & {
+			padding-top: 84px;
+		}
+
+		&:last-of-type {
+			padding-bottom: 72px;
+		}
+	}
+
+	.ab27-members {
+		margin-top: 32px;
+	}
+
+	.ab27-member {
+		flex-basis: 100%;
+	}
+
+	//Larger waves on phones so both corners still show
+	.ab27-partners {
+		padding: 72px 0 96px;
+		background-size: 160% auto;
+	}
+
+	.ab27-committee + .ab27-partners::before {
+		margin-bottom: 44px;
+	}
+
+	.ab27-partner-list {
+		gap: 16px;
+		margin-top: 32px;
+	}
+
+	.ab27-partner {
+		flex-basis: calc((100% - 16px) / 2);
+		padding: 12px;
+		border-radius: 20px;
+
+		img {
+			border-radius: 14px;
+		}
 	}
 }

@@ -176,14 +176,6 @@ function ft_2027_image( $file ) {
 }
 
 /**
- * Term ID of a year category (e.g. gallery_cat "2027"), or 0 when it does not exist.
- */
-function ft_year_term_id( $taxonomy, $year ) {
-	$term = get_term_by( 'slug', (string) $year, $taxonomy );
-	return $term ? (int) $term->term_id : 0;
-}
-
-/**
  * Cache-busting version for a theme file: its modified time.
  */
 function ft_2027_asset_version( $relative_path ) {
@@ -215,33 +207,14 @@ function ft_2027_enqueue() {
 	wp_enqueue_script( 'ft-' . $type . '-2027', $uri . $page_script, $deps, ft_2027_asset_version( $page_script ), true );
 
 	if ( 'about' === $type ) {
-		$gallery_cat = ft_year_term_id( 'gallery_cat', 2027 );
-		$total       = 0;
-		if ( $gallery_cat ) {
-			$query = new WP_Query(
-				array(
-					'post_type'      => 'gallery',
-					'post_status'    => 'publish',
-					'posts_per_page' => 1,
-					'fields'         => 'ids',
-					'tax_query'      => array(
-						array(
-							'taxonomy' => 'gallery_cat',
-							'field'    => 'term_id',
-							'terms'    => $gallery_cat,
-						),
-					),
-				)
-			);
-			$total = (int) $query->found_posts;
-		}
+		$gallery = ft_2027_about_gallery();
 		wp_localize_script(
 			'ft-about-2027',
 			'ftAbout2027',
 			array(
 				'restUrl'    => esc_url_raw( rest_url( 'wp/v2/gallery' ) ),
-				'galleryCat' => $gallery_cat,
-				'total'      => $total,
+				'galleryCat' => $gallery['term'],
+				'total'      => $gallery['total'],
 				'perPage'    => 8,
 				'step'       => 4,
 			)
@@ -249,3 +222,38 @@ function ft_2027_enqueue() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'ft_2027_enqueue', 20 );
+
+/**
+ * About 2027 gallery: the Gallery Category chosen on the page (about_2027_gall_year, named by the year of the event)
+ * and its number of photos. Cached for the request (used by the template and ft_2027_enqueue()).
+ *
+ * @return array { term: term ID or 0, total: number of published photos }
+ */
+function ft_2027_about_gallery() {
+	static $gallery = null;
+	if ( null !== $gallery ) {
+		return $gallery;
+	}
+
+	$term    = (int) get_field( 'about_2027_gall_year', get_queried_object_id() );
+	$gallery = array( 'term' => $term, 'total' => 0 );
+	if ( $term ) {
+		$query = new WP_Query(
+			array(
+				'post_type'      => 'gallery',
+				'post_status'    => 'publish',
+				'posts_per_page' => 1,
+				'fields'         => 'ids',
+				'tax_query'      => array(
+					array(
+						'taxonomy' => 'gallery_cat',
+						'field'    => 'term_id',
+						'terms'    => $term,
+					),
+				),
+			)
+		);
+		$gallery['total'] = (int) $query->found_posts;
+	}
+	return $gallery;
+}
