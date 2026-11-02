@@ -26,6 +26,14 @@ $current_year  = '2027';
 <div id="page" class="site site-2027">
 	<header class="hd27">
 		<div class="hd27__inner">
+			<?php // Mobile menu button, left of the logo as in 2026: three bars that turn into a cross. ?>
+			<button type="button" class="hd27__toggle" aria-controls="hd27-nav" aria-expanded="false">
+				<span class="hd27__toggle-bar" aria-hidden="true"></span>
+				<span class="hd27__toggle-bar" aria-hidden="true"></span>
+				<span class="hd27__toggle-bar" aria-hidden="true"></span>
+				<span class="screen-reader-text"><?php esc_html_e( 'Menu', THEME_TEXTDOMAIN ); ?></span>
+			</button>
+
 			<div class="hd27__brand">
 				<?php echo ft_2027_logo(); ?>
 			</div>
@@ -68,12 +76,6 @@ $current_year  = '2027';
 				<?php if ( $awards_button ) : ?>
 					<a href="<?php echo esc_url( $awards_button['url'] ); ?>" class="hd27__button" target="<?php echo esc_attr( $awards_button['target'] ? $awards_button['target'] : '_self' ); ?>"><?php echo esc_html( $awards_button['title'] ); ?></a>
 				<?php endif; ?>
-
-				<button type="button" class="hd27__toggle" aria-controls="hd27-nav" aria-expanded="false">
-					<i class="fa-solid fa-bars hd27__toggle-open" aria-hidden="true"></i>
-					<i class="fa-solid fa-xmark hd27__toggle-close" aria-hidden="true"></i>
-					<span class="screen-reader-text"><?php esc_html_e( 'Menu', THEME_TEXTDOMAIN ); ?></span>
-				</button>
 			</div>
 		</div>
 	</header>

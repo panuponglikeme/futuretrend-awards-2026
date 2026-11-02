@@ -171,30 +171,48 @@
 		}
 	}
 
-	//Mobile menu button
+	//Mobile menu button, as in 2026 (_responsive-header2025.scss): three white bars, no box.
+	//Reset: the theme's style.css gives buttons padding, a border and a background, also on hover/focus.
 	&__toggle {
 		display: none;
-		align-items: center;
-		justify-content: center;
-		width: 40px;
-		height: 40px;
-		//padding 0: the theme's style.css gives buttons uneven top/bottom padding, which pushed the icon down
+		flex-shrink: 0;
 		padding: 0;
-		border: 1px solid $color2027ButtonBorder;
-		border-radius: 8px;
-		background-color: #2D5BD1;
+		border: 0;
+		border-radius: 0;
+		background: none;
 		line-height: 1;
-		color: $color2027Text;
+		cursor: pointer;
+
+		&:hover,
+		&:focus,
+		&:active {
+			border: 0;
+			background: none;
+		}
 	}
 
-	//Bars when closed, cross when open
-	&__toggle-close,
-	&__toggle[aria-expanded="true"] &__toggle-open {
-		display: none;
+	&__toggle-bar {
+		display: block;
+		width: 25px;
+		height: 3px;
+		margin: 5px 0;
+		background-color: $color2027Text;
+		transition: 0.4s;
 	}
 
-	&__toggle[aria-expanded="true"] &__toggle-close {
-		display: inline-block;
+	//Open: the bars turn into a cross
+	&__toggle[aria-expanded="true"] &__toggle-bar {
+		&:nth-child(1) {
+			transform: rotate(-45deg) translate(-6px, 6px);
+		}
+
+		&:nth-child(2) {
+			opacity: 0;
+		}
+
+		&:nth-child(3) {
+			transform: rotate(45deg) translate(-5px, -5px);
+		}
 	}
 }
 

@@ -45,7 +45,7 @@
 		&__year-toggle {
 			height: 40px;
 			gap: 16px;
-			font-size: 1.0625rem;
+			font-size: 0.875rem;
 		}
 
 		&__button {
@@ -58,17 +58,22 @@
 			}
 		}
 
+		//Menu button on the left, logo after it (60px in, as in 2026)
 		&__toggle {
-			display: inline-flex;
+			display: block;
+			margin-right: 35px;
 		}
 
-		//Menu panel under the header
+		//Menu panel under the header, down to the bottom of the screen (dvh: the visible height on phones, below the browser bars)
 		&__nav {
 			display: none;
 			position: absolute;
 			top: 100%;
 			left: 0;
 			right: 0;
+			height: calc(100vh - #{$header2027HeightMobile + 1px});
+			height: calc(100dvh - #{$header2027HeightMobile + 1px});
+			overflow-y: auto;
 			padding: 24px 20px 32px;
 			background-color: $color2027Header;
 			border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -76,6 +81,12 @@
 
 		&.is-menu-open &__nav {
 			display: block;
+		}
+
+		//Logged in: the 32px WordPress bar sits above the header (46px below 783px, further down)
+		.admin-bar & &__nav {
+			height: calc(100vh - #{$header2027HeightMobile + 1px + 32px});
+			height: calc(100dvh - #{$header2027HeightMobile + 1px + 32px});
 		}
 
 		//Dimmed page behind the open menu; a click on it closes the menu (js/site-2027.js).
@@ -91,9 +102,20 @@
 			background-color: rgba(0, 4, 20, 0.6);
 		}
 
+		//Full-width items with thin lines between them, as in the 2026 menu
 		&__menu {
 			flex-direction: column;
-			gap: 20px;
+			gap: 0;
+
+			a {
+				display: block;
+				padding: 15px 0;
+				border-bottom: 2px solid rgba(255, 255, 255, 0.06);
+			}
+
+			li:first-child a {
+				border-top: 2px solid rgba(255, 255, 255, 0.06);
+			}
 		}
 	}
 }
@@ -101,5 +123,11 @@
 @media screen and (max-width: 782px) {
 	.admin-bar .hd27 {
 		top: 46px;
+	}
+
+	//Logged in: the WordPress bar sits above the header
+	.admin-bar .hd27__nav {
+		height: calc(100vh - #{$header2027HeightMobile + 1px + 46px});
+		height: calc(100dvh - #{$header2027HeightMobile + 1px + 46px});
 	}
 }
