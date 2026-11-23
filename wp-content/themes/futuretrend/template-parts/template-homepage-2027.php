@@ -93,7 +93,7 @@
                             <li class="hm27-cat" data-ft27-fade style="--ft27-fade-delay: <?php echo esc_attr( ( $i % 3 ) * 0.08 ); ?>s">
                                 <span class="hm27-cat-num"><i class="fa-solid fa-award" aria-hidden="true"></i><?php echo esc_html( get_field( $group['number'], $term ) ); ?></span>
                                 <h3 class="hm27-cat-name"><?php echo esc_html( $term->name ); ?></h3>
-                                <div class="hm27-cat-desc"><?php echo wp_strip_all_tags( term_description( $term ) ); ?></div>
+                                <div class="hm27-cat-desc"><?php echo esc_html( wp_strip_all_tags( term_description( $term ) ) ); ?></div>
                             </li>
                         <?php endforeach; ?>
                     </ul>
