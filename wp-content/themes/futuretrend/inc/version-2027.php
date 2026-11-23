@@ -118,10 +118,34 @@ function ft_2027_award_groups_data() {
 		if ( ! $data['terms'] ) {
 			continue;
 		}
-		$data['title']  = $data['title'] ? $data['title'] : $config['label'];
+		$data['title'] = $data['title'] ? $data['title'] : $config['label'];
+
+		// Awards per category = winners listed; before they are listed, the category's Number awards field.
+		$data['counts'] = array();
+		foreach ( $data['terms'] as $term ) {
+			$winners = ft_2027_award_winners( $config, $term );
+			$data['counts'][ $term->term_id ] = $winners ? $winners : (int) get_field( $config['number'], $term );
+		}
+		$data['total'] = array_sum( $data['counts'] );
+
 		$groups[ $key ] = array_merge( $config, $data );
 	}
 	return $groups;
+}
+
+/**
+ * Number of winners listed in one award category (all rows of its list).
+ *
+ * @param array   $group Award group config from ft_2027_award_groups() (uses list and listing).
+ * @param WP_Term $term  Award category.
+ */
+function ft_2027_award_winners( $group, $term ) {
+	$rows  = get_field( $group['list'], $term );
+	$count = 0;
+	foreach ( $rows ? $rows : array() as $row ) {
+		$count += empty( $row[ $group['listing'] ] ) ? 0 : count( (array) $row[ $group['listing'] ] );
+	}
+	return $count;
 }
 
 /**

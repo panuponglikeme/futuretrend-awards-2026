@@ -54,11 +54,9 @@ foreach ( $groups as $key => $group ) :
 
 		<?php
 			foreach ( $terms as $term ) :
-				$rows    = (array) get_field( $group['list'], $term );
-				$winners = 0;
-				foreach ( $rows as $row ) {
-					$winners += count( (array) $row[ $group['listing'] ] );
-				}
+				$rows    = get_field( $group['list'], $term );
+				$rows    = $rows ? $rows : array();
+				$winners = ft_2027_award_winners( $group, $term );
 		?>
 			<div class="aw27-cat-panel" role="tabpanel" data-aw27-cat-panel="<?php echo esc_attr( $term->slug ); ?>">
 				<div class="aw27-card" data-ft27-fade>
@@ -96,7 +94,8 @@ foreach ( $groups as $key => $group ) :
 												}
 											?>
 										</figure>
-										<div class="aw27-winner-name"><?php echo esc_html( get_field( $group['name'], $winner_id ) ); ?></div>
+										<?php // Textarea field: ACF turns line breaks into <br />, e.g. a leader's name, then the organisation. ?>
+										<div class="aw27-winner-name"><?php echo wp_kses( get_field( $group['name'], $winner_id ), array( 'br' => array() ) ); ?></div>
 									</li>
 								<?php endforeach; ?>
 							</ul>

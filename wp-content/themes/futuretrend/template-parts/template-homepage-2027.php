@@ -4,7 +4,7 @@
     */
     get_header('2027');
 
-    // Award groups with their 2027 categories; totals are summed from each category's number of awards.
+    // Award groups with their 2027 categories; a category counts its listed winners (Number awards until they are listed).
     $groups = ft_2027_award_groups_data();
     $total_awards = array_sum( wp_list_pluck( $groups, 'total' ) );
     $word_awards  = get_field( 'word_awards', 'option' );
@@ -19,15 +19,19 @@
     // Title: line 1 as is, line 2 highlighted.
     $title_lines = $home_2027_ft_title ? preg_split( '/\R/', trim( $home_2027_ft_title ), 2 ) : array( get_the_title() );
 
-    // Stat cards from the List field, or the computed numbers when it is empty.
+    // Stat cards from the List field ({total} and {groups} in a number are counted), or the computed numbers when it is empty.
     $stats = get_field('home_2027_ft_list');
     if ( ! $stats ) {
         $stats = array(
-            array( 'num' => $total_awards, 'name' => 'รางวัล' ),
-            array( 'num' => count( $groups ), 'name' => 'กลุ่มรางวัล' ),
+            array( 'num' => '{total}', 'name' => 'รางวัล' ),
+            array( 'num' => '{groups}', 'name' => 'กลุ่มรางวัล' ),
             array( 'num' => 2027, 'name' => 'ประจำปี' ),
         );
     }
+    $stat_counts = array(
+        '{total}'  => $total_awards,
+        '{groups}' => count( $groups ),
+    );
 ?>
 
 <main class="hm27">
@@ -57,7 +61,7 @@
             <ul class="hm27-stat-list">
                 <?php foreach ( array_values( $stats ) as $i => $stat ) : ?>
                     <li class="hm27-stat" data-ft27-fade style="--ft27-fade-delay: <?php echo esc_attr( $i * 0.1 ); ?>s">
-                        <span class="hm27-stat-num"><?php echo esc_html( $stat['num'] ); ?></span>
+                        <span class="hm27-stat-num"><?php echo esc_html( strtr( (string) $stat['num'], $stat_counts ) ); ?></span>
                         <img class="hm27-stat-icon" src="<?php echo esc_url( ft_2027_image( sprintf( 'card-section-title-%02d.svg', ( $i % 3 ) + 1 ) ) ); ?>" alt="" width="32" height="32">
                         <span class="hm27-stat-name"><?php echo esc_html( $stat['name'] ); ?></span>
                     </li>
@@ -91,7 +95,7 @@
                     <ul class="hm27-cats">
                         <?php foreach ( array_values( $group['terms'] ) as $i => $term ) : ?>
                             <li class="hm27-cat" data-ft27-fade style="--ft27-fade-delay: <?php echo esc_attr( ( $i % 3 ) * 0.08 ); ?>s">
-                                <span class="hm27-cat-num"><i class="fa-solid fa-award" aria-hidden="true"></i><?php echo esc_html( get_field( $group['number'], $term ) ); ?></span>
+                                <span class="hm27-cat-num"><i class="fa-solid fa-award" aria-hidden="true"></i><?php echo esc_html( $group['counts'][ $term->term_id ] ); ?></span>
                                 <h3 class="hm27-cat-name"><?php echo esc_html( $term->name ); ?></h3>
                                 <div class="hm27-cat-desc"><?php echo esc_html( wp_strip_all_tags( term_description( $term ) ) ); ?></div>
                             </li>
