@@ -1,9 +1,26 @@
-import { InnerBlocks } from '@wordpress/block-editor';
+/**
+ * Internal dependencies
+ */
+import Description from './description';
 
-export default function Edit({ attributes: { className } }) {
+/**
+ * WordPress dependencies
+ */
+import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
+
+const ALLOWED_BLOCKS = ['core/list'];
+
+/* Wrapper required for Block API v3 */
+export default function Edit() {
+	const blockProps = useBlockProps();
+
 	return (
-		<div className={className} itemProp="description">
-			<InnerBlocks allowedBlocks={['core/list']} />
+		<div {...blockProps}>
+			{/* Keep blockProps on the editor wrapper only so the nested features
+				markup does not duplicate block metadata in the canvas. */}
+			<Description>
+				<InnerBlocks allowedBlocks={ALLOWED_BLOCKS} />
+			</Description>
 		</div>
 	);
 }

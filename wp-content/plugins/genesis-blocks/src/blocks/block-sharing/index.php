@@ -90,6 +90,13 @@ function genesis_blocks_social_icon_footer_script() {
 			var top  = ( window.innerHeight / 2 )-( h / 2 );
 			return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=600, height=600, top='+top+', left='+left);
 		}
+		// Open share popup via data attributes; never reads executable context from the DOM.
+		document.addEventListener( 'click', function( e ) {
+			var el = e.target && e.target.closest( '[data-gb-share-url]' );
+			if ( ! el ) { return; }
+			e.preventDefault();
+			genesisBlocksShare( el.getAttribute( 'data-gb-share-url' ), el.getAttribute( 'data-gb-share-label' ) || '', '600', '600' );
+		} );
 	</script>
 	<?php
 }
@@ -111,7 +118,8 @@ function genesis_blocks_render_sharing( $attributes ) {
 		$thumbnail_id = get_post_thumbnail_id( $post->ID );
 		$thumbnail    = $thumbnail_id ? current( wp_get_attachment_image_src( $thumbnail_id, 'large', true ) ) : '';
 	} else {
-		$thumbnail = null;
+		// Use an empty string so esc_url() never receives null.
+		$thumbnail = '';
 	}
 
 	$is_amp_endpoint = function_exists( 'is_amp_endpoint' ) && is_amp_endpoint();
@@ -122,7 +130,8 @@ function genesis_blocks_render_sharing( $attributes ) {
 
 	$linkedin_url = 'https://www.linkedin.com/shareArticle?mini=true&url=' . get_the_permalink() . '&title=' . get_the_title() . '';
 
-	$pinterest_url = 'https://pinterest.com/pin/create/button/?&url=' . get_the_permalink() . '&description=' . get_the_title() . '&media=' . esc_url( $thumbnail ) . '';
+	$pinterest_media = ! empty( $thumbnail ) ? esc_url( $thumbnail ) : '';
+	$pinterest_url   = 'https://pinterest.com/pin/create/button/?&url=' . get_the_permalink() . '&description=' . get_the_title() . '&media=' . $pinterest_media . '';
 
 	$email_url = 'mailto:?subject=' . get_the_title() . '&body=' . get_the_title() . '&mdash;' . get_the_permalink() . '';
 
@@ -134,7 +143,7 @@ function genesis_blocks_render_sharing( $attributes ) {
 
 	if ( isset( $attributes['twitter'] ) && $attributes['twitter'] ) {
 
-		$href_format = sprintf( 'href="javascript:void(0)" onClick="javascript:genesisBlocksShare(\'%1$s\', \'%2$s\', \'600\', \'600\')"', esc_url( $twitter_url ), esc_html__( 'Share on Twitter', 'genesis-blocks' ) );
+		$href_format = sprintf( 'href="%1$s" data-gb-share-url="%1$s" data-gb-share-label="%2$s"', esc_url( $twitter_url ), esc_attr__( 'Share on Twitter', 'genesis-blocks' ) );
 
 		if ( $is_amp_endpoint ) {
 			$href_format = sprintf( 'href="%1$s"', esc_url( $twitter_url ) );
@@ -157,7 +166,7 @@ function genesis_blocks_render_sharing( $attributes ) {
 
 	if ( isset( $attributes['facebook'] ) && $attributes['facebook'] ) {
 
-		$href_format = sprintf( 'href="javascript:void(0)" onClick="javascript:genesisBlocksShare(\'%1$s\', \'%2$s\', \'600\', \'600\')"', esc_url( $facebook_url ), esc_html__( 'Share on Facebook', 'genesis-blocks' ) );
+		$href_format = sprintf( 'href="%1$s" data-gb-share-url="%1$s" data-gb-share-label="%2$s"', esc_url( $facebook_url ), esc_attr__( 'Share on Facebook', 'genesis-blocks' ) );
 
 		if ( $is_amp_endpoint ) {
 			$href_format = sprintf( 'href="%1$s"', esc_url( $facebook_url ) );
@@ -180,7 +189,7 @@ function genesis_blocks_render_sharing( $attributes ) {
 
 	if ( isset( $attributes['pinterest'] ) && $attributes['pinterest'] ) {
 
-		$href_format = sprintf( 'href="javascript:void(0)" onClick="javascript:genesisBlocksShare(\'%1$s\', \'%2$s\', \'600\', \'600\')"', esc_url( $pinterest_url ), esc_html__( 'Share on Pinterest', 'genesis-blocks' ) );
+		$href_format = sprintf( 'href="%1$s" data-gb-share-url="%1$s" data-gb-share-label="%2$s"', esc_url( $pinterest_url ), esc_attr__( 'Share on Pinterest', 'genesis-blocks' ) );
 
 		if ( $is_amp_endpoint ) {
 			$href_format = sprintf( 'href="%1$s"', esc_url( $pinterest_url ) );
@@ -203,7 +212,7 @@ function genesis_blocks_render_sharing( $attributes ) {
 
 	if ( isset( $attributes['linkedin'] ) && $attributes['linkedin'] ) {
 
-		$href_format = sprintf( 'href="javascript:void(0)" onClick="javascript:genesisBlocksShare(\'%1$s\', \'%2$s\', \'600\', \'600\')"', esc_url( $linkedin_url ), esc_html__( 'Share on LinkedIn', 'genesis-blocks' ) );
+		$href_format = sprintf( 'href="%1$s" data-gb-share-url="%1$s" data-gb-share-label="%2$s"', esc_url( $linkedin_url ), esc_attr__( 'Share on LinkedIn', 'genesis-blocks' ) );
 
 		if ( $is_amp_endpoint ) {
 			$href_format = sprintf( 'href="%1$s"', esc_url( $linkedin_url ) );
@@ -226,7 +235,7 @@ function genesis_blocks_render_sharing( $attributes ) {
 
 	if ( isset( $attributes['reddit'] ) && $attributes['reddit'] ) {
 
-		$href_format = sprintf( 'href="javascript:void(0)" onClick="javascript:genesisBlocksShare(\'%1$s\', \'%2$s\', \'600\', \'600\')"', esc_url( $reddit_url ), esc_html__( 'Share on Reddit', 'genesis-blocks' ) );
+		$href_format = sprintf( 'href="%1$s" data-gb-share-url="%1$s" data-gb-share-label="%2$s"', esc_url( $reddit_url ), esc_attr__( 'Share on Reddit', 'genesis-blocks' ) );
 
 		if ( $is_amp_endpoint ) {
 			$href_format = sprintf( 'href="%1$s"', esc_url( $reddit_url ) );
@@ -265,16 +274,23 @@ function genesis_blocks_render_sharing( $attributes ) {
 		}
 	}
 
+	// IMPORTANT: never pass null into sprintf class placeholders.
+	$share_button_style = isset( $attributes['shareButtonStyle'] ) ? esc_attr( $attributes['shareButtonStyle'] ) : '';
+	$share_button_shape = isset( $attributes['shareButtonShape'] ) ? esc_attr( $attributes['shareButtonShape'] ) : '';
+	$share_button_size  = isset( $attributes['shareButtonSize'] ) ? esc_attr( $attributes['shareButtonSize'] ) : '';
+	$share_button_color = isset( $attributes['shareButtonColor'] ) ? esc_attr( $attributes['shareButtonColor'] ) : '';
+	$share_alignment    = isset( $attributes['shareAlignment'] ) ? 'gb-align-' . esc_attr( $attributes['shareAlignment'] ) : '';
+
 	$block_content = sprintf(
 		'<div class="wp-block-genesis-blocks-gb-sharing gb-block-sharing %2$s %3$s %4$s %5$s %6$s">
 			<ul class="gb-share-list">%1$s</ul>
 		</div>',
 		$share_url,
-		isset( $attributes['shareButtonStyle'] ) ? esc_attr( $attributes['shareButtonStyle'] ) : null,
-		isset( $attributes['shareButtonShape'] ) ? esc_attr( $attributes['shareButtonShape'] ) : null,
-		isset( $attributes['shareButtonSize'] ) ? esc_attr( $attributes['shareButtonSize'] ) : null,
-		isset( $attributes['shareButtonColor'] ) ? esc_attr( $attributes['shareButtonColor'] ) : null,
-		isset( $attributes['shareAlignment'] ) ? 'gb-align-' . esc_attr( $attributes['shareAlignment'] ) : null
+		$share_button_style,
+		$share_button_shape,
+		$share_button_size,
+		$share_button_color,
+		$share_alignment
 	);
 
 	return $block_content;

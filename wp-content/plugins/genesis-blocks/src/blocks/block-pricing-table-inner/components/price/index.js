@@ -3,25 +3,17 @@
  */
 
 // Import block dependencies and components
-import classnames from 'classnames';
 import Edit from './edit';
+import Save from './save';
 
 import deprecated from './deprecated/deprecated';
 
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
-const { Component, Fragment } = wp.element;
-
-const {
-	RichText,
-	getFontSizeClass,
-	FontSizePicker,
-	withFontSizes,
-	getColorClassName,
-} = wp.blockEditor;
 
 // Register the block
 registerBlockType('genesis-blocks/gb-pricing-table-price', {
+	apiVersion: 3,
 	title: __('Product Price', 'genesis-blocks'),
 	description: __(
 		'Adds a product price component with schema markup.',
@@ -91,123 +83,14 @@ registerBlockType('genesis-blocks/gb-pricing-table-price', {
 		},
 	},
 
-	// Render the block components
-	edit: Edit,
+	/* Render the block in the editor. */
+	edit: (props) => {
+		return <Edit {...props} />;
+	},
 
-	// Save the attributes and markup
-	save(props) {
-		// Setup the attributes
-		const {
-			price,
-			currency,
-			fontSize,
-			customFontSize,
-			backgroundColor,
-			textColor,
-			customBackgroundColor,
-			customTextColor,
-			term,
-			showTerm,
-			showCurrency,
-			paddingTop,
-			paddingRight,
-			paddingBottom,
-			paddingLeft,
-		} = props.attributes;
-
-		// Retreive the fontSizeClass
-		const fontSizeClass = getFontSizeClass(fontSize);
-
-		// Retreive the getColorClassName
-		const textClass = getColorClassName('color', textColor);
-		const backgroundClass = getColorClassName(
-			'background-color',
-			backgroundColor
-		);
-
-		// Setup wrapper class names
-		const wrapperClassName = classnames({
-			'has-background': backgroundColor || customBackgroundColor,
-			'gb-pricing-table-price-wrap': true,
-			[textClass]: textClass,
-			[backgroundClass]: backgroundClass,
-			'gb-pricing-has-currency': showCurrency && currency,
-		});
-
-		// Setup class names
-		const className = classnames({
-			'gb-pricing-table-price': true,
-			[fontSizeClass]: fontSizeClass,
-		});
-
-		// Setup styles
-		const wrapperStyles = {
-			backgroundColor: backgroundClass
-				? undefined
-				: customBackgroundColor,
-			color: textClass ? undefined : customTextColor,
-			paddingTop: paddingTop ? paddingTop + 'px' : undefined,
-			paddingRight: paddingRight ? paddingRight + 'px' : undefined,
-			paddingBottom: paddingBottom ? paddingBottom + 'px' : undefined,
-			paddingLeft: paddingLeft ? paddingLeft + 'px' : undefined,
-		};
-
-		// Setup styles
-		const styles = {
-			fontSize: fontSizeClass ? undefined : customFontSize,
-		};
-
-		// Setup currency styles
-		const computedFontSize = fontSizeClass ? undefined : customFontSize;
-		const currencySize = Math.floor(computedFontSize / 2.5);
-		const currencyStyles = {
-			fontSize: computedFontSize ? currencySize + 'px' : undefined,
-		};
-
-		// Setup term styles
-		const termSize = Math.floor(computedFontSize / 2.5);
-		const termStyles = {
-			fontSize: computedFontSize ? termSize + 'px' : undefined,
-		};
-
-		// Save the block markup for the front end
-		return (
-			<div
-				className={wrapperClassName ? wrapperClassName : undefined}
-				style={wrapperStyles}
-			>
-				<div
-					itemProp="offers"
-					itemScope
-					itemType="http://schema.org/Offer"
-				>
-					{currency && showCurrency && (
-						<RichText.Content
-							tagName="span"
-							itemProp="priceCurrency"
-							value={currency}
-							className="gb-pricing-table-currency"
-							style={currencyStyles}
-						/>
-					)}
-					<RichText.Content
-						tagName="div"
-						itemProp="price"
-						value={price}
-						className={className ? className : undefined}
-						style={styles}
-					/>
-					{term && showTerm && (
-						<RichText.Content
-							tagName="span"
-							value={term}
-							className="gb-pricing-table-term"
-							style={termStyles}
-						/>
-					)}
-				</div>
-			</div>
-		);
+	/* Save the block markup. */
+	save: (props) => {
+		return <Save {...props} />;
 	},
 
 	deprecated,

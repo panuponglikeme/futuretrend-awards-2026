@@ -78,6 +78,11 @@ class Inspector extends Component {
 			fallbackTextColor,
 		} = this.props;
 
+		const rangeProps = {
+			__next40pxDefaultSize: true,
+			__nextHasNoMarginBottom: true,
+		};
+
 		// Border styles
 		const borderStyles = [
 			{ value: 'gb-list-border-none', label: __('None') },
@@ -96,9 +101,12 @@ class Inspector extends Component {
 						fallbackFontSize={fallbackFontSize}
 						value={fontSize.size}
 						onChange={setFontSize}
+						__next40pxDefaultSize
 						__nextHasNoMarginBottom
 					/>
 					<SelectControl
+						__next40pxDefaultSize
+						__nextHasNoMarginBottom
 						label={__('List Border Style', 'genesis-blocks')}
 						value={borderStyle}
 						options={borderStyles.map(({ value, label }) => ({
@@ -111,6 +119,7 @@ class Inspector extends Component {
 					/>
 					{'gb-list-border-none' !== borderStyle && (
 						<RangeControl
+							{...rangeProps}
 							label={__('List Border Width', 'genesis-blocks')}
 							value={borderWidth}
 							onChange={(value) =>

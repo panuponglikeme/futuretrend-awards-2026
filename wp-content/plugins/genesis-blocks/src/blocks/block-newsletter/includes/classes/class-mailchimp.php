@@ -140,5 +140,4 @@ final class Mailchimp implements Provider_Interface {
 
 		return (array) $lists;
 	}
-
 }

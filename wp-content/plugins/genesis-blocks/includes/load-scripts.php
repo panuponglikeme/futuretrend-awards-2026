@@ -9,19 +9,26 @@
  */
 
 /**
- * Enqueue assets for frontend and backend
+ * Enqueue block styles for the frontend.
+ *
+ * This intentionally runs on `init`, as it did before 3.1.9, so the frontend
+ * stylesheet keeps its historical position before theme styles.
  *
  * @since 1.0.0
  */
 function genesis_blocks_block_assets() {
 
-	// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison -- Could be true or 'true'.
+	if ( is_admin() ) {
+		return;
+	}
+
+	// phpcs:ignore Universal.Operators.StrictComparisons.LooseEqual -- Could be true or 'true'.
 	$postfix = ( SCRIPT_DEBUG == true ) ? '' : '.min';
 
 	// Load the compiled styles.
 	wp_enqueue_style(
 		'genesis-blocks-style-css',
-		plugins_url( 'dist/style-blocks.build.css', dirname( __FILE__ ) ),
+		plugins_url( 'dist/style-blocks.build.css', __DIR__ ),
 		array(),
 		filemtime( plugin_dir_path( genesis_blocks_main_plugin_file() ) . 'dist/style-blocks.build.css' )
 	);
@@ -29,32 +36,61 @@ function genesis_blocks_block_assets() {
 add_action( 'init', 'genesis_blocks_block_assets' );
 
 /**
+ * Enqueue block styles for the editor iframe.
+ *
+ * This function uses the 'enqueue_block_assets' hook to ensure editor styles are
+ * properly loaded in the iframe editor (WordPress 5.9+). This prevents the
+ * warning: "genesis-blocks-block-editor-css-css was added to the iframe incorrectly".
+ *
+ * @since 3.1.9
+ */
+function genesis_blocks_editor_block_assets() {
+
+	if ( is_admin() ) {
+		wp_enqueue_style(
+			'genesis-blocks-style-css',
+			plugins_url( 'dist/style-blocks.build.css', __DIR__ ),
+			array(),
+			filemtime( plugin_dir_path( genesis_blocks_main_plugin_file() ) . 'dist/style-blocks.build.css' )
+		);
+
+		wp_enqueue_style(
+			'genesis-blocks-block-editor-css',
+			plugins_url( 'dist/blocks.build.css', __DIR__ ),
+			array( 'wp-edit-blocks' ),
+			filemtime( plugin_dir_path( genesis_blocks_main_plugin_file() ) . 'dist/blocks.build.css' )
+		);
+	}
+}
+add_action( 'enqueue_block_assets', 'genesis_blocks_editor_block_assets' );
+
+/**
  * Enqueue assets for backend editor
+ *
+ * This function only handles JavaScript and localization now.
+ * Editor styles have been moved to genesis_blocks_editor_block_assets() to work
+ * correctly with the WordPress iframe editor (5.9+).
  *
  * @since 1.0.0
  */
 function genesis_blocks_editor_assets() {
 
-	// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison -- Could be true or 'true'.
+	// phpcs:ignore Universal.Operators.StrictComparisons.LooseEqual -- Could be true or 'true'.
 	$postfix     = ( SCRIPT_DEBUG == true ) ? '' : '.min';
 	$js_metadata = require plugin_dir_path( genesis_blocks_main_plugin_file() ) . 'dist/blocks.build.asset.php';
 
 	// Load the compiled blocks into the editor.
 	wp_enqueue_script(
 		'genesis-blocks-block-js',
-		plugins_url( '/dist/blocks.build.js', dirname( __FILE__ ) ),
+		plugins_url( '/dist/blocks.build.js', __DIR__ ),
 		$js_metadata['dependencies'],
 		$js_metadata['version'],
 		true
 	);
 
-	// Load the compiled styles into the editor.
-	wp_enqueue_style(
-		'genesis-blocks-block-editor-css',
-		plugins_url( 'dist/blocks.build.css', dirname( __FILE__ ) ),
-		array( 'wp-edit-blocks' ),
-		filemtime( plugin_dir_path( genesis_blocks_main_plugin_file() ) . 'dist/blocks.build.css' )
-	);
+	// Note: Editor styles are now loaded via the
+	// 'enqueue_block_assets' hook in genesis_blocks_editor_block_assets().
+	// This prevents the "added to iframe incorrectly" warning in WordPress 5.9+
 
 	$user_data = wp_get_current_user();
 	unset( $user_data->user_pass, $user_data->user_email );
@@ -68,7 +104,7 @@ function genesis_blocks_editor_assets() {
 			'user_data'              => $user_data,
 			'pro_activated'          => genesis_blocks_is_pro(),
 			'is_wpe'                 => function_exists( 'is_wpe' ),
-			'pattern_fallback_image' => plugins_url( 'dist/assets/images/gb-fallback-image.jpg', dirname( __FILE__ ) ),
+			'pattern_fallback_image' => plugins_url( 'dist/assets/images/gb-fallback-image.jpg', __DIR__ ),
 			'featuresEnabled'        => get_enabled_features(),
 		)
 	);
@@ -90,7 +126,7 @@ function genesis_blocks_frontend_assets() {
 	// Load the dismissible notice js.
 	wp_enqueue_script(
 		'genesis-blocks-dismiss-js',
-		plugins_url( '/dist/assets/js/dismiss.js', dirname( __FILE__ ) ),
+		plugins_url( '/dist/assets/js/dismiss.js', __DIR__ ),
 		array(),
 		filemtime( plugin_dir_path( genesis_blocks_main_plugin_file() ) . '/dist/assets/js/dismiss.js' ),
 		true
@@ -114,7 +150,7 @@ function genesis_blocks_add_custom_block_category( $categories ) {
 		),
 		array_filter(
 			$categories,
-			function( $category ) {
+			function ( $category ) {
 				return 'genesis-blocks' !== $category['slug'];
 			}
 		)

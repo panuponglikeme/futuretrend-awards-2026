@@ -118,7 +118,6 @@ final class AdminPage {
 			self::SETTINGS_SUBMENU_SLUG,
 			[ $this, 'render' ]
 		);
-
 	}
 
 	/**
@@ -228,7 +227,7 @@ final class AdminPage {
 	 * @param  array $page The slug name of the page whose settings sections you want to output.
 	 * @return array
 	 */
-	public function get_settings_sections( $page ) : array {
+	public function get_settings_sections( $page ): array {
 		global $wp_settings_sections, $wp_settings_fields;
 
 		$settings_sections = [

@@ -68,6 +68,7 @@ export default function ButtonSettings(props) {
 			<RenderSettingControl id="gb_button_buttonOptions">
 				{false !== enableButtonTarget && (
 					<ToggleControl
+						__nextHasNoMarginBottom
 						label={__('Open link in new window', 'genesis-blocks')}
 						checked={buttonTarget}
 						onChange={onChangeButtonTarget}
@@ -75,6 +76,8 @@ export default function ButtonSettings(props) {
 				)}
 				{false !== enableButtonSize && (
 					<SelectControl
+						__next40pxDefaultSize
+						__nextHasNoMarginBottom
 						selected={buttonSize}
 						label={__('Button Size', 'genesis-blocks')}
 						value={buttonSize}
@@ -87,6 +90,8 @@ export default function ButtonSettings(props) {
 				)}
 				{false !== enableButtonShape && (
 					<SelectControl
+						__next40pxDefaultSize
+						__nextHasNoMarginBottom
 						label={__('Button Shape', 'genesis-blocks')}
 						value={buttonShape}
 						options={buttonShapeOptions.map(({ value, label }) => ({

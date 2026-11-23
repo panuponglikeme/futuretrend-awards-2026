@@ -91,6 +91,8 @@ export default class Inspector extends Component {
 						</p>
 
 						<ToggleControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label={__('Twitter', 'genesis-blocks')}
 							checked={!!this.props.attributes.twitter}
 							onChange={() =>
@@ -100,6 +102,8 @@ export default class Inspector extends Component {
 							}
 						/>
 						<ToggleControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label={__('Facebook', 'genesis-blocks')}
 							checked={!!this.props.attributes.facebook}
 							onChange={() =>
@@ -109,6 +113,8 @@ export default class Inspector extends Component {
 							}
 						/>
 						<ToggleControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label={__('Pinterest', 'genesis-blocks')}
 							checked={!!this.props.attributes.pinterest}
 							onChange={() =>
@@ -118,6 +124,8 @@ export default class Inspector extends Component {
 							}
 						/>
 						<ToggleControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label={__('LinkedIn', 'genesis-blocks')}
 							checked={!!this.props.attributes.linkedin}
 							onChange={() =>
@@ -127,6 +135,8 @@ export default class Inspector extends Component {
 							}
 						/>
 						<ToggleControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label={__('Reddit', 'genesis-blocks')}
 							checked={!!this.props.attributes.reddit}
 							onChange={() =>
@@ -136,6 +146,8 @@ export default class Inspector extends Component {
 							}
 						/>
 						<ToggleControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label={__('Email', 'genesis-blocks')}
 							checked={!!this.props.attributes.email}
 							onChange={() =>
@@ -153,6 +165,8 @@ export default class Inspector extends Component {
 				>
 					<RenderSettingControl id="gb_sharing_shareButtonStyle">
 						<SelectControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label={__('Button Style', 'genesis-blocks')}
 							value={this.props.attributes.shareButtonStyle}
 							options={buttonStyleOptions.map(
@@ -170,6 +184,8 @@ export default class Inspector extends Component {
 					</RenderSettingControl>
 					<RenderSettingControl id="gb_sharing_shareButtonShape">
 						<SelectControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label={__('Button Shape', 'genesis-blocks')}
 							value={this.props.attributes.shareButtonShape}
 							options={buttonShapeOptions.map(
@@ -187,6 +203,8 @@ export default class Inspector extends Component {
 					</RenderSettingControl>
 					<RenderSettingControl id="gb_sharing_shareButtonSize">
 						<SelectControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label={__('Button Size', 'genesis-blocks')}
 							value={this.props.attributes.shareButtonSize}
 							options={shareButtonSizeOptions.map(
@@ -204,6 +222,8 @@ export default class Inspector extends Component {
 					</RenderSettingControl>
 					<RenderSettingControl id="gb_sharing_shareButtonColor">
 						<SelectControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label={__('Button Color', 'genesis-blocks')}
 							value={this.props.attributes.shareButtonColor}
 							options={shareButtonColorOptions.map(

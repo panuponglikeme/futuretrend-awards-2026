@@ -45,6 +45,8 @@ class Inspector extends Component {
 						initialOpen={false}
 					>
 						<SelectControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label={__('Margin Unit', 'genesis-blocks')}
 							help={__(
 								'Choose between pixel, percent, or em units.',
@@ -59,6 +61,8 @@ class Inspector extends Component {
 							}
 						/>
 						<ToggleControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label={__('Sync Margin', 'genesis-blocks')}
 							help={__(
 								'Top and bottom margins will have the same value.',
@@ -108,6 +112,8 @@ class Inspector extends Component {
 						)}
 						<hr />
 						<SelectControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label={__('Padding Unit', 'genesis-blocks')}
 							help={__(
 								'Choose between pixel, percent, or em units.',
@@ -122,6 +128,8 @@ class Inspector extends Component {
 							}
 						/>
 						<ToggleControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label={__('Sync Padding', 'genesis-blocks')}
 							help={__(
 								'Padding on all sides will have the same value.',

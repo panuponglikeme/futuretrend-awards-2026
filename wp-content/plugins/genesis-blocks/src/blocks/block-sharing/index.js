@@ -15,6 +15,7 @@ const { registerBlockType } = wp.blocks;
 
 // Register the block
 registerBlockType('genesis-blocks/gb-sharing', {
+	apiVersion: 3,
 	title: __('Sharing', 'genesis-blocks'),
 	description: __(
 		'Add sharing buttons to your posts and pages.',
@@ -47,9 +48,7 @@ registerBlockType('genesis-blocks/gb-sharing', {
 	},
 
 	// Render the block components
-	edit: (props) => {
-		return <Edit {...props} clientId={props.clientId} />;
-	},
+	edit: Edit,
 
 	// Render via PHP
 	save() {

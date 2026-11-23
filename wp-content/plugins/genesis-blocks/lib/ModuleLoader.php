@@ -57,7 +57,7 @@ final class ModuleLoader {
 	 *
 	 * @return array
 	 */
-	private function get_modules() : array {
+	private function get_modules(): array {
 		return glob( __DIR__ . '/*/Module.php' );
 	}
 

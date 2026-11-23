@@ -22,6 +22,11 @@ const { RangeControl, SelectControl, PanelBody } = wp.components;
  */
 export default class Inspector extends Component {
 	render() {
+		const rangeProps = {
+			__next40pxDefaultSize: true,
+			__nextHasNoMarginBottom: true,
+		};
+		
 		// Setup the attributes
 		const { dropCapFontSize, dropCapStyle } = this.props.attributes;
 
@@ -46,6 +51,7 @@ export default class Inspector extends Component {
 				<PanelBody>
 					<RenderSettingControl id="gb_dropcap_dropCapFontSize">
 						<RangeControl
+							{...rangeProps}
 							label={__('Drop Cap Size', 'genesis-blocks')}
 							value={dropCapFontSize}
 							onChange={(value) =>
@@ -61,6 +67,8 @@ export default class Inspector extends Component {
 
 					<RenderSettingControl id="gb_dropcap_dropCapStyle">
 						<SelectControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label={__('Drop Cap Style', 'genesis-blocks')}
 							description={__(
 								'Choose the style of the drop cap in your paragraph',

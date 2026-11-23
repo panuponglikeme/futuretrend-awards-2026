@@ -20,6 +20,8 @@ const { registerBlockType } = wp.blocks;
  * Register the Layout block
  */
 registerBlockType('genesis-blocks/gb-layouts', {
+	/* Enable Block API v3 so Gutenberg uses the new wrapper contract. */
+	apiVersion: 3,
 	title: __('Layouts', 'genesis-blocks'),
 	description: __(
 		'Add a pre-defined section or layout to posts and pages.',
@@ -42,7 +44,8 @@ registerBlockType('genesis-blocks/gb-layouts', {
 		);
 	},
 
-	/* Save the block markup. */
+	/* The layout block is only an editor-side inserter and replaces itself with
+		actual content, so there is no front-end save markup to persist. */
 	save: () => {
 		return null;
 	},

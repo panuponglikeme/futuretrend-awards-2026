@@ -38,6 +38,11 @@ export default class Inspector extends Component {
 		} = this.props.attributes;
 		const { setAttributes } = this.props;
 
+		const rangeProps = {
+			__next40pxDefaultSize: true,
+			__nextHasNoMarginBottom: true,
+		};
+
 		const onSelectImage = (img) => {
 			setAttributes({
 				containerImgID: img.id,
@@ -66,6 +71,7 @@ export default class Inspector extends Component {
 						initialOpen={true}
 					>
 						<RangeControl
+							{...rangeProps}
 							label={__('Padding Top (%)', 'genesis-blocks')}
 							value={containerPaddingTop}
 							onChange={(value) =>
@@ -79,6 +85,7 @@ export default class Inspector extends Component {
 						/>
 
 						<RangeControl
+							{...rangeProps}
 							label={__('Padding Bottom (%)', 'genesis-blocks')}
 							value={containerPaddingBottom}
 							onChange={(value) =>
@@ -92,6 +99,7 @@ export default class Inspector extends Component {
 						/>
 
 						<RangeControl
+							{...rangeProps}
 							label={__('Padding Left (%)', 'genesis-blocks')}
 							value={containerPaddingLeft}
 							onChange={(value) =>
@@ -105,6 +113,7 @@ export default class Inspector extends Component {
 						/>
 
 						<RangeControl
+							{...rangeProps}
 							label={__('Padding Right (%)', 'genesis-blocks')}
 							value={containerPaddingRight}
 							onChange={(value) =>
@@ -118,6 +127,7 @@ export default class Inspector extends Component {
 						/>
 
 						<RangeControl
+							{...rangeProps}
 							label={__('Margin Top (%)', 'genesis-blocks')}
 							value={containerMarginTop}
 							onChange={(value) =>
@@ -131,6 +141,7 @@ export default class Inspector extends Component {
 						/>
 
 						<RangeControl
+							{...rangeProps}
 							label={__('Margin Bottom (%)', 'genesis-blocks')}
 							value={containerMarginBottom}
 							onChange={(value) =>
@@ -144,6 +155,7 @@ export default class Inspector extends Component {
 						/>
 
 						<RangeControl
+							{...rangeProps}
 							label={__(
 								'Inside Container Max Width (px)',
 								'genesis-blocks'
@@ -207,6 +219,7 @@ export default class Inspector extends Component {
 
 						{containerImgURL && !!containerImgURL.length && (
 							<RangeControl
+								{...rangeProps}
 								label={__('Image Opacity', 'genesis-blocks')}
 								value={containerDimRatio}
 								onChange={(value) =>

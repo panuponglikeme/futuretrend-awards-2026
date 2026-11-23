@@ -53,7 +53,7 @@ final class ManualRequireTest extends TestCase {
 		$this->module = new ManualRequire(
 			[
 				'url'     => 'https://example.com/wp-content/plugins/genesis-blocks/',
-				'path'    => dirname( dirname( dirname( dirname( __FILE__ ) ) ) ) . '/',
+				'path'    => dirname( __DIR__, 3 ) . '/',
 				'version' => 1,
 				'theme'   => 'unknown',
 			]
@@ -73,6 +73,14 @@ final class ManualRequireTest extends TestCase {
 			has_action(
 				'init',
 				'genesis_blocks_block_assets'
+			)
+		);
+
+		$this->assertEquals(
+			10,
+			has_action(
+				'enqueue_block_assets',
+				'genesis_blocks_editor_block_assets'
 			)
 		);
 
@@ -109,6 +117,15 @@ final class ManualRequireTest extends TestCase {
 				)
 			);
 		}
+
+		Functions\expect( 'is_admin' )
+			->once()
+			->andReturn( true );
+
+		Functions\expect( 'wp_enqueue_style' )
+			->never();
+
+		genesis_blocks_block_assets();
 	}
 
 	/**

@@ -1,26 +1,22 @@
 // Import block dependencies and components
 import classnames from 'classnames';
 import Inspector from './inspector';
-
-// Import Button settings
-import CustomButton from './../../../block-button/components/button';
+import PricingButton from './button';
 
 const { __ } = wp.i18n;
-const { registerBlockType } = wp.blocks;
 const { compose } = wp.compose;
-const { Component, Fragment } = wp.element;
+const { Component } = wp.element;
 
-const { RichText, withFontSizes, withColors, InnerBlocks, URLInput } =
+const { RichText, useBlockProps, withFontSizes, withColors, URLInput } =
 	wp.blockEditor;
 
 const { Button, Dashicon, Icon } = wp.components;
 
-class Edit extends Component {
+class EditView extends Component {
 	render() {
 		// Setup the attributes
 		const {
 			attributes: {
-				subtitle,
 				paddingTop,
 				paddingRight,
 				paddingBottom,
@@ -35,9 +31,9 @@ class Edit extends Component {
 				buttonTarget,
 			},
 			isSelected,
-			className,
 			setAttributes,
 			backgroundColor,
+			blockProps,
 		} = this.props;
 
 		// Setup class names
@@ -54,71 +50,75 @@ class Edit extends Component {
 			paddingLeft: paddingLeft ? paddingLeft + 'px' : undefined,
 		};
 
-		return [
-			<Fragment
-				key={
-					'gb-pricing-table-inner-component-button-' +
-					this.props.clientId
-				}
-			>
+		return (
+			<div {...blockProps}>
+				{/* Show the block controls on focus. */}
 				<Inspector {...this.props} />
-				<div
+				{/* Keep blockProps on the editor wrapper only so the nested
+					button markup does not duplicate block metadata in the canvas. */}
+				<PricingButton
+					attributes={this.props.attributes}
 					className={editClassName ? editClassName : undefined}
-					style={editStyles}
+					styles={editStyles}
 				>
-					<CustomButton {...this.props}>
-						<RichText
-							tagName="span"
-							placeholder={__('Button text…', 'genesis-blocks')}
-							value={buttonText}
-							allowedFormats={[]}
-							className={classnames(
-								'gb-button',
-								buttonShape,
-								buttonSize
-							)}
-							style={{
-								color: buttonTextColor,
-								backgroundColor: buttonBackgroundColor,
-							}}
+					<RichText
+						tagName="span"
+						placeholder={__('Button text…', 'genesis-blocks')}
+						value={buttonText}
+						allowedFormats={[]}
+						className={classnames(
+							'gb-button',
+							buttonShape,
+							buttonSize
+						)}
+						style={{
+							color: buttonTextColor,
+							backgroundColor: buttonBackgroundColor,
+						}}
+						onChange={(value) =>
+							setAttributes({ buttonText: value })
+						}
+					/>
+				</PricingButton>
+				{isSelected && (
+					<form
+						key="form-link"
+						className={`blocks-button__inline-link gb-button-${buttonAlignment}`}
+						onSubmit={(event) => event.preventDefault()}
+						style={{
+							textAlign: buttonAlignment,
+						}}
+					>
+						<Dashicon icon={'admin-links'} />
+						<URLInput
+							className="button-url"
+							value={buttonUrl}
 							onChange={(value) =>
-								setAttributes({ buttonText: value })
+								setAttributes({ buttonUrl: value })
 							}
+							__nextHasNoMarginBottom
 						/>
-					</CustomButton>
-					{isSelected && (
-						<form
-							key="form-link"
-							className={`blocks-button__inline-link gb-button-${buttonAlignment}`}
-							onSubmit={(event) => event.preventDefault()}
-							style={{
-								textAlign: buttonAlignment,
-							}}
+						<Button
+							label={__('Apply', 'genesis-blocks')}
+							type="submit"
 						>
-							<Dashicon icon={'admin-links'} />
-							<URLInput
-								className="button-url"
-								value={buttonUrl}
-								onChange={(value) =>
-									setAttributes({ buttonUrl: value })
-								}
-								__nextHasNoMarginBottom
-							/>
-							<Button
-								label={__('Apply', 'genesis-blocks')}
-								type="submit"
-							>
-								<Icon icon="editor-break" />
-							</Button>
-						</form>
-					)}
-				</div>
-			</Fragment>,
-		];
+							<Icon icon="editor-break" />
+						</Button>
+					</form>
+				)}
+			</div>
+		);
 	}
 }
 
-export default compose([
+const EditWithBlockSupport = compose([
 	withFontSizes('fontSize'),
 	withColors('backgroundColor', { textColor: 'color' }),
-])(Edit);
+])(EditView);
+
+/* Wrapper required for Block API v3 */
+export default function Edit(props) {
+	const blockProps = useBlockProps();
+
+	return <EditWithBlockSupport {...props} blockProps={blockProps} />;
+}

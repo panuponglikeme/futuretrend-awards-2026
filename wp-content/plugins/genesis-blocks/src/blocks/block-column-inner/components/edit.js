@@ -9,14 +9,21 @@ import Column from './column';
  */
 const { __ } = wp.i18n;
 const { compose } = wp.compose;
-const { Component } = wp.element;
+const { Component, Fragment } = wp.element;
 const { ToolbarGroup } = wp.components;
-const { AlignmentToolbar, BlockControls, InnerBlocks, withColors } =
+const { AlignmentToolbar, BlockControls, InnerBlocks, useBlockProps, withColors } =
 	wp.blockEditor;
 
-class Edit extends Component {
+class EditView extends Component {
 	render() {
-		const { attributes, setAttributes } = this.props;
+		const {
+			attributes,
+			backgroundColor,
+			blockProps,
+			setAttributes,
+			textColor,
+			...columnProps
+		} = this.props;
 
 		const toolbarControls = [
 			{
@@ -42,34 +49,47 @@ class Edit extends Component {
 			},
 		];
 
-		return [
-			<BlockControls key="controls">
-				<AlignmentToolbar
-					value={attributes.textAlign}
-					onChange={(value) => {
-						setAttributes({ textAlign: value });
-					}}
-				/>
-				<ToolbarGroup controls={toolbarControls} />
-			</BlockControls>,
-			<Inspector {...this.props} key="inspector" />,
-			<Column
-				/* Pass through the live color value to the Column component */
-				backgroundColorValue={this.props.backgroundColor.color}
-				textColorValue={this.props.textColor.color}
-				{...this.props}
-				key="column"
-			>
-				<InnerBlocks
-					template={[['core/paragraph']]}
-					templateLock={false}
-					templateInsertUpdatesSelection={false}
-				/>
-			</Column>,
-		];
+		return (
+			<Fragment>
+				<BlockControls key="controls">
+					<AlignmentToolbar
+						value={attributes.textAlign}
+						onChange={(value) => {
+							setAttributes({ textAlign: value });
+						}}
+					/>
+					<ToolbarGroup controls={toolbarControls} />
+				</BlockControls>
+				<Inspector {...this.props} key="inspector" />
+				{/* Let the shared Column wrapper own the Block API v3 root so the
+					inner paragraph remains directly clickable in the editor. */}
+				<Column
+					blockProps={blockProps}
+					/* Pass through the live color value to the Column component. */
+					backgroundColorValue={backgroundColor.color}
+					textColorValue={textColor.color}
+					{...columnProps}
+					attributes={attributes}
+					key="column"
+				>
+					<InnerBlocks
+						template={[['core/paragraph']]}
+						templateLock={false}
+						templateInsertUpdatesSelection={false}
+					/>
+				</Column>
+			</Fragment>
+		);
 	}
 }
 
-export default compose([withColors('backgroundColor', { textColor: 'color' })])(
-	Edit
-);
+const EditWithBlockSupport = compose([
+	withColors('backgroundColor', { textColor: 'color' }),
+])(EditView);
+
+/* Wrapper required for Block API v3 */
+export default function Edit(props) {
+	const blockProps = useBlockProps();
+
+	return <EditWithBlockSupport {...props} blockProps={blockProps} />;
+}

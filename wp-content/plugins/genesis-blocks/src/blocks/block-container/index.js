@@ -3,8 +3,8 @@
  */
 
 // Import block dependencies and components
-import Inspector from './components/inspector';
-import Container from './components/container';
+import Edit from './components/edit';
+import Save from './components/save';
 
 // Deprecated components
 import deprecated from './deprecated/deprecated';
@@ -13,17 +13,11 @@ import deprecated from './deprecated/deprecated';
 import './styles/style.scss';
 import './styles/editor.scss';
 
-// Components
+// Internationalization
 const { __ } = wp.i18n;
-
-// Extend component
-const { Component } = wp.element;
 
 // Register block
 const { registerBlockType } = wp.blocks;
-
-// Register editor components
-const { InnerBlocks } = wp.blockEditor;
 
 const blockAttributes = {
 	containerPaddingTop: {
@@ -74,31 +68,9 @@ const blockAttributes = {
 	},
 };
 
-class GBContainerBlock extends Component {
-	render() {
-		// Setup the attributes
-		const { setAttributes } = this.props;
-
-		return [
-			// Show the block controls on focus
-			<Inspector
-				key={'gb-container-inspector-' + this.props.clientId}
-				{...{ setAttributes, ...this.props }}
-			/>,
-
-			// Show the container markup in the editor
-			<Container
-				key={'gb-container-' + this.props.clientId}
-				{...this.props}
-			>
-				<InnerBlocks />
-			</Container>,
-		];
-	}
-}
-
 // Register the block
 registerBlockType('genesis-blocks/gb-container', {
+	apiVersion: 3,
 	title: __('Container', 'genesis-blocks'),
 	description: __(
 		'Add a container block to wrap several blocks in a parent container.',
@@ -127,19 +99,7 @@ registerBlockType('genesis-blocks/gb-container', {
 			title: __('Background Options', 'genesis-blocks'),
 		},
 	},
-
-	// Render the block components
-	edit: GBContainerBlock,
-
-	// Save the attributes and markup
-	save(props) {
-		// Save the block markup for the front end
-		return (
-			<Container {...props}>
-				<InnerBlocks.Content />
-			</Container>
-		);
-	},
+	
 	getEditWrapperProps({ containerWidth }) {
 		if (
 			'center' === containerWidth ||
@@ -149,6 +109,12 @@ registerBlockType('genesis-blocks/gb-container', {
 			return { 'data-align': containerWidth };
 		}
 	},
+
+	/* Render the block in the editor. */
+	edit: Edit,
+
+	/* Save the block markup. */
+	save: Save,
 
 	deprecated,
 });

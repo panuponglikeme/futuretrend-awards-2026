@@ -70,10 +70,10 @@ class UserMeta {
 				if ( isset( $user->ID ) ) {
 					$migrated_user_meta = $this->migrate_user( (int) $user->ID );
 					if ( is_wp_error( $migrated_user_meta ) ) {
-						$error_count++;
+						++$error_count;
 						$errors->add( $migrated_user_meta->get_error_code(), $migrated_user_meta->get_error_message() );
 					} else {
-						$success_count++;
+						++$success_count;
 					}
 				}
 			}

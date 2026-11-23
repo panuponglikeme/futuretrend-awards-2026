@@ -41,6 +41,11 @@ export default class Inspector extends Component {
 		} = this.props.attributes;
 		const { setAttributes } = this.props;
 
+		const rangeProps = {
+			__next40pxDefaultSize: true,
+			__nextHasNoMarginBottom: true,
+		};
+
 		/* Avatar shape options. */
 		const profileAvatarShapeOptions = [
 			{ value: 'square', label: __('Square', 'genesis-blocks') },
@@ -60,6 +65,7 @@ export default class Inspector extends Component {
 				<PanelBody>
 					<RenderSettingControl id="gb_author_profile_profileFontSize">
 						<RangeControl
+							{...rangeProps}
 							label={__('Font Size', 'genesis-blocks')}
 							value={profileFontSize}
 							onChange={(value) =>
@@ -75,6 +81,8 @@ export default class Inspector extends Component {
 
 					<RenderSettingControl id="gb_author_profile_profileAvatarShape">
 						<SelectControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label={__('Avatar Shape', 'genesis-blocks')}
 							description={__(
 								'Choose between a round or square avatar shape.',

@@ -1,15 +1,15 @@
 // Import block dependencies and components
 import classnames from 'classnames';
 import Inspector from './inspector';
+import Price from './price';
 
 const { __ } = wp.i18n;
-const { registerBlockType } = wp.blocks;
 const { compose } = wp.compose;
-const { Component, Fragment } = wp.element;
+const { Component } = wp.element;
 
-const { RichText, withFontSizes, withColors } = wp.blockEditor;
+const { RichText, useBlockProps, withFontSizes, withColors } = wp.blockEditor;
 
-class Edit extends Component {
+class EditView extends Component {
 	render() {
 		// Setup the attributes
 		const {
@@ -21,16 +21,14 @@ class Edit extends Component {
 				showCurrency,
 				paddingTop,
 				paddingRight,
-				paddingBottom,
-				paddingLeft,
+			paddingBottom,
+			paddingLeft,
 			},
-			isSelected,
-			className,
 			setAttributes,
-			fallbackFontSize,
 			fontSize,
 			backgroundColor,
 			textColor,
+			blockProps,
 		} = this.props;
 
 		// Setup wrapper class names
@@ -76,71 +74,72 @@ class Edit extends Component {
 			fontSize: fontSize.size ? termSize + 'px' : undefined,
 		};
 
-		return [
-			<Fragment
-				key={
-					'gb-pricing-table-inner-component-price-' +
-					this.props.clientId
-				}
-			>
+		return (
+			<div {...blockProps}>
+				{/* Show the block controls on focus. */}
 				<Inspector {...this.props} />
-				<div
-					className={
-						editClassWrapperName ? editClassWrapperName : undefined
+				{/* Keep blockProps on the editor wrapper only so the nested
+					pricing markup does not duplicate block metadata in the canvas. */}
+				<Price
+					key={
+						'gb-pricing-table-inner-component-price-' +
+						this.props.clientId
 					}
-					style={editWrapStyles}
+					wrapperClassName={editClassWrapperName}
+					wrapperStyles={editWrapStyles}
 				>
-					<div
-						itemProp="offers"
-						itemScope
-						itemType="http://schema.org/Offer"
-					>
-						{showCurrency && (
-							<RichText
-								tagName="span"
-								itemProp="priceCurrency"
-								placeholder={__('$', 'genesis-blocks')}
-								value={currency}
-								onChange={(value) =>
-									setAttributes({ currency: value })
-								}
-								className="gb-pricing-table-currency"
-								style={currencyStyles}
-							/>
-						)}
+					{showCurrency && (
 						<RichText
-							tagName="div"
-							itemProp="price"
-							placeholder={__('49', 'genesis-blocks')}
-							value={price}
+							tagName="span"
+							itemProp="priceCurrency"
+							placeholder={__('$', 'genesis-blocks')}
+							value={currency}
 							onChange={(value) =>
-								setAttributes({ price: value })
+								setAttributes({ currency: value })
 							}
-							style={editStyles}
-							className={
-								editClassName ? editClassName : undefined
-							}
+							className="gb-pricing-table-currency"
+							style={currencyStyles}
 						/>
-						{showTerm && (
-							<RichText
-								tagName="span"
-								value={term}
-								placeholder={__('/mo', 'genesis-blocks')}
-								onChange={(value) =>
-									setAttributes({ term: value })
-								}
-								className="gb-pricing-table-term"
-								style={termStyles}
-							/>
-						)}
-					</div>
-				</div>
-			</Fragment>,
-		];
+					)}
+					<RichText
+						tagName="div"
+						itemProp="price"
+						placeholder={__('49', 'genesis-blocks')}
+						value={price}
+						onChange={(value) =>
+							setAttributes({ price: value })
+						}
+						style={editStyles}
+						className={
+							editClassName ? editClassName : undefined
+						}
+					/>
+					{showTerm && (
+						<RichText
+							tagName="span"
+							value={term}
+							placeholder={__('/mo', 'genesis-blocks')}
+							onChange={(value) =>
+								setAttributes({ term: value })
+							}
+							className="gb-pricing-table-term"
+							style={termStyles}
+						/>
+					)}
+				</Price>
+			</div>
+		);
 	}
 }
 
-export default compose([
+const EditWithBlockSupport = compose([
 	withFontSizes('fontSize'),
 	withColors('backgroundColor', { textColor: 'color' }),
-])(Edit);
+])(EditView);
+
+/* Wrapper required for Block API v3 */
+export default function Edit(props) {
+	const blockProps = useBlockProps();
+
+	return <EditWithBlockSupport {...props} blockProps={blockProps} />;
+}

@@ -55,6 +55,11 @@ export default class Inspector extends Component {
 		} = this.props;
 		const { setAttributes } = this.props;
 
+		const rangeProps = {
+			__next40pxDefaultSize: true,
+			__nextHasNoMarginBottom: true,
+		};
+
 		// Update color values
 		const onChangeBackgroundColor = (value) =>
 			setAttributes({ noticeBackgroundColor: value });
@@ -68,6 +73,7 @@ export default class Inspector extends Component {
 				<PanelBody>
 					<RenderSettingControl id="gb_notice_noticeFontSize">
 						<RangeControl
+							{...rangeProps}
 							label={__('Font Size', 'genesis-blocks')}
 							value={noticeFontSize}
 							onChange={(value) =>
@@ -83,6 +89,8 @@ export default class Inspector extends Component {
 
 					<RenderSettingControl id="gb_notice_noticeDismiss">
 						<SelectControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label={__('Notice Display', 'genesis-blocks')}
 							description={__(
 								'Do you want the message to always show or dismissible?',

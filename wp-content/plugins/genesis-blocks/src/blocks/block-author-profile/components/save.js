@@ -10,7 +10,7 @@ import AvatarColumn from './avatar';
  * WordPress dependencies
  */
 const { Component } = wp.element;
-const { RichText } = wp.blockEditor;
+const { RichText, useBlockProps } = wp.blockEditor;
 
 export default class Save extends Component {
 	render() {
@@ -24,9 +24,12 @@ export default class Save extends Component {
 			profileTextColor,
 		} = this.props.attributes;
 
+		// Provide the saved block wrapper props to the outer profile container.
+		const blockProps = useBlockProps.save();
+
 		return (
 			/* Save the block markup for the front end */
-			<ProfileBox {...this.props}>
+			<ProfileBox {...this.props} blockProps={blockProps}>
 				{profileImgURL && profileImgID && (
 					<AvatarColumn {...this.props}>
 						<figure className="gb-profile-image-square">

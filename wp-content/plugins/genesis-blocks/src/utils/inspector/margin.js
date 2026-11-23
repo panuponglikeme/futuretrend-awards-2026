@@ -53,10 +53,16 @@ export default function MarginSettings(props) {
 		onChangeMarginHorizontal = () => {},
 	} = props;
 
+	const rangeProps = {
+		__next40pxDefaultSize: true,
+		__nextHasNoMarginBottom: true,
+	};
+
 	return (
 		<Fragment>
 			{marginEnableTop && (
 				<RangeControl
+					{...rangeProps}
 					label={
 						marginTopLabel
 							? marginTopLabel
@@ -70,6 +76,7 @@ export default function MarginSettings(props) {
 			)}
 			{marginEnableRight && (
 				<RangeControl
+					{...rangeProps}
 					label={
 						marginRightLabel
 							? marginRightLabel
@@ -83,6 +90,7 @@ export default function MarginSettings(props) {
 			)}
 			{marginEnableBottom && (
 				<RangeControl
+					{...rangeProps}
 					label={
 						marginBottomLabel
 							? marginBottomLabel
@@ -96,6 +104,7 @@ export default function MarginSettings(props) {
 			)}
 			{marginEnableLeft && (
 				<RangeControl
+					{...rangeProps}
 					label={
 						marginLeftLabel
 							? marginLeftLabel
@@ -109,6 +118,7 @@ export default function MarginSettings(props) {
 			)}
 			{marginEnableVertical && (
 				<RangeControl
+					{...rangeProps}
 					label={
 						marginVerticalLabel
 							? marginVerticalLabel
@@ -122,6 +132,7 @@ export default function MarginSettings(props) {
 			)}
 			{marginEnableHorizontal && (
 				<RangeControl
+					{...rangeProps}
 					label={
 						marginHorizontalLabel
 							? marginHorizontalLabel

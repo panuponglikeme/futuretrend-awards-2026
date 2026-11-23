@@ -19,7 +19,9 @@ import BackgroundImageStyles from './../../../utils/components/background-image/
  */
 export default class Column extends Component {
 	render() {
-		const { attributes } = this.props;
+		// Gutenberg can evaluate this shared wrapper with partial props while it
+		// extracts block content, so keep the attribute bag defensive here.
+		const { attributes = {}, blockProps = {} } = this.props;
 
 		/* Setup the margin styles. */
 		let marginStyle;
@@ -111,16 +113,22 @@ export default class Column extends Component {
 				: null;
 		}
 
+		/* Setup the wrapper classes. */
+		// Save passes blockProps so this wrapper becomes the persisted block root.
+		// Edit omits them and renders this inside the editor-only block wrapper.
+		const rootClassName = classnames(
+			blockProps.className,
+			'gb-block-layout-column',
+			attributes.columnVerticalAlignment
+				? 'gb-is-vertically-aligned-' +
+						attributes.columnVerticalAlignment
+				: null
+		);
+
 		return (
 			<div
-				className={classnames(
-					this.props.className,
-					'gb-block-layout-column',
-					attributes.columnVerticalAlignment
-						? 'gb-is-vertically-aligned-' +
-								attributes.columnVerticalAlignment
-						: null
-				)}
+				{...blockProps}
+				className={rootClassName ? rootClassName : undefined}
 			>
 				<div
 					className={classnames(

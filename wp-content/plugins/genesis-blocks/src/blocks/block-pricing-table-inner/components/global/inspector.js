@@ -77,6 +77,7 @@ class Inspector extends Component {
 						fallbackFontSize={fallbackFontSize}
 						value={fontSize.size}
 						onChange={setFontSize}
+						__next40pxDefaultSize
 						__nextHasNoMarginBottom
 					/>
 				</PanelBody>

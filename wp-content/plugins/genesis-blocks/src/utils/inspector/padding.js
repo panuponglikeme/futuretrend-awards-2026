@@ -56,10 +56,16 @@ export default function Padding(props) {
 		onChangePaddingHorizontal = () => {},
 	} = props;
 
+	const rangeProps = {
+		__next40pxDefaultSize: true,
+		__nextHasNoMarginBottom: true,
+	};
+
 	return (
 		<Fragment>
 			{paddingEnable && (
 				<RangeControl
+					{...rangeProps}
 					label={
 						paddingTitle
 							? paddingTitle
@@ -74,6 +80,7 @@ export default function Padding(props) {
 			)}
 			{paddingEnableTop && (
 				<RangeControl
+					{...rangeProps}
 					label={__('Padding Top', 'genesis-blocks')}
 					value={paddingTop}
 					min={paddingTopMin}
@@ -83,6 +90,7 @@ export default function Padding(props) {
 			)}
 			{paddingEnableRight && (
 				<RangeControl
+					{...rangeProps}
 					label={__('Padding Right', 'genesis-blocks')}
 					value={paddingRight}
 					min={paddingRightMin}
@@ -92,6 +100,7 @@ export default function Padding(props) {
 			)}
 			{paddingEnableBottom && (
 				<RangeControl
+					{...rangeProps}
 					label={__('Padding Bottom', 'genesis-blocks')}
 					value={paddingBottom}
 					min={paddingBottomMin}
@@ -101,6 +110,7 @@ export default function Padding(props) {
 			)}
 			{paddingEnableLeft && (
 				<RangeControl
+					{...rangeProps}
 					label={__('Padding Left', 'genesis-blocks')}
 					value={paddingLeft}
 					min={paddingLeftMin}
@@ -110,6 +120,7 @@ export default function Padding(props) {
 			)}
 			{paddingEnableVertical && (
 				<RangeControl
+					{...rangeProps}
 					label={__('Padding Vertical', 'genesis-blocks')}
 					value={paddingVertical}
 					min={paddingVerticalMin}
@@ -119,6 +130,7 @@ export default function Padding(props) {
 			)}
 			{paddingEnableHorizontal && (
 				<RangeControl
+					{...rangeProps}
 					label={__('Padding Horizontal', 'genesis-blocks')}
 					value={paddingHorizontal}
 					min={paddingHorizontalMin}

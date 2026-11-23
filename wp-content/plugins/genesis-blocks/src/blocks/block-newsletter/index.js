@@ -12,6 +12,7 @@ import './styles/style.scss';
 import './styles/editor.scss';
 
 registerBlockType('genesis-blocks/gb-newsletter', {
+	apiVersion: 3,
 	title: __('Email newsletter', 'genesis-blocks'),
 	description: __('Add an email newsletter sign-up form.', 'genesis-blocks'),
 	category: 'genesis-blocks',
@@ -21,7 +22,6 @@ registerBlockType('genesis-blocks/gb-newsletter', {
 		__('Subscribe', 'genesis-blocks'),
 		__('Newsletter', 'genesis-blocks'),
 	],
-	edit: Edit,
 	gb_settings_data: {
 		gb_newsletter_mailingList: {
 			title: __('Mailing List', 'genesis-blocks'),
@@ -42,6 +42,11 @@ registerBlockType('genesis-blocks/gb-newsletter', {
 			title: __('Color Options', 'genesis-blocks'),
 		},
 	},
+
+	/* Render the block in the editor. */
+	edit: Edit,
+
+	/* Newsletter is rendered dynamically on the front end in PHP. */
 	save: () => {
 		return null;
 	},

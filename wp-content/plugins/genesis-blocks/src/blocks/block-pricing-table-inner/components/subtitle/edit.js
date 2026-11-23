@@ -1,15 +1,15 @@
 // Import block dependencies and components
 import classnames from 'classnames';
 import Inspector from '../global/inspector';
+import Subtitle from './subtitle';
 
 const { __ } = wp.i18n;
-const { registerBlockType } = wp.blocks;
 const { compose } = wp.compose;
-const { Component, Fragment } = wp.element;
+const { Component } = wp.element;
 
-const { RichText, withFontSizes, withColors } = wp.blockEditor;
+const { useBlockProps, withFontSizes, withColors } = wp.blockEditor;
 
-class Edit extends Component {
+class EditView extends Component {
 	render() {
 		// Setup the attributes
 		const {
@@ -20,13 +20,11 @@ class Edit extends Component {
 				paddingBottom,
 				paddingLeft,
 			},
-			isSelected,
-			className,
 			setAttributes,
-			fallbackFontSize,
 			fontSize,
 			backgroundColor,
 			textColor,
+			blockProps,
 		} = this.props;
 
 		// Setup class names
@@ -50,28 +48,36 @@ class Edit extends Component {
 			paddingLeft: paddingLeft ? paddingLeft + 'px' : undefined,
 		};
 
-		return [
-			<Fragment
-				key={
-					'gb-pricing-table-inner-component-subtitle-' +
-					this.props.clientId
-				}
-			>
+		return (
+			<div {...blockProps}>
+				{/* Show the block controls on focus. */}
 				<Inspector {...this.props} />
-				<RichText
-					tagName="div"
+				{/* Keep blockProps on the editor wrapper only so the nested
+					subtitle markup does not duplicate block metadata in the canvas. */}
+				<Subtitle
+					key={
+						'gb-pricing-table-inner-component-subtitle-' +
+						this.props.clientId
+					}
 					placeholder={__('Price Subtitle', 'genesis-blocks')}
-					value={subtitle}
+					subtitle={subtitle}
 					onChange={(value) => setAttributes({ subtitle: value })}
-					style={editStyles}
+					styles={editStyles}
 					className={editClassName ? editClassName : undefined}
 				/>
-			</Fragment>,
-		];
+			</div>
+		);
 	}
 }
 
-export default compose([
+const EditWithBlockSupport = compose([
 	withFontSizes('fontSize'),
 	withColors('backgroundColor', { textColor: 'color' }),
-])(Edit);
+])(EditView);
+
+/* Wrapper required for Block API v3 */
+export default function Edit(props) {
+	const blockProps = useBlockProps();
+
+	return <EditWithBlockSupport {...props} blockProps={blockProps} />;
+}

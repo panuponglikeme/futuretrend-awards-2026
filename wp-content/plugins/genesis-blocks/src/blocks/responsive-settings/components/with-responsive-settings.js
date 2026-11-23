@@ -158,7 +158,7 @@ export const withResponsiveSettings = createHigherOrderComponent(
 			return (
 				<>
 					{Object.keys(
-						props.attributes[RESPONSIVE_SETTINGS_ATTRIBUTE]
+						props.attributes[RESPONSIVE_SETTINGS_ATTRIBUTE] ?? {}
 					).length ? (
 						<style>
 							{isFontSizeDisabled ? null : (
@@ -224,7 +224,7 @@ export const withResponsiveSettings = createHigherOrderComponent(
 						</style>
 					) : null}
 					<BlockEdit {...props} />
-					<InspectorControls>
+					<InspectorControls group="styles">
 						<PanelBody
 							title={__(
 								'Responsive Typography',
@@ -243,11 +243,10 @@ export const withResponsiveSettings = createHigherOrderComponent(
 									onClick={() =>
 										setSelectedDevice(DEVICE_NAMES.desktop)
 									}
-									isPrimary={
+									variant={
 										DEVICE_NAMES.desktop === selectedDevice
-									}
-									isSecondary={
-										DEVICE_NAMES.desktop !== selectedDevice
+											? 'primary'
+											: 'secondary'
 									}
 								>
 									{__('Desktop', 'genesis-blocks')}
@@ -259,11 +258,10 @@ export const withResponsiveSettings = createHigherOrderComponent(
 									onClick={() =>
 										setSelectedDevice(DEVICE_NAMES.tablet)
 									}
-									isPrimary={
+									variant={
 										DEVICE_NAMES.tablet === selectedDevice
-									}
-									isSecondary={
-										DEVICE_NAMES.tablet !== selectedDevice
+											? 'primary'
+											: 'secondary'
 									}
 								>
 									{__('Tablet', 'genesis-blocks')}
@@ -275,11 +273,10 @@ export const withResponsiveSettings = createHigherOrderComponent(
 									onClick={() =>
 										setSelectedDevice(DEVICE_NAMES.mobile)
 									}
-									isPrimary={
+									variant={
 										DEVICE_NAMES.mobile === selectedDevice
-									}
-									isSecondary={
-										DEVICE_NAMES.mobile !== selectedDevice
+											? 'primary'
+											: 'secondary'
 									}
 								>
 									{__('Mobile', 'genesis-blocks')}
@@ -324,13 +321,15 @@ export const withResponsiveSettings = createHigherOrderComponent(
 									disableCustomFontSizes={
 										disableCustomFontSizes
 									}
+									__next40pxDefaultSize
 									__nextHasNoMarginBottom
 								/>
 							)}
 							{isLineHeightDisabled ||
 							!LineHeightControl ? null : (
 								<LineHeightControl
-									__nextHasNoMarginBottom={true}
+									__next40pxDefaultSize
+									__nextHasNoMarginBottom
 									value={getLineHeightOfSelectedDevice()}
 									onChange={(newLineHeight) => {
 										if (

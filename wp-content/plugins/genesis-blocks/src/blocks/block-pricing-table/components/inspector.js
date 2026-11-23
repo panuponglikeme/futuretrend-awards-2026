@@ -24,11 +24,17 @@ export default class Inspector extends Component {
 			attributes: { columns, columnsGap },
 		} = this.props;
 
+		const rangeProps = {
+			__next40pxDefaultSize: true,
+			__nextHasNoMarginBottom: true,
+		};
+
 		return (
 			<InspectorControls key="inspector">
 				<PanelBody>
 					<RenderSettingControl id="gb_pricing_columns">
 						<RangeControl
+							{...rangeProps}
 							label={__('Pricing Columns', 'genesis-blocks')}
 							value={columns}
 							onChange={(value) =>
@@ -40,6 +46,7 @@ export default class Inspector extends Component {
 					</RenderSettingControl>
 					<RenderSettingControl id="gb_pricing_columnsGap">
 						<RangeControl
+							{...rangeProps}
 							label={__('Pricing Columns Gap', 'genesis-blocks')}
 							value={columnsGap}
 							onChange={(value) =>

@@ -3,102 +3,24 @@
  */
 
 // Import block dependencies and components
-import classnames from 'classnames';
-import Inspector from './components/inspector';
-import NoticeBox from './components/notice';
-import DismissButton from './components/button';
-import icons from './components/icons';
-import deprecated from './deprecated/deprecated';
+import Edit from './components/edit';
+import Save from './components/save';
 
 // Import CSS
 import './styles/style.scss';
 import './styles/editor.scss';
 
+import deprecated from './deprecated/deprecated';
+
 // Internationalization
 const { __ } = wp.i18n;
-
-// Extend component
-const { Component } = wp.element;
 
 // Register block
 const { registerBlockType } = wp.blocks;
 
-// Register editor components
-const { RichText, AlignmentToolbar, BlockControls, InnerBlocks } =
-	wp.blockEditor;
-
-class GBNoticeBlock extends Component {
-	render() {
-		// Setup the attributes
-		const {
-			attributes: {
-				noticeTitle,
-				noticeContent,
-				noticeAlignment,
-				noticeBackgroundColor,
-				noticeTitleColor,
-				noticeDismiss,
-			},
-			setAttributes,
-		} = this.props;
-
-		return [
-			// Show the alignment toolbar on focus
-			<BlockControls key="controls">
-				<AlignmentToolbar
-					value={noticeAlignment}
-					onChange={(value) =>
-						setAttributes({ noticeAlignment: value })
-					}
-				/>
-			</BlockControls>,
-
-			// Show the block controls on focus
-			<Inspector
-				key={'gb-notice-inspector-' + this.props.clientId}
-				{...{ setAttributes, ...this.props }}
-			/>,
-
-			// Show the block markup in the editor
-			<NoticeBox
-				key={'gb-notice-noticebox-' + this.props.clientId}
-				{...this.props}
-			>
-				{
-					// Check if the notice is dismissible and output the button
-					noticeDismiss && 'gb-dismissable' === noticeDismiss && (
-						<DismissButton {...this.props}>
-							{icons.dismiss}
-						</DismissButton>
-					)
-				}
-
-				<RichText
-					tagName="p"
-					placeholder={__('Notice Title', 'genesis-blocks')}
-					value={noticeTitle}
-					className={classnames('gb-notice-title')}
-					style={{
-						color: noticeTitleColor,
-					}}
-					onChange={(value) => setAttributes({ noticeTitle: value })}
-				/>
-
-				<div
-					className="gb-notice-text"
-					style={{
-						borderColor: noticeBackgroundColor,
-					}}
-				>
-					<InnerBlocks />
-				</div>
-			</NoticeBox>,
-		];
-	}
-}
-
 // Register the block
 registerBlockType('genesis-blocks/gb-notice', {
+	apiVersion: 3,
 	title: __('Notice', 'genesis-blocks'),
 	description: __('Add a stylized text notice.', 'genesis-blocks'),
 	icon: 'format-aside',
@@ -151,46 +73,10 @@ registerBlockType('genesis-blocks/gb-notice', {
 	},
 
 	// Render the block components
-	edit: GBNoticeBlock,
+	edit: Edit,
 
-	// Save the attributes and markup
-	save(props) {
-		// Setup the attributes
-		const {
-			noticeTitle,
-			noticeBackgroundColor,
-			noticeTitleColor,
-			noticeDismiss,
-		} = props.attributes;
+	// Save the block markup
+	save: Save,
 
-		// Save the block markup for the front end
-		return (
-			<NoticeBox {...props}>
-				{noticeDismiss && 'gb-dismissable' === noticeDismiss && (
-					<DismissButton {...props}>{icons.dismiss}</DismissButton>
-				)}
-
-				{noticeTitle && (
-					<div
-						className="gb-notice-title"
-						style={{
-							color: noticeTitleColor,
-						}}
-					>
-						<RichText.Content tagName="p" value={noticeTitle} />
-					</div>
-				)}
-
-				<div
-					className="gb-notice-text"
-					style={{
-						borderColor: noticeBackgroundColor,
-					}}
-				>
-					<InnerBlocks.Content />
-				</div>
-			</NoticeBox>
-		);
-	},
 	deprecated,
 });

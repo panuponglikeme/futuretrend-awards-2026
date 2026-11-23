@@ -302,5 +302,4 @@ function genesis_blocks_register_newsletter_block_sections_and_fields() {
 			'type'        => 'text',
 		]
 	);
-
 }

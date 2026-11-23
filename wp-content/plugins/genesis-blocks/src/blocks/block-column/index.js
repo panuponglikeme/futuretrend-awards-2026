@@ -19,6 +19,7 @@ const { registerBlockType } = wp.blocks;
  * Register advanced columns block InnerBlocks.
  */
 registerBlockType('genesis-blocks/gb-columns', {
+	apiVersion: 3,
 	title: __('Advanced Columns', 'genesis-blocks'),
 	description: __('Add a pre-defined column layout.', 'genesis-blocks'),
 	supports: { html: false },
@@ -147,7 +148,7 @@ registerBlockType('genesis-blocks/gb-columns', {
 		},
 	},
 
-	/* Add alignment to block wrapper. */
+	/* Preserve the legacy alignment toolbar behaviour on the editor wrapper. */
 	getEditWrapperProps({ align }) {
 		if (
 			'left' === align ||
@@ -160,12 +161,8 @@ registerBlockType('genesis-blocks/gb-columns', {
 	},
 
 	/* Render the block components. */
-	edit: (props) => {
-		return <Edit {...props} />;
-	},
+	edit: Edit,
 
 	/* Save the block markup. */
-	save: (props) => {
-		return <Save {...props} />;
-	},
+	save: Save,
 });

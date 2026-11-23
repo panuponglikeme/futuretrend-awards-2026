@@ -223,7 +223,7 @@ function genesis_blocks_render_block_core_latest_posts( $attributes ) {
 			}
 
 			if ( ! $excerpt ) {
-				$excerpt = null;
+				$excerpt = '';
 			}
 
 			if ( isset( $attributes['displayPostExcerpt'] ) && $attributes['displayPostExcerpt'] ) {
@@ -489,15 +489,15 @@ add_action( 'rest_api_init', 'genesis_blocks_register_rest_fields' );
 /**
  * Get landscape featured image source for the rest field
  *
- * @param String $object The object type.
+ * @param String $post The post data.
  * @param String $field_name Name of the field to retrieve.
  * @param String $request The current request object.
  *
  * @return mixed
  */
-function genesis_blocks_get_image_src_landscape( $object, $field_name, $request ) {
+function genesis_blocks_get_image_src_landscape( $post, $field_name, $request ) {
 	$feat_img_array = wp_get_attachment_image_src(
-		$object['featured_media'],
+		$post['featured_media'],
 		'gb-block-post-grid-landscape',
 		false
 	);
@@ -509,15 +509,15 @@ function genesis_blocks_get_image_src_landscape( $object, $field_name, $request 
 /**
  * Get square featured image source for the rest field
  *
- * @param String $object The object type.
+ * @param String $post The post data.
  * @param String $field_name Name of the field to retrieve.
  * @param String $request The current request object.
  *
  * @return mixed
  */
-function genesis_blocks_get_image_src_square( $object, $field_name, $request ) {
+function genesis_blocks_get_image_src_square( $post, $field_name, $request ) {
 	$feat_img_array = wp_get_attachment_image_src(
-		$object['featured_media'],
+		$post['featured_media'],
 		'gb-block-post-grid-square',
 		false
 	);
@@ -529,18 +529,18 @@ function genesis_blocks_get_image_src_square( $object, $field_name, $request ) {
 /**
  * Get author info for the rest field
  *
- * @param String $object The object type.
+ * @param String $post The post data.
  * @param String $field_name Name of the field to retrieve.
  * @param String $request The current request object.
  *
  * @return mixed
  */
-function genesis_blocks_get_author_info( $object, $field_name, $request ) {
+function genesis_blocks_get_author_info( $post, $field_name, $request ) {
 	/* Get the author name */
-	$author_data['display_name'] = get_the_author_meta( 'display_name', $object['author'] );
+	$author_data['display_name'] = get_the_author_meta( 'display_name', $post['author'] );
 
 	/* Get the author link */
-	$author_data['author_link'] = get_author_posts_url( $object['author'] );
+	$author_data['author_link'] = get_author_posts_url( $post['author'] );
 
 	/* Return the author data */
 	return $author_data;

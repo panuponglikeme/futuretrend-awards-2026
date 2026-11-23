@@ -3,23 +3,15 @@
  */
 
 // Import block dependencies and components
-import classnames from 'classnames';
 import Edit from './edit';
+import Save from './save';
 
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
-const { Component } = wp.element;
-
-const {
-	RichText,
-	getFontSizeClass,
-	FontSizePicker,
-	withFontSizes,
-	getColorClassName,
-} = wp.blockEditor;
 
 // Register the block
 registerBlockType('genesis-blocks/gb-pricing-table-subtitle', {
+	apiVersion: 3,
 	title: __('Product Subtitle', 'genesis-blocks'),
 	description: __(
 		'Adds a product subtitle component with schema markup.',
@@ -74,66 +66,13 @@ registerBlockType('genesis-blocks/gb-pricing-table-subtitle', {
 		},
 	},
 
-	// Render the block components
-	edit: Edit,
+	/* Render the block in the editor. */
+	edit: (props) => {
+		return <Edit {...props} />;
+	},
 
-	// Save the attributes and markup
-	save(props) {
-		// Setup the attributes
-		const {
-			subtitle,
-			fontSize,
-			customFontSize,
-			backgroundColor,
-			textColor,
-			customBackgroundColor,
-			customTextColor,
-			paddingTop,
-			paddingRight,
-			paddingBottom,
-			paddingLeft,
-		} = props.attributes;
-
-		// Retreive the fontSizeClass
-		const fontSizeClass = getFontSizeClass(fontSize);
-
-		// Retreive the getColorClassName
-		const textClass = getColorClassName('color', textColor);
-		const backgroundClass = getColorClassName(
-			'background-color',
-			backgroundColor
-		);
-
-		// Setup class names
-		const className = classnames({
-			'has-background': backgroundColor || customBackgroundColor,
-			'gb-pricing-table-subtitle': true,
-			[fontSizeClass]: fontSizeClass,
-			[textClass]: textClass,
-			[backgroundClass]: backgroundClass,
-		});
-
-		// Setup styles
-		const styles = {
-			fontSize: fontSizeClass ? undefined : customFontSize,
-			backgroundColor: backgroundClass
-				? undefined
-				: customBackgroundColor,
-			color: textClass ? undefined : customTextColor,
-			paddingTop: paddingTop ? paddingTop + 'px' : undefined,
-			paddingRight: paddingRight ? paddingRight + 'px' : undefined,
-			paddingBottom: paddingBottom ? paddingBottom + 'px' : undefined,
-			paddingLeft: paddingLeft ? paddingLeft + 'px' : undefined,
-		};
-
-		// Save the block markup for the front end
-		return (
-			<RichText.Content
-				tagName="div"
-				value={subtitle}
-				className={className ? className : undefined}
-				style={styles}
-			/>
-		);
+	/* Save the block markup. */
+	save: (props) => {
+		return <Save {...props} />;
 	},
 });

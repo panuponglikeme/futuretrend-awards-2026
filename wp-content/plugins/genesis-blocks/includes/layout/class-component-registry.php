@@ -7,8 +7,8 @@
 
 namespace Genesis\Blocks\Layouts;
 
-use \Exception;
-use \InvalidArgumentException;
+use Exception;
+use InvalidArgumentException;
 
 /**
  * Class Component_Registry
@@ -152,7 +152,6 @@ final class Component_Registry {
 				unset( self::$sections[ $key ] );
 				break;
 		}
-
 	}
 
 	/**

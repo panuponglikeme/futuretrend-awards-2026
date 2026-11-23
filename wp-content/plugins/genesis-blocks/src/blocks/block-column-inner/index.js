@@ -22,6 +22,8 @@ const { registerBlockType } = wp.blocks;
  * Register advanced columns block.
  */
 registerBlockType('genesis-blocks/gb-column', {
+	/* Enable Block API v3 so Gutenberg uses the edit/save wrapper contract. */
+	apiVersion: 3,
 	title: __('Column', 'genesis-blocks'),
 	description: __('Add a pre-defined column layout.', 'genesis-blocks'),
 	icon: 'editor-table',
@@ -115,46 +117,43 @@ registerBlockType('genesis-blocks/gb-column', {
 	},
 
 	/* Render the block in the editor. */
-	edit: (props) => {
-		return <Edit {...props} />;
-	},
+	edit: Edit,
 
 	/* Save the block markup. */
-	save: (props) => {
-		return <Save {...props} />;
-	},
+	save: Save,
 
 	deprecated,
 });
 
-/* Add the vertical column alignment class to the block wrapper. */
-const withClientIdClassName = wp.compose.createHigherOrderComponent(
+/* Keep the vertical alignment class on the editor block wrapper so the
+   grid item still responds to the column alignment controls in Block API v3. */
+const withVerticalAlignmentClass = wp.compose.createHigherOrderComponent(
 	(BlockListBlock) => {
 		return (props) => {
 			const blockName = props.block.name;
+			const verticalAlignment =
+				props.block.attributes.columnVerticalAlignment;
 
 			if (
 				'genesis-blocks/gb-column' === blockName &&
-				props.block.attributes.columnVerticalAlignment
+				verticalAlignment
 			) {
 				return (
 					<BlockListBlock
 						{...props}
-						className={
-							'gb-is-vertically-aligned-' +
-							props.block.attributes.columnVerticalAlignment
-						}
+						className={'gb-is-vertically-aligned-' + verticalAlignment}
 					/>
 				);
 			}
+
 			return <BlockListBlock {...props} />;
 		};
 	},
-	'withClientIdClassName'
+	'withVerticalAlignmentClass'
 );
 
 wp.hooks.addFilter(
 	'editor.BlockListBlock',
 	'genesis-blocks/add-vertical-align-class',
-	withClientIdClassName
+	withVerticalAlignmentClass
 );

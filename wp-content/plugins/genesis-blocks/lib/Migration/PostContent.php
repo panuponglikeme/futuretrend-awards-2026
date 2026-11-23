@@ -47,10 +47,10 @@ final class PostContent {
 				if ( isset( $post->ID ) ) {
 					$migrated_post = $this->migrate_single( $post->ID );
 					if ( is_wp_error( $migrated_post ) ) {
-						$error_count++;
+						++$error_count;
 						$errors->add( $migrated_post->get_error_code(), $migrated_post->get_error_message() );
 					} else {
-						$success_count++;
+						++$success_count;
 					}
 				}
 			}

@@ -9,22 +9,25 @@ import classnames from 'classnames';
  */
 export default class DropCap extends Component {
 	render() {
-		// Setup the attributes
 		const {
-			dropCapAlignment,
-			dropCapTextColor,
-			dropCapFontSize,
-			dropCapStyle,
-		} = this.props.attributes;
+			blockProps = {},
+			attributes: {
+				dropCapAlignment,
+				dropCapTextColor,
+				dropCapFontSize,
+				dropCapStyle,
+			},
+		} = this.props;
 
 		return (
 			<div
+				{...blockProps}
 				style={{
 					color: dropCapTextColor,
 					textAlign: dropCapAlignment,
 				}}
 				className={classnames(
-					this.props.className,
+					blockProps.className,
 					dropCapStyle,
 					'gb-font-size-' + dropCapFontSize,
 					'gb-block-drop-cap'

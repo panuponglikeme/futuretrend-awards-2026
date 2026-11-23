@@ -226,7 +226,7 @@ final class UserMetaTest extends TestCase {
 				// Simulate one user with data to migrate.
 				// First call gives a mocked user, second call gives none
 				// so that the while loop in migrate_all() ends.
-				'get_users' => function() {
+				'get_users' => function () {
 					static $first_time = true;
 					if ( $first_time ) {
 						$user       = Mockery::mock( 'WPUser' );
@@ -285,7 +285,7 @@ final class UserMetaTest extends TestCase {
 				// The expectation for update_user_meta below ensures migrate_user()
 				// fails for all users, simulating a fail condition that exceeds
 				// the max_allowed_errors of 20.
-				'get_users' => function() {
+				'get_users' => function () {
 					static $first_time = true;
 					if ( $first_time ) {
 						$user       = Mockery::mock( 'WPUser' );
@@ -308,4 +308,3 @@ final class UserMetaTest extends TestCase {
 		$this->assertEquals( 'WP_Error', get_class( $this->instance->migrate_all() ) );
 	}
 }
-

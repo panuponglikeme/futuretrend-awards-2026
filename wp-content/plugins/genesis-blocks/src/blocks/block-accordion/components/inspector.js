@@ -28,11 +28,17 @@ const { PanelBody, RangeControl, ToggleControl } = wp.components;
  */
 export default class Inspector extends Component {
 	render() {
+		const rangeProps = {
+			__next40pxDefaultSize: true,
+			__nextHasNoMarginBottom: true,
+		};
+		
 		return (
 			<InspectorControls key="inspector">
 				<PanelBody>
 					<RenderSettingControl id="gb_accordion_accordionFontSize">
 						<RangeControl
+							{...rangeProps}
 							label={__('Title Font Size', 'genesis-blocks')}
 							value={this.props.attributes.accordionFontSize}
 							onChange={(value) =>
@@ -48,6 +54,7 @@ export default class Inspector extends Component {
 
 					<RenderSettingControl id="gb_accordion_accordionOpen">
 						<ToggleControl
+							__nextHasNoMarginBottom
 							label={__('Open by default', 'genesis-blocks')}
 							checked={this.props.attributes.accordionOpen}
 							onChange={() =>

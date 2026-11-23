@@ -115,6 +115,7 @@ const blockAttributes = {
  * Register the block
  */
 registerBlockType('genesis-blocks/gb-profile-box', {
+	apiVersion: 3,
 	title: __('Profile Box', 'genesis-blocks'),
 	description: __(
 		'Add a profile box with bio info and social media links.',
@@ -154,14 +155,10 @@ registerBlockType('genesis-blocks/gb-profile-box', {
 	},
 
 	/* Render the block in the editor. */
-	edit: (props) => {
-		return <Edit {...props} clientId={props.clientId} />;
-	},
+	edit: Edit,
 
 	/* Save the block markup. */
-	save: (props) => {
-		return <Save {...props} clientId={props.attributes.clientId} />;
-	},
+	save: Save,
 
 	deprecated,
 });

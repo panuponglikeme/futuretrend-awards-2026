@@ -31,6 +31,11 @@ export default class Inspector extends Component {
 			setAttributes,
 		} = this.props;
 
+		const rangeProps = {
+			__next40pxDefaultSize: true,
+			__nextHasNoMarginBottom: true,
+		};
+
 		const onChangeBorderColor = (value) =>
 			setAttributes({ borderColor: value });
 		const onChangeBackgroundColor = (value) =>
@@ -41,6 +46,7 @@ export default class Inspector extends Component {
 				<PanelBody>
 					<RenderSettingControl id="gb_pricing_inner_padding">
 						<RangeControl
+							{...rangeProps}
 							label={__(
 								'Pricing Column Padding',
 								'genesis-blocks'
@@ -56,6 +62,7 @@ export default class Inspector extends Component {
 					</RenderSettingControl>
 					<RenderSettingControl id="gb_pricing_inner_borderWidth">
 						<RangeControl
+							{...rangeProps}
 							label={__(
 								'Pricing Column Border',
 								'genesis-blocks'
@@ -73,6 +80,7 @@ export default class Inspector extends Component {
 					</RenderSettingControl>
 					<RenderSettingControl id="gb_pricing_inner_borderRadius">
 						<RangeControl
+							{...rangeProps}
 							label={__(
 								'Pricing Column Border Radius',
 								'genesis-blocks'

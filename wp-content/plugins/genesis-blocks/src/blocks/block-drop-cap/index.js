@@ -3,68 +3,24 @@
  */
 
 // Import block dependencies and components
-import classnames from 'classnames';
-import Inspector from './components/inspector';
-import DropCap from './components/dropcap';
-import deprecated from './deprecated/deprecated';
+import Edit from './components/edit';
+import Save from './components/save';
 
 // Import CSS
 import './styles/style.scss';
 import './styles/editor.scss';
 
+import deprecated from './deprecated/deprecated';
+
 // Internationalization
 const { __ } = wp.i18n;
-
-// Extend component
-const { Component } = wp.element;
 
 // Register block
 const { registerBlockType } = wp.blocks;
 
-// Register editor components
-const { AlignmentToolbar, BlockControls, InnerBlocks } = wp.blockEditor;
-
-class GBDropCapBlock extends Component {
-	render() {
-		// Setup the attributes
-		const {
-			attributes: { dropCapAlignment, dropCapFontSize },
-		} = this.props;
-
-		return [
-			// Show the alignment toolbar on focus
-			<BlockControls key="controls">
-				<AlignmentToolbar
-					value={dropCapAlignment}
-					onChange={(value) =>
-						this.props.setAttributes({ dropCapAlignment: value })
-					}
-				/>
-			</BlockControls>,
-
-			// Show the block controls on focus
-			<Inspector
-				key={'gb-drop-cap-inspector-' + this.props.clientId}
-				{...this.props}
-			/>,
-
-			// Show the block markup in the editor
-			<DropCap key={'gb-drop-cap-' + this.props.clientId} {...this.props}>
-				<div
-					className={classnames(
-						'gb-drop-cap-text',
-						'gb-font-size-' + dropCapFontSize
-					)}
-				>
-					<InnerBlocks allowedBlocks={['core/paragraph']} />
-				</div>
-			</DropCap>,
-		];
-	}
-}
-
 // Register the block
 registerBlockType('genesis-blocks/gb-drop-cap', {
+	apiVersion: 3,
 	title: __('Drop Cap', 'genesis-blocks'),
 	description: __(
 		'Add a styled drop cap to the beginning of your paragraph.',
@@ -108,18 +64,9 @@ registerBlockType('genesis-blocks/gb-drop-cap', {
 	},
 
 	// Render the block components
-	edit: GBDropCapBlock,
+	edit: Edit,
 
-	// Save the attributes and markup
-	save(props) {
-		// Save the block markup for the front end
-		return (
-			<DropCap {...props}>
-				<div className="gb-drop-cap-text">
-					<InnerBlocks.Content />
-				</div>
-			</DropCap>
-		);
-	},
+	// Save the block markup
+	save: Save,
 	deprecated,
 });

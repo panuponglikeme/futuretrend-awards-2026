@@ -7,25 +7,30 @@ import classnames from 'classnames';
 import Inspector from './inspector';
 import PostGridImage from './image';
 
+/**
+ * WordPress dependencies
+ */
 const { useState, useEffect } = wp.element;
-
 const { __ } = wp.i18n;
-
 const { decodeEntities } = wp.htmlEntities;
-
 const { Placeholder, Spinner, ToolbarGroup } = wp.components;
-
-const { BlockAlignmentToolbar, BlockControls } = wp.blockEditor;
-
+const { BlockAlignmentToolbar, BlockControls, useBlockProps } = wp.blockEditor;
 const { apiFetch } = wp;
 const { addQueryArgs } = wp.url;
 
 const inputDelay = [];
 
-export default (props) => {
+/* Wrapper required for Block API v3 */
+export default function Edit(props) {
+	const blockProps = useBlockProps();
+
+	return <EditView {...props} blockProps={blockProps} />;
+}
+
+function EditView(props) {
 	const [latestPosts, setLatestPosts] = useState();
 	const [initialAttributes, setInitialAttributes] = useState(props);
-	const { attributes, setAttributes } = props;
+	const { attributes, setAttributes, blockProps } = props;
 
 	// If the props have changed, check the server for posts using the new arguments.
 	if (
@@ -157,7 +162,7 @@ export default (props) => {
 
 	if (!hasPosts) {
 		return (
-			<>
+			<div {...blockProps}>
 				<Inspector {...{ setAttributes, ...props }} />
 				<Placeholder
 					icon="admin-post"
@@ -172,7 +177,7 @@ export default (props) => {
 						__('No posts found.', 'genesis-blocks')
 					)}
 				</Placeholder>
-			</>
+			</div>
 		);
 	}
 
@@ -206,7 +211,7 @@ export default (props) => {
 	const PostTag = attributes.postTitleTag ? attributes.postTitleTag : 'h3';
 
 	return (
-		<>
+		<div {...blockProps}>
 			<Inspector {...{ setAttributes, ...props }} />
 			<BlockControls>
 				<BlockAlignmentToolbar
@@ -370,9 +375,9 @@ export default (props) => {
 					))}
 				</div>
 			</SectionTag>
-		</>
+		</div>
 	);
-};
+}
 
 // Truncate excerpt
 function truncate(str, no_words) {

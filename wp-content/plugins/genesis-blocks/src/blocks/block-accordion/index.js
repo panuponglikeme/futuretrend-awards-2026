@@ -38,6 +38,7 @@ const blockAttributes = {
 
 // Register the block
 registerBlockType('genesis-blocks/gb-accordion', {
+	apiVersion: 3,
 	title: __('Accordion', 'genesis-blocks'),
 	description: __(
 		'Add accordion block with a title and text.',
@@ -63,14 +64,10 @@ registerBlockType('genesis-blocks/gb-accordion', {
 	},
 
 	// Render the block components
-	edit: (props) => {
-		return <Edit {...props} />;
-	},
+	edit: Edit,
 
 	// Save the attributes and markup
-	save: (props) => {
-		return <Save {...props} />;
-	},
+	save: Save,
 
 	deprecated: Deprecated,
 });

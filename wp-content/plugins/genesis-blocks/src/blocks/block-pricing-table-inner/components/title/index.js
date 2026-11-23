@@ -3,23 +3,15 @@
  */
 
 // Import block dependencies and components
-import classnames from 'classnames';
 import Edit from './edit';
+import Save from './save';
 
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
-const { Component } = wp.element;
-
-const {
-	RichText,
-	getFontSizeClass,
-	FontSizePicker,
-	withFontSizes,
-	getColorClassName,
-} = wp.blockEditor;
 
 // Register the block
 registerBlockType('genesis-blocks/gb-pricing-table-title', {
+	apiVersion: 3,
 	title: __('Product Title', 'genesis-blocks'),
 	description: __(
 		'Adds a product title component with schema markup.',
@@ -74,66 +66,13 @@ registerBlockType('genesis-blocks/gb-pricing-table-title', {
 		},
 	},
 
-	// Render the block components
-	edit: Edit,
+	/* Render the block in the editor. */
+	edit: (props) => {
+		return <Edit {...props} />;
+	},
 
-	// Save the attributes and markup
-	save(props) {
-		// Setup the attributes
-		const {
-			title,
-			fontSize,
-			customFontSize,
-			backgroundColor,
-			textColor,
-			customBackgroundColor,
-			customTextColor,
-			paddingTop,
-			paddingRight,
-			paddingBottom,
-			paddingLeft,
-		} = props.attributes;
-
-		// Retreive the fontSizeClass
-		const fontSizeClass = getFontSizeClass(fontSize);
-
-		// Retreive the getColorClassName
-		const textClass = getColorClassName('color', textColor);
-		const backgroundClass = getColorClassName(
-			'background-color',
-			backgroundColor
-		);
-
-		// If there is no fontSizeClass, use customFontSize
-		const styles = {
-			fontSize: fontSizeClass ? undefined : customFontSize,
-			backgroundColor: backgroundClass
-				? undefined
-				: customBackgroundColor,
-			color: textClass ? undefined : customTextColor,
-			paddingTop: paddingTop ? paddingTop + 'px' : undefined,
-			paddingRight: paddingRight ? paddingRight + 'px' : undefined,
-			paddingBottom: paddingBottom ? paddingBottom + 'px' : undefined,
-			paddingLeft: paddingLeft ? paddingLeft + 'px' : undefined,
-		};
-
-		const className = classnames({
-			'has-background': backgroundColor || customBackgroundColor,
-			'gb-pricing-table-title': true,
-			[fontSizeClass]: fontSizeClass,
-			[textClass]: textClass,
-			[backgroundClass]: backgroundClass,
-		});
-
-		// Save the block markup for the front end
-		return (
-			<RichText.Content
-				tagName="div"
-				itemProp="name"
-				value={title}
-				style={styles}
-				className={className ? className : undefined}
-			/>
-		);
+	/* Save the block markup. */
+	save: (props) => {
+		return <Save {...props} />;
 	},
 });

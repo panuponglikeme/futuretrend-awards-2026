@@ -86,9 +86,11 @@ class Inspector extends Component {
 						fallbackFontSize={fallbackFontSize}
 						value={fontSize.size}
 						onChange={setFontSize}
+						__next40pxDefaultSize
 						__nextHasNoMarginBottom
 					/>
 					<ToggleControl
+						__nextHasNoMarginBottom
 						label={__('Show currency symbol', 'genesis-blocks')}
 						checked={showCurrency}
 						onChange={() =>
@@ -99,6 +101,8 @@ class Inspector extends Component {
 					/>
 					{showCurrency && (
 						<TextControl
+							__next40pxDefaultSize
+							__nextHasNoMarginBottom
 							label={__('Currency Symbol', 'genesis-blocks')}
 							type="text"
 							value={currency}
@@ -108,6 +112,7 @@ class Inspector extends Component {
 						/>
 					)}
 					<ToggleControl
+						__nextHasNoMarginBottom
 						label={__('Show pricing duration', 'genesis-blocks')}
 						checked={showTerm}
 						onChange={() =>
@@ -116,6 +121,8 @@ class Inspector extends Component {
 					/>
 					{showTerm && (
 						<TextControl
+							__next40pxDefaultSize
+							__nextHasNoMarginBottom
 							label={__('Pricing Duration', 'genesis-blocks')}
 							type="text"
 							value={term}

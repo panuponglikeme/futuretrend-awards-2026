@@ -3,7 +3,7 @@
  */
 
 // Import block dependencies and components
-import edit from './components/edit';
+import Edit from './components/edit';
 
 // Import CSS
 import './styles/style.scss';
@@ -20,6 +20,7 @@ const validAlignments = ['center', 'wide', 'full'];
 
 // Register the block
 registerBlockType('genesis-blocks/gb-post-grid', {
+	apiVersion: 3,
 	title: __('Post and Page Grid', 'genesis-blocks'),
 	description: __(
 		'Add a grid or list of customizable posts or pages.',
@@ -33,8 +34,6 @@ registerBlockType('genesis-blocks/gb-post-grid', {
 		__('grid', 'genesis-blocks'),
 		__('atomic', 'genesis-blocks'),
 	],
-
-	edit,
 
 	gb_settings_data: {
 		gb_postgrid_postType: {
@@ -92,6 +91,9 @@ registerBlockType('genesis-blocks/gb-post-grid', {
 			title: __('Post Title Heading Tag', 'genesis-blocks'),
 		},
 	},
+
+	/* Render the block in the editor. */
+	edit: Edit,
 
 	// Render via PHP
 	save() {

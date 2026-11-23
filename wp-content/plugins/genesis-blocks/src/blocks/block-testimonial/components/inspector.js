@@ -42,6 +42,11 @@ export default class Inspector extends Component {
 			setAttributes,
 		} = this.props;
 
+		const rangeProps = {
+			__next40pxDefaultSize: true,
+			__nextHasNoMarginBottom: true,
+		};
+
 		// Update color values
 		const onChangeBackgroundColor = (value) =>
 			setAttributes({ testimonialBackgroundColor: value });
@@ -53,6 +58,7 @@ export default class Inspector extends Component {
 				<PanelBody>
 					<RenderSettingControl id="gb_testimonial_testimonialFontSize">
 						<RangeControl
+							{...rangeProps}
 							label={__('Font Size', 'genesis-blocks')}
 							value={testimonialFontSize}
 							onChange={(value) =>
@@ -67,6 +73,8 @@ export default class Inspector extends Component {
 					</RenderSettingControl>
 					<RenderSettingControl id="gb_testimonial_testimonialCiteAlign">
 						<SelectControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label={__('Cite Alignment', 'genesis-blocks')}
 							description={__(
 								'Left or right align the cite name and title.',

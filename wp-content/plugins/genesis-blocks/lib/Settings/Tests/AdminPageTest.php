@@ -53,7 +53,7 @@ final class AdminPageTest extends TestCase {
 		$this->admin_page = new AdminPage(
 			[
 				'url'     => 'https://example.com/wp-content/plugins/genesis-blocks/',
-				'path'    => dirname( dirname( dirname( dirname( __FILE__ ) ) ) ) . '/',
+				'path'    => dirname( __DIR__, 3 ) . '/',
 				'version' => 1,
 				'theme'   => 'unknown',
 			]
@@ -412,7 +412,7 @@ final class AdminPageTest extends TestCase {
 
 		Functions\stubs(
 			[
-				'get_option' => function( $option_name ) {
+				'get_option' => function ( $option_name ) {
 					if ( 'genx_header_scripts' === $option_name ) {
 						return 'test_value';
 					}

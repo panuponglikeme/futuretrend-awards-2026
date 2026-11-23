@@ -198,7 +198,7 @@ function register_components() {
 	/**
 	 * Scan Patterns directory and auto require all PHP files
 	 */
-	$pattern_file_paths = glob( dirname( __FILE__ ) . '/../patterns/*.php' );
+	$pattern_file_paths = glob( __DIR__ . '/../patterns/*.php' );
 	foreach ( $pattern_file_paths as $path ) {
 		genesis_blocks_register_layout_component( require $path );
 	}

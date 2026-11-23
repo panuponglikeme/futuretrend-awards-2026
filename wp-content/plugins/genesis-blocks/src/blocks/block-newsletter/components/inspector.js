@@ -110,6 +110,8 @@ class Inspector extends Component {
 				>
 					<RenderSettingControl id="gb_newsletter_mailingList">
 						<SelectControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label={__('Mailing List', 'genesis-blocks')}
 							help={__(
 								'The list people will be subscribed to.',
@@ -125,6 +127,8 @@ class Inspector extends Component {
 
 					<RenderSettingControl id="gb_newsletter_successMessage">
 						<TextControl
+							__next40pxDefaultSize
+							__nextHasNoMarginBottom
 							type="string"
 							label={__('Success Message', 'genesis-blocks')}
 							help={__(

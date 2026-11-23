@@ -40,6 +40,11 @@ export default class Inspector extends Component {
 		} = this.props.attributes;
 		const { setAttributes } = this.props;
 
+		const rangeProps = {
+			__next40pxDefaultSize: true,
+			__nextHasNoMarginBottom: true,
+		};
+
 		// Button size values
 		const buttonSizeOptions = [
 			{ value: 'gb-button-size-small', label: __('Small') },
@@ -91,6 +96,7 @@ export default class Inspector extends Component {
 						initialOpen={true}
 					>
 						<RangeControl
+							{...rangeProps}
 							label={__('Title Font Size', 'genesis-blocks')}
 							value={titleFontSize}
 							onChange={(value) =>
@@ -104,6 +110,7 @@ export default class Inspector extends Component {
 						/>
 
 						<RangeControl
+							{...rangeProps}
 							label={__('Text Font Size', 'genesis-blocks')}
 							value={ctaTextFontSize}
 							onChange={(value) =>
@@ -175,6 +182,7 @@ export default class Inspector extends Component {
 
 						{imgURL && !!imgURL.length && (
 							<RangeControl
+								{...rangeProps}
 								label={__('Image Opacity', 'genesis-blocks')}
 								value={dimRatio}
 								onChange={(value) =>
@@ -211,6 +219,8 @@ export default class Inspector extends Component {
 						initialOpen={false}
 					>
 						<ToggleControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label={__(
 								'Open link in new window',
 								'genesis-blocks'
@@ -224,6 +234,8 @@ export default class Inspector extends Component {
 						/>
 
 						<SelectControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label={__('Button Size', 'genesis-blocks')}
 							value={buttonSize}
 							options={buttonSizeOptions.map(
@@ -240,6 +252,8 @@ export default class Inspector extends Component {
 						/>
 
 						<SelectControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label={__('Button Shape', 'genesis-blocks')}
 							value={buttonShape}
 							options={buttonShapeOptions.map(

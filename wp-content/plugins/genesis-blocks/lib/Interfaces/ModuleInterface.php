@@ -23,7 +23,7 @@ interface ModuleInterface {
 	 *
 	 * @return void
 	 */
-	public function activate( array $context ) : void;
+	public function activate( array $context ): void;
 
 	/**
 	 * Checks if this module is enabled.
@@ -36,5 +36,5 @@ interface ModuleInterface {
 	 *
 	 * @return bool
 	 */
-	public function is_enabled() : bool;
+	public function is_enabled(): bool;
 }

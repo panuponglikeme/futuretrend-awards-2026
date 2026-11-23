@@ -19,7 +19,9 @@ import BackgroundImageStyles from './../../../utils/components/background-image/
  */
 export default class Columns extends Component {
 	render() {
-		const { attributes } = this.props;
+		// Gutenberg can evaluate this shared wrapper with partial props while it
+		// extracts block content, so keep the attribute bag defensive here.
+		const { attributes = {}, blockProps = {} } = this.props;
 
 		/* Setup the background color class. */
 		let backgroundColorClass;
@@ -43,23 +45,27 @@ export default class Columns extends Component {
 				: null;
 		}
 
-		/* Setup the wrapper classes. */
-		const className = classnames(
-			[
-				this.props.className,
-				'gb-layout-columns-' + attributes.columns,
-				attributes.layout,
-				...BackgroundImageClasses(attributes),
-				backgroundColorClass,
-				textColorClass,
-				attributes.columnMaxWidth && attributes.centerColumns
-					? 'gb-columns-center'
-					: null,
-			],
-			{
-				['align' + attributes.align]: attributes.align,
-			}
-		);
+			/* Setup the wrapper classes. */
+			// Save passes blockProps so this wrapper becomes the persisted block root.
+			// Edit omits them and renders this inside the editor-only block wrapper.
+			const className = classnames(
+				[
+					blockProps.className,
+					attributes.columns
+						? 'gb-layout-columns-' + attributes.columns
+						: null,
+					attributes.layout,
+					...BackgroundImageClasses(attributes),
+					backgroundColorClass,
+					textColorClass,
+					attributes.columnMaxWidth && attributes.centerColumns
+						? 'gb-columns-center'
+						: null,
+				],
+				{
+					['align' + attributes.align]: attributes.align,
+				}
+			);
 
 		/* Setup the margin styles. */
 		let marginValue;
@@ -130,6 +136,7 @@ export default class Columns extends Component {
 
 		return (
 			<div
+				{...blockProps}
 				className={className ? className : undefined}
 				style={Object.assign(marginValue, paddingValue, styles)}
 			>

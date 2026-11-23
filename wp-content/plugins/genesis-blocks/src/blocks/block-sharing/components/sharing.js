@@ -13,10 +13,13 @@ import classnames from 'classnames';
  */
 export default class ShareLinks extends Component {
 	render() {
+		const { className: blockPropsClassName, ...restBlockProps } = this.props.blockProps || {};
+
 		return (
 			<div
+				{...restBlockProps}
 				className={classnames(
-					this.props.className,
+					blockPropsClassName,
 					this.props.attributes.shareButtonStyle,
 					this.props.attributes.shareButtonShape,
 					this.props.attributes.shareButtonSize,

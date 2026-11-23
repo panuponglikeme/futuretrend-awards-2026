@@ -22,11 +22,10 @@ const { InspectorControls, PanelColorSettings, ContrastChecker } =
 const {
 	PanelBody,
 	RangeControl,
-	ButtonGroup,
-	Button,
-	Tooltip,
 	ToggleControl,
 	SelectControl,
+	__experimentalToggleGroupControl: ToggleGroupControl,
+	__experimentalToggleGroupControlOption: ToggleGroupControlOption,
 } = wp.components;
 
 /**
@@ -42,6 +41,11 @@ export default class Inspector extends Component {
 			textColor,
 			setTextColor,
 		} = this.props;
+
+		const rangeProps = {
+			__next40pxDefaultSize: true,
+			__nextHasNoMarginBottom: true,
+		};
 
 		let selectedRows = 1;
 
@@ -67,6 +71,7 @@ export default class Inspector extends Component {
 					>
 						<RenderSettingControl id="gb_column_columns">
 							<RangeControl
+								{...rangeProps}
 								label={__('Column Count', 'genesis-blocks')}
 								help={__(
 									"Note: Changing the column count after you've added content to the column can cause loss of content.",
@@ -92,46 +97,37 @@ export default class Inspector extends Component {
 							4 === attributes.columns) && (
 							<Fragment>
 								<RenderSettingControl id="gb_column_columnLayouts">
-									<p>
-										{__('Column Layout', 'genesis-blocks')}
-									</p>
-									<ButtonGroup
-										aria-label={__(
-											'Column Layout',
+									<ToggleGroupControl
+										__next40pxDefaultSize
+										__nextHasNoMarginBottom
+										label={__('Column Layout', 'genesis-blocks')}
+										help={__(
+											'Change the layout of your columns.',
 											'genesis-blocks'
 										)}
+										value={attributes.layout || ''}
+										onChange={(layout) => {
+											setAttributes({ layout });
+											this.setState({
+												selectLayout: false,
+											});
+										}}
+										isBlock
 									>
 										{map(
 											columnLayouts[selectedRows],
 											({ name, key, icon }) => (
-												<Tooltip text={name} key={key}>
-													<Button
-														key={key}
-														className="gb-column-selector-button"
-														isSmall
-														onClick={() => {
-															setAttributes({
-																layout: key,
-															});
-															this.setState({
-																selectLayout: false,
-															});
-														}}
-													>
-														{icon}
-													</Button>
-												</Tooltip>
+												<ToggleGroupControlOption
+													key={key}
+													value={key}
+													label={name}
+													aria-label={name}
+												>
+													{icon}
+												</ToggleGroupControlOption>
 											)
 										)}
-									</ButtonGroup>
-									<p>
-										<i>
-											{__(
-												'Change the layout of your columns.',
-												'genesis-blocks'
-											)}
-										</i>
-									</p>
+									</ToggleGroupControl>
 									<hr />
 								</RenderSettingControl>
 							</Fragment>
@@ -139,6 +135,7 @@ export default class Inspector extends Component {
 
 						<RenderSettingControl id="gb_column_columnsGap">
 							<RangeControl
+								{...rangeProps}
 								label={__('Column Gap', 'genesis-blocks')}
 								help={__(
 									'Adjust the spacing between columns.',
@@ -160,6 +157,7 @@ export default class Inspector extends Component {
 
 						<RenderSettingControl id="gb_column_columnMaxWidth">
 							<RangeControl
+								{...rangeProps}
 								label={__('Column Inner Max Width (px)')}
 								help={__(
 									'Adjust the width of the content inside the container wrapper.',
@@ -180,6 +178,8 @@ export default class Inspector extends Component {
 						{0 < attributes.columnMaxWidth && (
 							<RenderSettingControl id="gb_column_centerColumns">
 								<ToggleControl
+									__nextHasNoMarginBottom
+							__next40pxDefaultSize
 									label={__(
 										'Center Columns In Container',
 										'genesis-blocks'
@@ -203,6 +203,8 @@ export default class Inspector extends Component {
 
 						<RenderSettingControl id="gb_column_responsiveToggle">
 							<ToggleControl
+								__nextHasNoMarginBottom
+							__next40pxDefaultSize
 								label={__(
 									'Responsive Columns',
 									'genesis-blocks'
@@ -228,6 +230,8 @@ export default class Inspector extends Component {
 						initialOpen={false}
 					>
 						<SelectControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label={__('Margin Unit', 'genesis-blocks')}
 							help={__(
 								'Choose between pixel, percent, or em units.',
@@ -242,6 +246,8 @@ export default class Inspector extends Component {
 							}
 						/>
 						<ToggleControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label={__('Sync Margin', 'genesis-blocks')}
 							help={__(
 								'Top and bottom margins will have the same value.',
@@ -292,6 +298,8 @@ export default class Inspector extends Component {
 						)}
 						<hr />
 						<SelectControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label={__('Padding Unit', 'genesis-blocks')}
 							help={__(
 								'Choose between pixel, percent, or em units.',
@@ -306,6 +314,8 @@ export default class Inspector extends Component {
 							}
 						/>
 						<ToggleControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label={__('Sync Padding', 'genesis-blocks')}
 							help={__(
 								'Padding on all sides will have the same value.',

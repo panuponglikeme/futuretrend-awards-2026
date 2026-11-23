@@ -272,6 +272,11 @@ export default class Inspector extends Component {
 		// Setup the attributes
 		const { attributes, setAttributes, latestPosts } = this.props;
 
+		const rangeProps = {
+			__next40pxDefaultSize: true,
+			__nextHasNoMarginBottom: true,
+		};
+
 		const { order, orderBy } = attributes;
 
 		const {
@@ -357,6 +362,8 @@ export default class Inspector extends Component {
 				>
 					<RenderSettingControl id="gb_postgrid_postType">
 						<SelectControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label={__('Content Type', 'genesis-blocks')}
 							options={postTypeOptions}
 							value={attributes.postType}
@@ -373,6 +380,8 @@ export default class Inspector extends Component {
 									style={{ position: 'relative' }}
 								>
 									<FormTokenField
+										__nextHasNoMarginBottom
+										__next40pxDefaultSize
 										suggestions={compact(
 											map(
 												pagesList,
@@ -509,6 +518,8 @@ export default class Inspector extends Component {
 									style={{ position: 'relative' }}
 								>
 									<FormTokenField
+										__nextHasNoMarginBottom
+										__next40pxDefaultSize
 										suggestions={compact(
 											map(
 												categoriesList,
@@ -677,6 +688,7 @@ export default class Inspector extends Component {
 							</RenderSettingControl>
 							<RenderSettingControl id="gb_postgrid_offset">
 								<RangeControl
+									{...rangeProps}
 									label={__(
 										'Number of items to offset',
 										'genesis-blocks'
@@ -695,6 +707,7 @@ export default class Inspector extends Component {
 					{'grid' === attributes.postLayout && (
 						<RenderSettingControl id="gb_postgrid_columns">
 							<RangeControl
+								{...rangeProps}
 								label={__('Columns', 'genesis-blocks')}
 								value={attributes.columns}
 								onChange={(value) =>
@@ -719,6 +732,8 @@ export default class Inspector extends Component {
 				>
 					<RenderSettingControl id="gb_postgrid_displaySectionTitle">
 						<ToggleControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label={__(
 								'Display Section Title',
 								'genesis-blocks'
@@ -748,6 +763,8 @@ export default class Inspector extends Component {
 					)}
 					<RenderSettingControl id="gb_postgrid_displayPostImage">
 						<ToggleControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label={__(
 								'Display Featured Image',
 								'genesis-blocks'
@@ -764,6 +781,8 @@ export default class Inspector extends Component {
 					{attributes.displayPostImage && (
 						<RenderSettingControl id="gb_postgrid_imageSizeValue">
 							<SelectControl
+								__nextHasNoMarginBottom
+							__next40pxDefaultSize
 								label={__('Image Size', 'genesis-blocks')}
 								value={imageSizeValue()}
 								options={imageSizeOptions}
@@ -777,6 +796,8 @@ export default class Inspector extends Component {
 					)}
 					<RenderSettingControl id="gb_postgrid_displayPostTitle">
 						<ToggleControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label={__('Display Title', 'genesis-blocks')}
 							checked={attributes.displayPostTitle}
 							onChange={() =>
@@ -790,6 +811,8 @@ export default class Inspector extends Component {
 					{isPost && (
 						<RenderSettingControl id="gb_postgrid_displayPostAuthor">
 							<ToggleControl
+								__nextHasNoMarginBottom
+							__next40pxDefaultSize
 								label={__('Display Author', 'genesis-blocks')}
 								checked={attributes.displayPostAuthor}
 								onChange={() =>
@@ -804,6 +827,8 @@ export default class Inspector extends Component {
 					{isPost && (
 						<RenderSettingControl id="gb_postgrid_displayPostDate">
 							<ToggleControl
+								__nextHasNoMarginBottom
+							__next40pxDefaultSize
 								label={__('Display Date', 'genesis-blocks')}
 								checked={attributes.displayPostDate}
 								onChange={() =>
@@ -817,6 +842,8 @@ export default class Inspector extends Component {
 					)}
 					<RenderSettingControl id="gb_postgrid_displayPostExcerpt">
 						<ToggleControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label={__('Display Excerpt', 'genesis-blocks')}
 							checked={attributes.displayPostExcerpt}
 							onChange={() =>
@@ -830,6 +857,7 @@ export default class Inspector extends Component {
 					{attributes.displayPostExcerpt && (
 						<RenderSettingControl id="gb_postgrid_excerptLength">
 							<RangeControl
+								{...rangeProps}
 								label={__('Excerpt Length', 'genesis-blocks')}
 								value={attributes.excerptLength}
 								onChange={(value) =>
@@ -842,6 +870,8 @@ export default class Inspector extends Component {
 					)}
 					<RenderSettingControl id="gb_postgrid_displayPostLink">
 						<ToggleControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label={__(
 								'Display Continue Reading Link',
 								'genesis-blocks'
@@ -880,6 +910,8 @@ export default class Inspector extends Component {
 				>
 					<RenderSettingControl id="gb_postgrid_sectionTag">
 						<SelectControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label={__(
 								'Post Grid Section Tag',
 								'genesis-blocks'
@@ -900,6 +932,8 @@ export default class Inspector extends Component {
 					{attributes.sectionTitle && (
 						<RenderSettingControl id="gb_postgrid_sectionTitleTag">
 							<SelectControl
+								__nextHasNoMarginBottom
+							__next40pxDefaultSize
 								label={__(
 									'Section Title Heading Tag',
 									'genesis-blocks'
@@ -921,6 +955,8 @@ export default class Inspector extends Component {
 					{attributes.displayPostTitle && (
 						<RenderSettingControl id="gb_postgrid_postTitleTag">
 							<SelectControl
+								__nextHasNoMarginBottom
+							__next40pxDefaultSize
 								label={__(
 									'Post Title Heading Tag',
 									'genesis-blocks'

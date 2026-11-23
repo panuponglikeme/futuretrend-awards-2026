@@ -55,7 +55,6 @@ class AdminNotice {
 		}
 
 		$this->print_notice_text();
-
 	}
 
 	/**

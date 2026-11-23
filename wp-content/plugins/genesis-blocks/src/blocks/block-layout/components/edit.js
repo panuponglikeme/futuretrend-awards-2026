@@ -13,16 +13,24 @@ import { LayoutsContext } from './layouts-provider';
  */
 const { __ } = wp.i18n;
 const { Placeholder } = wp.components;
-const { Component, Fragment } = wp.element;
-const { BlockControls, BlockAlignmentToolbar } = wp.blockEditor;
+const { Component } = wp.element;
+const { BlockControls, BlockAlignmentToolbar, useBlockProps } = wp.blockEditor;
 
-export default class Edit extends Component {
+/* Wrapper required for Block API v3 */
+export default function Edit(props) {
+	const blockProps = useBlockProps();
+
+	return <EditView {...props} blockProps={blockProps} />;
+}
+
+class EditView extends Component {
 	render() {
-		const { attributes, setAttributes, clientId } = this.props;
+		const { attributes, setAttributes, clientId, blockProps } = this.props;
 
-		/* Placeholder with layout modal */
-		return [
-			<Fragment key={this.props.clientId}>
+		return (
+			<div {...blockProps}>
+				{/* Keep the placeholder modal inside the editor wrapper so the
+					layout inserter satisfies the Block API v3 root contract. */}
 				<BlockControls key="controls">
 					<BlockAlignmentToolbar
 						value={attributes.align}
@@ -41,7 +49,7 @@ export default class Edit extends Component {
 					icon="layout"
 				>
 					<LayoutsContext.Consumer
-						key={'layouts-context-provider-' + this.props.clientId}
+						key={'layouts-context-provider-' + clientId}
 					>
 						{(context) => (
 							<LayoutModal
@@ -51,7 +59,7 @@ export default class Edit extends Component {
 						)}
 					</LayoutsContext.Consumer>
 				</Placeholder>
-			</Fragment>,
-		];
+			</div>
+		);
 	}
 }

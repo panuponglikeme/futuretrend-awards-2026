@@ -15,6 +15,7 @@ export default class Testimonial extends Component {
 	render() {
 		// Setup the attributes
 		const {
+			blockProps = {},
 			attributes: {
 				testimonialImgURL,
 				testimonialBackgroundColor,
@@ -26,6 +27,7 @@ export default class Testimonial extends Component {
 
 		return (
 			<div
+				{...blockProps}
 				style={{
 					backgroundColor: testimonialBackgroundColor
 						? testimonialBackgroundColor
@@ -35,7 +37,7 @@ export default class Testimonial extends Component {
 						: '#32373c',
 				}}
 				className={classnames(
-					this.props.className,
+					blockProps.className,
 					testimonialCiteAlign,
 					{ 'gb-has-avatar': testimonialImgURL },
 					'gb-font-size-' + testimonialFontSize,

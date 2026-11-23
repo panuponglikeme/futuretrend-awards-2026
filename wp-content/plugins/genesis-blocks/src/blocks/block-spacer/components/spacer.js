@@ -13,21 +13,22 @@ import classnames from 'classnames';
  */
 export default class Spacer extends Component {
 	render() {
-		// Setup the attributes
 		const {
-			spacerDivider,
-			spacerDividerStyle,
-			spacerDividerColor,
-			spacerDividerHeight,
-		} = this.props.attributes;
+			blockProps = {},
+			attributes: {
+				spacerDivider,
+				spacerDividerStyle,
+				spacerDividerColor,
+				spacerDividerHeight,
+			},
+		} = this.props;
 
 		return (
 			<div
-				style={{
-					color: spacerDividerColor,
-				}}
+				{...blockProps}
+				style={{ color: spacerDividerColor }}
 				className={classnames(
-					this.props.className,
+					blockProps.className,
 					'gb-block-spacer',
 					spacerDividerStyle,
 					{ 'gb-spacer-divider': spacerDivider },

@@ -64,7 +64,7 @@ function responsive_settings( $block_content, $block, $uuid = false ) {
 	// Ensure the smallest breakpoint rules are rendered last, so they can take effect.
 	uksort(
 		$block['attrs']['gbResponsiveSettings'],
-		static function( $first_breakpoint, $second_breakpoint ) {
+		static function ( $first_breakpoint, $second_breakpoint ) {
 			if ( absint( $first_breakpoint ) > absint( $second_breakpoint ) ) {
 				return -1;
 			}

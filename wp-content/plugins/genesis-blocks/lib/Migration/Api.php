@@ -42,7 +42,7 @@ class Api {
 			[
 				'methods'             => 'POST',
 				'callback'            => [ $this, 'get_migrate_setting_response' ],
-				'permission_callback' => function() {
+				'permission_callback' => function () {
 					return current_user_can( 'manage_options' );
 				},
 			]
@@ -100,7 +100,7 @@ class Api {
 			[
 				'methods'             => 'POST',
 				'callback'            => [ $this, 'get_migrate_content_response' ],
-				'permission_callback' => function() {
+				'permission_callback' => function () {
 					return current_user_can( 'manage_options' );
 				},
 			]
@@ -136,7 +136,7 @@ class Api {
 			[
 				'methods'             => 'POST',
 				'callback'            => [ $this, 'get_migrate_user_meta_response' ],
-				'permission_callback' => function() {
+				'permission_callback' => function () {
 					return current_user_can( 'manage_options' );
 				},
 			]
@@ -173,7 +173,7 @@ class Api {
 			[
 				'methods'             => 'POST',
 				'callback'            => [ $this, 'get_migration_cleanup_response' ],
-				'permission_callback' => function() {
+				'permission_callback' => function () {
 					return current_user_can( 'manage_options' );
 				},
 			]

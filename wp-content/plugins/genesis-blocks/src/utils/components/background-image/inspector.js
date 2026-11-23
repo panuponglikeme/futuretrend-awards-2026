@@ -20,6 +20,11 @@ class BackgroundImagePanel extends Component {
 	render() {
 		const { attributes, setAttributes } = this.props;
 
+		const rangeProps = {
+			__next40pxDefaultSize: true,
+			__nextHasNoMarginBottom: true,
+		};
+
 		const backgroundRepeatOptions = [
 			{ value: 'no-repeat', label: __('No Repeat', 'genesis-blocks') },
 			{ value: 'repeat', label: __('Repeat', 'genesis-blocks') },
@@ -128,6 +133,7 @@ class BackgroundImagePanel extends Component {
 							/>
 
 							<RangeControl
+								{...rangeProps}
 								label={__('Image Opacity', 'genesis-blocks')}
 								value={attributes.backgroundDimRatio}
 								onChange={(value) =>
@@ -141,6 +147,8 @@ class BackgroundImagePanel extends Component {
 							/>
 
 							<ToggleControl
+								__next40pxDefaultSize
+								__nextHasNoMarginBottom
 								label={__('Fixed Background', 'genesis-blocks')}
 								checked={attributes.hasParallax}
 								onChange={() => {
@@ -154,6 +162,8 @@ class BackgroundImagePanel extends Component {
 							/>
 
 							<SelectControl
+								__next40pxDefaultSize
+								__nextHasNoMarginBottom
 								className="gb-inspector-help-text"
 								label={__('Image Display', 'genesis-blocks')}
 								value={attributes.backgroundSize}
@@ -168,6 +178,8 @@ class BackgroundImagePanel extends Component {
 
 							{'cover' !== attributes.backgroundSize && (
 								<SelectControl
+									__next40pxDefaultSize
+									__nextHasNoMarginBottom
 									label={__('Image Repeat', 'genesis-blocks')}
 									value={attributes.backgroundRepeat}
 									options={backgroundRepeatOptions}

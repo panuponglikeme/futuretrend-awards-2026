@@ -10,6 +10,7 @@ import classnames from 'classnames';
 
 /**
  * Create a Button wrapper Component
+ * It now accepts blockProps so the root element can use Block API v3.
  */
 export default class Container extends Component {
 	render() {
@@ -30,6 +31,7 @@ export default class Container extends Component {
 				containerImgAlt,
 				containerDimRatio,
 			},
+			blockProps = {},
 		} = this.props;
 
 		const styles = {
@@ -58,14 +60,15 @@ export default class Container extends Component {
 		};
 
 		const className = classnames(
-			[this.props.className, 'gb-block-container'],
+			blockProps.className,
+			'gb-block-container',
 			{
 				['align' + containerWidth]: containerWidth,
 			}
 		);
 
 		return (
-			<div style={styles} className={className ? className : undefined}>
+			<div {...blockProps} style={styles} className={className}>
 				<div className="gb-container-inside">
 					{containerImgURL && !!containerImgURL.length && (
 						<div className="gb-container-image-wrap">

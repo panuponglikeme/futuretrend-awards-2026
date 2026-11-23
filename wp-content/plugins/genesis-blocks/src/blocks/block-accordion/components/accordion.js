@@ -13,17 +13,23 @@ import classnames from 'classnames';
  */
 export default class Accordion extends Component {
 	render() {
+		// Setup the attributes
+		const {
+			blockProps = {},
+			attributes: { accordionAlignment, accordionFontSize },
+		} = this.props;
+		
 		return (
 			<div
+				{...blockProps}
 				className={classnames(
-					this.props.className,
-					this.props.attributes.accordionAlignment
-						? 'gb-align-' + this.props.attributes.accordionAlignment
+					blockProps.className,
+					accordionAlignment
+						? 'gb-align-' + accordionAlignment
 						: undefined,
 					'gb-block-accordion',
-					this.props.attributes.accordionFontSize
-						? 'gb-font-size-' +
-								this.props.attributes.accordionFontSize
+					accordionFontSize
+						? 'gb-font-size-' + accordionFontSize
 						: null
 				)}
 			>

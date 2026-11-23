@@ -31,6 +31,11 @@ export default class Inspector extends Component {
 			setAttributes,
 		} = this.props;
 
+		const rangeProps = {
+			__next40pxDefaultSize: true,
+			__nextHasNoMarginBottom: true,
+		};
+
 		// Button size values
 		const spacerStyleOptions = [
 			{
@@ -67,6 +72,7 @@ export default class Inspector extends Component {
 				<PanelBody>
 					<RenderSettingControl id="gb_spacer_spacerHeight">
 						<RangeControl
+							{...rangeProps}
 							label={__('Spacer Height', 'genesis-blocks')}
 							value={spacerHeight || ''}
 							onChange={(value) =>
@@ -80,6 +86,8 @@ export default class Inspector extends Component {
 					</RenderSettingControl>
 					<RenderSettingControl id="gb_spacer_spacerDivider">
 						<ToggleControl
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 							label={__('Add Divider', 'genesis-blocks')}
 							checked={spacerDivider}
 							onChange={() =>
@@ -95,6 +103,8 @@ export default class Inspector extends Component {
 						<PanelBody>
 							<RenderSettingControl id="gb_spacer_spacerDividerStyle">
 								<SelectControl
+									__nextHasNoMarginBottom
+							__next40pxDefaultSize
 									label={__(
 										'Divider Style',
 										'genesis-blocks'
@@ -115,6 +125,7 @@ export default class Inspector extends Component {
 							</RenderSettingControl>
 							<RenderSettingControl id="gb_spacer_spacerDividerHeight">
 								<RangeControl
+									{...rangeProps}
 									label={__(
 										'Divider Height',
 										'genesis-blocks'

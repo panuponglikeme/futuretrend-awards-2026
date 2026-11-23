@@ -18,6 +18,7 @@ const { registerBlockType } = wp.blocks;
 
 // Register the block
 registerBlockType('genesis-blocks/gb-testimonial', {
+	apiVersion: 3,
 	title: __('Testimonial', 'genesis-blocks'),
 	description: __(
 		'Add a user testimonial with a name and title.',
@@ -97,12 +98,8 @@ registerBlockType('genesis-blocks/gb-testimonial', {
 	},
 
 	/* Render the block in the editor. */
-	edit: (props) => {
-		return <Edit {...props} />;
-	},
+	edit: Edit,
 
 	/* Save the block markup. */
-	save: (props) => {
-		return <Save {...props} />;
-	},
+	save: Save,
 });

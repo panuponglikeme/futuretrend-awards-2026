@@ -97,6 +97,8 @@ export default class LayoutLibrary extends Component {
 					<Fragment>
 						<div className="gb-layout-modal-header">
 							<SelectControl
+								__next40pxDefaultSize
+								__nextHasNoMarginBottom
 								key={
 									'layout-library-select-categories-' +
 									this.props.clientId

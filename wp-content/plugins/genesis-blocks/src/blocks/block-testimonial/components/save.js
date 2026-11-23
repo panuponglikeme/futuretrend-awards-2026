@@ -6,9 +6,11 @@ import Testimonial from './testimonial';
 /**
  * WordPress dependencies
  */
-import { RichText } from '@wordpress/block-editor';
+import { RichText, useBlockProps } from '@wordpress/block-editor';
 
 export default function Save(props) {
+	const blockProps = useBlockProps.save();
+
 	const {
 		testimonialName,
 		testimonialTitle,
@@ -20,7 +22,7 @@ export default function Save(props) {
 	} = props.attributes;
 
 	return (
-		<Testimonial {...props}>
+		<Testimonial {...props} blockProps={blockProps}>
 			<RichText.Content
 				tagName="div"
 				className="gb-testimonial-text"
@@ -29,6 +31,7 @@ export default function Save(props) {
 				}}
 				value={testimonialContent}
 			/>
+
 			<div className="gb-testimonial-info">
 				{testimonialImgURL && (
 					<div className="gb-testimonial-avatar-wrap">
@@ -43,6 +46,7 @@ export default function Save(props) {
 						</div>
 					</div>
 				)}
+
 				<RichText.Content
 					tagName="h2"
 					className="gb-testimonial-name"
@@ -53,6 +57,7 @@ export default function Save(props) {
 					}}
 					value={testimonialName}
 				/>
+
 				<RichText.Content
 					tagName="small"
 					className="gb-testimonial-title"
