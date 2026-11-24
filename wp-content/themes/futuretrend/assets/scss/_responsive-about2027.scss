@@ -142,10 +142,6 @@
 		& + & {
 			padding-top: 84px;
 		}
-
-		&:last-of-type {
-			padding-bottom: 72px;
-		}
 	}
 
 	.ab27-members {
@@ -157,9 +153,14 @@
 	}
 
 	//Larger waves on phones so both corners still show
-	.ab27-partners {
-		padding: 72px 0 96px;
+	.ab27-partners,
+	.ab27-committee:last-of-type {
+		padding-bottom: 96px;
 		background-size: 160% auto;
+	}
+
+	.ab27-partners {
+		padding-top: 72px;
 	}
 
 	.ab27-committee + .ab27-partners::before {

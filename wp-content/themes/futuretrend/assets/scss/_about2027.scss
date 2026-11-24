@@ -358,10 +358,6 @@
 	& + & {
 		padding-top: 130px;
 	}
-
-	&:last-of-type {
-		padding-bottom: 96px;
-	}
 }
 
 //Centred rows, so a short last row sits in the middle
@@ -386,14 +382,14 @@
 	background-color: rgba(74, 108, 190, 0.6);
 }
 
-//Ratio on the image itself: on the figure, the image's own height would stretch it. Faces are near the top of the photos.
+//Square, as the photos are. Ratio on the image itself: on the figure, the image's own height would stretch it. Faces are near the top of the photos.
 .ab27-member-photo {
 	background-color: #FFF;
 
 	img {
 		display: block;
 		width: 100%;
-		aspect-ratio: 383 / 340;
+		aspect-ratio: 1 / 1;
 		object-fit: cover;
 		object-position: center top;
 	}
@@ -430,11 +426,17 @@
 	color: rgba(255, 255, 255, 0.55);
 }
 
-//Partners, with the waves at the bottom corners (1440x333) as at the bottom of the Awards page
-.ab27-partners {
-	padding: 96px 0 120px;
+//Waves at the bottom corners (1440x333), as at the bottom of the Awards page, on the last section of the page:
+//the partners, or the last committee group while the partners section is switched off
+.ab27-partners,
+.ab27-committee:last-of-type {
+	padding-bottom: 120px;
 	background: no-repeat center bottom / 100% auto $color2027AboutLower;
 	@include bg-webp2027('bg-awards-bottom');
+}
+
+.ab27-partners {
+	padding-top: 96px;
 
 	.ab27-title {
 		margin-top: 0;

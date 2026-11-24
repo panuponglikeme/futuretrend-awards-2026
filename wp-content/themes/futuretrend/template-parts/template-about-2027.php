@@ -218,8 +218,10 @@
         </section>
     <?php endforeach; ?>
 
-    <?php // Partners: the chosen Partner Category; hidden while it has no partners. ?>
+    <?php // Partners: the chosen Partner Category; hidden while it has no partners. Switched off for now: set $about_2027_show_partners to true to show it again. ?>
     <?php
+        $about_2027_show_partners = false;
+        if ( $about_2027_show_partners ) :
         $partners = new WP_Query(
             array(
                 'post_type'      => 'partner',
@@ -267,7 +269,7 @@
                 </ul>
             </div>
         </section>
-    <?php endif; wp_reset_postdata(); ?>
+    <?php endif; wp_reset_postdata(); endif; ?>
 </main>
 
 <?php get_footer('2027'); ?>
