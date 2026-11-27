@@ -99,7 +99,7 @@
 .hm27-stat-name {
 	display: block;
 	margin-top: 12px;
-	font-size: 0.875rem;
+	font-size: 1.2rem;
 	opacity: 0.6;
 }
 
@@ -110,21 +110,25 @@
 	@include bg-webp2027('bg-home-bottom');
 }
 
+//Clear like the stat cards; each group shows its colour on the title, the total and the category names (--hm27-color)
 .hm27-group {
 	--aw27-accent: #FFF;
+	--hm27-color: #FFF;
 	padding: 64px;
-	border: 1px solid rgba(255, 255, 255, 0.15);
+	border: 1px solid rgba(255, 255, 255, 0.25);
 	border-radius: 24px;
+	background-color: rgba(255, 255, 255, 0.12);
 
 	& + & {
 		margin-top: 80px;
 	}
 
-	@each $key, $colors in $award2027Groups {
+	//One colour per group for the text and the lines (title bar, total, card tops, count pills)
+	@each $key, $color in $home2027GroupColors {
 		&--#{$key} {
-			--aw27-accent: #{nth($colors, 3)};
-			--aw27-pill-bg: linear-gradient(135deg, #{rgba(nth($colors, 3), 0.45)} 0%, #{rgba(nth($colors, 3), 0.12)} 100%);
-			background: linear-gradient(135deg, nth($colors, 1) 0%, nth($colors, 2) 100%);
+			--aw27-accent: #{$color};
+			--aw27-pill-bg: linear-gradient(135deg, #{rgba($color, 0.45)} 0%, #{rgba($color, 0.12)} 100%);
+			--hm27-color: #{$color};
 		}
 	}
 }
@@ -145,11 +149,12 @@
 	font-size: 2.5rem;
 	font-weight: 700;
 	line-height: 1.2;
+	color: var(--hm27-color);
 }
 
 .hm27-group-desc {
 	margin-top: 12px;
-	font-size: 1.375rem;
+	font-size: 1.5rem;
 	color: rgba(255, 255, 255, 0.6);
 }
 
@@ -159,44 +164,25 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	width: 100px;
-	height: 92px;
+	width: 136px;
+	height: 124px;
 	border: 1px solid var(--aw27-accent);
-	border-radius: 20px;
+	border-radius: 24px;
 	background-color: rgba(255, 255, 255, 0.08);
+	color: var(--hm27-color);
 }
 
+//Number as large as on the 2026 homepage
 .hm27-group-total-num {
-	font-size: 2.25rem;
+	font-size: 2.8125rem;
 	line-height: 1;
 }
 
 .hm27-group-total-label {
-	margin-top: 6px;
-	font-size: 0.75rem;
+	margin-top: 8px;
+	font-size: 0.9375rem;
 	letter-spacing: 0.1em;
 	text-transform: uppercase;
-}
-
-.hm27-group-image {
-	position: relative;
-	margin-top: 60px;
-	border-radius: 20px;
-	overflow: hidden;
-
-	img {
-		display: block;
-		width: 100%;
-		height: 400px;
-		object-fit: cover;
-	}
-
-	&::after {
-		content: '';
-		position: absolute;
-		inset: 0;
-		background: linear-gradient(90deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 0.35) 100%);
-	}
 }
 
 .hm27-cats {
@@ -223,7 +209,7 @@
 	border: 1px solid var(--aw27-accent);
 	border-radius: 12px;
 	background: var(--aw27-pill-bg, rgba(255, 255, 255, 0.12));
-	font-size: 1.375rem;
+	font-size: 1.625rem;
 	line-height: 1.2;
 
 	i {
@@ -231,15 +217,17 @@
 	}
 }
 
+//Text sizes as on the 2026 homepage
 .hm27-cat-name {
 	margin-top: 28px;
-	font-size: 1.0625rem;
+	font-size: 1.2rem;
 	font-weight: 700;
+	color: var(--hm27-color);
 }
 
 .hm27-cat-desc {
 	margin-top: 12px;
-	font-size: 0.8125rem;
+	font-size: 1.1rem;
 	line-height: 1.6;
 	color: rgba(255, 255, 255, 0.6);
 }

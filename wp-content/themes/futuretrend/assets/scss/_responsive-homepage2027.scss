@@ -69,21 +69,18 @@
 		font-size: 2.25rem;
 	}
 
+	//Text sizes as on the 2026 homepage on phones
 	.hm27-group-desc {
-		font-size: 1.125rem;
-	}
-
-	.hm27-group-image {
-		margin-top: 32px;
-
-		img {
-			height: 200px;
-		}
+		font-size: 1.25rem;
 	}
 
 	.hm27-cats {
 		grid-template-columns: 1fr;
 		gap: 16px;
 		margin-top: 32px;
+	}
+
+	.hm27-cat-num {
+		font-size: 1.5rem;
 	}
 }

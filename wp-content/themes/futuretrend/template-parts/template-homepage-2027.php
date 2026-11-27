@@ -88,10 +88,7 @@
                         </div>
                     </header>
 
-                    <?php if ( $group['image'] ) : ?>
-                        <figure class="hm27-group-image"><?php echo wp_get_attachment_image( $group['image'], 'full' ); ?></figure>
-                    <?php endif; ?>
-
+                    <?php // No group image here (the team removed it); the Award group image field is kept in the CMS. ?>
                     <ul class="hm27-cats">
                         <?php foreach ( array_values( $group['terms'] ) as $i => $term ) : ?>
                             <li class="hm27-cat" data-ft27-fade style="--ft27-fade-delay: <?php echo esc_attr( ( $i % 3 ) * 0.08 ); ?>s">

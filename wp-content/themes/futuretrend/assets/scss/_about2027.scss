@@ -305,10 +305,11 @@
 	border-radius: 20px;
 	background-color: rgba(255, 255, 255, 0.08);
 
+	//3:2 like the photos, so nothing is cut off
 	img {
 		display: block;
 		width: 100%;
-		aspect-ratio: 261 / 238;
+		aspect-ratio: 3 / 2;
 		border-radius: 14px;
 		object-fit: cover;
 	}

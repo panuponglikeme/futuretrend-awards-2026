@@ -98,8 +98,10 @@
 		color: $color2027Text;
 	}
 
+	//As on the 2026 Awards page
 	p {
 		margin: 0;
+		font-size: 1rem;
 	}
 }
 
@@ -187,10 +189,11 @@
 	--aw27-name: #FFF;
 	scroll-margin-top: $header2027HeightSticky + 16px;
 
+	//Text and lines in the same bright group colour as the homepage; the gradient only colours the active category tab
 	@each $key, $colors in $award2027Groups {
 		&--#{$key} {
-			--aw27-accent: #{nth($colors, 3)};
-			--aw27-name: #{nth($colors, 4)};
+			--aw27-accent: #{map-get($home2027GroupColors, $key)};
+			--aw27-name: #{map-get($home2027GroupColors, $key)};
 			--aw27-gradient: linear-gradient(135deg, #{nth($colors, 1)} 0%, #{nth($colors, 2)} 100%);
 		}
 	}
@@ -248,13 +251,14 @@
 	}
 }
 
+//Clear like the homepage cards
 .aw27-card {
 	margin-top: 48px;
 	padding: 64px 88px;
-	border: 1px solid rgba(255, 255, 255, 0.15);
+	border: 1px solid rgba(255, 255, 255, 0.25);
 	border-top: 2px solid var(--aw27-name);
 	border-radius: 24px;
-	background: var(--aw27-gradient);
+	background-color: rgba(255, 255, 255, 0.12);
 }
 
 .aw27-card-head {
@@ -268,6 +272,7 @@
 	font-size: 2.5rem;
 	font-weight: 700;
 	line-height: 1.2;
+	color: var(--aw27-name);
 }
 
 .aw27-card-desc {
@@ -326,8 +331,9 @@
 	max-width: 320px;
 	padding: 12px 12px 24px;
 	border: 1px solid rgba(255, 255, 255, 0.15);
+	border-top: 2px solid var(--aw27-accent);
 	border-radius: 16px;
-	background-color: rgba(255, 255, 255, 0.05);
+	background-color: rgba(255, 255, 255, 0.06);
 	text-align: center;
 }
 
